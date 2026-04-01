@@ -7,7 +7,7 @@ Frequently asked questions about the "Copilot & Agent Administration Fundamental
 ### Q: What are the prerequisites for this course?
 **A:** You should have:
 - Basic understanding of Microsoft 365 services
-- Familiarity with Azure Active Directory/Entra ID
+- Familiarity with Microsoft Entra ID
 - Access to a Microsoft 365 tenant (trial or production)
 - Administrative privileges in Microsoft 365 admin center
 
@@ -65,7 +65,7 @@ Frequently asked questions about the "Copilot & Agent Administration Fundamental
 ## Exam Preparation Questions
 
 ### Q: Is there really an AB-900 exam?
-**A:** AB-900 is used as a hypothetical example in this course. For actual Microsoft certifications, check MS-900, MS-102, AI-900, and PL-200.
+**A:** Yes. AB-900 (Microsoft AI-Powered Copilot and Agent Administration Fundamentals) is a real Microsoft certification exam covering Copilot deployment, agent administration, and data protection in Microsoft 365. See the skills-measured reference in `references/ab900-objectives.md` for the full exam outline.
 
 ### Q: How should I prepare for Microsoft 365 certification exams?
 **A:** 
@@ -78,13 +78,36 @@ Frequently asked questions about the "Copilot & Agent Administration Fundamental
 ### Q: How long are Microsoft certifications valid?
 **A:** Most role-based certifications require annual renewal through continuing education.
 
+## Cert Buddy Agent Questions
+
+### Q: What is the AB-900 Cert Buddy agent?
+**A:** It is a GitHub Copilot agent defined in `.github/agents/ab900-cert-buddy-agent.agent.md` that generates exam-realistic practice questions, guided scenario walkthroughs, and personalized study plans. The agent is read-only and does not modify any files in the repository.
+
+### Q: What slash commands are available?
+**A:** There are three slash commands:
+1. `/ab900-practice-questions` -- Generate multiple-choice practice questions
+2. `/ab900-scenario-walkthrough` -- Walk through realistic admin scenarios
+3. `/ab900-study-planner` -- Generate a personalized study plan based on your confidence ratings (Strong, Moderate, Weak, or Unknown) across the three exam domains
+
+### Q: What MCP servers does the agent use?
+**A:** Three MCP servers are configured in `.vscode/mcp.json`:
+- `ab900buddy-context7` -- Context7 for version-specific M365 admin PowerShell and Graph API docs
+- `ab900buddy-markitdown` -- MarkItDown for converting PDFs and Office documents to Markdown
+- `ab900buddy-mslearn` -- Microsoft Learn MCP (`@microsoft/learn-cli@0.1.0`) for searching and fetching official Microsoft Learn documentation
+
+### Q: Does the agent have write access to the repository?
+**A:** No. The agent is configured with read-only tools (`agent`, `codebase`, `fileSearch`) and MCP server access. It does not have `terminal` or `editFiles` tools.
+
+### Q: What are the module docs in the docs/ directory?
+**A:** Six distilled module documents (module-01 through module-06) from the AB-900T00 Microsoft Learn course serve as a local knowledge corpus. They cover security foundations, core services administration, data protection and governance, Copilot and agents, Copilot admin tasks, and agent admin tasks.
+
 ## Course Materials Questions
 
 ### Q: Are the course materials downloadable?
 **A:** Yes, all materials in this repository are available under the MIT License.
 
 ### Q: Will the materials be updated?
-**A:** Yes, we'll update materials as Microsoft releases new features and capabilities.
+**A:** Yes, materials are updated as Microsoft releases new features and capabilities.
 
 ### Q: Can I share these materials with my team?
 **A:** Yes, under the MIT License terms. Please maintain attribution and license information.
@@ -94,19 +117,19 @@ Frequently asked questions about the "Copilot & Agent Administration Fundamental
 
 ## Troubleshooting Questions
 
-### Q: Copilot isn't showing up in my apps. What should I check?
+### Q: Copilot is not showing up in my apps. What should I check?
 **A:** Verify:
 1. License is assigned and activated (wait 24-48 hours)
 2. Microsoft 365 Apps are updated to Current Channel
 3. OneDrive is provisioned
-4. You're signed in with the licensed account
+4. You are signed in with the licensed account
 5. Network connectivity is working
 
 ### Q: I'm getting errors when running PowerShell scripts. Help?
 **A:** 
 1. Ensure Microsoft.Graph module is installed
 2. Check you have necessary admin permissions
-3. Verify you're connected to Microsoft Graph
+3. Verify you are connected to Microsoft Graph
 4. Review error messages for specific issues
 5. Check script prerequisites
 

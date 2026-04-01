@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Purpose
 
-This is a **content-only repository** for an AB-900 certification study buddy powered by GitHub Copilot agents. There is no application code, no build system, and no tests. The primary artifacts are agent definitions, skill specs, prompt templates, and MCP server configurations.
+This is a **content-only repository** for an AB-900 certification study buddy powered by GitHub Copilot agents, plus instructor materials for Tim Warner's O'Reilly Live Learning session. There is no application code, no build system, and no tests. The primary artifacts are agent definitions, skill specs, prompt templates, MCP server configurations, and distilled Microsoft Learn course content.
 
 ## Architecture
 
@@ -18,6 +18,7 @@ This is a **content-only repository** for an AB-900 certification study buddy po
   prompts/
     ab900-practice-questions.prompt.md     # Prompt template for practice questions
     ab900-scenario-walkthrough.prompt.md   # Prompt template for scenario walkthroughs
+    ab900-study-planner.prompt.md          # Prompt template for personalized study plans
   copilot-instructions.md                  # Copilot workspace instructions + rename table
   workflows/
     validate.yml                           # CI validation pipeline (non-blocking)
@@ -26,11 +27,46 @@ This is a **content-only repository** for an AB-900 certification study buddy po
   mcp.json                                 # MCP server definitions (workspace-scoped)
   extensions.json                          # Recommended VS Code extensions
   settings.json                            # VS Code workspace settings
+docs/
+  module-01-security-foundations.md        # Distilled from MS Learn: Zero Trust, Defender, Entra
+  module-02-core-services-admin.md         # Distilled from MS Learn: admin center, Exchange/Teams/SP
+  module-03-data-protection-governance.md  # Distilled from MS Learn: Purview, DLP, DSPM, eDiscovery
+  module-04-copilot-and-agents.md          # Distilled from MS Learn: Copilot arch, agent types, licensing
+  module-05-copilot-admin-tasks.md         # Distilled from MS Learn: license mgmt, PAYG, prompts
+  module-06-agent-admin-tasks.md           # Distilled from MS Learn: agent creation, approval, lifecycle
+  demo-scripts.md                          # Live demo scripts for O'Reilly session
+  exam-traps-cheatsheet.md                # Common exam pitfalls
+  new-features-deep-dive.md               # Recent feature changes
+  session-agenda.md                        # Full session agenda
+  tenant-setup-guide.md                    # Lab tenant setup
 references/
   ab900-objectives.md                      # AB-900 skills-measured reference (current)
   fictional-companies.md                   # Microsoft fictional company names for scenarios
   style-guide.md                           # Microsoft Writing Style Guide key principles
+shared-resources/
+  references/                              # Exam guide, practice questions, skills breakdown
+  scripts/                                 # PowerShell helpers (license assign, usage report)
+  templates/                               # Deployment checklist, DLP policy template
+segment-01-core-m365-services/             # Segment 1: demos, labs, slides, resources
+segment-02-data-protection-governance/     # Segment 2: demos, labs, slides, resources
+segment-03-copilot-administration/         # Segment 3: demos, labs, slides, resources
+segment-04-agents-exam-prep/              # Segment 4: demos, labs, slides, resources
+course-plan.md                             # Live session plan (4 x 50-min segments)
 ```
+
+### Knowledge Corpus (docs/module-*.md)
+
+The `docs/module-*.md` files are distilled CliffsNotes from the official AB-900T00 Microsoft Learn course (2 learning paths, 6 modules, ~35 content units). Use these as the local knowledge base when generating content, answering questions, or building course materials. They map to the exam as follows:
+
+| File | Exam Domain |
+|------|-------------|
+| module-01, module-02 | Domain 1 (30-35%) |
+| module-03 | Domain 2 (35-40%) -- **heaviest** |
+| module-04, module-05, module-06 | Domain 3 (25-30%) |
+
+### Live Session Structure
+
+The O'Reilly session runs 4 x 50-min segments with 10-min breaks. The segment plan in `course-plan.md` does NOT follow the exam domain order -- it leads with Copilot (the draw), then agents, then data protection (heaviest domain), then admin/identity/security wrap-up with exam prep.
 
 ### How It Works
 
@@ -50,8 +86,9 @@ Defined in `.vscode/mcp.json` with IDs:
 
 - `ab900buddy-context7` -- Context7 (version-specific docs and snippets for M365 admin PowerShell and Graph API)
 - `ab900buddy-markitdown` -- MarkItDown (convert PDFs and Office docs to markdown for analysis)
+- `ab900buddy-mslearn` -- Microsoft Learn MCP (`@microsoft/learn-cli`); provides `microsoft_docs_search`, `microsoft_docs_fetch`, and `microsoft_code_sample_search` tools for grounding content in official Microsoft Learn documentation. This is the primary grounding source for all AB-900 content.
 
-The Microsoft Learn MCP server (`mcp__claude_ai_Microsoft_Learn_MCP_Server`) is configured at the user level in Claude Code and may be auto-available. It provides `microsoft_docs_search` and `microsoft_docs_fetch` tools for grounding content in official Microsoft Learn documentation. This server is the primary grounding source for all AB-900 content.
+In Claude Code, the Microsoft Learn MCP server (`mcp__claude_ai_Microsoft_Learn_MCP_Server`) is also available at the user level and provides the same tools.
 
 The Azure MCP server is intentionally excluded. AB-900 is a Microsoft 365 administration exam, not an Azure infrastructure exam.
 
@@ -85,6 +122,20 @@ These navigation paths are authoritative for AB-900 content. Always use the exac
   - Never use "Billing > Billing policies" -- that path is deprecated for Copilot billing.
 - **Agent approval queue**: admin.microsoft.com > **Agents** > **All agents** > **Requests**
 - **Researcher and Analyst**: these built-in Copilot experiences require a separate administrative block and are NOT governed by the general agent on/off toggle in the Microsoft 365 admin center.
+
+## CI Validation
+
+The `validate.yml` workflow runs on PRs to main (non-blocking, continue-on-error). It checks:
+
+1. **Retired terminology** -- flags `compliance.microsoft.com`, `Azure AD`, `AAD`, `Azure Active Directory`, `AI hub`, `per message`, `Billing > Billing policies`, `Azure AI Studio` (excludes copilot-instructions.md, CLAUDE.md, CONTRIBUTING.md, style-guide.md, fictional-companies.md)
+2. **Non-ASCII characters** -- curly quotes, em dashes, en dashes
+3. **Contractions** -- common contractions like don't, isn't, etc. (excludes CONTRIBUTING.md, style-guide.md, fictional-companies.md)
+4. **Markdown link check** -- broken links via gaurav-nelson/github-action-markdown-link-check
+
+To check locally before pushing, grep for the retired terms pattern:
+```bash
+grep -rn --include="*.md" -E 'compliance\.microsoft\.com|Azure AD[^C]|\bAAD\b|Azure Active Directory|AI hub|per message|Billing > Billing policies|Azure AI Studio' .
+```
 
 ## Default Behaviors
 

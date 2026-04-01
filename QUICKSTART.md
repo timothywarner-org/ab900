@@ -28,8 +28,8 @@ Get up and running quickly with the course materials and labs.
    # For PowerShell automation
    Install-Module Microsoft.Graph -Scope CurrentUser
    
-   # For Azure AD management
-   Install-Module AzureAD -Scope CurrentUser
+   # For Microsoft Entra ID management
+   Install-Module Microsoft.Graph.Identity.DirectoryManagement -Scope CurrentUser
    ```
 
 ### During the Live Session
@@ -42,7 +42,7 @@ Get up and running quickly with the course materials and labs.
 2. **Hands-On Labs**
    - Lab instructions are in each segment's README
    - Use your test environment
-   - Don't worry if you fall behind - labs are self-paced
+   - Do not worry if you fall behind -- labs are self-paced
    - Take notes of any issues for Q&A
 
 3. **Ask Questions**
@@ -52,7 +52,7 @@ Get up and running quickly with the course materials and labs.
 ### After the Live Session
 
 1. **Complete Labs**
-   - Work through any labs you didn't finish
+   - Work through any labs you did not finish
    - Try the optional challenge exercises
    - Document your results
 
@@ -168,7 +168,7 @@ Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Office\ClickToRun\Configuration
 ```
 
 ### Create a Simple DLP Policy (Portal)
-1. Go to https://compliance.microsoft.com
+1. Go to https://purview.microsoft.com
 2. Navigate to Data Loss Prevention > Policies
 3. Click "Create policy"
 4. Choose template or custom
@@ -183,6 +183,34 @@ Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Office\ClickToRun\Configuration
 3. Review adoption metrics
 4. Analyze usage by application
 5. Export data as needed
+
+## Using the AB-900 Cert Buddy Agent
+
+This repository includes a **GitHub Copilot agent** that helps you study for the AB-900 exam. The agent is read-only and does not modify files in the repository.
+
+### Slash Commands
+
+Use these slash commands in GitHub Copilot Chat:
+
+| Command | Purpose |
+|---------|---------|
+| `/ab900-practice-questions` | Generate exam-realistic multiple-choice questions |
+| `/ab900-scenario-walkthrough` | Walk through realistic admin scenarios step by step |
+| `/ab900-study-planner` | Generate a personalized study plan based on your confidence ratings |
+
+### MCP Servers
+
+The agent uses three MCP servers defined in `.vscode/mcp.json`:
+
+| Server ID | Package | Purpose |
+|-----------|---------|---------|
+| `ab900buddy-context7` | `@upstash/context7-mcp@1.0.31` | Version-specific docs and snippets for M365 admin PowerShell and Graph API |
+| `ab900buddy-markitdown` | `markitdown-mcp@0.0.1a4` | Convert PDFs and Office docs to Markdown for analysis |
+| `ab900buddy-mslearn` | `@microsoft/learn-cli@0.1.0` | Search and fetch official Microsoft Learn documentation |
+
+### Local Knowledge Corpus
+
+Six distilled module documents from the AB-900T00 Microsoft Learn course are available in the `docs/` directory (module-01 through module-06). These cover security foundations, core services administration, data protection and governance, Copilot and agents, Copilot admin tasks, and agent admin tasks.
 
 ## Getting Help
 

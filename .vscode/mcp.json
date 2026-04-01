@@ -1,0 +1,36 @@
+{
+  "servers": {
+    "ab900buddy-context7": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["@upstash/context7-mcp@1.0.31"],
+      "env": {
+        "CONTEXT7_API_KEY": "${input:CONTEXT7_API_KEY}"
+      },
+      "gallery": "https://api.mcp.github.com",
+      "version": "1.0.31"
+    },
+    "ab900buddy-markitdown": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": ["markitdown-mcp@0.0.1a4"],
+      "gallery": "https://api.mcp.github.com",
+      "version": "0.0.1a4"
+    },
+    "ab900buddy-mslearn": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["@microsoft/learn-cli@0.1.0"],
+      "gallery": "https://api.mcp.github.com",
+      "version": "0.1.0"
+    }
+  },
+  "inputs": [
+    {
+      "id": "CONTEXT7_API_KEY",
+      "type": "promptString",
+      "description": "API key for authentication",
+      "password": true
+    }
+  ]
+}

@@ -6,8 +6,6 @@ tools:
   - agent
   - codebase
   - fileSearch
-  - terminal
-  - editFiles
   - ab900buddy-context7/*
   - ab900buddy-markitdown/*
   - ab900buddy-mslearn/*

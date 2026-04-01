@@ -8,7 +8,7 @@
 
 - Agent definition: .github/agents/ab900-cert-buddy-agent.agent.md
 - Skills: .github/skills/\*/SKILL.md
-- Prompts: .github/prompts/ab900-practice-questions.prompt.md, .github/prompts/ab900-scenario-walkthrough.prompt.md
+- Prompts: .github/prompts/ab900-practice-questions.prompt.md, .github/prompts/ab900-scenario-walkthrough.prompt.md, .github/prompts/ab900-study-planner.prompt.md
 - MCP servers (workspace only): .vscode/mcp.json
 
 ## Skill and agent conventions
@@ -32,10 +32,11 @@
 
 ## MCP server IDs
 
-- ab900buddy-context7
-- ab900buddy-markitdown
+- ab900buddy-context7 -- Context7 (M365 PowerShell and Graph API syntax)
+- ab900buddy-markitdown -- MarkItDown (PDF and Office doc conversion)
+- ab900buddy-mslearn -- Microsoft Learn MCP (@microsoft/learn-cli); provides microsoft_docs_search, microsoft_docs_fetch, and microsoft_code_sample_search
 
-Note: The Microsoft Learn MCP server (mcp__claude_ai_Microsoft_Learn_MCP_Server) is configured at the user level in Claude Code and may be auto-available. It provides microsoft_docs_search and microsoft_docs_fetch tools for grounding content in official Microsoft Learn documentation.
+Note: In Claude Code, the Microsoft Learn MCP server (mcp__claude_ai_Microsoft_Learn_MCP_Server) is also available at the user level and provides the same tools.
 
 ## Terminology (non-negotiable)
 

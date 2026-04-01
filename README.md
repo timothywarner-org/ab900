@@ -1,6 +1,18 @@
+<div align="center">
+
+<img src="./images/banner.png" alt="AB-900: Microsoft 365 Copilot and Agent Administration Fundamentals" width="720">
+
 # AB-900: Microsoft 365 Copilot and Agent Administration Fundamentals
 
 **O'Reilly Live Learning course repository + AI-powered study buddy**
+
+[![Website](https://img.shields.io/badge/TechTrainerTim.com-0078D4?style=for-the-badge&logo=microsoft-edge&logoColor=white)](https://techtrainertim.com)
+[![GitHub](https://img.shields.io/badge/timothywarner-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/timothywarner)
+[![Microsoft MVP](https://img.shields.io/badge/Microsoft_MVP-5C2D91?style=for-the-badge&logo=microsoft&logoColor=white)](https://techtrainertim.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](./LICENSE)
+[![Exam: AB-900](https://img.shields.io/badge/Exam-AB--900-00A4EF?style=for-the-badge&logo=microsoft&logoColor=white)](https://learn.microsoft.com/credentials/certifications/exams/ab-900/)
+
+</div>
 
 This repository contains instructor materials for the O'Reilly Live Learning session on AB-900, plus an embedded GitHub Copilot study companion that generates exam-realistic practice questions, scenario walkthroughs, and personalized study plans.
 
@@ -60,9 +72,10 @@ The cert buddy is a GitHub Copilot agent that runs inside VS Code. It requires n
 ```
 /ab900-practice-questions
 /ab900-scenario-walkthrough
+/ab900-study-planner
 ```
 
-These open a guided form that collects domain, objective, Bloom level, and difficulty before generating content.
+These open a guided form that collects inputs (domain, difficulty, confidence ratings, etc.) before generating content.
 
 **Option B -- Direct agent mention (free-form):**
 
@@ -136,19 +149,27 @@ ab900/
 │   │   └── ab900-study-planner/SKILL.md        # Personalized study plans
 │   ├── prompts/
 │   │   ├── ab900-practice-questions.prompt.md  # /ab900-practice-questions command
-│   │   └── ab900-scenario-walkthrough.prompt.md # /ab900-scenario-walkthrough command
+│   │   ├── ab900-scenario-walkthrough.prompt.md # /ab900-scenario-walkthrough command
+│   │   └── ab900-study-planner.prompt.md       # /ab900-study-planner command
 │   ├── copilot-instructions.md                 # Workspace Copilot grounding rules
 │   └── workflows/
 │       └── validate.yml                        # CI: terminology + link validation
 ├── .vscode/
-│   ├── mcp.json                                # MCP server config (auto-loads on clone)
+│   ├── mcp.json                                # MCP server config (3 servers, auto-loads)
 │   ├── extensions.json                         # Recommended extensions
 │   └── settings.json                           # Workspace settings
 ├── references/
 │   ├── ab900-objectives.md                     # Official exam objectives (all 3 domains)
 │   ├── fictional-companies.md                  # Microsoft fictional companies for scenarios
 │   └── style-guide.md                          # Microsoft Writing Style Guide extract
+├── course-plan.md                              # Live session plan (4 x 50 min on ON24)
 ├── docs/
+│   ├── module-01-security-foundations.md        # Module 1 CliffsNotes
+│   ├── module-02-core-services-admin.md        # Module 2 CliffsNotes
+│   ├── module-03-data-protection-governance.md  # Module 3 CliffsNotes
+│   ├── module-04-copilot-and-agents.md         # Module 4 CliffsNotes
+│   ├── module-05-copilot-admin-tasks.md        # Module 5 CliffsNotes
+│   ├── module-06-agent-admin-tasks.md          # Module 6 CliffsNotes
 │   ├── session-agenda.md                       # Instructor delivery guide (4 x 50 min)
 │   ├── demo-scripts.md                         # Click-by-click scripts for all 14 demos
 │   ├── tenant-setup-guide.md                   # Learner tenant setup before the session
@@ -166,14 +187,15 @@ ab900/
 
 ## MCP Servers
 
-Two MCP servers are configured in `.vscode/mcp.json` and load automatically on clone.
+Three MCP servers are configured in `.vscode/mcp.json` and load automatically on clone.
 
 | Server ID | Purpose |
 |-----------|---------|
 | `ab900buddy-context7` | Version-specific M365 admin PowerShell, Graph API, and CLI syntax |
 | `ab900buddy-markitdown` | Convert your own PDFs and Word docs to markdown for the agent to analyze |
+| `ab900buddy-mslearn` | Search and fetch official Microsoft Learn documentation (`microsoft_docs_search`, `microsoft_docs_fetch`) |
 
-The **Microsoft Learn MCP server** (configured at the user level in Claude Code) provides `microsoft_docs_search` and `microsoft_docs_fetch` for grounding all content in official Microsoft documentation. It is the primary source of truth for all generated questions and walkthroughs.
+The Microsoft Learn MCP server (`ab900buddy-mslearn`) is the primary source of truth for all generated questions and walkthroughs. It provides grounding in official Microsoft documentation directly from the workspace configuration.
 
 ---
 
