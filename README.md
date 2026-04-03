@@ -18,6 +18,37 @@ This repository contains instructor materials for the O'Reilly Live Learning ses
 
 ---
 
+## Quick Links
+
+### AB-900 Certification
+
+- [AB-900 Certification Page](https://learn.microsoft.com/credentials/certifications/exams/ab-900/)
+- [AB-900 Study Guide](https://learn.microsoft.com/credentials/certifications/resources/study-guides/ab-900)
+
+### Microsoft 365 Portals
+
+- [Outlook](https://outlook.office.com)
+- [Teams](https://teams.microsoft.com)
+- [OneDrive](https://onedrive.live.com)
+- [SharePoint](https://www.microsoft365.com/launch/sharepoint)
+- [Excel](https://www.microsoft365.com/launch/excel)
+- [Word](https://www.microsoft365.com/launch/word)
+
+### Admin and AI Portals
+
+- [Copilot Studio](https://copilotstudio.microsoft.com)
+- [Azure AI Foundry Portal](https://ai.azure.com)
+- [Microsoft Entra admin center](https://entra.microsoft.com)
+- [Microsoft Defender XDR Portal](https://security.microsoft.com)
+- [Microsoft Purview Portal](https://purview.microsoft.com)
+- [Teams Admin Center](https://admin.teams.microsoft.com)
+- [SharePoint Admin Center](https://admin.sharepoint.com)
+- [Exchange Admin Center](https://admin.exchange.microsoft.com)
+- [M365 Apps Admin Center](https://config.office.com)
+- [Microsoft 365 Admin Center](https://admin.microsoft.com)
+
+---
+
 ## Certification at a Glance
 
 | Attribute | Value |

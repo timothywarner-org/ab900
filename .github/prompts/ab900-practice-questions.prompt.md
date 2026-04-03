@@ -4,9 +4,7 @@ description: "Generate one exam-realistic AB-900 practice question grounded in M
 argument-hint: "domain='Domain 2' objective='DSPM for AI oversharing remediation' bloom='Apply' difficulty='medium'"
 agent: ab900-cert-buddy-agent
 tools:
-  - ab900buddy-context7/*
-  - ab900buddy-markitdown/*
-  - ab900buddy-mslearn/*
+[vscode, execute, read, agent, edit, search, web, browser, 'azure-mcp/*', 'ab900buddy-markitdown/*', 'io.github.upstash/context7/*', 'microsoftdocs/mcp/*', todo]
 ---
 
 # AB-900 Practice Question
@@ -65,7 +63,7 @@ B. `<choice>`
 C. `<choice>`
 D. `<choice>`
 
-*(Do NOT reveal the answer. Wait for the user to reply.)*
+_(Do NOT reveal the answer. Wait for the user to reply.)_
 
 ### Phase 2 (send after the user replies with their choice)
 

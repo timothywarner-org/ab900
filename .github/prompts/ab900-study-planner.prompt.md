@@ -4,9 +4,7 @@ description: "Generate a personalized AB-900 study plan based on your confidence
 argument-hint: "Rate your confidence: 'Domain 1: Strong, Domain 2: Weak, Domain 3: Moderate'"
 agent: ab900-cert-buddy-agent
 tools:
-  - ab900buddy-context7/*
-  - ab900buddy-markitdown/*
-  - ab900buddy-mslearn/*
+[vscode, execute, read, agent, edit, search, web, browser, 'azure-mcp/*', 'ab900buddy-markitdown/*', 'io.github.upstash/context7/*', 'microsoft/markitdown/*', 'microsoftdocs/mcp/*', todo]
 ---
 
 # AB-900 Study Planner

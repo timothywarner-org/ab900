@@ -4,9 +4,7 @@ description: "Generate one AB-900 admin scenario walkthrough: a guided 5-10 minu
 argument-hint: "domain='Domain 2' scenarioType='DSPM for AI review' estimatedTime='10 min'"
 agent: ab900-cert-buddy-agent
 tools:
-  - ab900buddy-context7/*
-  - ab900buddy-markitdown/*
-  - ab900buddy-mslearn/*
+[vscode, execute, read, agent, edit, search, web, browser, 'azure-mcp/*', 'ab900buddy-markitdown/*', 'io.github.upstash/context7/*', 'microsoft/markitdown/*', todo]
 ---
 
 # AB-900 Scenario Walkthrough

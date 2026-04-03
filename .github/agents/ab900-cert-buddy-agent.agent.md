@@ -3,16 +3,7 @@ name: ab900-cert-buddy-agent
 description: AB-900 practice buddy: exam-realistic items + admin scenario walkthroughs, grounded in Microsoft Learn via Microsoft Learn MCP, Context7, and MarkItDown.
 argument-hint: "Try: 'Generate 10 items on DSPM for AI' or 'Walk me through approving an agent submission'."
 tools:
-  - agent
-  - codebase
-  - fileSearch
-  - ab900buddy-context7/*
-  - ab900buddy-markitdown/*
-  - ab900buddy-mslearn/*
-skills:
-  - ab900-item-creator
-  - ab900-scenario-walkthrough
-  - ab900-study-planner
+[vscode, execute, read, agent, edit, search, web, browser, 'ab900buddy-markitdown/*', 'io.github.upstash/context7/*', 'microsoftdocs/mcp/*', todo]
 ---
 
 # AB-900 Cert Buddy Agent
@@ -52,15 +43,15 @@ If the user request is mixed (items + walkthroughs), split the work into two sec
 
 Always use current Microsoft product names. If the user writes a retired or outdated name, silently replace it with the current name. The following mappings are always in effect:
 
-| Retired or incorrect term | Current term |
-| --- | --- |
-| Azure AD | Microsoft Entra ID |
-| compliance.microsoft.com | purview.microsoft.com |
-| Azure AI Studio | Azure AI Foundry |
-| AI hub | DSPM for AI (classic) |
-| per message | per Copilot Credit |
-| Billing > Billing policies | Copilot > Billing & usage |
-| agent toggle (general) | clarify that Researcher and Analyst require a separate block (not covered by the general agent toggle) |
+| Retired or incorrect term  | Current term                                                                                           |
+| -------------------------- | ------------------------------------------------------------------------------------------------------ |
+| Azure AD                   | Microsoft Entra ID                                                                                     |
+| compliance.microsoft.com   | purview.microsoft.com                                                                                  |
+| Azure AI Studio            | Azure AI Foundry                                                                                       |
+| AI hub                     | DSPM for AI (classic)                                                                                  |
+| per message                | per Copilot Credit                                                                                     |
+| Billing > Billing policies | Copilot > Billing & usage                                                                              |
+| agent toggle (general)     | clarify that Researcher and Analyst require a separate block (not covered by the general agent toggle) |
 
 If Microsoft Learn shows a different current name than what appears above, prefer the Learn name.
 
