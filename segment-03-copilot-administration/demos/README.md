@@ -5,7 +5,7 @@ This directory contains demonstration materials for Segment 3.
 ## Available Demos
 
 ### Demo 1: Copilot Across Microsoft 365
-Live demonstration of Copilot in action across Word, Excel, PowerPoint, Outlook, Teams, and Microsoft 365 Chat with real-world productivity scenarios.
+Live demonstration of Copilot in action across Word, Excel, PowerPoint, Outlook, Teams, and Microsoft 365 Copilot Chat with real-world productivity scenarios.
 
 ### Demo 2: Administrative Configuration
 Walkthrough of admin center settings, policy configuration, license management at scale, and plugin governance.
@@ -26,7 +26,7 @@ Copilot with Power Platform integration, custom plugins, Copilot Studio basics, 
 
 ## Prerequisites
 
-- Copilot for Microsoft 365 licenses
+- Microsoft 365 Copilot licenses
 - Microsoft 365 Apps updated to current version
 - Sample documents and data for demonstrations
 - Admin center access for configuration demos

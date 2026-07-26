@@ -1,9 +1,23 @@
 # AB-900: Microsoft 365 Copilot and Agent Administration Fundamentals -- Skills Measured
 
 Source: <https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/ab-900>
-Retrieved: current
+Retrieved: 2026-07-26 (skills measured as of July 22, 2026)
 
 > **Note:** Skills measured represent the current study guide. The bullets that follow each of the skills measured are intended to illustrate how Microsoft is assessing that skill. Related topics may be covered in the exam. Most questions cover features that are general availability (GA). The exam may contain questions on Preview features if those features are commonly used.
+
+> **Exam status:** AB-900 is generally available. It is **NOT** a beta exam. Passing score is 700 or greater on a 1000-point scale. Exam duration is 45 minutes; seat duration for Fundamentals exams is 65 minutes. Microsoft does not publish an AB-900-specific question count; the Microsoft-wide typical range is 40-60 questions.
+
+---
+
+## Skills at a glance
+
+| Domain | Skill area | Weight |
+|--------|-----------|--------|
+| Domain 1 | Identify the core features and objects of Microsoft 365 services | 30-35% |
+| Domain 2 | Understand data protection and governance tasks for Microsoft 365 and Copilot | 35-40% |
+| Domain 3 | Perform basic administrative tasks for Copilot and agents | 25-30% |
+
+Domain 2 carries the heaviest weight.
 
 ---
 
@@ -13,8 +27,8 @@ Retrieved: current
 
 - Explain how license types assigned to users and groups affect access to Microsoft 365 features
 - Explore the organization configurations by using the Microsoft 365 admin center (domain names and org settings)
-- Identify the appropriate objects to configure by using the Exchange Online admin center (mailboxes and distribution lists)
-- Identify the appropriate objects to configure by using the SharePoint in Microsoft 365 admin center (sites, libraries, and folders)
+- Identify the appropriate objects to configure by using the Exchange admin center (mailboxes and distribution groups)
+- Identify the appropriate objects to configure by using the SharePoint admin center (sites, libraries, and folders)
 - Identify the appropriate roles and permissions for sites in SharePoint in Microsoft 365
 - Identify the appropriate objects to configure by using the Teams admin center (teams, channels, and policies)
 
@@ -28,11 +42,11 @@ Retrieved: current
 
 ### Identify the core security features of Microsoft 365 services
 
-- Understand features and capabilities of Microsoft Entra
+- Understand features and capabilities of Microsoft Entra ID
 - Understand conditional access policies
 - Understand the purpose and benefits of SSO
 - Identify the appropriate security object to use in an organization (users and groups)
-- Identify the appropriate tools to troubleshoot common sign-in issues (MFA, conditional access, and risky sign-ins)
+- Identify the appropriate tools to troubleshoot common sign-in issues (multifactor authentication [MFA], conditional access, and risky sign-ins)
 - Interpret Identity Secure Score in Microsoft Entra ID
 - Use the appropriate tools to review audit logs for user and admin activity
 - Identify the role of Privileged Identity Management (PIM) in an organization
@@ -44,7 +58,7 @@ Retrieved: current
 
 ### Understand Microsoft Purview
 
-- Understand features and capabilities of Microsoft Purview Information Protection, DLP, Insider Risk Management, Communication Compliance, DSPM for AI, and Data Lifecycle Management
+- Understand features and capabilities of Microsoft Purview Information Protection, Microsoft Purview Data Loss Prevention (DLP), Microsoft Purview Insider Risk Management, Microsoft Purview Communication Compliance, Microsoft Purview Data Security Posture Management (DSPM) for AI, and Microsoft Purview Data Lifecycle Management
 - Identify the use cases for sensitivity labels in Microsoft Purview
 - Understand data classification in Microsoft Purview
 - Understand retention
@@ -71,7 +85,7 @@ Retrieved: current
 
 - Identify the tools to troubleshoot oversharing in an organization
 - Run a data access governance report in SharePoint
-- Understand features and capabilities of SharePoint Advanced Management, including restricted site access
+- Understand features and capabilities of SharePoint Advanced Management, including restricted access control
 
 ---
 
@@ -99,3 +113,77 @@ Retrieved: current
 - Create an agent
 - Understand approval process for agents
 - Monitor agents, including usage, operational insights, and agent lifecycle, by working with the Microsoft 365 admin center and the Microsoft Power Platform admin center
+
+---
+
+## Change log: what the July 22, 2026 refresh changed
+
+Microsoft's published change log compares "Skill area prior to July 22, 2026" against "Skill area as of July 22, 2026". It contains six rows, three marked **Minor** and **NO** rows marked Major.
+
+| Skill area | Change |
+|-----------|--------|
+| Audience profile | No change |
+| Identify the core features and objects of Microsoft 365 services (functional group) | No change |
+| Identify the core objects of Microsoft 365 services | Minor |
+| Identify the core security features of Microsoft 365 services | Minor |
+| Understand data protection and governance tasks for Microsoft 365 and Copilot (functional group) | No change |
+| Identify and monitor oversharing in SharePoint in Microsoft 365 | Minor |
+
+Domain weights were unchanged: 30-35%, 35-40%, and 25-30%.
+
+The change log lists no row for Domain 3, nor for "Understand the Microsoft 365 security principles", "Understand Microsoft Purview", "Understand data security implications of Copilot", or "Identify data protection and governance risks for Microsoft 365 and Copilot". Under Microsoft's change log convention, unlisted areas were unchanged in this refresh.
+
+### Wording drift corrected in this file on 2026-07-26
+
+These bullets were carrying pre-July-2026 phrasing. Each one is now verbatim to the current study guide.
+
+| Was (stale) | Now (current) |
+|------------|---------------|
+| Exchange Online admin center (mailboxes and distribution lists) | Exchange admin center (mailboxes and distribution groups) |
+| SharePoint in Microsoft 365 admin center (sites, libraries, and folders) | SharePoint admin center (sites, libraries, and folders) |
+| MFA, conditional access, and risky sign-ins | multifactor authentication [MFA], conditional access, and risky sign-ins |
+| Understand features and capabilities of Microsoft Entra | Understand features and capabilities of Microsoft Entra ID |
+| Information Protection, DLP, Insider Risk Management, Communication Compliance, DSPM for AI, and Data Lifecycle Management | Each solution named with its full Microsoft Purview product name |
+| SharePoint Advanced Management, including restricted site access | SharePoint Advanced Management, including restricted access control |
+
+**Teaching note on "SharePoint in Microsoft 365":** that phrase is still current and correct when it names the **service**, as in "Identify the appropriate roles and permissions for sites in SharePoint in Microsoft 365" and the subsection heading "Identify and monitor oversharing in SharePoint in Microsoft 365". Only the **admin center** name changed. Do not blanket-replace the phrase.
+
+**Teaching note on "Microsoft Entra" versus "Microsoft Entra ID":** the study guide uses both deliberately. The audience profile names the admin centers as "Exchange Online, SharePoint in Microsoft 365, Microsoft Teams, Microsoft Entra, and Microsoft Purview", where bare "Microsoft Entra" is the product family. The Domain 1 skill bullets use "Microsoft Entra ID" for the identity service. In course content: use **Microsoft Entra ID** for the identity service and **Microsoft Entra admin center** for the portal. Never use "Azure AD", "AAD", or "Azure Active Directory".
+
+**Teaching note on "restricted access control":** Microsoft uses "restricted access control (RAC)", "restricted site access control", and "site access restriction" interchangeably in the same article, and the SharePoint admin center UI shows "Site-level access restriction" and "Restricted site access". The study guide bullet says **restricted access control**, so that is the exam wording. Flag the UI wording for learners so the portal does not surprise them.
+
+---
+
+## Exam logistics (verified 2026-07-26)
+
+| Item | Value |
+|------|-------|
+| Certification earned | Microsoft 365 Certified: Copilot and Agent Administration Fundamentals |
+| Level and role | Beginner, Administrator, subject Artificial intelligence |
+| Exam duration | 45 minutes |
+| Seat duration (Fundamentals) | 65 minutes |
+| Passing score | 700 or greater (1000 maximum) |
+| Question count | Not published for AB-900. Microsoft-wide typical range is 40-60 questions |
+| Beta status | **NOT** in beta. Generally available |
+| Languages | English only |
+| Delivery | Pearson VUE, or Certiport for students and educators. Proctored, may have interactive components |
+| Retake | 24 hours after the first attempt; wait times increase for later retakes |
+| Renewal | **NOT** required. Fundamentals certifications do not expire |
+| Microsoft Learn during the exam | **NOT** available. That resource is role-based exams only |
+| Exam sandbox | <https://aka.ms/examdemo> |
+| Practice assessment | Free official practice assessment is live on Microsoft Learn |
+
+**Exam trap:** the study guide's boilerplate renewal row states that Microsoft associate, expert, and specialty certifications expire annually. That row does **NOT** apply to AB-900. Fundamentals certifications do not expire.
+
+**Exam trap:** MS-900 (Microsoft 365 Fundamentals) retired March 31, 2026. Do not present it as a currently available alternative.
+
+---
+
+## Official documentation study resources
+
+The study guide names these four documentation sets:
+
+- Microsoft 365 documentation: <https://learn.microsoft.com/microsoft-365/>
+- Microsoft 365 Copilot service description
+- Microsoft 365 admin center help: <https://learn.microsoft.com/microsoft-365/admin/>
+- Microsoft Purview documentation: <https://learn.microsoft.com/purview/>

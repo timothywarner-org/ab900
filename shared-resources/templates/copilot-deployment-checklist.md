@@ -1,30 +1,52 @@
 # Microsoft 365 Copilot Deployment Checklist
 
+**Last updated:** 2026-07-26
+
 ## Pre-Deployment Phase
 
 ### Technical Readiness
-- [ ] Verify Microsoft 365 E3/E5 or Business Standard/Premium licenses
+- [ ] Verify an eligible base subscription: Microsoft 365 E7, E5, E3, F1, F3; Business Basic, Standard, or Premium; Office 365 E5, E3, E1, or F3; or a qualifying standalone plan
 - [ ] Confirm OneDrive is provisioned for all users
 - [ ] Ensure Microsoft 365 Apps are up to date (Current Channel or Monthly Enterprise Channel)
 - [ ] Verify Exchange Online mailboxes are active
 - [ ] Confirm SharePoint sites are configured
 - [ ] Test network connectivity and bandwidth
 - [ ] Review firewall and proxy configurations
+- [ ] If you maintain network allow lists, add `*.cloud.microsoft`, `*.static.microsoft`, and `*.usercontent.microsoft`. Microsoft is consolidating user-facing apps and admin centers onto the cloud.microsoft domain, and omitting these causes connectivity failures.
 
 ### Security and Compliance
 - [ ] Review and update data governance policies
-- [ ] Configure sensitivity labels
-- [ ] Implement Data Loss Prevention (DLP) policies
-- [ ] Review retention policies
-- [ ] Enable audit logging
-- [ ] Configure conditional access policies
-- [ ] Review compliance requirements
-- [ ] Document data handling procedures
+- [ ] Configure sensitivity labels, and confirm encrypted labels grant **EXTRACT** in addition to VIEW where Copilot must summarize content
+- [ ] Implement DLP policies, including the **Microsoft 365 Copilot and Copilot Chat** location
+- [ ] Review retention policies in Data Lifecycle Management
+- [ ] Confirm unified audit logging is enabled. Copilot prompts and responses are captured automatically as part of Audit (Standard).
+- [ ] Configure Conditional Access policies
+- [ ] Confirm mandatory MFA posture. Microsoft enforces mandatory MFA independently of security defaults and Conditional Access, and both enforcement phases are now in force.
+- [ ] Plan the passkey transition. Microsoft-provided SMS and voice retire February 1, 2027, with passkey auto-enablement beginning September 1, 2026.
+- [ ] Review compliance requirements and document data handling procedures
+
+### Oversharing remediation (do this BEFORE broad rollout)
+
+Copilot surfaces whatever the user already has permission to see. Oversharing that was invisible becomes very visible once Copilot can summarize it.
+
+- [ ] Run **Data access governance** reports: SharePoint admin center > **Reports** > **Data access governance**
+- [ ] Review the "Site permissions across your organization" snapshot report and the "Shared with 'Everyone except external users'" activity report
+- [ ] Apply **restricted access control (RAC)** where access itself must be gated to specific groups
+- [ ] Apply **restricted content discovery (RCD)** where content should stay out of org-wide search and Copilot without changing permissions
+- [ ] Use **Site access review** to delegate permission validation to site owners
+- [ ] Check **Change history** to find the permission changes that caused the oversharing
+- [ ] Do **NOT** plan around Restricted SharePoint Search. New enablement is blocked starting July 31, 2026; Microsoft directs customers to RCD.
+- [ ] Confirm DAG reports will run: a Global Administrator must clear **Display concealed user, group, and site names in all reports** in the Microsoft 365 admin center Reports settings
 
 ### Licensing
-- [ ] Procure Copilot for Microsoft 365 licenses
+- [ ] Choose the purchase model: per-user add-on, pay-as-you-go, prepaid capacity packs, or a Copilot Credit Pre-Purchase Plan
+- [ ] Confirm which SKU applies. **Microsoft 365 Copilot Business** caps at 300 seats and requires a Business base plan. **Microsoft 365 E7** already includes Copilot, so E7 users need **NO** add-on.
+- [ ] Note there is **NO** seat minimum. The 300-seat minimum was removed in January 2024.
+- [ ] Procure Microsoft 365 Copilot licenses
 - [ ] Plan license distribution strategy
-- [ ] Create licensing assignment groups (if using group-based licensing)
+- [ ] Create licensing assignment groups if using group-based licensing
+- [ ] If using pay-as-you-go, create the billing policy at admin.microsoft.com > **Copilot** > **Billing & usage**. Do **NOT** use the Billing node.
+- [ ] Understand that a pay-as-you-go budget **notifies only**. It does **NOT** enforce a spending cap.
 - [ ] Document license management procedures
 
 ### Governance
@@ -93,12 +115,15 @@
 - [ ] Document license distribution
 
 ### Technical Configuration
-- [ ] Configure tenant-wide settings
-- [ ] Set up Cloud Policy configurations
-- [ ] Configure plugin permissions
-- [ ] Enable/disable web search as needed
-- [ ] Set up usage reporting
-- [ ] Configure audit logging for Copilot
+- [ ] Configure tenant-wide Copilot settings
+- [ ] Set up **Cloud Policy service for Microsoft 365** configurations
+- [ ] Configure agent settings at admin.microsoft.com > **Agents** > **Settings**: agent management rules, allowed agent types, security templates, sharing, and user access
+- [ ] Set the **Allow web search in Copilot** toggle. Note this also governs whether Researcher can use web data.
+- [ ] Decide on **Copilot Frontier** enrollment: Copilot > **Settings** > **View all** > **Copilot Frontier**. Default is No access.
+- [ ] Establish the agent approval process at admin.microsoft.com > **Agents** > **All agents** > **Requests**. Only AI Administrator and Global Administrator can approve.
+- [ ] Review MCP tool requests at **Agents** > **Tools** > **Requests**
+- [ ] Set up usage reporting at admin.microsoft.com > **Reports** > **Usage** > **Microsoft 365 Copilot**
+- [ ] Enable and delegate the Copilot Dashboard in Viva Insights (an AI Administrator does this from the Microsoft 365 admin center)
 
 ## Post-Deployment Phase
 
@@ -173,8 +198,8 @@
 
 ## Document Version Control
 
-- **Version:** 1.0
-- **Last Updated:** [Date]
+- **Version:** 2.0
+- **Last Updated:** 2026-07-26
 - **Owner:** [Name/Team]
 - **Next Review:** [Date]
 

@@ -1,5 +1,7 @@
 # Segment 2: Data Protection and Governance - Official Resources
 
+**Last updated:** 2026-07-26 (aligned to the AB-900 skills measured as of July 22, 2026)
+
 ## Official Microsoft Documentation
 
 ### Microsoft Purview Overview
@@ -8,9 +10,11 @@
   - Comprehensive data governance, security, and compliance portfolio
   - Unified platform for information protection, DLP, insider risk, and more
 
-- **Microsoft Purview Compliance Portal**
-  - https://compliance.microsoft.com/
-  - Central hub for all compliance and governance activities
+- **Microsoft Purview Portal**
+  - https://purview.microsoft.com
+  - Central hub for all data security, governance, and compliance activities
+  - This is a single URL for every solution. Navigate via **Solutions** > the solution name. There are **NO** per-solution URLs.
+  - The former compliance portal at compliance.microsoft.com is retired. Do **NOT** use it.
 
 ### Information Protection
 - **Sensitivity Labels Overview**
@@ -20,10 +24,13 @@
   - Label inheritance and propagation
 
 - **Data Classification**
-  - **Content Explorer:** View labeled content
-  - **Activity Explorer:** Monitor labeling activities
-  - **Trainable Classifiers:** ML-based content classification
-  - **Sensitive Information Types:** Pre-built and custom patterns
+  - **Data explorer:** Identify sensitive information. This is the tool the July 2026 AB-900 objectives name. Path: Solutions > **Information Protection** > **Explorers** > **Data explorer**.
+  - **Content Explorer (classic):** The renamed legacy view of labeled content. Path: Solutions > **Data Lifecycle Management** > **Explorers** > **Content explorer**. Counts can take up to 7 days to update, and 14 days for files in SharePoint.
+  - **Activity explorer:** Monitor labeling and DLP activities. Offers about 50 filters plus predefined filter sets such as Endpoint DLP activities, Sensitivity labels applied/changed/removed, Egress activities, and Network DLP activities. Filter options are generated from the first 500 records.
+  - **Trainable classifiers:** Machine-learning-based content classification. Note the Purview portal renamed "Classification" to **Classifiers** and moved it into each solution's left navigation.
+  - **Sensitive information types:** Pre-built and custom patterns
+
+  Licensing note: data classification analytics (the explorer interfaces) requires E5/A5/G5, but Content Explorer data aggregation continues for E3/A3/G3 tenants.
 
 ### Data Loss Prevention (DLP)
 - **Microsoft Purview DLP Overview**
@@ -63,17 +70,35 @@
 
 ### Communication Compliance
 - **Monitor Organizational Communications**
-  - Scan emails, Teams messages, Yammer posts
+  - Scan emails, Teams messages, and Viva Engage posts
   - Detect policy violations (harassment, inappropriate content)
   - Regulatory compliance (SEC, FINRA)
   - Built-in and custom policies
 
-### Data Security Posture Management
+- **Communication Compliance over Copilot prompts**
+  - https://learn.microsoft.com/purview/communication-compliance-copilot
+  - Create the policy at purview.microsoft.com > **Communication Compliance** > **Policies** > **Create policy** > **Detect Microsoft Copilot interactions** template
+  - Detects any message with the `IPM.SkypeTeams.Message.Copilot.*` item class
+  - To add generative AI to an existing policy, edit it and on the **Choose locations to detect communications** page select **Microsoft Copilot experiences**, **Enterprise AI apps**, and/or **Other AI apps**
+  - In the **Pending** tab, AI matches show a Subject of `[Copilot]` for Microsoft Copilots and `[AI app]` for all other generative AI. The Sender column shows Copilot, Connected AI app, or Cloud AI app. Prompts and responses appear as separate entries.
+  - **Billing trap:** there is **NO** pay-as-you-go charge for detecting Microsoft 365 Copilot data. Pay-as-you-go **IS** required to detect non-Microsoft-365 AI data, including Copilot in Fabric, Security Copilot, Copilot Studio, connected generative AI applications, and browser-detected AI apps.
+  - To investigate, you need the Communication Compliance, Communication Compliance Investigators, or Communication Compliance Analysts role **AND** to be listed in the policy's Reviewers field
+
+### Data Security Posture Management (DSPM)
 - **Assess and Improve Security Stance**
+  - https://learn.microsoft.com/purview/data-security-posture-management-learn-about
   - Discover sensitive data across environments
   - Identify security gaps and misconfigurations
   - Implement security recommendations
   - Monitor posture improvements
+
+- **Three entries now appear under Solutions.** Microsoft Learn states it plainly: do not confuse the new **DSPM** with the previous versions, now named **Data Security Posture Management (classic)** and **DSPM for AI (classic)**. DSPM for AI and DSPM converged into a single solution, and Microsoft says most new features will be added to the new version only. The new unified DSPM reached general availability in May 2026.
+
+- **New DSPM key pages:** Posture, Objectives, AI observability, Asset explorer, Reports, and Setup tasks. **AI observability** is the inventory of AI apps and agents, including Microsoft Agent 365, with activity in the last 30 days. Note that **Discover** > **Apps and agents** does **NOT** include Agent 365 agents; use AI observability for those.
+
+- **DSPM for AI (classic) behaviors worth knowing:** it automatically runs a weekly data risk assessment for the top 100 SharePoint sites by usage, with no activation needed. Custom data risk assessments are in preview. Allow at least 24 hours for one-click policies to collect data.
+
+- **Access requirements:** Microsoft Entra Compliance Administrator, Microsoft Entra Global Administrator, or the Microsoft Purview Compliance Administrator role group. The classic experience additionally requires Microsoft 365 E5 or the Microsoft Purview Suite.
 
 ### Compliance Manager
 - **Microsoft Purview Compliance Manager**
@@ -102,11 +127,33 @@
   - Real-time permission checks
 
 - **Copilot and Governance**
-  - DLP policies apply to Copilot interactions
-  - Sensitivity labels honored in responses
-  - No data used for foundation model training
-  - Tenant boundary protection
-  - Data grounding within your organization
+  - DLP policies apply to Copilot through the **Microsoft 365 Copilot and Copilot Chat** location
+  - Sensitivity labels honored in responses, subject to the **EXTRACT** usage right rule
+  - No customer data used for foundation model training
+  - Tenant boundary protection and data grounding within your organization
+
+- **The EXTRACT usage right (heavily tested)**
+  - https://learn.microsoft.com/purview/ai-microsoft-purview
+  - When a sensitivity label applies encryption, the user needs **EXTRACT** in addition to **VIEW** for Copilot to return the data
+  - With VIEW but **NOT** EXTRACT, Copilot will not summarize the content but can still reference it with a link
+
+- **eDiscovery over Copilot data**
+  - User prompts and responses are stored in the user's **mailbox**
+  - Create a case, select the user's mailbox as the data source, then in the query builder select **Add condition** > **Type** > **Contains any of** > **Edit** > **Copilot activity**
+  - That condition covers all Copilot and other AI application activity
+
+- **Insider Risk Management over Copilot**
+  - Uses the **Risky AI usage** policy template, which detects prompt injection attacks and access to protected materials
+  - As of June 2026 you can select which generative AI apps to monitor in IRM policy indicators, reducing alert noise and avoiding unnecessary pay-as-you-go charges
+
+- **The three AI app categories Purview uses in the UI**
+  1. **Copilot experiences and agents** (Microsoft 365 Copilot, Security Copilot, Copilot in Fabric, Copilot Studio)
+  2. **Enterprise AI apps** (Microsoft Foundry, Entra-registered AI apps, Anthropic Claude Enterprise, ChatGPT Enterprise)
+  3. **Other AI apps** (browser-detected apps categorized as Generative AI in the Defender for Cloud Apps catalog)
+
+- **Data Lifecycle Management and Copilot**
+  - Retention policies can automatically retain or delete user prompts and responses for AI apps
+  - Where multiple policies apply, the principles of retention resolve conflicts: data is retained for the **longest** duration of all applied retention policies or eDiscovery holds
 
 ## Microsoft Learn Training Modules
 
@@ -138,7 +185,7 @@
 ### Lab Scenarios
 
 #### Lab 1: Create Sensitivity Labels
-1. Access Purview compliance portal
+1. Sign in to the Microsoft Purview portal at purview.microsoft.com and go to **Solutions** > **Information Protection**
 2. Create label taxonomy:
    - Public
    - Internal
@@ -180,10 +227,10 @@
 7. Generate compliance reports
 
 #### Lab 5: Discover Sensitive Data
-1. Use Content Explorer to find labeled documents
-2. Use Activity Explorer to monitor labeling activities
-3. Create custom sensitive information type
-4. Run sensitive data discovery scan
+1. Use **Data explorer** (Solutions > Information Protection > Explorers > Data explorer) to identify sensitive information. This is the tool named in the July 2026 objectives.
+2. Compare against **Content explorer (classic)** under Data Lifecycle Management > Explorers, so learners recognize both labels
+3. Use **Activity explorer** to monitor labeling activities
+4. Create a custom sensitive information type
 5. Review findings and remediate
 
 #### Lab 6: Insider Risk Management
@@ -196,13 +243,16 @@
 7. Take action on confirmed risks
 
 #### Lab 7: SharePoint Oversharing Remediation
-1. Access SharePoint Advanced Management
-2. Review data access governance reports
+1. In the SharePoint admin center, expand **Reports** and select **Data access governance**
+2. Run the "Site permissions across your organization" snapshot report and the "Shared with 'Everyone except external users'" activity report
 3. Identify overshared sites and files
-4. Implement restricted access controls
-5. Configure block download policies
-6. Set up site access reviews
-7. Monitor oversharing reduction
+4. Apply **restricted access control (RAC)** to limit site access to specified groups (enforcement)
+5. Apply **restricted content discovery (RCD)** to keep site content out of org-wide search and Copilot without changing permissions (concealment)
+6. Review the **Change history** report to find the permission changes that caused the oversharing
+7. Use **Site access review** to delegate permission review to site owners
+8. Monitor oversharing reduction
+
+**Prerequisite gotcha.** DAG reports do not work if the tenant uses nonpseudonymized report data. A Global Administrator must go to the **Reports** setting in the Microsoft 365 admin center and clear **Display concealed user, group, and site names in all reports**. DAG reports are unavailable for Microsoft 365 operated by 21Vianet regardless of licensing.
 
 ## AB-900 Exam Focus Areas
 
@@ -246,11 +296,12 @@
   - Regulatory templates
 
 - [ ] **Sensitive data discovery**
-  - Content Explorer usage
-  - Activity Explorer monitoring
+  - **Data explorer** usage (the tool the objectives name)
+  - Content explorer (classic), and knowing it is the renamed legacy tool
+  - Activity explorer monitoring
   - Sensitive information types
-  - Custom classifiers
-  - Discovery tools
+  - Trainable classifiers, listed under **Classifiers** in the portal
+  - Content search inside Microsoft Purview eDiscovery
 
 - [ ] **Insider risk alerts**
   - Risk indicators and scoring
@@ -258,21 +309,22 @@
   - Response actions
   - Integration with DLP (Adaptive Protection)
 
-- [ ] **SharePoint oversharing**
-  - Data access governance reports
-  - Oversharing identification
-  - Remediation strategies
-  - Restricted access controls
-  - Site access reviews
-  - SharePoint Advanced Management features
+- [ ] **SharePoint oversharing** (flagged Minor changed in the July 22, 2026 change log)
+  - Data access governance reports, and the exact path: SharePoint admin center > **Reports** > **Data access governance**
+  - Oversharing identification via snapshot and activity reports
+  - **Restricted access control (RAC)**, which gates ACCESS
+  - **Restricted content discovery (RCD)**, which gates DISCOVERABILITY only
+  - Site access reviews and Change history
+  - SharePoint Advanced Management features and the split licensing rule
+  - Restricted SharePoint Search is retiring; new enablement is blocked starting July 31, 2026
 
 **Key Concepts to Master:**
 
 1. **Layered Protection Approach**
-   - Sensitivity labels → Classify data
-   - DLP policies → Prevent leakage
-   - Insider risk → Detect threats
-   - Compliance Manager → Track posture
+   - Sensitivity labels -- classify data
+   - DLP policies -- prevent leakage
+   - Insider Risk Management -- detect threats
+   - Compliance Manager -- track posture
 
 2. **How Copilot Respects Governance**
    - Honors existing permissions
@@ -290,16 +342,16 @@
 
 4. **DLP Policy Structure**
    ```
-   Location → Condition → Action → Exception → Notification
+   Location -- Condition -- Action -- Exception -- Notification
    ```
 
 5. **SharePoint Advanced Management**
-   - Included with Copilot licenses
-   - Site ownership policies
-   - Inactive sites detection
-   - Data access governance reports
-   - Block download controls
-   - Site access reviews
+   - The Copilot-readiness subset unlocks when at least one user holds a Microsoft 365 Copilot license; the full feature set still needs the SharePoint Advanced Management Plan 1 add-on
+   - Restricted content discovery (RCD)
+   - Restricted access control (RAC)
+   - Data access governance reports, sharing links reports, and EEEU insights
+   - Site access review, Change history, and Recent admin actions
+   - Requires SharePoint Administrator, or the broader SharePoint Advanced Management Administrator role
 
 ## Common Scenarios
 
@@ -351,16 +403,26 @@
 
 ## Tools and Portals
 
-| Tool | URL | Purpose |
-|------|-----|---------|
-| Purview Compliance Portal | https://compliance.microsoft.com/ | All compliance activities |
-| Information Protection | compliance.microsoft.com/informationprotection | Labels and classification |
-| DLP | compliance.microsoft.com/datalossprevention | DLP policies and reports |
-| Compliance Manager | compliance.microsoft.com/compliancemanager | Compliance assessments |
-| Content Explorer | compliance.microsoft.com/dataclassification/contentexplorer | View labeled content |
-| Activity Explorer | compliance.microsoft.com/dataclassification/activityexplorer | Monitor activities |
-| Insider Risk | compliance.microsoft.com/insiderrisk | Insider threat management |
-| SharePoint Advanced Mgmt | admin.microsoft.com/sharepoint (Settings → Advanced Management) | Governance features |
+Every Microsoft Purview solution is reached through the single portal URL **https://purview.microsoft.com**, then **Solutions** > the solution name. The per-solution URLs that used to exist under compliance.microsoft.com are retired.
+
+| Destination | Navigation path | Purpose |
+|-------------|-----------------|---------|
+| Microsoft Purview portal | https://purview.microsoft.com | Entry point for all solutions |
+| Information Protection | Solutions > **Information Protection** | Labels and classification |
+| Data explorer | Solutions > **Information Protection** > **Explorers** > **Data explorer** | Identify sensitive information (current tool) |
+| Content explorer (classic) | Solutions > **Data Lifecycle Management** > **Explorers** > **Content explorer** | Legacy view of labeled content |
+| Activity explorer | Solutions > **Information Protection** > **Explorers** > **Activity explorer** | Monitor label and DLP activity |
+| Data Loss Prevention | Solutions > **Data Loss Prevention** > **Policies** | DLP policies and reports |
+| Compliance Manager | Solutions > **Compliance Manager** | Compliance assessments and score |
+| Insider Risk Management | Solutions > **Insider Risk Management** | Insider threat management |
+| Communication Compliance | Solutions > **Communication Compliance** > **Policies** | Message and prompt policy violations |
+| DSPM (new unified) | Solutions > **DSPM** | Current posture management front door |
+| DSPM for AI (classic) | Solutions > **DSPM for AI (classic)** | The label the AB-900 objectives still use |
+| eDiscovery and Content Search | Solutions > **eDiscovery** > **Content Search** | Search files and emails |
+| Audit | **Audit** | Unified audit log search, including CopilotInteraction |
+| Data access governance reports | SharePoint admin center > **Reports** > **Data access governance** | Oversharing identification |
+
+**Exam wording trap.** The July 22, 2026 study guide says "Identify sensitive information by using Microsoft Purview **Data Explorer**", not Content explorer. Microsoft introduced a new **Data explorer** under Information Protection and renamed the old tool to **Content Explorer (classic)**. The access role groups differ too: Data Explorer List viewer and Data Explorer Content viewer for the new tool, Content Explorer List viewer and Content Explorer Content viewer for the classic one. These role groups are independent, not cumulative.
 
 ## Best Practices
 

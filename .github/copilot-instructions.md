@@ -42,16 +42,61 @@ Note: In Claude Code, the Microsoft Learn MCP server (mcp__claude_ai_Microsoft_L
 
 Always use current Microsoft product names. Never use a retired name, even if the user does. Silently map to the current name.
 
+### Identity and portals
+
 | Deprecated | Current |
 | --- | --- |
 | Azure AD | Microsoft Entra ID |
 | AAD | Microsoft Entra ID |
 | Azure Active Directory | Microsoft Entra ID |
+| Azure AD Connect | Microsoft Entra Connect |
 | compliance.microsoft.com | purview.microsoft.com |
-| Azure AI Studio | Azure AI Foundry |
-| AI hub | DSPM for AI (classic) |
-| per message (Copilot Studio) | per Copilot Credit |
+| Microsoft Purview compliance portal | Microsoft Purview portal |
+| Office 365 Security & Compliance Center | Microsoft Defender portal, Microsoft Purview portal, or Exchange admin center |
+| Microsoft 365 Defender (and Microsoft 365 Defender portal) | Microsoft Defender XDR (service), Microsoft Defender portal (portal) |
+| Azure AI Studio | Microsoft Foundry |
+| Exchange Online admin center | Exchange admin center |
+| SharePoint in Microsoft 365 admin center | SharePoint admin center (the service remains "SharePoint in Microsoft 365") |
+| Cloud apps / All cloud apps (Conditional Access) | Resources (formerly cloud apps) / All resources (formerly 'All cloud apps') |
+
+### Microsoft Purview
+
+| Deprecated | Current |
+| --- | --- |
+| AI hub | Data Security Posture Management (DSPM) for AI |
+| Content explorer | Data explorer (the older tool is "Content Explorer (classic)") |
+| Classification (navigation node) | Classifiers |
+| Content search (standalone solution) | Content search in Microsoft Purview eDiscovery |
+| eDiscovery (Standard) / eDiscovery (Premium) | eDiscovery (one solution; premium features per case) |
+| Collections (eDiscovery) | Statistics |
+| Jobs (eDiscovery) | Processes |
+| Data Estate Insights | Reports (Unified Catalog > Health management) |
+| Privacy Risk Management in Purview | Microsoft Priva portal |
+| Restricted SharePoint Search (RSS) | Restricted Content Discovery (RCD) |
+| restricted site access | restricted access control (RAC) |
+
+### Copilot, agents, and billing
+
+| Deprecated | Current |
+| --- | --- |
+| Copilot for Microsoft 365 | Microsoft 365 Copilot |
+| Copilot with commercial data protection | Microsoft 365 Copilot Chat (with enterprise data protection) |
+| Microsoft Graph connectors | Microsoft 365 Copilot connectors |
+| Copilot Studio lite | Agent Builder in Microsoft 365 Copilot |
+| Teams Toolkit | Microsoft 365 Agents Toolkit |
+| Copilot Studio Kit | Copilot Agent Kit (rename in progress) |
+| Agent Mode in Excel | Edit with Copilot in Excel (Agent Mode persists in PowerPoint) |
+| Message packs | Copilot Studio capacity packs (25,000 Copilot Credits per pack) |
 | Billing > Billing policies (Copilot) | Copilot > Billing & usage |
+| Org settings > Pay-as-you-go (SharePoint agents) | Copilot > Billing & usage > Pay-as-you-go services > SharePoint agents |
+| Requested agents tab | Requests tab (Agents > All agents) |
+| Copilot > Agents | Agents > All agents (Agents is a top-level node) |
+| Integrated apps (as the agent management surface) | Agents section of the Copilot Control System |
+| Manage agents page | Agent Registry (Agents > All agents > Registry) |
+| agent catalog / organizational catalog | Agent Store |
+| 300-seat minimum for Microsoft 365 Copilot | No seat minimum; 300-seat MAXIMUM on Copilot Business SKUs |
+
+**Billing unit nuance.** "Copilot Credits" is the correct unit for Microsoft 365 Copilot Chat and SharePoint agents at $0.01 per credit. The Microsoft 365 Copilot pay-as-you-go Meters page still documents the Copilot Studio meter as "$0.01 per message", and the Azure invoice meter name is still "Copilot Studio". Both vocabularies are live in current Microsoft documentation, so "per message" is NOT a blanket-retired phrase. Never assert that one message equals one credit.
 
 If Microsoft Learn shows a different current name than what appears above, prefer the Learn name.
 
@@ -59,10 +104,24 @@ If Microsoft Learn shows a different current name than what appears above, prefe
 
 These navigation paths are authoritative for AB-900 content. Always use the exact path shown.
 
-- DSPM for AI: purview.microsoft.com > **Solutions** > **DSPM for AI (classic)**
+- DSPM for AI: purview.microsoft.com > **Solutions** > **DSPM for AI (classic)**. The Purview portal also lists a unified **DSPM** entry (generally available May 2026) and **Data Security Posture Management (classic)**. The exam objective wording still says "DSPM for AI".
+- Oversharing and data risk review: DSPM for AI (classic) > **Data risk assessments**. There is no "Oversharing reports" node.
 - Copilot pay-as-you-go billing: admin.microsoft.com > **Copilot** > **Billing & usage**
-- Agent approval queue: admin.microsoft.com > **Agents** > **All agents** > **Requests**
-- Researcher and Analyst: these built-in Copilot experiences require a separate block from the agent toggle and are NOT governed by the general agent on/off toggle in the admin center
+- Agent approval queue: admin.microsoft.com > **Agents** > **All agents** > **Requests** (states: Pending review, Pending update, Pending activate)
+- Agent settings: admin.microsoft.com > **Agents** > **Settings**
+- Researcher and Analyst: these are part of the core Copilot chat experience and do **NOT** fall under any agent-related settings. They remain available under **Tools** in Microsoft 365 Copilot Chat even when agents are disabled. Disabling one requires the tenant-wide **Block** action on the individual agent; **Edit users** is disabled for them.
+- Sensitivity labels: purview.microsoft.com > **Solutions** > **Information Protection** > **Sensitivity labels**
+- DLP policies: purview.microsoft.com > **Data loss prevention** > **Policies** (Copilot location: **Microsoft 365 Copilot and Copilot Chat**)
+- Data explorer: purview.microsoft.com > **Solutions** > **Information Protection** > **Explorers** > **Data explorer**
+- Content search: purview.microsoft.com > **Solutions** > **eDiscovery** > **Content search**
+- Data access governance reports: SharePoint admin center > **Reports** > **Data access governance**
+- Conditional Access: entra.microsoft.com > **Entra ID** > **Conditional Access** > **Policies**
+- PIM: entra.microsoft.com > **ID Governance** > **Privileged Identity Management**
+- Copilot license assignment: admin.microsoft.com > **Users** > **Active users** > [user] > **Licenses and Apps**
+
+## Exam version
+
+The current skills-measured document is **Skills measured as of July 22, 2026**. Domain weights: Domain 1 (30-35%), Domain 2 (35-40%), Domain 3 (25-30%). The July 22, 2026 change log marks three subsections **Minor** and zero **Major**: "Identify the core objects of Microsoft 365 services", "Identify the core security features of Microsoft 365 services", and "Identify and monitor oversharing in SharePoint in Microsoft 365". AB-900 is generally available and no longer in beta.
 
 ## Interactive question delivery
 

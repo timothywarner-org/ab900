@@ -1,10 +1,12 @@
 # Segment 3: Copilot Administration - Official Resources
 
+**Last updated:** 2026-07-26 (aligned to the AB-900 skills measured as of July 22, 2026)
+
 ## Official Microsoft Documentation
 
 ### Microsoft 365 Copilot Overview
 - **Main Copilot Documentation Hub**
-  - https://learn.microsoft.com/en-us/copilot/microsoft-365/
+  - https://learn.microsoft.com/microsoft-365/copilot/
   - Comprehensive resource for Copilot features, setup, and administration
   - Described as "Your AI assistant for work and school"
   - Embedded in apps you use daily, connected to work data
@@ -16,7 +18,7 @@
 
 ### Copilot Setup and Deployment
 - **Microsoft 365 Copilot Setup Guide**
-  - https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-setup
+  - https://learn.microsoft.com/copilot/microsoft-365/microsoft-365-copilot-setup
   - Complete deployment framework with three phases:
     - **Get ready:** Deploying Copilot
     - **Drive adoption:** Workforce preparation
@@ -51,61 +53,108 @@
        - Operations: Monitor via Copilot Dashboard
 
 ### Licensing
+
+Full detail is in `COPILOT-LICENSING-GUIDE.md` in this folder.
+
 - **Microsoft 365 Copilot Licensing**
-  - https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-licensing
-  - **Add-on License:** Copilot requires base M365 subscription
-  - **Prerequisites:**
-    - Microsoft 365 E3, E5
-    - Microsoft 365 Business Standard, Business Premium
-    - Office 365 E1, E3, E5
-    - Various Teams, Exchange, SharePoint, OneDrive plans
-    - Government and Education tiers
+  - https://learn.microsoft.com/microsoft-365/copilot/microsoft-365-copilot-licensing
+  - **Add-on license.** Copilot requires an eligible base subscription. **30.00 USD** per user per month (annual billing).
+  - **There is NO seat minimum.** The original 300-seat minimum was removed in January 2024, along with the Microsoft 365 prerequisite, which made Office 365 E3 and E5 customers eligible.
+  - **Prerequisites include:** Microsoft 365 E7, E5, E3, F1, F3; Business Basic, Standard, Premium; Microsoft 365 Apps for business and enterprise; Office 365 E5, E3, E1, F3; Teams Essentials and Enterprise; Exchange Kiosk, Plan 1, Plan 2; SharePoint Kiosk, Plan 1, Plan 2; OneDrive for work and school Plan 1 and Plan 2; Planner Plan 1; Project Plan 3 and Plan 5; Project Online Essentials; Visio Plan 1 and Plan 2; and Microsoft Clipchamp
+
+- **Microsoft 365 Copilot Business (SMB SKU)**
+  - https://learn.microsoft.com/microsoft-365/copilot/copilot-business-faq
+  - **300-seat maximum** per tenant. Requires a Microsoft 365 Business plan or Microsoft 365 Apps for Business.
+  - List price 21.00 USD per user per month; 18 USD under a 15 percent promotion extended through December 2026
+  - Microsoft states it delivers **the same capabilities** as the enterprise offering. The difference is price point and eligibility, not features.
+  - Annual commitment only. There is **NO** month-to-month agreement, and existing enterprise Copilot licenses do **NOT** auto-convert at renewal.
+
+- **Microsoft 365 E7 (the Frontier Suite)**
+  - https://learn.microsoft.com/microsoft-365/copilot/microsoft-365-copilot-license-feature-overview
+  - Generally available **May 1, 2026**. E7 = E5 + Microsoft 365 Copilot + Microsoft Entra Suite + Agent 365, a strict superset of E5.
+  - E7 customers do **NOT** buy the Copilot add-on separately. Any licensing slide that stops at E5 is incomplete.
 
 - **License Assignment:**
-  - Through Microsoft 365 admin center
-  - Individual assignment: Users → Active users → Select → Licenses
+  - Through the Microsoft 365 admin center: **Users** > **Active users** > select user > **Licenses and apps**
   - Group-based assignment for bulk deployment
-  - 24-hour activation time after assignment
+  - PowerShell via the Microsoft Graph SDK. See `shared-resources/scripts/Assign-CopilotLicenses.ps1`.
+  - Allow up to **24 hours** for activation after assignment
 
 - **Licensing Models:**
-  - **Monthly subscription:** Traditional per-user monthly fee
-  - **Pay-as-you-go:** Usage-based billing (Azure-backed)
+  - **Per-user subscription:** flat monthly fee per assigned seat
+  - **Pay-as-you-go:** consumption billed to an Azure subscription at **0.01 USD per Copilot Credit**
+  - **Prepaid capacity packs:** 200.00 USD per pack per month for 25,000 Copilot Credits, consumed before pay-as-you-go
+  - **Copilot Credit Pre-Purchase Plan:** an Azure reservation over a one-year term at tiered discounts. Cancellations and exchanges are **NOT** supported.
 
 ### Copilot Product Options
-- **Copilot Chat**
-  - Secure AI chat experience
-  - Grounded in web data and work files
-  - Available via M365.cloud.microsoft/chat
+- **Microsoft 365 Copilot Chat**
+  - Included at no additional cost with an eligible Microsoft 365 subscription
+  - Requires sign-in with a Microsoft Entra work or school account for enterprise data protection
+  - **Web-based chat** (internet results) is free. **Work-based chat** (results the Entra account can access) requires a Microsoft 365 Copilot license.
+  - Available at https://m365.cloud.microsoft/chat
 
 - **Microsoft 365 Copilot**
-  - Productivity tool with organizational data
-  - Embedded in Word, Excel, PowerPoint, Outlook, Teams, Loop
-  - Microsoft 365 Chat (cross-app assistant)
+  - Embedded in Word, Excel, PowerPoint, Outlook, Teams, and Loop
+  - Unlocks the advanced agents **Researcher** and **Analyst**
 
 - **Agents**
-  - Customizable extensions
-  - Perform tasks and use tools
-  - Integration with external systems
+  - Customizable extensions that perform tasks and use tools
+  - Declarative agents and custom engine agents; see Segment 4
 
 ### Copilot Administration Settings
-- **Copilot Control Center** (in M365 Admin Center)
-  - License status management
-  - Security controls configuration
-  - Plugin governance
-  - Data grounding settings
-  - Feature enablement/disablement
+- **Copilot Control System** is the current umbrella framework name for Copilot and agent governance, with three pillars: Security and governance, Management controls, and Measurement and reporting.
+  - https://learn.microsoft.com/microsoft-365/copilot/copilot-control-system/overview
 
 - **Admin Controls:**
-  - **Copilot Toggle:** Enable/disable Copilot for tenant or users
-  - **Web Search:** Control internet access in Copilot
-  - **Plugins:** Manage Copilot extensibility
-  - **Data Sharing:** Control optional data sharing settings
+  - **Allow web search in Copilot** toggle. Researcher adheres to this; with web search off at the tenant level, Researcher uses no web data.
+  - **Agents** > **Settings** for agent management rules, allowed agent types, security templates, sharing, and user access
+  - **Copilot** > **Settings** > **Data access** for who can access agents and which types they can install
+  - **Copilot** > **Settings** > **View all** > **Copilot Frontier** for early-access enrollment
 
 - **Policy Configuration Methods:**
-  - Cloud Policy for Microsoft 365
-  - Group Policy (on-premises AD)
-  - Intune policies (mobile devices)
+  - **Cloud Policy service for Microsoft 365** (renamed from Office cloud policy service)
+  - Group Policy for domain-joined devices
+  - Intune policies for mobile devices
   - Conditional Access policies
+
+### Pay-as-you-go billing setup
+
+**The path is admin.microsoft.com > Copilot > Billing & usage.** The **Billing policies** tab holds the policies; the **Pay-as-you-go services** tab connects them to services. An alternate route: **Copilot** > **Settings** > **User access** > **Copilot pay-as-you-go billing**.
+
+- https://learn.microsoft.com/microsoft-365/commerce/services/pay-as-you-go-setup-copilot
+
+**Do NOT use Billing > Billing policies for Copilot.** That Billing node covers Microsoft 365 Backup, Microsoft 365 SharePoint Storage, and High Volume Email, and only surfaces a "Go to Copilot Billing & usage" redirect for Copilot.
+
+**Prerequisites:** Billing Administrator, AI Administrator, or Global Administrator; an Azure subscription in the same tenant; an Azure resource group; Owner or Contributor on both; and at least one SharePoint license in the tenant.
+
+**Four setup steps:** create a billing policy with billing details, choose users (All users or a specific group), set an optional budget, then review and select **Create policy**.
+
+**Services available:** Microsoft 365 Copilot Chat, SharePoint agents, and the Microsoft Copilot Retrieval API (preview, billed at 0.10 USD per API call).
+
+**Budget exam trap.** A budget triggers **email notifications only**. Microsoft states the system does **NOT** enforce the budget or prevent the organization from exceeding it, and usage continues uninterrupted. Default alert threshold is 100 percent, and alerts can take up to 24 hours.
+
+**SharePoint migration trap.** Policies previously configured under **Org settings** > **Pay-as-you-go services** must be disconnected there (select **SharePoint agents**, then **Disconnect previous billing**) before linking a new Copilot-node policy.
+
+**Limits:** 50 pay-as-you-go billing policies per tenant, 10 Copilot credit policies, and 10 SharePoint agent billing policies each assigned one security group.
+
+### Copilot Credits
+
+The unit of consumption is the **Copilot Credit**, not the message, and the rate is **0.01 USD per credit**.
+
+<!-- VERIFY: Microsoft documentation is inconsistent. The Copilot Studio billing-rates page and the Power Platform meters page use "Copilot Credits", and the admin center report is named "Credits". The Microsoft 365 Copilot pay-as-you-go Meters page still reads "$0.01 per message" with the meter named "Copilot Studio". Dollar figure matches; unit noun does not. Teach credits, and note the Azure invoice meter is still named Copilot Studio. -->
+
+| Feature | Credits |
+|---------|---------|
+| Classic answer | 1 |
+| Generative answer | 2 |
+| Agent action | 5 |
+| Tenant graph grounding | 10 |
+| Agent flow actions | 13 per 100 actions |
+| Content processing tools | 8 per page |
+
+**Licensed users incur no charge** for these in employee-facing scenarios, subject to fair usage. Credits are consumed by **unlicensed** users.
+
+**The SharePoint agent number to memorize:** SharePoint agents are always grounded in the tenant graph, so a single complex prompt from an unlicensed user costs a generative answer (2) plus tenant graph grounding (10) equals **12 credits**, or 0.12 USD.
 
 ### Copilot Security and Governance
 - **Data Protection:**
@@ -130,42 +179,54 @@
   - Accountability
 
 ### Usage Monitoring and Analytics
+
+There are **four** distinct reporting sources. Exam items in this domain often turn on picking the right one.
+
+| Source | What it gives you | Where |
+|--------|-------------------|-------|
+| Microsoft 365 admin center | Readiness and usage numbers, credits, agents | admin.microsoft.com > **Reports** > **Usage** > **Microsoft 365 Copilot** |
+| Viva Insights Copilot Analytics | Adoption, impact, sentiment | Viva Insights app > **Copilot Dashboard** |
+| Microsoft Purview audit logs | Compliance and security auditing | purview.microsoft.com > **Audit** |
+| Power Platform and Copilot Studio Analytics | Agent consumption and performance | Power Platform admin center |
+
+- **Microsoft 365 Copilot usage report**
+  - https://learn.microsoft.com/microsoft-365/admin/activity-reports/microsoft-365-copilot-usage
+  - Path: admin.microsoft.com > **Reports** (select **Show all** if not visible) > **Usage** > under Reports select **Microsoft 365 Copilot** > **Copilot**, then the **Usage** tab
+  - Data is typically available within **48 hours** of the end of a day in UTC
+
+- **Copilot Credits report**
+  - https://learn.microsoft.com/microsoft-365/admin/activity-reports/microsoft-365-copilot-credits
+  - Path: admin.microsoft.com > **Reports** > **Usage** > **Microsoft 365 Copilot** > **Credits**
+  - Shows total credits used, cumulative and daily trends, and credits per user, per agent, per billing policy, and per agent-user pair
+  - Alerts administrators when a user exceeds **2,000 credits**. During preview it shows a maximum of 30 days of history, has no data before May 3, 2025, and filters to the last 7 or 30 days only.
+
 - **Copilot Dashboard in Viva Insights**
-  - https://learn.microsoft.com/en-us/viva/insights/org-team-insights/copilot-dashboard
-  - Available to all M365 customers with Exchange Online
-  - No Viva Insights or Copilot license required for viewing
-  - Full capabilities require 50+ licenses
+  - https://learn.microsoft.com/microsoft-365/copilot/microsoft-365-copilot-reports-for-admins
+  - **Path correction:** the Copilot Dashboard is in the **Viva Insights** app, reached in Microsoft Teams or the Viva Insights web app, **NOT** the admin center. An AI Administrator first enables it and delegates access from the Microsoft 365 admin center.
 
-- **Four Metric Categories:**
-  1. **Readiness**
-     - Total licenses purchased
-     - Assigned licenses
-     - Active users
+- **Copilot Analytics** is the umbrella term, covering six areas: the readiness and adoption report in the admin center, the Copilot Dashboard in Viva Insights, the Agent Dashboard in Viva Insights, the Consumption Dashboard, ready-to-use Copilot Analytics reports (Viva Insights web app > **Reports**), and Advanced Reporting through Viva Insights and Power BI.
+  - https://learn.microsoft.com/viva/insights/copilot-analytics-introduction
 
-  2. **Adoption**
-     - User engagement across M365 apps
-     - Active users: "Completed at least one Copilot action in previous 28 days"
-     - App-specific usage (Teams, Outlook, Word, Excel, PowerPoint)
+- **Role mapping for reporting:** AI Administrator accesses Copilot reports in the admin center and enables/delegates the Copilot Dashboard. Global Administrator assigns the Insights Analyst and Insights Administrator roles. Audit Reader searches Purview audit logs. Copilot Studio Author accesses per-agent analytics.
 
-  3. **Impact**
-     - Copilot assisted hours
-     - Value generated through AI assistance
-     - Time savings metrics
+- **Exam trap.** Microsoft explicitly warns that Purview audit log data is **NOT** intended as the basis for Copilot usage reporting, and aggregated metrics built on it may not match the official reports. Use the Microsoft 365 Copilot usage report or the Copilot Dashboard.
 
-  4. **Sentiment**
-     - User satisfaction surveys
-     - Feedback collection
+- **Four Copilot Dashboard metric categories:**
+  1. **Readiness** -- licenses purchased, licenses assigned, enabled users
+  2. **Adoption** -- user engagement across the Microsoft 365 apps, active users over time, app-specific usage
+  3. **Impact** -- Copilot assisted hours and related value measures
+  4. **Sentiment** -- user satisfaction and feedback
 
-- **Data Refresh:**
-  - Previous 28 days with up to 6-day delay
-  - Filter by organizational attributes (department, function, hierarchy)
-  - Access controls via Entra ID roles
+<!-- VERIFY before quoting a specific number on stage: the exact Copilot Dashboard active-user definition window and its data-refresh delay were not re-confirmed against a current Microsoft Learn page in this revision. Prior course material asserted a 28-day active-user window and a delay of up to 6 days. Check the Copilot Dashboard documentation in the live tenant before stating either figure. The Microsoft 365 admin center usage report latency IS confirmed at approximately 48 hours. -->
 
-- **Microsoft 365 Usage Reports:**
-  - Admin center → Reports → Usage
-  - Copilot activity reports
-  - User activity insights
-  - App-specific metrics
+- **Microsoft 365 admin center usage reports:**
+  - Path: admin.microsoft.com > **Reports** > **Usage** > **Microsoft 365 Copilot**
+  - Three views: **Usage**, **Credits**, and **Agents**
+  - Data typically available within 48 hours of the end of a day in UTC
+
+- **Agent usage reports.** Note there are **two**, and they differ in status. The original **Microsoft 365 Copilot Agent usage report** is generally available but excludes SharePoint agents and agents built by Microsoft and Microsoft partners, with up to 72 hours of latency. The newer **Microsoft 365 Copilot Agents usage report** is **in preview**, covers declarative, SharePoint, and custom engine agents including those built by the org, Microsoft, and partners, and shows usage within an hour. Both are at **Reports** > **Usage** > **Microsoft 365 Copilot** > **Agents**.
+
+- **Monitoring gap worth naming.** The Researcher FAQ states there is **NO** existing reporting tool for Copilot agents like Researcher and Analyst, and that by default the **content** of Researcher sessions is not accessible to admins or compliance tools. Admins see usage metrics, not conversation content. The only exception is when a user explicitly submits feedback including session data.
 
 ### Copilot Experiences by Application
 
@@ -201,7 +262,7 @@
 - Call summaries and notes
 - Follow-up task generation
 
-#### Microsoft 365 Chat (Business Chat)
+#### Microsoft 365 Copilot Chat
 - Cross-application AI assistant
 - Query across emails, documents, meetings, chats
 - Project status summaries
@@ -216,7 +277,7 @@
 
 ### Core Copilot Training
 - **Introduction to Microsoft 365 Copilot**
-  - https://learn.microsoft.com/en-us/training/modules/introduction-microsoft-365-copilot/
+  - https://learn.microsoft.com/training/modules/introduction-microsoft-365-copilot/
   - **Learning Objectives:**
     - Describe purpose and functionalities
     - Outline working principles
@@ -257,8 +318,8 @@
 
 #### Lab 2: Assign Copilot Licenses
 1. Access Microsoft 365 admin center
-2. Navigate to Billing → Licenses
-3. Select Copilot for Microsoft 365
+2. Go to **Billing** > **Licenses**
+3. Select Microsoft 365 Copilot
 4. Assign to pilot users (individual or group)
 5. Verify assignment in user properties
 6. Document 24-hour activation wait time
@@ -279,7 +340,7 @@
 3. **PowerPoint:** Generate presentation
 4. **Outlook:** Compose email, summarize thread
 5. **Teams:** Test meeting recap, chat summary
-6. **Microsoft 365 Chat:** Cross-app query
+6. **Microsoft 365 Copilot Chat:** Cross-app query
 7. Document user experience and feedback
 
 #### Lab 5: Monitor Copilot Usage
@@ -316,44 +377,47 @@
 
 **Critical Topics:**
 
-- [ ] **Licensing Models**
-  - Monthly subscription vs. pay-as-you-go
-  - License prerequisites (M365 E3/E5, Business)
-  - License assignment procedures (individual, group, PowerShell)
-  - 24-hour activation delay
+Domain 3 has exactly three subsections: "Understand features and capabilities of Copilot and agents", "Perform basic administrative tasks for Copilot", and "Perform basic administrative tasks for agents". The July 22, 2026 change log lists **no** changes for Domain 3.
 
-- [ ] **Feature Management**
-  - Enable/disable Copilot features
-  - Configure web search capabilities
-  - Manage plugins
-  - Set data sharing preferences
+- [ ] **Compare built-in capabilities of Copilot and agents**
 
-- [ ] **Agent Use Cases**
-  - **Researcher agents:** Information gathering, research tasks
-  - **Analyst agents:** Data analysis, insights generation
-  - **Custom agents:** Organization-specific scenarios
+- [ ] **Compare the Copilot monthly license model to pay-as-you-go, including SharePoint**
+  - The objective explicitly adds "including SharePoint", so cover SharePoint agent pay-as-you-go specifically, not just generic Copilot PAYG
+  - Per-user add-on at 30.00 USD per user per month versus 0.01 USD per Copilot Credit
+  - No seat minimum; 300-seat maximum on the SMB SKUs
+  - Microsoft 365 E7 includes Copilot in the base SKU
+  - 24-hour activation delay after assignment
 
-- [ ] **Billing Policy Management**
-  - Configure pay-as-you-go billing
-  - Set spending limits
-  - Monitor usage and costs
+- [ ] **Identify which Copilot features can be enabled or disabled**
+  - The **Allow web search in Copilot** tenant toggle
+  - Agent settings: allowed agent types, sharing, user access
+  - Copilot Frontier enrollment
 
-- [ ] **Usage Monitoring**
-  - Copilot Dashboard in Viva Insights
-  - Readiness metrics (licenses, active users)
-  - Adoption tracking (app-specific usage)
-  - Impact measurement (assisted hours)
-  - Sentiment collection
+- [ ] **Identify use cases for Researcher**
+  - Deep multi-step research combining Microsoft Graph work data, Copilot connectors, and the Bing web index
+  - Microsoft-installed and pre-pinned for licensed users; 25 queries per user per month
+  - Adheres to the tenant web search toggle
 
-- [ ] **Prompt Management**
-  - Effective prompt engineering
-  - Create prompt libraries
-  - Share prompt examples
+- [ ] **Identify use cases for Analyst**
+  - Advanced data analysis using chain-of-thought reasoning
+  - Better suited than Researcher for Microsoft Excel tasks
 
-- [ ] **Agent Administration**
-  - Agent creation and configuration
-  - Agent approval processes
-  - Agent governance
+- [ ] **Identify use cases for custom agents**
+  - Declarative agents versus custom engine agents
+
+- [ ] **Assign Copilot licenses**
+  - Individual, group-based, and PowerShell via the Microsoft Graph SDK
+
+- [ ] **Monitor and manage Copilot pay-as-you-go billing policies**
+  - Path: admin.microsoft.com > **Copilot** > **Billing & usage**
+  - Budgets notify only; they do **NOT** enforce a spending cap
+  - 50 policies per tenant
+
+- [ ] **Monitor Copilot usage and adoption, including Copilot Analytics and the admin center**
+  - The four reporting sources and which answers which question
+  - Purview audit data is **NOT** the basis for usage reporting
+
+- [ ] **Manage prompts, including saving, sharing, scheduling, and deleting**
 
 **Key Concepts to Master:**
 
@@ -363,7 +427,7 @@
    - Permission-based data access
 
 2. **Deployment Phases**
-   - Readiness → Pilot → Phased → Organization-wide
+   - Readiness, then Pilot, then Phased, then Organization-wide
 
 3. **Licensing Requirements**
    - Base license (M365 E3/E5 or Business)
@@ -418,7 +482,7 @@
 - "What were the action items assigned to me this week?"
 - "Create a recap of yesterday's standup meeting"
 
-**Microsoft 365 Chat:**
+**Microsoft 365 Copilot Chat:**
 - "What are the latest updates on Project Phoenix across all my emails and Teams chats?"
 - "Create a status report on customer requests from the past week"
 - "Find all documents related to the Q4 budget review"
@@ -466,7 +530,7 @@
 |------|-----|---------|
 | M365 Admin Center | https://admin.microsoft.com/ | License assignment, settings |
 | Copilot Dashboard | admin.microsoft.com/Adminportal/Home#/copilot | Usage analytics |
-| Microsoft 365 Chat | https://m365.cloud.microsoft/chat | Cross-app Copilot |
+| Microsoft 365 Copilot Chat | https://m365.cloud.microsoft/chat | Cross-app Copilot |
 | Cloud Policy | https://config.office.com/ | Policy management |
 | Viva Insights | insights.viva.office.com | Adoption metrics |
 | Adoption Resources | https://adoption.microsoft.com/copilot/ | Training materials |

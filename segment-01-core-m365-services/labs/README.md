@@ -14,7 +14,7 @@ Navigate the admin center and identify key administrative areas.
 **Difficulty:** Beginner  
 **Duration:** 15 minutes
 
-Examine user identities and authentication settings in Azure AD/Entra ID.
+Examine user identities and authentication settings in Microsoft Entra ID.
 
 ### Lab 1.3: Analyze License Assignments
 **Difficulty:** Beginner  

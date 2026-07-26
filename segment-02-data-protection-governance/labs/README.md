@@ -34,7 +34,7 @@ Detailed step-by-step instructions are provided in the main segment README.
 
 ## Prerequisites
 
-- Microsoft Purview compliance portal access
+- Microsoft Purview portal access at purview.microsoft.com
 - Compliance Administrator role or equivalent
 - Sample documents for testing
 - Understanding of data protection concepts

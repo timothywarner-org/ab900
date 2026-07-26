@@ -10,11 +10,14 @@
 [![GitHub](https://img.shields.io/badge/timothywarner-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/timothywarner)
 [![Microsoft MVP](https://img.shields.io/badge/Microsoft_MVP-5C2D91?style=for-the-badge&logo=microsoft&logoColor=white)](https://techtrainertim.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](./LICENSE)
-[![Exam: AB-900](https://img.shields.io/badge/Exam-AB--900-00A4EF?style=for-the-badge&logo=microsoft&logoColor=white)](https://learn.microsoft.com/credentials/certifications/exams/ab-900/)
+[![Exam: AB-900](https://img.shields.io/badge/Exam-AB--900-00A4EF?style=for-the-badge&logo=microsoft&logoColor=white)](https://learn.microsoft.com/credentials/certifications/copilot-and-agent-administration-fundamentals/)
+[![Skills measured: July 22, 2026](https://img.shields.io/badge/Skills_measured-July_22_2026-107C10?style=for-the-badge)](https://learn.microsoft.com/credentials/certifications/resources/study-guides/ab-900)
 
 </div>
 
 This repository contains instructor materials for the O'Reilly Live Learning session on AB-900, plus an embedded GitHub Copilot study companion that generates exam-realistic practice questions, scenario walkthroughs, and personalized study plans.
+
+> **Currency:** Aligned to the **Skills measured as of July 22, 2026** version of the AB-900 study guide. Content last reviewed **July 26, 2026** for the July 28, 2026 live delivery.
 
 ---
 
@@ -22,30 +25,32 @@ This repository contains instructor materials for the O'Reilly Live Learning ses
 
 ### AB-900 Certification
 
-- [AB-900 Certification Page](https://learn.microsoft.com/credentials/certifications/exams/ab-900/)
+- [AB-900 Certification Page](https://learn.microsoft.com/credentials/certifications/copilot-and-agent-administration-fundamentals/)
 - [AB-900 Study Guide](https://learn.microsoft.com/credentials/certifications/resources/study-guides/ab-900)
+- [Free official practice assessment](https://learn.microsoft.com/credentials/certifications/practice-assessments-for-microsoft-certifications)
+- [Exam sandbox (try the question types)](https://aka.ms/examdemo)
+- [Exam duration and exam experience](https://learn.microsoft.com/credentials/support/exam-duration-exam-experience)
 
 ### Microsoft 365 Portals
 
 - [Outlook](https://outlook.office.com)
 - [Teams](https://teams.microsoft.com)
-- [OneDrive](https://onedrive.live.com)
 - [SharePoint](https://www.microsoft365.com/launch/sharepoint)
 - [Excel](https://www.microsoft365.com/launch/excel)
 - [Word](https://www.microsoft365.com/launch/word)
 
 ### Admin and AI Portals
 
-- [Copilot Studio](https://copilotstudio.microsoft.com)
-- [Azure AI Foundry Portal](https://ai.azure.com)
+- [Microsoft 365 admin center](https://admin.microsoft.com)
+- [Microsoft Purview portal](https://purview.microsoft.com)
 - [Microsoft Entra admin center](https://entra.microsoft.com)
-- [Microsoft Defender XDR Portal](https://security.microsoft.com)
-- [Microsoft Purview Portal](https://purview.microsoft.com)
-- [Teams Admin Center](https://admin.teams.microsoft.com)
-- [SharePoint Admin Center](https://admin.sharepoint.com)
-- [Exchange Admin Center](https://admin.exchange.microsoft.com)
-- [M365 Apps Admin Center](https://config.office.com)
-- [Microsoft 365 Admin Center](https://admin.microsoft.com)
+- [Microsoft Defender portal](https://security.microsoft.com)
+- [SharePoint admin center](https://admin.microsoft.com/sharepoint)
+- [Teams admin center](https://admin.teams.microsoft.com)
+- [Exchange admin center](https://admin.exchange.microsoft.com)
+- [Power Platform admin center](https://admin.powerplatform.microsoft.com)
+- [Copilot Studio](https://copilotstudio.microsoft.com)
+- [Microsoft 365 Apps admin center](https://config.office.com)
 
 ---
 
@@ -55,19 +60,52 @@ This repository contains instructor materials for the O'Reilly Live Learning ses
 |-----------|-------|
 | Exam code | AB-900 |
 | Full title | Microsoft 365 Certified: Copilot and Agent Administration Fundamentals |
+| Status | Generally available. The exam is **NO** longer in beta, so scores are reported immediately. |
+| Skills measured version | July 22, 2026 |
 | Level | Beginner |
-| Duration | 45 minutes |
-| Passing score | 700 / 1000 |
-| Exam page | https://learn.microsoft.com/credentials/certifications/exams/ab-900/ |
+| Role | Administrator |
+| Exam duration | 45 minutes (block roughly 65 minutes of seat time for instructions and the candidate agreement) |
+| Question count | Microsoft does **NOT** publish an AB-900-specific count. Microsoft states most exams typically contain 40-60 questions. |
+| Passing score | 700 or greater on a scale where 1000 is the maximum |
+| Languages | English only |
+| Delivery | Proctored through Pearson VUE, or through Certiport for students and educators. Price varies by country or region. |
+| Retake | 24 hours after a first failed attempt. Wait times increase for later retakes. |
+| Renewal | **NONE** required. Microsoft states that Fundamentals certifications do not expire. |
+| Learn access during the exam | **NOT** available. The in-exam Microsoft Learn resource is offered on role-based exams only. |
+| Exam page | https://learn.microsoft.com/credentials/certifications/copilot-and-agent-administration-fundamentals/ |
 | Study guide | https://learn.microsoft.com/credentials/certifications/resources/study-guides/ab-900 |
+
+Most questions cover features that are generally available. The exam may include questions on preview features when those features are commonly used.
 
 ### Exam Domains
 
 | Domain | Weight |
 |--------|--------|
 | 1 -- Identify the core features and objects of Microsoft 365 services | 30-35% |
-| 2 -- Understand data protection and governance for Microsoft 365 and Copilot | **35-40%** (highest) |
+| 2 -- Understand data protection and governance tasks for Microsoft 365 and Copilot | **35-40%** (highest weight) |
 | 3 -- Perform basic administrative tasks for Copilot and agents | 25-30% |
+
+### What Changed on July 22, 2026
+
+The Microsoft change log records **three Minor** revisions and **ZERO** Major revisions. Domain weights did not move.
+
+| Subsection | Change |
+|------------|--------|
+| Identify the core objects of Microsoft 365 services | Minor |
+| Identify the core security features of Microsoft 365 services | Minor |
+| Identify and monitor oversharing in SharePoint in Microsoft 365 | Minor |
+
+Wording shifts worth memorizing, because they are the likely substance of those Minor edits:
+
+| Older wording | July 22, 2026 wording |
+|---------------|-----------------------|
+| Exchange Online admin center, distribution lists | **Exchange admin center**, **distribution groups** |
+| SharePoint in Microsoft 365 admin center | **SharePoint admin center** (the service is still "SharePoint in Microsoft 365") |
+| SharePoint Advanced Management, restricted site access | SharePoint Advanced Management, **restricted access control** |
+| Microsoft Purview Content explorer | **Microsoft Purview Data Explorer** |
+| Content search as a standalone solution | **Content search in Microsoft Purview eDiscovery** |
+| Microsoft 365 Defender | **Microsoft Defender XDR** |
+| Copilot pay-as-you-go, generic | Monthly license model compared to pay-as-you-go, **including SharePoint** |
 
 ---
 
@@ -112,6 +150,7 @@ These open a guided form that collects inputs (domain, difficulty, confidence ra
 
 ```
 @ab900-cert-buddy-agent Give me a Domain 2 question about DSPM for AI at Apply level, medium difficulty.
+@ab900-cert-buddy-agent Contrast restricted access control with restricted content discovery in SharePoint.
 @ab900-cert-buddy-agent Walk me through approving an agent submission in the M365 admin center.
 @ab900-cert-buddy-agent Build me a study plan. I am weak on Domain 2 and moderate on the others.
 ```
@@ -149,10 +188,10 @@ Walkthroughs simulate the admin center experience without requiring a live tenan
 
 Available scenario types:
 
-- Copilot licensing and pay-as-you-go billing configuration
-- Agent approval workflow (M365 admin center + Power Platform admin center)
+- Copilot licensing and pay-as-you-go billing configuration, including SharePoint agents
+- Agent approval workflow (Microsoft 365 admin center + Power Platform admin center)
 - DSPM for AI dashboard review
-- SharePoint oversharing identification and remediation
+- SharePoint oversharing identification and remediation, including data access governance reports
 - Sensitivity label creation and policy assignment
 - DLP policy review and alert response
 - PIM role activation and Conditional Access policy review
@@ -193,7 +232,7 @@ ab900/
 │   ├── ab900-objectives.md                     # Official exam objectives (all 3 domains)
 │   ├── fictional-companies.md                  # Microsoft fictional companies for scenarios
 │   └── style-guide.md                          # Microsoft Writing Style Guide extract
-├── course-plan.md                              # Live session plan (4 x 50 min on ON24)
+├── course-plan-july-2026.md                    # Live session plan (4 x 50 min on ON24)
 ├── docs/
 │   ├── module-01-security-foundations.md        # Module 1 CliffsNotes
 │   ├── module-02-core-services-admin.md        # Module 2 CliffsNotes
@@ -204,13 +243,17 @@ ab900/
 │   ├── session-agenda.md                       # Instructor delivery guide (4 x 50 min)
 │   ├── demo-scripts.md                         # Click-by-click scripts for all 14 demos
 │   ├── tenant-setup-guide.md                   # Learner tenant setup before the session
-│   ├── new-features-deep-dive.md               # DSPM for AI, Researcher, Analyst, PAYG
+│   ├── new-features-deep-dive.md               # DSPM, Researcher, Analyst, Copilot Credits
 │   └── exam-traps-cheatsheet.md                # One-page last-minute cheat sheet
 ├── shared-resources/
-│   └── references/
-│       ├── AB-900-EXAM-GUIDE.md                # Complete exam reference
-│       ├── AB-900-SKILLS-BREAKDOWN.md          # Per-objective study notes
-│       └── AB-900-PRACTICE-QUESTIONS.md        # 15 practice questions (5 per domain)
+│   ├── references/
+│   │   ├── AB-900-EXAM-GUIDE.md                # Complete exam reference
+│   │   ├── AB-900-SKILLS-BREAKDOWN.md          # Per-objective study notes
+│   │   └── AB-900-PRACTICE-QUESTIONS.md        # 15 practice questions (5 per domain)
+│   ├── scripts/                                # PowerShell helpers (license assign, usage report)
+│   └── templates/                              # Deployment checklist, DLP policy template
+├── slides/workspace/                           # Deck build tooling and background assets
+├── warner-ab900.pptx                           # Current session deck
 └── segment-0{1-4}-*/                           # Per-segment demos, labs, slides, resources
 ```
 
@@ -232,14 +275,18 @@ The Microsoft Learn MCP server (`ab900buddy-mslearn`) is the primary source of t
 
 ## O'Reilly Live Learning Session
 
-**Duration:** 4 segments x 50 minutes
+**Duration:** 4 segments x 50 minutes, with 10-minute breaks. Delivered on ON24.
+
+The teaching order deliberately does **NOT** follow exam domain order. It leads with Copilot because that is the draw, then agents, then the heaviest domain, then identity and security with exam prep. Full timing is in [course-plan-july-2026.md](./course-plan-july-2026.md).
 
 | Segment | Topic | Domain |
 |---------|-------|--------|
-| 1 | Core Features and Objects of Microsoft 365 Services | Domain 1 |
-| 2 | Data Protection and Governance for Microsoft 365 and Copilot | Domain 2 |
-| 3 | Copilot Features and Administration | Domain 3 |
-| 4 | Agent Administration and Exam Success | Domain 3 cont. |
+| 1 | Microsoft 365 Copilot | Domain 3 |
+| 2 | Copilot agents and Copilot Studio | Domain 3 |
+| 3 | Data protection and governance | Domain 2 (heaviest weight) |
+| 4 | Microsoft 365 admin, identity, and security | Domain 1, plus exam prep |
+
+The `segment-0{1-4}-*` folder names reflect the exam domain grouping rather than the delivery order, so segment folder numbers and live segment numbers are intentionally different.
 
 ### For Learners
 
@@ -252,11 +299,13 @@ Before the session:
 Key resources:
 
 - [Exam Traps Cheat Sheet](./docs/exam-traps-cheatsheet.md) -- print or bookmark before the session
-- [New Features Deep Dive](./docs/new-features-deep-dive.md) -- DSPM for AI, Researcher, Analyst, PAYG billing
+- [New Features Deep Dive](./docs/new-features-deep-dive.md) -- DSPM, Researcher, Analyst, Copilot Credits billing
 - [Practice Questions](./shared-resources/references/AB-900-PRACTICE-QUESTIONS.md) -- 15 scenario-based questions
+- [Free official practice assessment](https://learn.microsoft.com/credentials/certifications/practice-assessments-for-microsoft-certifications) -- Microsoft notes that practice questions are not exam questions and do not reflect exam length
 
 ### For the Instructor
 
+- [Course Plan](./course-plan-july-2026.md) -- segment-by-segment plan for the July 2026 delivery
 - [Session Agenda](./docs/session-agenda.md) -- full timing breakdown with cut guidance
 - [Demo Scripts](./docs/demo-scripts.md) -- click-by-click scripts for all 14 demos
 - [Tenant Setup Guide](./docs/tenant-setup-guide.md) -- what learners need before arriving
@@ -266,9 +315,11 @@ Key resources:
 ## Prerequisites
 
 - Basic familiarity with Microsoft 365 services (email, SharePoint, Teams)
-- Access to a Microsoft 365 tenant with Global Administrator rights -- see [Tenant Setup Guide](./docs/tenant-setup-guide.md)
+- Access to a Microsoft 365 tenant with administrative rights -- see [Tenant Setup Guide](./docs/tenant-setup-guide.md)
 - VS Code with GitHub Copilot for the cert buddy features
 - No Azure infrastructure or data science experience required
+
+Microsoft classifies Global Administrator as a highly privileged role and recommends limiting it to emergency scenarios where a lower-privileged role cannot be used. For AB-900 lab work, prefer the least-privileged role that completes the task: **AI Administrator** for Copilot and agent governance, **Billing Administrator** for pay-as-you-go setup, **SharePoint Administrator** for oversharing reports, and **Compliance Administrator** for Microsoft Purview.
 
 ---
 
@@ -277,13 +328,33 @@ Key resources:
 | Portal | URL |
 |--------|-----|
 | Microsoft 365 admin center | https://admin.microsoft.com |
-| Microsoft Purview | https://purview.microsoft.com |
+| Microsoft Purview portal | https://purview.microsoft.com |
 | Microsoft Entra admin center | https://entra.microsoft.com |
+| Microsoft Defender portal | https://security.microsoft.com |
+| SharePoint admin center | https://admin.microsoft.com/sharepoint |
 | Teams admin center | https://admin.teams.microsoft.com |
 | Exchange admin center | https://admin.exchange.microsoft.com |
 | Power Platform admin center | https://admin.powerplatform.microsoft.com |
 | Copilot Studio | https://copilotstudio.microsoft.com |
-| Copilot Dashboard | https://insights.viva.cloud.microsoft |
+| Copilot Dashboard | Opened from the Viva Insights app in Microsoft Teams or the Viva Insights web app, **NOT** from a standalone admin URL |
+
+Two portals are retired and must **NEVER** be used in demos or answers. The Microsoft Purview compliance portal is superseded by the Microsoft Purview portal at `purview.microsoft.com`. The Office 365 Security and Compliance Center is split across the Microsoft Defender portal, the Microsoft Purview portal, and the Exchange admin center. The retired compliance host still initiates a sign-in redirect, so do not claim on stage that the old URL fails to load. Claim that it is retired and superseded.
+
+### Navigation Paths Worth Memorizing
+
+| Task | Current path |
+|------|--------------|
+| Copilot pay-as-you-go billing | admin.microsoft.com > **Copilot** > **Billing & usage** |
+| Agent approval queue | admin.microsoft.com > **Agents** > **All agents** > **Requests** |
+| Agent inventory | admin.microsoft.com > **Agents** > **All agents** > **Registry** |
+| Copilot usage report | admin.microsoft.com > **Reports** > **Usage** > **Microsoft 365 Copilot** > **Copilot** |
+| Copilot Credits report | admin.microsoft.com > **Reports** > **Usage** > **Microsoft 365 Copilot** > **Credits** |
+| Agent usage report | admin.microsoft.com > **Reports** > **Usage** > **Microsoft 365 Copilot** > **Agents** |
+| DSPM for AI (the label the exam uses) | purview.microsoft.com > **Solutions** > **DSPM for AI (classic)** |
+| DSPM (the new unified solution, GA May 2026) | purview.microsoft.com > **Solutions** > **DSPM** |
+| Content search | purview.microsoft.com > **Solutions** > **eDiscovery** > **Content Search** |
+| Data explorer | purview.microsoft.com > **Solutions** > **Information Protection** > **Explorers** > **Data explorer** |
+| Data access governance reports | SharePoint admin center > **Reports** > **Data access governance** |
 
 ---
 

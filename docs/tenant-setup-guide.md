@@ -1,4 +1,4 @@
-# Tenant Setup Guide — AB-900: Microsoft 365 Copilot and Agent Administration Fundamentals
+# Tenant Setup Guide -- AB-900: Microsoft 365 Copilot and Agent Administration Fundamentals
 
 **O'Reilly Live Learning Session** | Approximate date: 2026-04-03
 
@@ -8,28 +8,28 @@
 
 ### What you need
 
-A Microsoft 365 tenant where **you are the Global Administrator**. Every segment of this session involves hands-on work in M365 admin centers — Copilot settings, sensitivity labels, Teams policies, agent deployment, and more. Without admin access, you will be watching rather than doing.
+A Microsoft 365 tenant where **you are the Global Administrator**. Every segment of this session involves hands-on work in M365 admin centers -- Copilot settings, sensitivity labels, Teams policies, agent deployment, and more. Without admin access, you will be watching rather than doing.
 
 ### Time to set up
 
-**30–45 minutes** for initial provisioning, plus up to **1 hour of background service propagation** (SharePoint, Teams, Exchange). Set up your tenant at least the evening before the session.
+**30-45 minutes** for initial provisioning, plus up to **1 hour of background service propagation** (SharePoint, Teams, Exchange). Set up your tenant at least the evening before the session.
 
 ### Why it matters
 
-The AB-900 exam is admin-center-heavy. Every topic maps directly to a configuration experience in the Microsoft 365 admin center or one of its satellite portals. Reading about these settings is not the same as clicking through them — muscle memory in the portals is part of exam readiness.
+The AB-900 exam is admin-center-heavy. Every topic maps directly to a configuration experience in the Microsoft 365 admin center or one of its satellite portals. Reading about these settings is not the same as clicking through them -- muscle memory in the portals is part of exam readiness.
 
 ---
 
-## 2. Option A: Microsoft 365 Developer Program (Best option if you qualify — Free)
+## 2. Option A: Microsoft 365 Developer Program (Best option if you qualify -- Free)
 
-The M365 Developer Program gives **qualifying members** a fully featured E5 sandbox tenant at no cost. Eligibility is **not universal** — you must hold one of the following:
+The M365 Developer Program gives **qualifying members** a fully featured E5 sandbox tenant at no cost. Eligibility is **not universal** -- you must hold one of the following:
 
-- A **Visual Studio Professional or Enterprise** subscription (most individual developers qualify this way — check [https://my.visualstudio.com/benefits](https://my.visualstudio.com/benefits))
+- A **Visual Studio Professional or Enterprise** subscription (most individual developers qualify this way -- check [https://my.visualstudio.com/benefits](https://my.visualstudio.com/benefits))
 - Membership in the **Microsoft AI Cloud Partner Program** (Action Pack, Solutions Partner, etc.)
 - An **ISV Success Program** enrollment
 - A **Premier or Unified Support** contract
 
-If you do not qualify, use Option B (Business Premium trial) instead — it is more universally accessible.
+If you do not qualify, use Option B (Business Premium trial) instead -- it is more universally accessible.
 
 ### What's included
 
@@ -52,12 +52,12 @@ If you do not qualify, use Option B (Business Premium trial) instead — it is m
    - Company (use your name or "Learning" if personal)
    - Primary focus area: select **Enterprise applications** or **Microsoft Teams**
 4. Click **Next**, then select **Set up E5 sandbox**.
-5. Choose **Instant sandbox** (recommended — pre-populated with sample users, data, and Teams channels) or **Configurable sandbox** (blank tenant you configure yourself).
+5. Choose **Instant sandbox** (recommended -- pre-populated with sample users, data, and Teams channels) or **Configurable sandbox** (blank tenant you configure yourself).
 
    > **Tip:** The instant sandbox saves significant setup time. It includes **25 licensed users** (24 test users + 1 admin), with 16 of those pre-populated with sample identities, email content, and photos. It also includes a pre-provisioned SharePoint intranet and Teams sample data. Use it unless you have a specific reason to start blank.
 
-6. Set your admin username and password. Record these credentials — you will use them throughout the session.
-7. Click **Continue**. Azure will provision your tenant. This typically completes in **2–5 minutes**.
+6. Set your admin username and password. Record these credentials -- you will use them throughout the session.
+7. Click **Continue**. Azure will provision your tenant. This typically completes in **2-5 minutes**.
 8. Note your tenant domain (format: `youradminname.onmicrosoft.com`). This is your primary tenant identifier.
 
 ### Verifying your sandbox
@@ -65,8 +65,8 @@ If you do not qualify, use Option B (Business Premium trial) instead — it is m
 After provisioning completes:
 
 1. Navigate to [https://admin.microsoft.com](https://admin.microsoft.com) and sign in with your new admin credentials.
-2. Go to **Users > Active users** — you should see 1 (you) or up to 16 users (instant sandbox).
-3. Go to **Billing > Your products** — confirm Microsoft 365 E5 Developer (no charge) is listed.
+2. Go to **Users > Active users** -- you should see 1 (you) or up to 16 users (instant sandbox).
+3. Go to **Billing > Your products** -- confirm Microsoft 365 E5 Developer (no charge) is listed.
 
 ### Renewal
 
@@ -116,10 +116,10 @@ This option carries real risk and is only appropriate in specific circumstances.
 
 If you proceed with this option, your account must have one of the following:
 
-- **Global Administrator** — full access to all admin centers
-- **Compliance Administrator** — required for Purview labs
-- **Teams Administrator** — required for Teams policy labs
-- **Exchange Administrator** — required for Exchange labs
+- **Global Administrator** -- full access to all admin centers
+- **Compliance Administrator** -- required for Purview labs
+- **Teams Administrator** -- required for Teams policy labs
+- **Exchange Administrator** -- required for Exchange labs
 
 > **Recommendation:** Only use a work or school tenant if it is a **dedicated test or lab tenant** that is isolated from production users. A tenant used for real business operations is not suitable for this session.
 
@@ -133,18 +133,18 @@ Complete all items below **before the session starts**. Attempting to do this du
 
 Verify you can sign in to each portal with your admin account:
 
-- [ ] [https://admin.microsoft.com](https://admin.microsoft.com) — Microsoft 365 admin center
-- [ ] [https://purview.microsoft.com](https://purview.microsoft.com) — Microsoft Purview compliance portal
-- [ ] [https://admin.teams.microsoft.com](https://admin.teams.microsoft.com) — Teams admin center
-- [ ] [https://admin.exchange.microsoft.com](https://admin.exchange.microsoft.com) — Exchange admin center
-- [ ] [https://entra.microsoft.com](https://entra.microsoft.com) — Microsoft Entra admin center
-- [ ] [https://admin.powerplatform.microsoft.com](https://admin.powerplatform.microsoft.com) — Power Platform admin center
+- [ ] [https://admin.microsoft.com](https://admin.microsoft.com) -- Microsoft 365 admin center
+- [ ] [https://purview.microsoft.com](https://purview.microsoft.com) -- Microsoft Purview compliance portal
+- [ ] [https://admin.teams.microsoft.com](https://admin.teams.microsoft.com) -- Teams admin center
+- [ ] [https://admin.exchange.microsoft.com](https://admin.exchange.microsoft.com) -- Exchange admin center
+- [ ] [https://entra.microsoft.com](https://entra.microsoft.com) -- Microsoft Entra admin center
+- [ ] [https://admin.powerplatform.microsoft.com](https://admin.powerplatform.microsoft.com) -- Power Platform admin center
 
 > **Tip:** Bookmark all six portals now. During the session, you will switch between them frequently. Pre-opening tabs in your dedicated browser profile (see [Section 7](#7-recommended-browser-setup)) saves time.
 
 ### Test users and groups
 
-- [ ] At least **2–3 test user accounts** created and licensed
+- [ ] At least **2-3 test user accounts** created and licensed
   - In the M365 admin center: **Users > Active users > Add a user**
   - Assign an E5 license to each
   - Use simple names: `testuser1@yourdomain.onmicrosoft.com`, etc.
@@ -182,13 +182,13 @@ The **Microsoft 365 E5 Developer sandbox does not include Microsoft 365 Copilot 
 
 ### Your options
 
-**Option 1 — Follow instructor demos (works for everyone)**
+**Option 1 -- Follow instructor demos (works for everyone)**
 Copilot-specific labs (assigning Copilot licenses, configuring Copilot settings pages, reviewing Copilot usage reports) will be demonstrated live by the instructor. You can follow the configuration logic and exam relevance without having the license yourself. This is a fully valid approach for passing AB-900.
 
-**Option 2 — Use a commercial tenant with Copilot**
+**Option 2 -- Use a commercial tenant with Copilot**
 If your organization has Microsoft 365 Copilot deployed and you have a non-production test tenant or permission to use a sandbox environment, you can use that tenant for Copilot-specific segments. Keep it isolated from production users.
 
-**Option 3 — Check for a trial SKU**
+**Option 3 -- Check for a trial SKU**
 Microsoft occasionally makes Copilot trial licenses available through the admin center.
 
 1. In your M365 admin center, go to **Billing > Purchase services**.
@@ -235,7 +235,7 @@ Sign in to each portal and leave the tabs open. This eliminates sign-in delays w
 
 ## 8. Troubleshooting Common Issues
 
-### "You don't have permission" or "Access denied"
+### "You do not have permission" or "Access denied"
 
 **Cause:** Your account does not have the Global Administrator role, or role propagation has not completed.
 
@@ -252,13 +252,13 @@ Sign in to each portal and leave the tabs open. This eliminates sign-in delays w
 
 **Cause:** SharePoint Online takes up to 1 hour to fully provision in a new tenant. The admin center shows it as active before it is fully ready.
 
-**Fix:** Wait. There is no action to take. If your tenant was created less than an hour ago, check again in 15–30 minutes. Do not recreate the tenant — this will not speed up provisioning.
+**Fix:** Wait. There is no action to take. If your tenant was created less than an hour ago, check again in 15-30 minutes. Do not recreate the tenant -- this will not speed up provisioning.
 
 ---
 
 ### Teams admin center shows no policies or "no data available"
 
-**Cause:** This is normal for a new tenant. Default global policies exist but are not shown as custom entries. Teams policy data can take **24–48 hours** to fully appear.
+**Cause:** This is normal for a new tenant. Default global policies exist but are not shown as custom entries. Teams policy data can take **24-48 hours** to fully appear.
 
 **Fix:** No action needed. The global (org-wide default) policies apply to all users even when not listed explicitly. You can still create and assign custom policies during the session.
 
@@ -272,7 +272,7 @@ Sign in to each portal and leave the tabs open. This eliminates sign-in delays w
 1. Open a private/incognito window in your dedicated browser profile.
 2. Navigate to [https://aka.ms/mfasetup](https://aka.ms/mfasetup).
 3. Sign in with your admin credentials and complete the MFA registration flow.
-4. Use the **Microsoft Authenticator app** as the primary method — it is the most reliable option.
+4. Use the **Microsoft Authenticator app** as the primary method -- it is the most reliable option.
 5. As a backup, register a phone number for SMS verification.
 
 Complete this before the session. An MFA prompt loop during a live session is difficult to resolve quickly.
@@ -286,7 +286,7 @@ Complete this before the session. An MFA prompt loop during a live session is di
 **Fix:**
 1. Sign in to [https://developer.microsoft.com/microsoft-365/dev-program](https://developer.microsoft.com/microsoft-365/dev-program) with the personal Microsoft account you used to register.
 2. Check the dashboard for renewal options.
-3. If expired, you can set up a new sandbox — provisioning is fast.
+3. If expired, you can set up a new sandbox -- provisioning is fast.
 
 > **Note:** For this session, your sandbox only needs to be active through **2026-04-03**. If you set it up in the week before, a fresh sandbox will be well within its 90-day window.
 

@@ -28,7 +28,7 @@ Overview of the service health dashboard, reading advisories, and understanding 
 
 ## Prerequisites
 
-- Microsoft 365 admin center access
-- Azure AD/Entra ID admin center access
+- Microsoft 365 admin center access (admin.microsoft.com)
+- Microsoft Entra admin center access (entra.microsoft.com)
 - Appropriate administrative permissions
 - Demo tenant or non-production environment (recommended)

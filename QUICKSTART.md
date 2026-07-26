@@ -2,6 +2,8 @@
 
 Get up and running quickly with the course materials and labs.
 
+> **Currency:** Aligned to the **Skills measured as of July 22, 2026** version of the AB-900 study guide. Content last reviewed **July 26, 2026**.
+
 ## For Students
 
 ### Before the Live Session
@@ -19,9 +21,10 @@ Get up and running quickly with the course materials and labs.
    - [ ] Stable internet connection
 
 3. **Set Up Your Lab Environment**
-   - Sign up for [Microsoft 365 Developer Program](https://developer.microsoft.com/microsoft-365/dev-program) (free)
-   - Or activate [Microsoft 365 trial](https://www.microsoft.com/microsoft-365/try)
-   - Ensure you have Global Administrator access
+   - Sign up for the [Microsoft 365 Developer Program](https://developer.microsoft.com/microsoft-365/dev-program). Eligibility is limited to Visual Studio Professional or Enterprise subscribers and members of qualifying programs, so confirm you qualify before relying on it.
+   - Or activate a [Microsoft 365 trial](https://www.microsoft.com/microsoft-365/try)
+   - Ensure you have an administrative role that covers the labs you plan to run. Microsoft recommends least privilege over standing Global Administrator: use **AI Administrator** for Copilot and agent tasks, **Billing Administrator** for pay-as-you-go setup, **SharePoint Administrator** for oversharing reports, and **Compliance Administrator** for Microsoft Purview.
+   - Mandatory multifactor authentication is enforced for the Microsoft 365 admin center, the Microsoft Entra admin center, and the Azure portal. There is no opt-out, and it applies to break-glass and test accounts. Register a method before the session.
 
 4. **Install Required Tools (Optional)**
    ```powershell
@@ -98,7 +101,9 @@ Get up and running quickly with the course materials and labs.
    - [ ] Set up audit logging
 
 2. **Licensing**
-   - [ ] Procure Copilot licenses
+   - [ ] Choose the right SKU. **Microsoft 365 Copilot** is the enterprise add-on. **Microsoft 365 Copilot Business** is the SMB add-on, capped at a **maximum of 300 seats** per tenant. **Microsoft 365 E7** includes Microsoft 365 Copilot in the base SKU, so E7 customers do not buy the add-on separately.
+   - [ ] Confirm there is **NO** seat minimum. Microsoft removed the original 300-seat minimum in January 2024. The only surviving 300 figure is the seat cap on the SMB SKUs.
+   - [ ] Decide whether unlicensed users need pay-as-you-go access to Copilot Chat and SharePoint agents
    - [ ] Plan license distribution
    - [ ] Create assignment groups
    - [ ] Test license assignment process
@@ -146,11 +151,17 @@ Get up and running quickly with the course materials and labs.
 ## Quick Reference - Common Tasks
 
 ### Assign a Copilot License (PowerShell)
+
+The SKU part number varies by the plan the tenant purchased. Run `Get-MgSubscribedSku | Select-Object SkuPartNumber, SkuId` first and match against what your own tenant returns rather than assuming a name.
+
 ```powershell
 # Connect to Microsoft Graph
 Connect-MgGraph -Scopes "User.ReadWrite.All"
 
-# Get the Copilot SKU
+# List the SKUs this tenant owns, then pick the Copilot one by its actual part number
+Get-MgSubscribedSku | Select-Object SkuPartNumber, SkuId
+
+# Get the Copilot SKU (confirm the part number against the list above)
 $sku = Get-MgSubscribedSku | Where-Object {$_.SkuPartNumber -eq "MICROSOFT_365_COPILOT"}
 
 # Assign to user
@@ -169,20 +180,59 @@ Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Office\ClickToRun\Configuration
 
 ### Create a Simple DLP Policy (Portal)
 1. Go to https://purview.microsoft.com
-2. Navigate to Data Loss Prevention > Policies
-3. Click "Create policy"
-4. Choose template or custom
-5. Configure locations (Exchange, SharePoint, Teams)
+2. Go to **Solutions** > **Data Loss Prevention** > **Policies**
+3. Select **+ Create policy**
+4. Choose a template, or choose **Custom template** > **Custom policy**
+5. Configure locations. To govern Copilot grounding, turn on the location named **Microsoft 365 Copilot and Copilot Chat**.
 6. Define rules and conditions
-7. Set actions (block, notify, etc.)
+7. Set actions such as block or notify. For the Copilot location the action is **Prevent Copilot from processing content**.
 8. Test before enforcing
+
+Exam trap for the Copilot location: you can **NOT** combine the "Content contains sensitive info types" condition and the "Content contains sensitivity labels" condition in the same rule. Create one rule per condition inside the same policy.
+
+### Run a Data Access Governance Report (Portal)
+1. Go to the SharePoint admin center at https://admin.microsoft.com/sharepoint
+2. In the left pane expand **Reports**
+3. Select **Data access governance**
+4. Choose a snapshot report such as **Site permissions across your organization**, or an activity report such as **Sharing links**
+5. Remediate from the report using restricted access control, the Change history report, or Site access review
 
 ### View Copilot Usage (Portal)
 1. Go to https://admin.microsoft.com
-2. Navigate to Reports > Copilot
-3. Review adoption metrics
-4. Analyze usage by application
-5. Export data as needed
+2. In the navigation menu select **Reports**. If **Reports** is not visible, select **Show all** first.
+3. Select **Usage**
+4. Under **Reports**, select **Microsoft 365 Copilot**, then select **Copilot**
+5. Select the **Usage** tab for adoption and usage metrics. The **Readiness** tab shows license eligibility and app readiness.
+
+Sibling reports under the same **Microsoft 365 Copilot** node: **Credits** for Copilot Credit consumption, and **Agents** for agent adoption. Copilot usage data is typically available within 48 hours of the end of a day in UTC.
+
+Exam trap: Microsoft Purview audit log data is **NOT** intended as the basis for Copilot usage reporting, and metrics built on it may not match the official usage reports.
+
+### View the Copilot Dashboard
+The Copilot Dashboard is part of Copilot Analytics and is **NOT** in the Microsoft 365 admin center. An AI Administrator first enables it and delegates access from the admin center. Users then open the **Viva Insights** app in Microsoft Teams or the Viva Insights web app and select **Copilot Dashboard**.
+
+## AB-900 Exam Logistics
+
+| Attribute | Value |
+|-----------|-------|
+| Status | Generally available. AB-900 is **NO** longer in beta, so scores are reported immediately rather than after a beta scoring window. |
+| Skills measured version | July 22, 2026 |
+| Exam duration | 45 minutes. Block roughly 65 minutes of seat time for instructions and the candidate agreement. |
+| Question count | Microsoft does **NOT** publish an AB-900-specific count. Microsoft states most exams typically contain 40-60 questions. |
+| Passing score | 700 or greater, on a scale where 1000 is the maximum |
+| Languages | English only |
+| Retake | 24 hours after a first failed attempt |
+| Renewal | **NONE**. Microsoft states that Fundamentals certifications do not expire. The annual renewal assessment applies only to associate, expert, and specialty certifications. |
+| Learn access during the exam | **NOT** available on Fundamentals exams |
+| Breaks | Unscheduled breaks are allowed, but the clock keeps running and you cannot return to any question you already viewed |
+
+Domain weights: Domain 1 at 30-35%, Domain 2 at 35-40% (heaviest), Domain 3 at 25-30%.
+
+Free preparation resources:
+
+- [AB-900 study guide](https://learn.microsoft.com/credentials/certifications/resources/study-guides/ab-900)
+- [Official practice assessment](https://learn.microsoft.com/credentials/certifications/practice-assessments-for-microsoft-certifications)
+- [Exam sandbox](https://aka.ms/examdemo) to try the question types. The secure browser is not enabled in the sandbox.
 
 ## Using the AB-900 Cert Buddy Agent
 

@@ -1,10 +1,21 @@
 # AB-900 Exam Skills - Complete Breakdown
 
+**Last reviewed:** 2026-07-26
+**Skills measured version:** July 22, 2026
+**Exam status:** Generally available. AB-900 is **NOT** a beta exam.
+
+**Source of truth:** the verbatim skills-measured list is maintained in `references/ab900-objectives.md`. This file is a teaching expansion. Where the two disagree, the objectives file wins.
+
+**Scope note:** this breakdown covers Domain 1 in full and Domain 2 through the DLP alerts skill. It does **NOT** yet cover the remaining Domain 2 skills (Communication Compliance violations, activity explorer, DSPM for AI activity, Content search in eDiscovery, SharePoint oversharing) or any of Domain 3. Use `docs/module-*.md` and the exam guide for those.
+
 ## Exam Structure Overview
 
-**Total Duration:** 45 minutes
-**Passing Score:** 700/1000
-**Question Types:** Multiple choice, multiple response, interactive scenarios, drag-and-drop, case studies
+**Total Duration:** 45 minutes of exam time. Fundamentals exams carry a 65-minute seat duration.
+**Passing Score:** 700 or greater, out of 1000
+**Question Count:** not published for AB-900. Microsoft's generic statement is that most Microsoft Certification exams typically contain between 40 and 60 questions, and the number can vary by exam.
+**Question Types:** Multiple choice, multiple response, drag-and-drop, case studies. The exam policy states the exam may have interactive components.
+**Microsoft Learn during the exam:** **NOT** available. That resource is offered on role-based exams only, not Fundamentals.
+**Renewal:** **NOT** required. Fundamentals certifications do not expire.
 
 ### Domain Weights
 | Domain | Weight | Focus |
@@ -12,6 +23,16 @@
 | Domain 1: Core M365 Features & Objects | 30-35% | Foundation services and security |
 | Domain 2: Data Protection & Governance | 35-40% | **LARGEST** - Purview, Copilot data security |
 | Domain 3: Copilot & Agent Administration | 25-30% | Copilot/agent deployment and management |
+
+### July 22, 2026 refresh: what changed
+
+Three subsections are flagged **Minor** in Microsoft's change log, and **NO** subsection is flagged Major. Domain weights were unchanged.
+
+- Identify the core objects of Microsoft 365 services (Minor)
+- Identify the core security features of Microsoft 365 services (Minor)
+- Identify and monitor oversharing in SharePoint in Microsoft 365 (Minor)
+
+Wording drift corrected throughout this file: **Exchange admin center** and **distribution groups**; **SharePoint admin center**; **Microsoft Entra ID**; **restricted access control**; **Microsoft Purview Data Explorer**; **Content search in Microsoft Purview eDiscovery**; **Microsoft Defender XDR**.
 
 ---
 
@@ -32,27 +53,27 @@
 
 | License | Key Features | Copilot Eligible |
 |---------|--------------|------------------|
-| **Microsoft 365 E3** | Office apps, Teams, Exchange, SharePoint, OneDrive, basic security | ✅ Yes |
-| **Microsoft 365 E5** | All E3 + advanced security, analytics, compliance, phone system | ✅ Yes |
-| **Microsoft 365 Business Basic** | Web/mobile Office, Teams, Exchange, OneDrive, SharePoint | ✅ Yes (Business tiers) |
-| **Microsoft 365 Business Standard** | All Basic + desktop Office apps | ✅ Yes |
-| **Microsoft 365 Business Premium** | All Standard + advanced security, device management | ✅ Yes |
-| **Office 365 E1** | Online Office apps only, Exchange, SharePoint, Teams | ✅ Yes |
-| **Office 365 E3** | Desktop Office apps + online, Exchange, SharePoint, Teams | ✅ Yes |
-| **Office 365 E5** | All E3 + advanced features | ✅ Yes |
+| **Microsoft 365 E3** | Office apps, Teams, Exchange, SharePoint, OneDrive, basic security | Yes |
+| **Microsoft 365 E5** | All E3 + advanced security, analytics, compliance, phone system | Yes |
+| **Microsoft 365 Business Basic** | Web/mobile Office, Teams, Exchange, OneDrive, SharePoint | Yes (Business tiers) |
+| **Microsoft 365 Business Standard** | All Basic + desktop Office apps | Yes |
+| **Microsoft 365 Business Premium** | All Standard + advanced security, device management | Yes |
+| **Office 365 E1** | Online Office apps only, Exchange, SharePoint, Teams | Yes |
+| **Office 365 E3** | Desktop Office apps + online, Exchange, SharePoint, Teams | Yes |
+| **Office 365 E5** | All E3 + advanced features | Yes |
 
 #### License Assignment Impact Examples:
-- **No Exchange Online license** → Cannot access email or mailbox
-- **No Teams license** → Cannot use Teams chat or meetings
-- **No SharePoint license** → Cannot access SharePoint sites or OneDrive
-- **No Copilot add-on** → Cannot use Copilot features even with base M365 license
-- **Group-based licensing** → Automatic assignment based on group membership
-- **Direct licensing** → Manual assignment to individual users
+- **No Exchange Online license** -> Cannot access email or mailbox
+- **No Teams license** -> Cannot use Teams chat or meetings
+- **No SharePoint license** -> Cannot access SharePoint sites or OneDrive
+- **No Copilot add-on** -> Cannot use Copilot features even with base M365 license
+- **Group-based licensing** -> Automatic assignment based on group membership
+- **Direct licensing** -> Manual assignment to individual users
 
 **Hands-On:**
-- Navigate to M365 Admin Center → Billing → Licenses
+- Navigate to M365 Admin Center -> Billing -> Licenses
 - View available licenses and assigned users
-- Assign license to user: Users → Active users → Select user → Licenses and apps
+- Assign license to user: Users -> Active users -> Select user -> Licenses and apps
 - Create security group and assign licenses to group
 - Understand 24-hour delay for Copilot license activation
 
@@ -76,7 +97,7 @@
 - **Domain services:** Email, Teams, SharePoint use domains
 - **Domain federation:** Connect to on-premises Active Directory
 
-#### Organization Settings (Settings → Org settings)
+#### Organization Settings (Settings -> Org settings)
 - **Organization profile:**
   - Organization name
   - Contact information
@@ -98,10 +119,10 @@
   - Privacy profile
 
 **Hands-On:**
-- Navigate to Setup → Domains
+- Navigate to Setup -> Domains
 - View domain details and DNS records
 - Add custom domain (if available)
-- Navigate to Settings → Org settings
+- Navigate to Settings -> Org settings
 - Review organization profile
 - Check services configuration
 
@@ -109,12 +130,14 @@
 
 ---
 
-### Skill: Identify the appropriate objects to configure by using the Exchange Online admin center (mailboxes and distribution lists)
+### Skill: Identify the appropriate objects to configure by using the Exchange admin center (mailboxes and distribution groups)
+
+**Wording note (July 22, 2026 refresh):** the objective now says **Exchange admin center**, not "Exchange Online admin center", and **distribution groups**, not "distribution lists". Both terms remain valid in Microsoft's own product documentation, and the Exchange admin center tab label is literally **Distribution list**. Learn the objective wording; recognize the UI wording.
 
 **What You Need to Know:**
-- Exchange Admin Center (EAC) manages email and calendar services
+- Exchange admin center (EAC) manages email and calendar services
 - Different mailbox types serve different purposes
-- Distribution lists enable email to groups of users
+- Distribution groups enable email to groups of users
 
 **Key Concepts:**
 
@@ -144,7 +167,7 @@
    - In-place archiving
    - Requires E3/E5 or archive add-on license
 
-#### Distribution Lists
+#### Distribution Groups
 
 1. **Distribution Groups**
    - Email to multiple recipients
@@ -166,12 +189,12 @@
    - Automatically updated
 
 **Hands-On:**
-- Open Exchange Admin Center: https://admin.exchange.microsoft.com
-- Create shared mailbox: Recipients → Mailboxes → Add shared mailbox
+- Open the Exchange admin center: https://admin.exchange.microsoft.com
+- Create shared mailbox: Recipients -> Mailboxes -> Add shared mailbox
 - Assign permissions to shared mailbox
-- Create distribution list: Recipients → Groups → Add group
-- Add members to distribution list
-- Test sending email to distribution list
+- Create a distribution group: Recipients -> Groups -> Distribution list tab -> Add a group -> group type Distribution
+- Add members to the distribution group
+- Test sending email to the distribution group
 
 **Common Tasks:**
 - Grant "Send As" permission on shared mailbox
@@ -184,7 +207,9 @@
 
 ---
 
-### Skill: Identify the appropriate objects to configure by using the SharePoint in Microsoft 365 admin center (sites, libraries, and folders)
+### Skill: Identify the appropriate objects to configure by using the SharePoint admin center (sites, libraries, and folders)
+
+**Wording note (July 22, 2026 refresh):** the objective now says **SharePoint admin center**, not "SharePoint in Microsoft 365 admin center". The phrase "SharePoint in Microsoft 365" is still current and correct when it names the **service**, as in "Identify the appropriate roles and permissions for sites in SharePoint in Microsoft 365". Only the admin center name changed.
 
 **What You Need to Know:**
 - SharePoint organizes content into sites, libraries, and folders
@@ -234,22 +259,22 @@
 **SharePoint Structure:**
 ```
 Tenant
-└── Site Collection (root)
-    ├── Site
-    │   ├── Document Library
-    │   │   ├── Folder
-    │   │   │   └── Files
-    │   │   └── Files
-    │   └── Lists
-    └── Subsites
+`--- Site Collection (root)
+    |--- Site
+    |   |--- Document Library
+    |   |   |--- Folder
+    |   |   |   `--- Files
+    |   |   `--- Files
+    |   `--- Lists
+    `--- Subsites
 ```
 
 **Hands-On:**
 - Open SharePoint Admin Center: https://admin.microsoft.com/sharepoint
-- View active sites: Sites → Active sites
-- Create site: Create → Team site or Communication site
+- View active sites: Sites -> Active sites
+- Create site: Create -> Team site or Communication site
 - Navigate to site
-- Create document library: New → Document library
+- Create document library: New -> Document library
 - Create folder within library
 - Upload files
 
@@ -303,11 +328,11 @@ Tenant
 
 ```
 Site (Full Control)
-└── Library (Inherited)
-    ├── Folder (Inherited)
-    │   └── File (Inherited)
-    └── Folder (Unique - Broken inheritance)
-        └── File (Inherited from parent folder)
+`--- Library (Inherited)
+    |--- Folder (Inherited)
+    |   `--- File (Inherited)
+    `--- Folder (Unique - Broken inheritance)
+        `--- File (Inherited from parent folder)
 ```
 
 **Breaking Inheritance:**
@@ -323,10 +348,10 @@ Site (Full Control)
 
 **Hands-On:**
 - Navigate to SharePoint site
-- Site Settings → Site permissions
+- Site Settings -> Site permissions
 - View permission levels and groups
 - Add user to group
-- Navigate to library → Library settings → Permissions
+- Navigate to library -> Library settings -> Permissions
 - Check if inheriting or unique
 - Break inheritance on folder (for testing only)
 - Restore inheritance
@@ -375,10 +400,10 @@ Site (Full Control)
 **Example Structure:**
 ```
 Marketing Team (Private)
-├── General (default channel)
-├── Campaigns (standard channel)
-├── Budget (private channel - Finance access only)
-└── Agency Collaboration (shared channel - external partners)
+|--- General (default channel)
+|--- Campaigns (standard channel)
+|--- Budget (private channel - Finance access only)
+`--- Agency Collaboration (shared channel - external partners)
 ```
 
 #### Teams Admin Center Objects
@@ -429,13 +454,13 @@ Marketing Team (Private)
 
 **Hands-On:**
 - Open Teams Admin Center: https://admin.teams.microsoft.com
-- Navigate to Teams → Manage teams
+- Navigate to Teams -> Manage teams
 - View team details, members, channels
 - Navigate to Messaging policies
 - Review "Global (Org-wide default)" policy
 - Create custom messaging policy
 - Assign policy to user or group
-- Navigate to Meetings → Meeting policies
+- Navigate to Meetings -> Meeting policies
 - Configure Copilot in Teams meetings setting
 
 **Common Admin Tasks:**
@@ -476,7 +501,7 @@ Marketing Team (Private)
    - Just-in-time (JIT) access
    - Just-enough-access (JEA)
    - Time-bound permissions
-   - Minimize user permissions to only what's needed
+   - Minimize user permissions to only what is needed
    - Examples:
      - Privileged Identity Management (PIM)
      - Role-based access control (RBAC)
@@ -532,14 +557,14 @@ Marketing Team (Private)
 
 **Zero Trust Maturity Model:**
 ```
-Traditional → Initial → Advanced → Optimal
+Traditional -> Initial -> Advanced -> Optimal
 ```
 
 **Hands-On Verification:**
-- Review Conditional Access policies: Entra Admin → Protection → Conditional Access
-- Check MFA enforcement: Entra Admin → Users → Per-user MFA
-- Review device compliance: Intune Admin → Devices → Compliance policies
-- Verify least privilege: Entra Admin → Roles and administrators
+- Review Conditional Access policies: Entra Admin -> Protection -> Conditional Access
+- Check MFA enforcement: Entra Admin -> Users -> Per-user MFA
+- Review device compliance: Intune Admin -> Devices -> Compliance policies
+- Verify least privilege: Entra Admin -> Roles and administrators
 
 **Documentation:** https://learn.microsoft.com/en-us/security/zero-trust/zero-trust-overview
 
@@ -629,7 +654,7 @@ Traditional → Initial → Advanced → Optimal
 - Document role assignments
 
 **Hands-On:**
-- Navigate to Entra Admin → Roles and administrators
+- Navigate to Entra Admin -> Roles and administrators
 - View all admin roles
 - Click role to see members
 - Assign role to user (test environment)
@@ -714,9 +739,9 @@ Traditional → Initial → Advanced → Optimal
 - Blocked by default in new tenants
 
 **Hands-On:**
-- Entra Admin → Users → Per-user MFA
+- Entra Admin -> Users -> Per-user MFA
 - View MFA status for users
-- Entra Admin → Protection → Authentication methods
+- Entra Admin -> Protection -> Authentication methods
 - Configure available methods (Authenticator, SMS, FIDO2)
 - Set default method
 - Enable passwordless authentication
@@ -792,7 +817,7 @@ Traditional → Initial → Advanced → Optimal
 
 **Threat Intelligence Features:**
 - Threat Explorer (Defender for Office 365)
-- Threat analytics (Microsoft 365 Defender)
+- Threat analytics (Microsoft Defender XDR)
 - Advanced hunting (KQL queries)
 - Incident investigation
 - Threat tracking
@@ -801,18 +826,20 @@ Traditional → Initial → Advanced → Optimal
 
 | Feature | Purpose | Location |
 |---------|---------|----------|
-| **Attack Simulation** | Train users to recognize phishing | Microsoft 365 Defender → Attack simulation training |
-| **Secure Score** | Measure security posture | Microsoft 365 Defender → Secure Score |
-| **Incidents** | Correlated alerts | Microsoft 365 Defender → Incidents |
-| **Threat Analytics** | Intelligence reports | Microsoft 365 Defender → Threat analytics |
-| **Hunting** | Proactive threat search | Microsoft 365 Defender → Hunting |
+| **Attack Simulation** | Train users to recognize phishing | Microsoft Defender portal -> Attack simulation training |
+| **Secure Score** | Measure security posture | Microsoft Defender portal -> Secure Score |
+| **Incidents** | Correlated alerts | Microsoft Defender portal -> Incidents |
+| **Threat Analytics** | Intelligence reports | Microsoft Defender portal -> Threat analytics |
+| **Hunting** | Proactive threat search | Microsoft Defender portal -> Hunting |
+
+**Naming note:** the portal at security.microsoft.com is the **Microsoft Defender portal**. "Microsoft 365 Defender" is retired branding. **Microsoft Defender XDR** is a service surfaced inside that portal, not the portal's name.
 
 **Hands-On:**
 - Navigate to https://security.microsoft.com
 - Review Secure Score
 - Check recent incidents and alerts
 - Explore Threat analytics
-- Email & collaboration → Policies & rules → Threat policies
+- Email & collaboration -> Policies & rules -> Threat policies
 - Review anti-phishing, anti-spam, anti-malware policies
 - Launch Attack simulation training
 
@@ -932,32 +959,32 @@ Traditional → Initial → Advanced → Optimal
 
 | Feature | Defender for Office 365 P1 | Defender for Office 365 P2 |
 |---------|---------------------------|---------------------------|
-| Safe Attachments | ✅ | ✅ |
-| Safe Links | ✅ | ✅ |
-| Anti-phishing | ✅ | ✅ |
-| Threat Explorer | ❌ | ✅ |
-| Automated Investigation | ❌ | ✅ |
-| Attack Simulation Training | ❌ | ✅ |
-| Threat Trackers | ❌ | ✅ |
+| Safe Attachments | Yes | Yes |
+| Safe Links | Yes | Yes |
+| Anti-phishing | Yes | Yes |
+| Threat Explorer | No | Yes |
+| Automated Investigation | No | Yes |
+| Attack Simulation Training | No | Yes |
+| Threat Trackers | No | Yes |
 
 **Hands-On:**
 - Navigate to https://security.microsoft.com
 - Explore Home dashboard
 - View Incidents & alerts
 - Check Secure Score and improvement actions
-- Email & collaboration → Threat Explorer (if P2)
-- Assets → Devices (Defender for Endpoint)
-- Assets → Identities (Defender for Identity)
+- Email & collaboration -> Threat Explorer (if P2)
+- Assets -> Devices (Defender for Endpoint)
+- Assets -> Identities (Defender for Identity)
 - Cloud apps (Defender for Cloud Apps)
-- Advanced hunting → Run query
-- Action center → Pending actions
+- Advanced hunting -> Run query
+- Action center -> Pending actions
 
 **Common Use Cases:**
-- Investigate phishing email: Threat Explorer → Email entity page
-- Respond to ransomware: Incident → Automated investigation → Device isolation
-- Hunt for threats: Advanced hunting → Query for suspicious PowerShell
-- Improve posture: Secure Score → Implement actions
-- Test security: Attack simulation training → Launch phishing simulation
+- Investigate phishing email: Threat Explorer -> Email entity page
+- Respond to ransomware: Incident -> Automated investigation -> Device isolation
+- Hunt for threats: Advanced hunting -> Query for suspicious PowerShell
+- Improve posture: Secure Score -> Implement actions
+- Test security: Attack simulation training -> Launch phishing simulation
 
 **Documentation:** https://learn.microsoft.com/en-us/microsoft-365/security/defender/
 
@@ -965,10 +992,12 @@ Traditional → Initial → Advanced → Optimal
 
 ## Section 1.3: Identify the Core Security Features of Microsoft 365 Services
 
-### Skill: Understand features and capabilities of Microsoft Entra
+### Skill: Understand features and capabilities of Microsoft Entra ID
+
+**Wording note (July 22, 2026 refresh):** the objective now reads **Microsoft Entra ID**, naming the identity service explicitly. Bare "Microsoft Entra" is still correct in the audience profile, where it names the product family and its admin center. Use **Microsoft Entra ID** for the identity service and **Microsoft Entra admin center** for the portal.
 
 **What You Need to Know:**
-- Microsoft Entra (formerly Azure AD) is the identity and access management service
+- Microsoft Entra ID is the identity and access management service. It was previously named Azure Active Directory; that name is retired and must **NOT** be used.
 - Central to all M365 security
 - Provides authentication, authorization, and identity protection
 
@@ -1052,13 +1081,13 @@ Traditional → Initial → Advanced → Optimal
 
 | Feature | Free | P1 | P2 |
 |---------|------|----|----|
-| Users and groups | ✅ | ✅ | ✅ |
-| SSO | ✅ | ✅ | ✅ |
-| Self-service password reset | Cloud only | ✅ Hybrid | ✅ Hybrid |
-| Conditional Access | ❌ | ✅ | ✅ |
-| PIM | ❌ | ❌ | ✅ |
-| Identity Protection | ❌ | ❌ | ✅ |
-| Access Reviews | ❌ | ❌ | ✅ |
+| Users and groups | Yes | Yes | Yes |
+| SSO | Yes | Yes | Yes |
+| Self-service password reset | Cloud only | Yes Hybrid | Yes Hybrid |
+| Conditional Access | No | Yes | Yes |
+| PIM | No | No | Yes |
+| Identity Protection | No | No | Yes |
+| Access Reviews | No | No | Yes |
 
 **Microsoft Entra Suite:**
 - Entra ID P2
@@ -1070,21 +1099,21 @@ Traditional → Initial → Advanced → Optimal
 
 **Hands-On:**
 - Navigate to https://entra.microsoft.com
-- Identity → Users → All users
-- Identity → Groups → All groups
-- Protection → Conditional Access
-- Protection → Identity Protection
-- Identity Governance → PIM
-- Applications → Enterprise applications
-- Review sign-in logs: Monitoring → Sign-in logs
-- Check audit logs: Monitoring → Audit logs
+- Identity -> Users -> All users
+- Identity -> Groups -> All groups
+- Protection -> Conditional Access
+- Protection -> Identity Protection
+- Identity Governance -> PIM
+- Applications -> Enterprise applications
+- Review sign-in logs: Monitoring -> Sign-in logs
+- Check audit logs: Monitoring -> Audit logs
 
 **Common Admin Tasks:**
-- Create user: Identity → Users → New user
-- Create group: Identity → Groups → New group
-- Assign app to user: Applications → Enterprise apps → Select app → Users and groups
-- Configure SSPR: Protection → Password reset
-- Review risky sign-ins: Protection → Identity Protection → Risky sign-ins
+- Create user: Identity -> Users -> New user
+- Create group: Identity -> Groups -> New group
+- Assign app to user: Applications -> Enterprise apps -> Select app -> Users and groups
+- Configure SSPR: Protection -> Password reset
+- Review risky sign-ins: Protection -> Identity Protection -> Risky sign-ins
 
 **Documentation:** https://learn.microsoft.com/en-us/entra/fundamentals/
 
@@ -1119,7 +1148,7 @@ AND Conditions:
 THEN Grant OR Block
   - Require MFA
   - Require compliant device
-  - Require hybrid Azure AD joined device
+  - Require Microsoft Entra hybrid joined device
   - Require app protection policy
   - Require password change
   - Block access
@@ -1166,7 +1195,7 @@ THEN Grant OR Block
 
 **Device state:**
 - Compliant (Intune)
-- Hybrid Azure AD joined
+- Microsoft Entra hybrid joined
 - Use case: Only allow compliant devices
 
 **4. Grant Controls**
@@ -1174,7 +1203,7 @@ THEN Grant OR Block
 **Grant access with requirements:**
 - Require MFA
 - Require device to be marked as compliant
-- Require hybrid Azure AD joined device
+- Require Microsoft Entra hybrid joined device
 - Require approved client app
 - Require app protection policy
 - Require password change
@@ -1205,24 +1234,24 @@ THEN Grant OR Block
 **3. Block legacy authentication:**
 - Users: All users
 - Apps: All cloud apps
-- Conditions: Client apps → Other clients
+- Conditions: Client apps -> Other clients
 - Grant: Block access
 
 **4. Require compliant device:**
 - Users: All users
 - Apps: Office 365
-- Grant: Require compliant device OR Require hybrid Azure AD joined
+- Grant: Require compliant device OR Require Microsoft Entra hybrid joined device
 
 **5. Require MFA from untrusted locations:**
 - Users: All users
 - Apps: All cloud apps
-- Conditions: Locations → Any location, Exclude trusted locations
+- Conditions: Locations -> Any location, Exclude trusted locations
 - Grant: Require MFA
 
 **6. Block high-risk sign-ins:**
 - Users: All users
 - Apps: All cloud apps
-- Conditions: Sign-in risk → High
+- Conditions: Sign-in risk -> High
 - Grant: Block
 
 **Policy Modes:**
@@ -1232,24 +1261,24 @@ THEN Grant OR Block
 
 **What If Tool:**
 - Test policy impact before enabling
-- Entra Admin → Protection → Conditional Access → What If
+- Entra Admin -> Protection -> Conditional Access -> What If
 - Specify user, app, conditions
 - See which policies would apply
 
 **Hands-On:**
-- Navigate to Entra Admin → Protection → Conditional Access
+- Navigate to Entra Admin -> Protection -> Conditional Access
 - Review existing policies
 - Click policy to see configuration
-- Use "What If" tool: What If → Select user and app → What If
+- Use "What If" tool: What If -> Select user and app -> What If
 - Create new policy (report-only mode):
-  - Conditional Access → New policy
+  - Conditional Access -> New policy
   - Name: Test - Require MFA for executives
   - Users: Select executive group
   - Cloud apps: All cloud apps
   - Grant: Require MFA
   - Enable policy: Report-only mode
   - Create
-- Monitor report-only: Sign-in logs → Filter by Conditional Access → Report-only
+- Monitor report-only: Sign-in logs -> Filter by Conditional Access -> Report-only
 
 **Best Practices:**
 - Always exclude emergency access (break-glass) accounts
@@ -1290,9 +1319,9 @@ THEN Grant OR Block
 
 **SSO Flow:**
 ```
-User → App 1 → Entra ID (authenticate) → Token → App 1 (access)
-User → App 2 → Entra ID (already authenticated) → Token → App 2 (access)
-User → App 3 → Entra ID (already authenticated) → Token → App 3 (access)
+User -> App 1 -> Entra ID (authenticate) -> Token -> App 1 (access)
+User -> App 2 -> Entra ID (already authenticated) -> Token -> App 2 (access)
+User -> App 3 -> Entra ID (already authenticated) -> Token -> App 3 (access)
 ```
 
 #### Benefits of SSO
@@ -1359,10 +1388,10 @@ User → App 3 → Entra ID (already authenticated) → Token → App 3 (access)
 #### Configuring SSO
 
 **For Gallery Apps:**
-1. Entra Admin → Enterprise applications → New application
-2. Browse Azure AD Gallery → Search for app (e.g., "Salesforce")
+1. Entra Admin -> Enterprise applications -> New application
+2. Browse the Microsoft Entra application gallery -> Search for app (e.g., "Salesforce")
 3. Add application
-4. Set up single sign-on → Select SAML
+4. Set up single sign-on -> Select SAML
 5. Follow guided setup:
    - Basic SAML configuration (URLs)
    - User attributes & claims
@@ -1372,7 +1401,7 @@ User → App 3 → Entra ID (already authenticated) → Token → App 3 (access)
 7. Test SSO
 
 **For Custom Apps:**
-1. Enterprise applications → New application → Create your own
+1. Enterprise applications -> New application -> Create your own
 2. Integrate any other application not in the gallery
 3. Configure SSO manually with app's SAML/OIDC settings
 
@@ -1385,9 +1414,9 @@ User → App 3 → Entra ID (already authenticated) → Token → App 3 (access)
 - Primary Refresh Token (PRT)
 
 **Hands-On:**
-- Navigate to Entra Admin → Enterprise applications → All applications
+- Navigate to Entra Admin -> Enterprise applications -> All applications
 - View apps configured for SSO
-- Click app → Single sign-on → Review configuration
+- Click app -> Single sign-on -> Review configuration
 - View assigned users: Users and groups
 - Test SSO: Click "Test" in SSO settings
 - User experience: https://myapps.microsoft.com (all SSO apps)
@@ -1519,7 +1548,7 @@ User → App 3 → Entra ID (already authenticated) → Token → App 3 (access)
 | Scenario | Recommended Object |
 |----------|-------------------|
 | Grant SharePoint site access to team | Security Group (Assigned) |
-| Project collaboration workspace | Microsoft 365 Group → Teams |
+| Project collaboration workspace | Microsoft 365 Group -> Teams |
 | All sales department members (auto) | Security Group (Dynamic) |
 | Company-wide email announcements | Distribution Group |
 | Legal team email + document access | Mail-Enabled Security Group |
@@ -1532,7 +1561,7 @@ User → App 3 → Entra ID (already authenticated) → Token → App 3 (access)
 **Users:**
 - Naming convention: firstname.lastname@domain
 - Populate all relevant attributes (department, manager, title)
-- Use guest access for external users (don't create member accounts)
+- Use guest access for external users (do not create member accounts)
 - Disable accounts immediately when employees leave
 - Regular access reviews
 
@@ -1549,28 +1578,28 @@ User → App 3 → Entra ID (already authenticated) → Token → App 3 (access)
 - Principle of least privilege
 - Use security groups for permissions
 - Use M365 groups for collaboration
-- Don't use distribution groups for security
+- Do not use distribution groups for security
 - Monitor guest access
 
 **Hands-On:**
-- Entra Admin → Identity → Users → All users
+- Entra Admin -> Identity -> Users -> All users
 - View user types (filter: User type = Guest)
-- Click user → View properties, group memberships
-- Create user: New user → Create new user
-- Entra Admin → Identity → Groups → All groups
+- Click user -> View properties, group memberships
+- Create user: New user -> Create new user
+- Entra Admin -> Identity -> Groups -> All groups
 - Filter by group type
-- Create security group: New group → Security → Assigned
-- Create dynamic security group: New group → Security → Dynamic user → Add dynamic query
-- Create M365 group: New group → Microsoft 365
+- Create security group: New group -> Security -> Assigned
+- Create dynamic security group: New group -> Security -> Dynamic user -> Add dynamic query
+- Create M365 group: New group -> Microsoft 365
 - View group members and owners
 - Test adding user to group
 - Verify user sees new access (e.g., SharePoint site)
 
 **Common Admin Tasks:**
-- Bulk user creation: Users → Bulk operations → Bulk create
-- Add guest: Users → New user → Invite external user
-- Assign group to app: Enterprise applications → Select app → Users and groups → Add user/group
-- License via group: Groups → Select group → Licenses → Assignments
+- Bulk user creation: Users -> Bulk operations -> Bulk create
+- Add guest: Users -> New user -> Invite external user
+- Assign group to app: Enterprise applications -> Select app -> Users and groups -> Add user/group
+- License via group: Groups -> Select group -> Licenses -> Assignments
 
 **Documentation:**
 - Users: https://learn.microsoft.com/en-us/entra/fundamentals/add-users
@@ -1599,7 +1628,7 @@ Would you like me to continue with the remaining skills? I have:
 - User not registered for MFA
 - MFA method not working (phone lost, app deleted)
 - MFA timeout or failed verification
-- Legacy apps blocking (don't support modern auth)
+- Legacy apps blocking (do not support modern auth)
 
 **2. Conditional Access Issues**
 - Access blocked by policy
@@ -1618,7 +1647,7 @@ Would you like me to continue with the remaining skills? I have:
 #### Troubleshooting Tools
 
 **1. Sign-In Logs (Primary Tool)**
-- **Location:** Entra Admin → Monitoring → Sign-in logs
+- **Location:** Entra Admin -> Monitoring -> Sign-in logs
 - **Information Available:**
   - User attempting sign-in
   - Application being accessed
@@ -1649,11 +1678,11 @@ Reason: "Strong authentication required"
 Application: Office 365 SharePoint Online
 IP: 203.0.113.45 (Seattle, WA)
 Conditional Access: 1 policy applied
-  - "Require MFA for all users" → Not satisfied
+  - "Require MFA for all users" -> Not satisfied
 ```
 
 **2. Conditional Access "What If" Tool**
-- **Location:** Entra Admin → Protection → Conditional Access → What If
+- **Location:** Entra Admin -> Protection -> Conditional Access -> What If
 - **Purpose:** Predict which policies apply to a sign-in
 - **Use Cases:**
   - Before creating new policy
@@ -1668,7 +1697,7 @@ Conditional Access: 1 policy applied
 5. Review which policies would apply
 
 **3. MFA Registration Information**
-- **Location:** Entra Admin → Users → Select user → Authentication methods
+- **Location:** Entra Admin -> Users -> Select user -> Authentication methods
 - **Shows:**
   - Registered MFA methods
   - Default method
@@ -1684,10 +1713,10 @@ Conditional Access: 1 policy applied
 - **Risky Sign-Ins:** Individual sign-in attempts with risk
 - **Risk Detections:** Specific risks detected
 
-**Location:** Entra Admin → Protection → Identity Protection
+**Location:** Entra Admin -> Protection -> Identity Protection
 
 **5. Audit Logs**
-- **Location:** Entra Admin → Monitoring → Audit logs
+- **Location:** Entra Admin -> Monitoring -> Audit logs
 - **Shows:** Admin actions, configuration changes
 - **Use Cases:**
   - Who created/modified Conditional Access policy
@@ -1706,9 +1735,9 @@ Conditional Access: 1 policy applied
 **Error:** "Strong authentication required"
 
 **Troubleshooting Steps:**
-1. Check sign-in logs → Find entry → Review "Authentication details"
-2. Verify MFA policy: Conditional Access → Check policies targeting user
-3. Check user's MFA registration: Users → Select user → Authentication methods
+1. Check sign-in logs -> Find entry -> Review "Authentication details"
+2. Verify MFA policy: Conditional Access -> Check policies targeting user
+3. Check user's MFA registration: Users -> Select user -> Authentication methods
 4. **Resolution:**
    - User not registered: Direct to https://aka.ms/mfasetup
    - Policy issue: Adjust Conditional Access policy or grant exception
@@ -1718,7 +1747,7 @@ Conditional Access: 1 policy applied
 **Error:** "Access has been blocked"
 
 **Troubleshooting Steps:**
-1. Sign-in logs → Find entry → Conditional Access tab
+1. Sign-in logs -> Find entry -> Conditional Access tab
 2. Identify blocking policy
 3. Review policy requirements (compliant device, location, etc.)
 4. **Resolution:**
@@ -1731,7 +1760,7 @@ Conditional Access: 1 policy applied
 **Error:** "Your account is at risk"
 
 **Troubleshooting Steps:**
-1. Identity Protection → Risky sign-ins → Find entry
+1. Identity Protection -> Risky sign-ins -> Find entry
 2. Review risk detections (atypical travel, anonymous IP, etc.)
 3. Determine if legitimate or attack
 4. **Resolution:**
@@ -1739,13 +1768,13 @@ Conditional Access: 1 policy applied
    - Compromised: Force password reset, revoke sessions
    - Admin action: Dismiss risk or confirm compromise
 
-**Scenario 4: "Can't Access from This Location"**
+**Scenario 4: "Cannot Access from This Location"**
 
 **Error:** Location-based block
 
 **Troubleshooting Steps:**
-1. Sign-in logs → Check IP address and location
-2. Conditional Access → What If → Enter user and IP
+1. Sign-in logs -> Check IP address and location
+2. Conditional Access -> What If -> Enter user and IP
 3. Identify location-based policy
 4. **Resolution:**
    - Add location to allowed locations
@@ -1757,8 +1786,8 @@ Conditional Access: 1 policy applied
 **Error:** AADSTS50055 or AADSTS50020
 
 **Troubleshooting Steps:**
-1. Sign-in logs → Client app column shows "Other clients"
-2. Conditional Access → Check for "Block legacy authentication" policy
+1. Sign-in logs -> Client app column shows "Other clients"
+2. Conditional Access -> Check for "Block legacy authentication" policy
 3. **Resolution:**
    - Upgrade app to modern authentication
    - Use app passwords (if enabled)
@@ -1779,7 +1808,7 @@ Conditional Access: 1 policy applied
 | **7000215** | Invalid password (on-prem) | Check password with on-prem AD |
 
 **Hands-On Practice:**
-1. Navigate to Entra Admin → Monitoring → Sign-in logs
+1. Navigate to Entra Admin -> Monitoring -> Sign-in logs
 2. Filter by Status = Failure
 3. Click entry to view details
 4. Review:
@@ -1787,13 +1816,13 @@ Conditional Access: 1 policy applied
    - Conditional Access tab (policies applied)
    - Authentication Details tab (MFA result)
 5. Use What If tool:
-   - Conditional Access → What If
+   - Conditional Access -> What If
    - Select test user and app
    - Review applied policies
 6. Check user's MFA:
-   - Users → Select user → Authentication methods
+   - Users -> Select user -> Authentication methods
 7. Review risky sign-ins (if P2):
-   - Identity Protection → Risky sign-ins
+   - Identity Protection -> Risky sign-ins
 
 **Best Practices:**
 - Enable sign-in logs retention (default 30 days)
@@ -1824,7 +1853,7 @@ Conditional Access: 1 policy applied
 - Higher = better security
 - Based on Microsoft security best practices
 
-**Location:** Entra Admin → Protection → Identity Secure Score
+**Location:** Entra Admin -> Protection -> Identity Secure Score
 
 **Components:**
 - **Current Score:** Your organization's score
@@ -1861,7 +1890,7 @@ Conditional Access: 1 policy applied
 #### Improvement Action Details
 
 **For Each Action:**
-- **Points:** How many points you'll gain
+- **Points:** How many points you will gain
 - **Status:** Not started, Planned, In progress, Completed, Resolved through third party
 - **Affects:** Users/devices/apps impacted
 - **Category:** Identity, Device, Apps, Data
@@ -1894,7 +1923,7 @@ Conditional Access: 1 policy applied
 - Follow step-by-step instructions
 - Test in pilot group first
 - Monitor impact
-- Mark status as "In progress" → "Completed"
+- Mark status as "In progress" -> "Completed"
 
 **4. Monitor Progress**
 - Regular reviews (monthly/quarterly)
@@ -1970,7 +1999,7 @@ Conditional Access: 1 policy applied
 **Change Management:**
 - Communicate changes to users
 - Provide training for new security measures
-- Phase rollouts (pilot → production)
+- Phase rollouts (pilot -> production)
 - Monitor help desk tickets
 
 **Documentation:**
@@ -1986,7 +2015,7 @@ Conditional Access: 1 policy applied
 - Comparison to industry benchmarks
 
 **Hands-On:**
-1. Navigate to Entra Admin → Protection → Identity Secure Score
+1. Navigate to Entra Admin -> Protection -> Identity Secure Score
 2. Review current score and percentage
 3. Click "Improvement actions"
 4. Sort by "Score impact" (descending)
@@ -2031,7 +2060,7 @@ A: Not necessarily - balance security with usability and business needs
 
 **1. Entra ID Audit Logs**
 - **What:** Admin actions and configuration changes in Entra ID
-- **Location:** Entra Admin → Monitoring → Audit logs
+- **Location:** Entra Admin -> Monitoring -> Audit logs
 - **Examples:**
   - User created/deleted
   - Group membership changed
@@ -2042,7 +2071,7 @@ A: Not necessarily - balance security with usability and business needs
 
 **2. Entra ID Sign-In Logs**
 - **What:** User authentication events
-- **Location:** Entra Admin → Monitoring → Sign-in logs
+- **Location:** Entra Admin -> Monitoring -> Sign-in logs
 - **Examples:**
   - User logged in
   - MFA completed
@@ -2051,7 +2080,7 @@ A: Not necessarily - balance security with usability and business needs
 
 **3. Microsoft 365 Unified Audit Log**
 - **What:** Activity across all M365 services
-- **Location:** Purview Compliance → Audit
+- **Location:** purview.microsoft.com > **Audit**
 - **Examples:**
   - Email sent/received
   - File accessed/modified in SharePoint
@@ -2062,7 +2091,7 @@ A: Not necessarily - balance security with usability and business needs
 
 **4. Exchange Audit Logs**
 - **What:** Mailbox and Exchange admin actions
-- **Location:** Exchange Admin Center → Auditing
+- **Location:** Exchange Admin Center -> Auditing
 - **Examples:**
   - Mailbox accessed by non-owner
   - Mailbox permissions changed
@@ -2070,7 +2099,7 @@ A: Not necessarily - balance security with usability and business needs
 
 **5. SharePoint Audit Logs**
 - **What:** SharePoint and OneDrive activity
-- **Location:** Purview Compliance → Audit (search for SharePoint activities)
+- **Location:** purview.microsoft.com > **Audit** (search for SharePoint activities)
 - **Examples:**
   - File downloaded
   - Permissions changed
@@ -2080,7 +2109,7 @@ A: Not necessarily - balance security with usability and business needs
 #### Entra ID Audit Logs (Primary Focus for AB-900)
 
 **Accessing Audit Logs:**
-- Entra Admin Center → Monitoring → Audit logs
+- Entra Admin Center -> Monitoring -> Audit logs
 - Default view: Last 7 days
 - Can filter and search
 
@@ -2143,8 +2172,8 @@ A: Not necessarily - balance security with usability and business needs
 **Scenario 1: Who Deleted This User?**
 
 **Steps:**
-1. Audit logs → Activity filter → "Delete user"
-2. Target → Enter deleted user's name or UPN
+1. Audit logs -> Activity filter -> "Delete user"
+2. Target -> Enter deleted user's name or UPN
 3. Review entry:
    - Initiated by: admin@contoso.com
    - Date: 2025-01-15 14:30:00
@@ -2153,30 +2182,30 @@ A: Not necessarily - balance security with usability and business needs
 **Scenario 2: When Was MFA Enabled for This User?**
 
 **Steps:**
-1. Audit logs → Activity → "Update user"
-2. Target → Enter user
+1. Audit logs -> Activity -> "Update user"
+2. Target -> Enter user
 3. Find entry with "StrongAuthenticationMethods" in modified properties
 
 **Scenario 3: Who Created/Modified This Conditional Access Policy?**
 
 **Steps:**
-1. Audit logs → Category → "Policy"
-2. Activity → "Update conditional access policy" or "Add conditional access policy"
-3. Target → Policy name
-4. Click entry → Modified Properties shows before/after
+1. Audit logs -> Category -> "Policy"
+2. Activity -> "Update conditional access policy" or "Add conditional access policy"
+3. Target -> Policy name
+4. Click entry -> Modified Properties shows before/after
 
 **Scenario 4: Track Group Membership Changes**
 
 **Steps:**
-1. Audit logs → Activity → "Add member to group"
-2. Target → Group name
+1. Audit logs -> Activity -> "Add member to group"
+2. Target -> Group name
 3. Review all adds/removes
 
 **Scenario 5: Application Consent Audit**
 
 **Steps:**
-1. Audit logs → Category → "ApplicationManagement"
-2. Activity → "Consent to application"
+1. Audit logs -> Category -> "ApplicationManagement"
+2. Activity -> "Consent to application"
 3. Review who granted consent to which apps
 
 #### Viewing Audit Log Entry Details
@@ -2206,7 +2235,7 @@ Modified Properties:
 **Retention:**
 - **Entra ID Free/P1:** 7 days
 - **Entra ID P2:** 30 days
-- **Unified Audit Log:** 90 days (E3), 365 days (E5/A5/G5)
+- **Unified Audit Log:** 180 days default (Audit Standard); one year for E5/A5/G5 and the Purview Suite for Microsoft Entra ID, Exchange, and SharePoint activity
 
 **Long-Term Storage:**
 - Export to Azure Monitor (Log Analytics)
@@ -2216,18 +2245,27 @@ Modified Properties:
 **Exporting:**
 - Download current view: Download button (CSV format)
 - Programmatic: Microsoft Graph API
-- Automated: Diagnostic settings → Stream to Log Analytics
+- Automated: Diagnostic settings -> Stream to Log Analytics
 
 #### Microsoft 365 Unified Audit Log
 
-**Location:** Purview Compliance Portal → Audit
+**Location:** two current entry points, and neither is compliance.microsoft.com:
+1. **Microsoft Purview portal:** purview.microsoft.com -> **Audit**
+2. **Microsoft Defender portal:** security.microsoft.com -> **Audit** (direct link: https://security.microsoft.com/auditlogsearch)
+
+**Retention:**
+- Audit (Standard) default retention is **180 days**
+- Office 365 E5, Microsoft 365 E5, Microsoft Purview Suite, or the Microsoft 365 E5 eDiscovery and Audit add-on get **one year** by default for Microsoft Entra ID, Exchange, and SharePoint activity, and can create audit log retention policies for other services up to one year
+
+**Search job behavior:** search jobs started from the Purview portal keep running after the browser window is closed. Completed search jobs are retained for 30 days. Each Audit account user can have up to 10 concurrent search jobs, with a limit of one unfiltered search job.
 
 **Enabling Unified Audit:**
 - Must be enabled (on by default for new tenants)
-- Purview → Audit → Turn on auditing (if not enabled)
+- Purview -> Audit -> Turn on auditing (if not enabled)
+- PowerShell: `Set-AdminAuditLogConfig -UnifiedAuditLogIngestionEnabled $true`
 
 **Searching:**
-1. Purview → Audit → Search
+1. Purview -> Audit -> Search
 2. Select activities (or all)
 3. Date range
 4. Users (optional)
@@ -2244,9 +2282,14 @@ Modified Properties:
 - **Purview:** DLP policy match, Sensitivity label applied
 
 **Copilot Audit Events:**
-- Location: Unified Audit Log
-- Activity: "CopilotInteraction"
-- Details: Prompt, response summary, data sources accessed
+- Location: unified audit log. Copilot prompts and responses are captured automatically as part of **Audit (Standard)**; no extra configuration is needed if auditing is enabled for the organization
+- Operation: `CopilotInteraction` for Microsoft-developed Copilots
+- RecordType values: `CopilotInteraction` (Microsoft Copilots), `ConnectedAIAppInteraction` (custom or third-party AI apps registered in your org), and `AIAppInteraction` (third-party AI apps not deployed in your org)
+- Notable properties: `AccessedResources` includes `SensitivityLabelId`, identifying whether Copilot touched labeled content, and `XPIADetected`, a boolean flagging a cross-prompt injection attack
+
+**Billing trap:** audit logs for **non-Microsoft** AI applications use pay-as-you-go billing and are retained 180 days. They are **NOT** included in the enterprise subscription. All Microsoft applications, including Microsoft 365 Copilot, Security Copilot, Copilot in Fabric, and apps built with Copilot Studio and Microsoft Foundry, **ARE** included in Audit (Standard) at no extra charge.
+
+**Reporting trap:** Microsoft explicitly warns that Purview audit log data is **NOT** intended as the basis for Copilot usage reporting, and aggregated metrics built on it may not match the official Copilot usage reports. Use the Microsoft 365 Copilot usage report or the Copilot Dashboard instead.
 
 #### Best Practices
 
@@ -2276,18 +2319,18 @@ Modified Properties:
 - Export evidence
 
 **Hands-On:**
-1. Navigate to Entra Admin → Monitoring → Audit logs
+1. Navigate to Entra Admin -> Monitoring -> Audit logs
 2. Review recent activities
 3. Filter:
    - Category: "UserManagement"
    - Activity: "Add user"
 4. Click entry to view details
 5. Check "Initiated by" to see who created users
-6. Export: Download → CSV
-7. Navigate to Purview Compliance → Audit
+6. Export: Download -> CSV
+7. Navigate to purview.microsoft.com -> Audit
 8. Verify auditing is enabled
 9. Search audit log:
-   - Activities: File and folder activities → File downloaded
+   - Activities: File and folder activities -> File downloaded
    - Date range: Last 7 days
    - Search
 10. Review results and export
@@ -2344,7 +2387,7 @@ Modified Properties:
 - **MFA enforcement:** Additional verification
 - **Audit trail:** Track all activations
 
-**Location:** Entra Admin → Identity Governance → Privileged Identity Management
+**Location:** Entra Admin -> Identity Governance -> Privileged Identity Management
 
 **Requires:** Entra ID P2 or Entra ID Governance license
 
@@ -2368,7 +2411,7 @@ Modified Properties:
 
 **1. Permanent**
 - No end date
-- Assignment doesn't expire
+- Assignment does not expire
 - Example: Emergency access (break-glass) accounts
 
 **2. Time-Bound**
@@ -2402,8 +2445,8 @@ Modified Properties:
 
 **Activation Flow:**
 ```
-User → Request Activation → Provide Justification → MFA (if required) 
-→ Approval (if required) → Role Active → Auto-Expire after Duration
+User -> Request Activation -> Provide Justification -> MFA (if required) 
+-> Approval (if required) -> Role Active -> Auto-Expire after Duration
 ```
 
 #### PIM Roles Covered
@@ -2514,11 +2557,11 @@ User → Request Activation → Provide Justification → MFA (if required)
 #### PIM for End Users
 
 **User Portal:**
-- https://portal.azure.com → Privileged Identity Management
+- https://portal.azure.com -> Privileged Identity Management
 - OR: https://aka.ms/myroles
 
 **User Actions:**
-- **View eligible roles:** "My roles" → Eligible assignments
+- **View eligible roles:** "My roles" -> Eligible assignments
 - **Activate role:**
   1. Select role
   2. Click Activate
@@ -2554,7 +2597,7 @@ User → Request Activation → Provide Justification → MFA (if required)
 **Built-in Alerts:**
 - **Too many global admins:** > 5 permanent Global Admins
 - **Roles are being assigned outside PIM:** Direct role assignments bypass PIM
-- **Admins aren't using their roles:** Eligible roles never activated
+- **Admins are not using their roles:** Eligible roles never activated
 - **Duplicate role assignments:** User has same role via multiple paths
 
 **Custom Alerts:**
@@ -2590,31 +2633,31 @@ User → Request Activation → Provide Justification → MFA (if required)
 - Provide self-service portal link
 
 **Hands-On:**
-1. Navigate to Entra Admin → Identity Governance → Privileged Identity Management
+1. Navigate to Entra Admin -> Identity Governance -> Privileged Identity Management
 2. Click "Entra ID roles"
 3. View "My roles" (your own eligible roles)
 4. If eligible, practice activation:
-   - Select role → Activate
-   - Enter justification → Activate
+   - Select role -> Activate
+   - Enter justification -> Activate
 5. As admin, view "Roles":
    - See all PIM-managed roles
    - Click role (e.g., "User Administrator")
    - View current assignments
 6. Configure role settings:
-   - Roles → Select role → Settings
+   - Roles -> Select role -> Settings
    - Edit:
      - Activation maximum duration: 8 hours
      - On activation, require: MFA
      - Require justification: Yes
      - Update
 7. Assign eligible role:
-   - Roles → Select role → Assignments → Add assignments
+   - Roles -> Select role -> Assignments -> Add assignments
    - Select member
    - Assignment type: Eligible
    - Duration: Permanent or time-bound
    - Assign
 8. View audit:
-   - Resource audit → See all activations
+   - Resource audit -> See all activations
 
 **Common Tasks:**
 - Make user eligible for role (not active)
@@ -2642,21 +2685,21 @@ User → Request Activation → Provide Justification → MFA (if required)
 - **Who creates:** Developers building apps
 - **Purpose:** Register app to use Entra ID for authentication
 - **Creates:** Application object (global)
-- **Location:** Entra Admin → Applications → App registrations
+- **Location:** Entra Admin -> Applications -> App registrations
 
 **Enterprise Apps:**
 - **What:** Instance of an app in your tenant
 - **Who creates:** Automatically created when app is used/consented
 - **Purpose:** Manage app access, SSO, permissions in your tenant
 - **Creates:** Service principal object (tenant-specific)
-- **Location:** Entra Admin → Applications → Enterprise applications
+- **Location:** Entra Admin -> Applications -> Enterprise applications
 
 **Relationship:**
 ```
 App Registration (App Object - Global)
-    ↓ creates
+    v creates
 Service Principal (Enterprise App - Per Tenant)
-    ↓ enables
+    v enables
 User Authentication & Access
 ```
 
@@ -2699,7 +2742,7 @@ User Authentication & Access
 - **Client Secret:** Password for app (expires)
 - **Certificate:** More secure than secret
 - Used for confidential clients (backend apps)
-- **Never use for SPA or mobile apps** (can't keep secret)
+- **Never use for SPA or mobile apps** (cannot keep secret)
 
 **5. API Permissions**
 - What app requests access to
@@ -2723,15 +2766,15 @@ User Authentication & Access
 - Used for authorization in app
 
 **Creating App Registration:**
-1. Entra Admin → App registrations → New registration
+1. Entra Admin -> App registrations -> New registration
 2. Name: MyCustomApp
 3. Supported account types: Single tenant
-4. Redirect URI: Web → https://myapp.com/callback
+4. Redirect URI: Web -> https://myapp.com/callback
 5. Register
 6. Note Application ID and Tenant ID
-7. Certificates & secrets → New client secret → Add
+7. Certificates & secrets -> New client secret -> Add
 8. Copy secret value (shown once!)
-9. API permissions → Add permission → Microsoft Graph → Delegated → User.Read → Add
+9. API permissions -> Add permission -> Microsoft Graph -> Delegated -> User.Read -> Add
 10. Grant admin consent (if required)
 
 #### Enterprise Apps (Detailed)
@@ -2796,18 +2839,18 @@ User Authentication & Access
 **What:** 5000+ apps pre-integrated with Entra ID
 
 **Adding Gallery App (Example: Salesforce):**
-1. Entra Admin → Enterprise applications → New application
-2. Browse gallery → Search "Salesforce"
-3. Select "Salesforce" → Create
-4. Set up single sign-on → SAML
+1. Entra Admin -> Enterprise applications -> New application
+2. Browse gallery -> Search "Salesforce"
+3. Select "Salesforce" -> Create
+4. Set up single sign-on -> SAML
 5. Follow guided setup:
    - Configure SAML (URLs, certificate)
    - Set up Salesforce side
    - Test SSO
 6. Assign users/groups:
-   - Users and groups → Add user/group
+   - Users and groups -> Add user/group
 7. (Optional) Configure provisioning:
-   - Provisioning → Automatic → Salesforce credentials → Save
+   - Provisioning -> Automatic -> Salesforce credentials -> Save
 
 **Benefits:**
 - Pre-configured SSO
@@ -2842,7 +2885,7 @@ User Authentication & Access
 - Control which apps users can consent to
 - Require admin approval for risky permissions
 - Block low-security publishers
-- Location: Entra → Enterprise apps → Consent and permissions
+- Location: Entra -> Enterprise apps -> Consent and permissions
 
 #### Common Scenarios
 
@@ -2868,7 +2911,7 @@ User Authentication & Access
 5. Disable or delete unnecessary apps
 
 **Scenario 4: User Consents to Risky App**
-1. Review: Enterprise applications → Consent and permissions → Requests pending
+1. Review: Enterprise applications -> Consent and permissions -> Requests pending
 2. See user requested access to "SuperApp"
 3. Review permissions requested (Mail.Read, Contacts.Read)
 4. Decision:
@@ -2902,23 +2945,23 @@ User Authentication & Access
 **Hands-On:**
 
 **App Registrations:**
-1. Entra Admin → App registrations → New registration
+1. Entra Admin -> App registrations -> New registration
 2. Name: TestApp
 3. Supported accounts: Single tenant
 4. Register
 5. Note Application (client) ID
-6. Certificates & secrets → New client secret → Add
-7. API permissions → Add → Microsoft Graph → Delegated → User.Read
-8. Overview → Delete (cleanup)
+6. Certificates & secrets -> New client secret -> Add
+7. API permissions -> Add -> Microsoft Graph -> Delegated -> User.Read
+8. Overview -> Delete (cleanup)
 
 **Enterprise Apps:**
-1. Entra Admin → Enterprise applications → All applications
+1. Entra Admin -> Enterprise applications -> All applications
 2. Filter: Application type = Microsoft Applications
 3. Click "Office 365 SharePoint Online"
 4. View users and groups assigned
-5. View sign-ins (Activity → Sign-in logs)
+5. View sign-ins (Activity -> Sign-in logs)
 6. Return to all apps
-7. Click enterprise app → Properties
+7. Click enterprise app -> Properties
 8. Assignment required: Yes/No toggle
 9. Explore consent and permissions
 
@@ -2936,7 +2979,7 @@ User Authentication & Access
 
 # Domain 2: Understand Data Protection and Governance Tasks for Microsoft 365 and Copilot (35-40%)
 
-**⚠️ LARGEST EXAM SECTION - Focus here!**
+**LARGEST EXAM SECTION - Focus here!**
 
 ## Section 2.1: Understand Microsoft Purview
 
@@ -2956,7 +2999,9 @@ User Authentication & Access
 - Protects data across Microsoft 365, Azure, on-premises, multi-cloud
 - Essential for AI and Copilot governance
 
-**Location:** https://compliance.microsoft.com
+**Location:** https://purview.microsoft.com
+
+**Portal note:** compliance.microsoft.com (the Microsoft Purview compliance portal) is **RETIRED**. Microsoft Learn refers to it in the past tense. Every Purview solution is now reached from the single URL purview.microsoft.com via **Solutions** > the solution name. Do **NOT** type compliance.microsoft.com during a live demo.
 
 **Core Capabilities:**
 
@@ -2991,7 +3036,7 @@ User Authentication & Access
 
 **Copilot Integration:**
 - Copilot respects sensitivity labels
-- Won't expose labeled content to unauthorized users
+- Will not expose labeled content to unauthorized users
 - Labels persist in Copilot-generated content
 
 #### 2. Microsoft Purview Data Loss Prevention (DLP)
@@ -3105,10 +3150,38 @@ User Authentication & Access
 
 **Purpose:** Protect and govern AI applications and data
 
+**Portal reality check (important for both the exam and a live demo):** the Microsoft Purview portal now shows **three** DSPM entries under **Solutions**:
+
+| Entry | What it is |
+|-------|-----------|
+| **DSPM** | The new unified experience, generally available since May 2026. Microsoft states most new features go here only. |
+| **DSPM for AI (classic)** | The previous AI-focused experience. This label matches the AB-900 objective wording. |
+| **Data Security Posture Management (classic)** | The previous general data security posture experience. |
+
+The July 22, 2026 objectives use the "DSPM for AI" wording, so **DSPM for AI (classic)** is the exam answer. Show learners the new unified **DSPM** so they are not lost when they open the portal.
+
+**Old-to-new task mapping in the unified DSPM:**
+
+| Task | New location |
+|------|-------------|
+| Setup tasks | DSPM > Getting Started, or DSPM > Actions > Setup tasks |
+| Recommendations for AI apps | DSPM > Actions > Remediation actions |
+| Microsoft 365 Copilot overview page | DSPM > Reports > Microsoft 365 Copilot |
+| Policies for AI apps | DSPM > Reports > Policies with AI workloads |
+| Apps and agents | DSPM > Discover > Apps and agents |
+| Activity explorer | DSPM > Discover > Activity explorer > AI activities tab |
+| Data risk assessments | DSPM > Discover > Data risk assessments |
+
+<!-- VERIFY: Microsoft has published no retirement date for the classic DSPM experiences. Do not state a classic sunset date on stage. -->
+
+**Access:** requires the Microsoft Entra Compliance Administrator role, the Microsoft Entra Global Administrator role, or the Microsoft Purview Compliance Administrator role group.
+
+**Weekly assessment:** DSPM for AI (classic) automatically runs a weekly data risk assessment for the top 100 SharePoint sites by usage, with no activation needed. Allow at least 24 hours for one-click policies to collect data before results display.
+
 **Capabilities:**
 - **Discover AI apps:** Find Copilots, ChatGPT, custom AI
 - **Assess risks:** Data exposure, oversharing, unauthorized access
-- **Monitor activity:** Who's using AI, what data accessed
+- **Monitor activity:** Who has using AI, what data accessed
 - **Policy enforcement:** DLP for AI interactions
 - **Compliance:** Ensure AI follows data governance
 
@@ -3127,7 +3200,7 @@ User Authentication & Access
 
 #### 6. Microsoft Purview Data Lifecycle Management
 
-**Purpose:** Retain what you need, delete what you don't
+**Purpose:** Retain what you need, delete what you do not
 
 **Retention Policies:**
 - Specify how long to keep content
@@ -3139,7 +3212,7 @@ User Authentication & Access
 - Apply to specific items (vs. policies for locations)
 - User or auto-applied
 - Can trigger disposition review
-- **Example:** Label "Contracts" → Retain 10 years
+- **Example:** Label "Contracts" -> Retain 10 years
 
 **Disposition Review:**
 - Manual review before deletion
@@ -3148,7 +3221,7 @@ User Authentication & Access
 
 **Records Management:**
 - Declare items as records
-- Immutable (can't delete/edit)
+- Immutable (cannot delete/edit)
 - Compliance records for regulations
 
 **Use Cases:**
@@ -3164,17 +3237,38 @@ User Authentication & Access
 
 #### Purview Portal Navigation
 
-**Main Sections:**
-- **Data classification:** Labels, SITs, classifiers
-- **Information protection:** Sensitivity labels, encryption
-- **Data loss prevention:** DLP policies and alerts
-- **Insider risk management:** Risk detection and cases
-- **Communication compliance:** Policy violations
-- **Records management:** Retention and records
-- **eDiscovery:** Legal hold and search
+Everything is reached from **purview.microsoft.com** > **Solutions** > the solution name. There is no per-solution URL.
+
+**Data security solutions:**
+- **Information Protection:** Sensitivity labels, encryption, Classifiers, Explorers
+- **Data Loss Prevention:** DLP policies and alerts
+- **Insider Risk Management:** Risk detection and cases
+- **Information Barriers**
+- **Privileged Access Management**
+- **Data Security Investigations**
+- **DSPM:** Data Security Posture Management
+
+**Data compliance solutions:**
 - **Audit:** Unified audit log
-- **Compliance Manager:** Risk assessment
-- **Data lifecycle management:** Retention policies
+- **Communication Compliance:** Policy violations
+- **Compliance Manager:** Risk assessment and improvement actions
+- **Data Lifecycle Management:** Retention policies
+- **eDiscovery:** Legal hold, Content Search, and review
+- **Records Management:** Records declaration and disposition
+
+**Relocations to know (a live demo at the old location fails):**
+
+| Was | Now |
+|-----|-----|
+| Classification (global node) | **Classifiers**, in each solution's left navigation |
+| Explorers (global node) | In each solution's left navigation |
+| Policies (global node) | In each solution's left navigation |
+| Reports (global node) | In each solution's left navigation |
+| Roles and scopes | **Settings** |
+| Content Search (standalone solution) | **eDiscovery** > **Content Search** |
+| Data Estate Insights | **Unified Catalog** > **Health management** > **Reports** |
+| Glossary | **Unified Catalog** > **Discovery** > **Enterprise glossary** |
+| Privacy Risk Management | Moved out of Purview to the **Microsoft Priva** portal |
 
 #### Integration and Automation
 
@@ -3193,14 +3287,14 @@ User Authentication & Access
 - Alerts to SIEM/SOAR
 
 **Hands-On:**
-1. Navigate to https://compliance.microsoft.com
-2. Data classification → Overview → View data classification summary
-3. Information protection → Labels → Review sensitivity labels
-4. Data loss prevention → Policies → Review existing DLP policies
-5. Insider risk management → Overview → Check if enabled
-6. Communication compliance → Policies → See if configured
-7. Data lifecycle management → Retention policies
-8. Audit → Search audit log for recent activity
+1. Navigate to https://purview.microsoft.com
+2. Solutions -> Information Protection -> Classifiers -> Review sensitive info types and trainable classifiers
+3. Solutions -> Information Protection -> Labels -> Review sensitivity labels
+4. Solutions -> Data Loss Prevention -> Policies -> Review existing DLP policies
+5. Solutions -> Insider Risk Management -> Overview -> Check if enabled
+6. Solutions -> Communication Compliance -> Policies -> See if configured
+7. Solutions -> Data Lifecycle Management -> Retention policies
+8. Solutions -> Audit -> Search the unified audit log for recent activity
 
 **Documentation:** https://learn.microsoft.com/en-us/purview/
 
@@ -3279,7 +3373,7 @@ User Authentication & Access
 
 **Use Case 4: Copilot Data Protection**
 
-**Scenario:** Ensure Copilot doesn't expose HR data
+**Scenario:** Ensure Copilot does not expose HR data
 
 **Configuration:**
 - Label: "Highly Confidential - HR Only"
@@ -3287,9 +3381,9 @@ User Authentication & Access
 - Encryption: HR group only
 
 **Result:**
-- Copilot won't surface HR data to unauthorized users
+- Copilot will not surface HR data to unauthorized users
 - Label respected in Copilot responses
-- Users without access can't see content even through Copilot
+- Users without access cannot see content even through Copilot
 
 **Use Case 5: Regulatory Compliance**
 
@@ -3319,7 +3413,7 @@ User Authentication & Access
 
 **Result:**
 - Granular permissions
-- Data can't be exfiltrated
+- Data cannot be exfiltrated
 - Time-limited access
 
 **Use Case 7: Project-Based Protection**
@@ -3395,9 +3489,9 @@ Labels can apply to:
 **Hierarchy:**
 ```
 Confidential
-├── Confidential - Finance
-├── Confidential - HR
-└── Confidential - Legal
+|--- Confidential - Finance
+|--- Confidential - HR
+`--- Confidential - Legal
 ```
 
 **Benefits:**
@@ -3430,7 +3524,7 @@ Confidential
 - Block removal of labels
 
 **Hands-On:**
-1. Purview → Information protection → Labels
+1. Purview -> Information protection -> Labels
 2. Review existing labels
 3. Create new label:
    - Name: "Test - Confidential"
@@ -3439,15 +3533,15 @@ Confidential
    - Content marking: Watermark "CONFIDENTIAL"
    - Auto-labeling: Keywords "confidential", "secret"
 4. Publish label policy:
-   - Labels → Publish labels
+   - Labels -> Publish labels
    - Select label
    - Publish to: Test users
 5. Test in Word:
    - Open Word
-   - Sensitivity button → Select label
+   - Sensitivity button -> Select label
    - See watermark applied
 6. View usage:
-   - Data classification → Activity Explorer
+   - purview.microsoft.com > **Solutions** > **Information Protection** > **Explorers** > **Activity explorer**
    - Filter by label
 
 **Documentation:** https://learn.microsoft.com/en-us/purview/sensitivity-labels
@@ -3467,13 +3561,13 @@ Confidential
 
 **Purpose:**
 - Discover what sensitive data you have
-- Understand where it's stored
-- Who's accessing it
-- How it's being shared
+- Understand where it is stored
+- Who has accessing it
+- How it is being shared
 
 **The Classification Process:**
 ```
-1. Scan → 2. Detect → 3. Classify → 4. Label → 5. Protect → 6. Monitor
+1. Scan -> 2. Detect -> 3. Classify -> 4. Label -> 5. Protect -> 6. Monitor
 ```
 
 #### Components of Data Classification
@@ -3525,9 +3619,11 @@ Confidence: High (pattern + checksum valid)
 3. Publish: Deploy classifier
 4. Monitor: Track performance, retrain if needed
 
-**3. Content Explorer**
+**3. Data explorer** (previously Content explorer, which is now labeled **Content Explorer (classic)**)
 
 **Purpose:** See all your classified content
+
+**Path:** purview.microsoft.com > Solutions > Information Protection > Explorers > Data explorer
 
 **What It Shows:**
 - Documents with sensitivity labels
@@ -3539,7 +3635,7 @@ Confidence: High (pattern + checksum valid)
 **Navigation:**
 - By label: "Show me all 'Confidential' files"
 - By SIT: "Show me all files with credit cards"
-- By location: "What's in Finance team site?"
+- By location: "What is in Finance team site?"
 
 **Uses:**
 - Audit: Verify protection applied correctly
@@ -3575,7 +3671,7 @@ Confidence: High (pattern + checksum valid)
 **Manual Classification:**
 - User selects label in app
 - Sensitivity button in Office
-- Right-click → Classify and protect
+- Right-click -> Classify and protect
 
 **Recommended Labels (Semi-Auto):**
 - System suggests label based on content
@@ -3599,9 +3695,9 @@ Confidence: High (pattern + checksum valid)
 #### Classification Hierarchy
 
 **Combination Rules:**
-- If document has SSN AND credit card → "Highly Confidential"
-- If document has only email addresses → "General"
-- If sent to external domain → "Public"
+- If document has SSN AND credit card -> "Highly Confidential"
+- If document has only email addresses -> "General"
+- If sent to external domain -> "Public"
 
 **Confidence Levels:**
 - Low confidence: 60-75%
@@ -3611,7 +3707,7 @@ Confidence: High (pattern + checksum valid)
 
 #### Data Classification Dashboard
 
-**Location:** Purview → Data classification → Overview
+**Location:** Purview -> Solutions -> Information Protection -> Reports. Posture reports are also available under Data Loss Prevention -> Reports and DSPM -> Reports, based on a rolling 30-day data window.
 
 **Metrics:**
 - **Top sensitivity labels:** Most used labels
@@ -3621,21 +3717,21 @@ Confidence: High (pattern + checksum valid)
 - **Policy matches:** DLP, retention
 
 **Insights:**
-- "80% of finance team's files unlabeled" → Need training
-- "Spike in SSN detections in Marketing site" → Investigate
-- "Confidential label removed 50 times this week" → Audit
+- "80% of finance team's files unlabeled" -> Need training
+- "Spike in SSN detections in Marketing site" -> Investigate
+- "Confidential label removed 50 times this week" -> Audit
 
 #### Common Scenarios
 
 **Scenario 1: Discover Where Credit Cards Are Stored**
-1. Data classification → Content Explorer
-2. Filter: Sensitive info types → Credit Card Number
+1. Information Protection -> Explorers -> Data explorer
+2. Filter: Sensitive info types -> Credit Card Number
 3. Review results
 4. Export list
 5. Remediate: Apply DLP, move to secure location
 
 **Scenario 2: Track Labeling Adoption**
-1. Data classification → Activity Explorer
+1. purview.microsoft.com > **Solutions** > **Information Protection** > **Explorers** > **Activity explorer**
 2. Filter: Activity = Sensitivity label applied
 3. Date range: Last 30 days
 4. Group by: User
@@ -3645,7 +3741,7 @@ Confidence: High (pattern + checksum valid)
 **Scenario 3: Create Custom Classifier for Invoices**
 1. Gather 200 sample invoices (positive examples)
 2. Gather 200 non-invoice docs (negative examples)
-3. Trainable classifiers → Create classifier
+3. Trainable classifiers -> Create classifier
 4. Name: "Company Invoices"
 5. Upload examples
 6. Train model
@@ -3654,7 +3750,7 @@ Confidence: High (pattern + checksum valid)
 
 **Scenario 4: Audit Sensitive Data in Copilot**
 1. Enable DSPM for AI
-2. Content Explorer → Filter: AI interactions
+2. Activity explorer -> AI activities tab (in the unified DSPM: DSPM -> Discover -> Activity explorer -> AI activities)
 3. Review sensitive data accessed via Copilot
 4. Check if properly labeled
 5. Verify DLP coverage
@@ -3686,15 +3782,15 @@ Confidence: High (pattern + checksum valid)
 - Correlate with DLP events
 
 **Hands-On:**
-1. Purview → Data classification → Overview
+1. Purview -> Solutions -> Information Protection -> Reports
 2. Review dashboard metrics
-3. Content Explorer:
-   - Filter: Sensitivity labels → Confidential
+3. Data explorer (Information Protection -> Explorers -> Data explorer):
+   - Filter: Sensitivity labels -> Confidential
    - View files, note locations
-4. Activity Explorer:
+4. Activity explorer:
    - Filter: Last 7 days
    - Activity: Sensitivity label applied
-   - Review who's labeling
+   - Review who has labeling
 5. Sensitive info types:
    - Browse built-in SITs
    - Search: "Credit Card"
@@ -3722,14 +3818,14 @@ Confidence: High (pattern + checksum valid)
 **Purpose:**
 - **Regulatory compliance:** Meet legal requirements (SOX, HIPAA, etc.)
 - **Litigation hold:** Preserve evidence for lawsuits
-- **Information governance:** Keep what you need, delete what you don't
+- **Information governance:** Keep what you need, delete what you do not
 - **Cost reduction:** Delete old data to reduce storage
 
 **How It Works:**
 - Specify retention period (e.g., 7 years)
 - Content preserved for that duration
 - After period: Disposition (review or delete)
-- Users can't permanently delete during retention
+- Users cannot permanently delete during retention
 
 #### Retention Policies vs. Retention Labels
 
@@ -3809,7 +3905,7 @@ Confidence: High (pattern + checksum valid)
 #### Retention Principles
 
 **When Multiple Policies/Labels Apply:**
-1. **Retention wins over deletion:** If one says retain 5 years, another delete 1 year → Retain 5 years
+1. **Retention wins over deletion:** If one says retain 5 years, another delete 1 year -> Retain 5 years
 2. **Longest retention period wins:** 7 years beats 3 years
 3. **Explicit wins over implicit:** Label overrides policy
 4. **Deletion after longest retention:** Delete after longest period ends
@@ -3891,7 +3987,7 @@ Confidence: High (pattern + checksum valid)
 - Designated in label settings
 - Multiple reviewers possible
 - Email notifications
-- Portal: Records management → Disposition
+- Portal: Records management -> Disposition
 
 **Example:**
 - Label: "Contracts - 10 years"
@@ -3984,7 +4080,7 @@ Confidence: High (pattern + checksum valid)
 - **Use:** Regulatory requirements (immutable policies)
 
 **Hands-On:**
-1. Purview → Data lifecycle management → Retention policies
+1. Purview -> Data lifecycle management -> Retention policies
 2. Review existing policies
 3. Create test retention policy:
    - Policy name: "Test Email Retention"
@@ -3992,14 +4088,14 @@ Confidence: High (pattern + checksum valid)
    - Retention: 3 years
    - Action: Delete automatically
    - Save
-4. Retention labels → Create label:
+4. Retention labels -> Create label:
    - Name: "Test Contract"
    - Retention: 5 years from created
    - Action: Trigger disposition review
    - Declare as record: Yes
    - Publish to SharePoint
 5. View disposition:
-   - Records management → Disposition
+   - Records management -> Disposition
    - See items pending review (if any)
 6. Test in SharePoint:
    - Upload document
@@ -4047,16 +4143,16 @@ Copilot Process:
 3. Returns: Only docs user can access
 4. Copilot summarizes accessible docs
 
-If user lacks access: "I don't have access to that information"
+If user lacks access: "I do not have access to that information"
 ```
 
 **What Copilot CANNOT Do:**
-- Access files user can't access
+- Access files user cannot access
 - Read emails in someone else's mailbox (unless delegated)
 - Bypass sensitivity labels
 - Override DLP policies
 - Ignore conditional access
-- See SharePoint sites user isn't member of
+- See SharePoint sites user is not member of
 
 #### Microsoft Graph - The Data Layer
 
@@ -4078,15 +4174,15 @@ If user lacks access: "I don't have access to that information"
 **Permission Check Flow:**
 ```
 Copilot Prompt
-    ↓
+    v
 Microsoft Graph API
-    ↓
+    v
 Permission Check (Entra ID)
-    ↓
+    v
 Data Source (SharePoint, Exchange)
-    ↓
+    v
 Return Results (only accessible data)
-    ↓
+    v
 Copilot Response
 ```
 
@@ -4105,8 +4201,8 @@ Copilot Response
 5. Returns results matching intent, not just keywords
 
 **Example:**
-- User prompt: "What's our strategy for Q4?"
-- Semantic index finds: Documents about plans, goals, objectives (even if they don't say "strategy")
+- User prompt: "What is our strategy for Q4?"
+- Semantic index finds: Documents about plans, goals, objectives (even if they do not say "strategy")
 - Returns: Relevant docs, emails, meetings
 
 **Privacy:**
@@ -4133,7 +4229,7 @@ Copilot Response
 
 **Admin Controls:**
 - Enable/disable web grounding
-- Location: M365 Admin Center → Copilot settings
+- Location: M365 Admin Center -> Copilot settings
 - **Web On:** Copilot can reference public info
 - **Web Off:** Only organizational data
 
@@ -4141,7 +4237,7 @@ Copilot Response
 - Copilot cites sources
 - Links to documents used
 - User can verify information
-- Click link → View source (if permitted)
+- Click link -> View source (if permitted)
 
 **Example:**
 ```
@@ -4175,17 +4271,17 @@ Copilot: "Based on the Q3 Financial Report.xlsx..."
 
 **Conditional Access:**
 - Copilot access subject to CA policies
-- If user blocked from Teams → No Copilot in Teams
+- If user blocked from Teams -> No Copilot in Teams
 - Device compliance required if policy enforces
 
 #### Copilot and External Data
 
 **External Sharing:**
-- If user can access externally shared file → Copilot can too
-- If guest user has limited access → Copilot limited too
+- If user can access externally shared file -> Copilot can too
+- If guest user has limited access -> Copilot limited too
 
 **Cross-Tenant:**
-- Copilot doesn't cross tenant boundaries
+- Copilot does not cross tenant boundaries
 - Only accesses data in user's tenant
 
 **Public Sites:**
@@ -4204,7 +4300,7 @@ Copilot: "Based on the Q3 Financial Report.xlsx..."
 2. Copilot responds with info
 3. Admin removes user from Phoenix site
 4. User asks again 5 minutes later
-5. Copilot: "I don't have access to that information"
+5. Copilot: "I do not have access to that information"
 
 #### Copilot in Different Apps
 
@@ -4234,7 +4330,7 @@ Copilot: "Based on the Q3 Financial Report.xlsx..."
 
 #### Oversharing Risk
 
-**Problem:** Copilot surfaces data user shouldn't have seen
+**Problem:** Copilot surfaces data user should not have seen
 
 **Why It Happens:**
 - Overly permissive SharePoint permissions
@@ -4258,16 +4354,16 @@ Copilot: "Based on the Q3 Financial Report.xlsx..."
 1. Test Copilot permission boundaries:
    - Access Microsoft 365 Chat
    - Ask: "Show me files about [confidential project]"
-   - If no access → Copilot says can't access
+   - If no access -> Copilot says cannot access
    - Have admin grant access
-   - Ask again → Copilot now shows results
+   - Ask again -> Copilot now shows results
 2. Check web grounding setting:
-   - M365 Admin Center → Copilot
+   - M365 Admin Center -> Copilot
    - View web search setting
 3. Test with sensitivity labels:
    - Label file as "Highly Confidential - Exec Only"
    - Ask Copilot about file (as non-exec)
-   - Verify Copilot doesn't expose content
+   - Verify Copilot does not expose content
 4. Review semantic index (conceptual):
    - Ask Copilot broad question
    - Note how it finds relevant docs even without exact keywords
@@ -4303,16 +4399,16 @@ Copilot: "Based on the Q3 Financial Report.xlsx..."
 
 **Copilot's Graph Usage:**
 ```
-User Prompt: "What's my schedule today?"
-    ↓
+User Prompt: "What is my schedule today?"
+    v
 Copilot calls Microsoft Graph
-    ↓
+    v
 Graph API: GET /me/calendar/calendarView
-    ↓
+    v
 Permission check: Can user read their own calendar? YES
-    ↓
+    v
 Returns: Calendar events
-    ↓
+    v
 Copilot formats response: "You have 3 meetings today..."
 ```
 
@@ -4322,30 +4418,30 @@ Copilot formats response: "You have 3 meetings today..."
 - Colleagues, reporting structure
 - Contact information
 - Collaboration patterns
-- **Influence:** "Who should I invite?" → Graph suggests frequent collaborators
+- **Influence:** "Who should I invite?" -> Graph suggests frequent collaborators
 
 **Files and Content:**
 - Recent files, frequently accessed
 - Files shared with user
 - Content within files (if indexed)
-- **Influence:** "Show me recent project docs" → Graph returns based on recency + relevance
+- **Influence:** "Show me recent project docs" -> Graph returns based on recency + relevance
 
 **Communication:**
 - Email threads, Teams chats
 - Meeting transcripts
 - Channel conversations
-- **Influence:** "What did we decide in the meeting?" → Graph retrieves transcript
+- **Influence:** "What did we decide in the meeting?" -> Graph retrieves transcript
 
 **Tasks and Planning:**
 - Planner tasks, To Do items
 - Deadlines, assignments
-- **Influence:** "What's on my to-do list?" → Graph returns tasks
+- **Influence:** "What is on my to-do list?" -> Graph returns tasks
 
 **Insights:**
 - Working hours patterns
 - Collaboration network
 - Time analytics
-- **Influence:** "When is best time to meet?" → Graph suggests based on habits
+- **Influence:** "When is best time to meet?" -> Graph suggests based on habits
 
 #### Graph Permissions Model
 
@@ -4377,11 +4473,11 @@ Copilot formats response: "You have 3 meetings today..."
 **1. Contextual Awareness**
 - Graph knows user's context (current task, recent activity)
 - Copilot leverages for relevant suggestions
-- Example: Working in Excel about sales → Suggests sales-related files
+- Example: Working in Excel about sales -> Suggests sales-related files
 
 **2. Relationship Mapping**
 - Graph tracks relationships between data
-- Document → Author, Related docs, Referenced in emails
+- Document -> Author, Related docs, Referenced in emails
 - Copilot uses to provide comprehensive answers
 
 **3. Relevance Scoring**
@@ -4423,8 +4519,8 @@ GET https://graph.microsoft.com/v1.0/me/drive/recent
 #### Graph Limitations Affecting Copilot
 
 **Permission Boundaries:**
-- If Graph denies access → Copilot can't retrieve
-- Example: User not in Finance team → Graph won't return Finance files → Copilot says "No access"
+- If Graph denies access -> Copilot cannot retrieve
+- Example: User not in Finance team -> Graph will not return Finance files -> Copilot says "No access"
 
 **Indexing Lag:**
 - Newly created content may not be immediately available
@@ -4447,7 +4543,7 @@ GET https://graph.microsoft.com/v1.0/me/drive/recent
 - **Graph check:** Does user have permissions on file?
 - **Solution:** Grant access in SharePoint
 
-**Issue: Copilot doesn't find recent document**
+**Issue: Copilot does not find recent document**
 - **Graph check:** Has Graph indexed it yet?
 - **Solution:** Wait or search by exact name
 
@@ -4457,7 +4553,7 @@ GET https://graph.microsoft.com/v1.0/me/drive/recent
 
 **Hands-On (Conceptual):**
 1. Understand Graph is the data layer
-2. When Copilot can't access something:
+2. When Copilot cannot access something:
    - Think: What Graph permission is needed?
    - Check user's actual permissions
 3. Graph Explorer (for admins/devs): https://developer.microsoft.com/en-us/graph/graph-explorer
@@ -4486,7 +4582,7 @@ GET https://graph.microsoft.com/v1.0/me/drive/recent
 
 #### Copilot Security Integration
 
-**Philosophy:** Copilot is NOT a separate system - it's integrated into M365
+**Philosophy:** Copilot is NOT a separate system - it is integrated into M365
 
 **Existing controls automatically apply to Copilot:**
 - Sensitivity labels
@@ -4502,7 +4598,7 @@ GET https://graph.microsoft.com/v1.0/me/drive/recent
 - **What they do:** Encrypt and restrict access to files
 - **How Copilot respects them:**
   - Cannot access encrypted file if user lacks decryption rights
-  - Won't surface content from labeled files to unauthorized users
+  - Will not surface content from labeled files to unauthorized users
   - Labels applied to Copilot-generated content inherit from source
 
 **Example:**
@@ -4512,23 +4608,23 @@ Label: "Highly Confidential - Exec Only"
 Encryption: Only Executives can open
 
 User (non-exec) asks Copilot: "What are executive salaries?"
-Copilot: "I don't have access to that information"
+Copilot: "I do not have access to that information"
 ```
 
 **SharePoint Permissions:**
 - Copilot respects site membership, unique permissions
-- User not in site → Copilot can't access site content
+- User not in site -> Copilot cannot access site content
 
 **Conditional Access:**
 - Policies apply to Copilot access
 - Example:
   - Policy: "Require compliant device for Copilot"
-  - Non-compliant device → Blocked from Copilot
+  - Non-compliant device -> Blocked from Copilot
 
 **Information Barriers:**
 - Prevent communication between segments (e.g., Trading and Research)
 - Copilot enforces barriers:
-  - Trading user asks about Research files → Blocked
+  - Trading user asks about Research files -> Blocked
   - Cannot cross barrier boundaries
 
 #### Microsoft Purview Controls
@@ -4549,9 +4645,13 @@ Result: Copilot blocks, shows policy tip
 ```
 
 **DLP Policy Configuration for Copilot:**
-- Locations: Include "Copilot for Microsoft 365"
-- Conditions: Sensitive info types, labels
-- Actions: Block, notify user, send incident report
+- Locations: turn on **Microsoft 365 Copilot and Copilot Chat** (this is the current location name)
+- Conditions: Sensitive info types, sensitivity labels, or Email is received from external users (preview)
+- Actions: **Prevent Copilot from processing content**, with sub-options for Processing prompts and Performing Web Searches
+
+**Exam trap:** you can **NOT** combine the "Content contains sensitive info types" condition and the "Content contains sensitivity labels" condition in the **same rule**. Create a rule for each condition inside the same policy instead.
+
+**Coverage limits:** sensitivity-label rules cover stored files, actively open files, and emails sent on or after January 1, 2025. Calendar invites are **NOT** supported. In Word, Excel, and PowerPoint the policy is evaluated at file open, so a label applied mid-session takes effect the next time the file is opened.
 
 **Insider Risk Management:**
 - Detects risky Copilot usage:
@@ -4685,7 +4785,7 @@ Result: Copilot blocks, shows policy tip
 - **Plugins:** Control which plugins users can add
 - **Data sharing:** Optional connected experiences
 
-**Location:** Microsoft 365 Admin Center → Copilot
+**Location:** Microsoft 365 Admin Center -> Copilot
 
 **Monitoring:**
 - **Copilot Dashboard:** Usage, adoption metrics
@@ -4717,19 +4817,19 @@ Result: Copilot blocks, shows policy tip
 **Hands-On:**
 1. Verify controls apply to Copilot:
    - Create DLP policy
-   - Include location: "Copilot for Microsoft 365"
+   - Include location: "Microsoft 365 Copilot and Copilot Chat"
    - Test: Ask Copilot to share sensitive data
    - Verify: DLP blocks
 
 2. Check audit logs:
-   - Purview → Audit
+   - Purview -> Audit
    - Search for: Activity "CopilotInteraction"
    - Review: What data accessed
 
 3. Test label respect:
    - Apply "Confidential" label with encryption to file
    - Ask Copilot about file (as unauthorized user)
-   - Verify: Copilot can't access
+   - Verify: Copilot cannot access
 
 **Key Takeaways:**
 - Copilot = Subject to ALL existing controls
@@ -4758,7 +4858,7 @@ Result: Copilot blocks, shows policy tip
 - **In Copilot:**
   - Trained on diverse datasets
   - Tested for bias
-  - Doesn't discriminate based on protected characteristics
+  - Does not discriminate based on protected characteristics
 - **Example:** Copilot suggests candidates for job based on qualifications, not demographics
 
 **2. Reliability and Safety**
@@ -4768,7 +4868,7 @@ Result: Copilot blocks, shows policy tip
   - Continuous monitoring
   - Fail-safes to prevent harmful outputs
   - Human oversight for critical decisions
-- **Example:** Copilot won't execute financial transactions without confirmation
+- **Example:** Copilot will not execute financial transactions without confirmation
 
 **3. Privacy and Security**
 - **Principle:** AI should respect privacy and be secure
@@ -4777,7 +4877,7 @@ Result: Copilot blocks, shows policy tip
   - Tenant data isolation
   - Respects existing permissions and labels
   - No data shared across tenants
-- **Example:** Your Copilot prompts don't train models for other organizations
+- **Example:** Your Copilot prompts do not train models for other organizations
 
 **4. Inclusiveness**
 - **Principle:** AI should empower everyone and engage people
@@ -4791,10 +4891,10 @@ Result: Copilot blocks, shows policy tip
 **5. Transparency**
 - **Principle:** AI should be understandable
 - **In Copilot:**
-  - Users know they're interacting with AI
+  - Users know they are interacting with AI
   - Cites sources for information
   - Explains limitations
-  - Clear about when it doesn't know
+  - Clear about when it does not know
 - **Example:** Copilot shows "Based on X document" with link
 
 **6. Accountability**
@@ -4816,9 +4916,9 @@ Result: Copilot blocks, shows policy tip
   - Not accessible to Microsoft employees (without legal basis)
 
 **Transparency Features:**
-- **Copilot identifies itself:** Users know it's AI
+- **Copilot identifies itself:** Users know it is AI
 - **Source attribution:** Links to documents used
-- **Confidence indicators:** "I'm not sure" when uncertain
+- **Confidence indicators:** "I am not sure" when uncertain
 - **Limitations stated:** "I can only access data you have permission to see"
 
 **Human Oversight:**
@@ -4834,18 +4934,18 @@ Result: Copilot blocks, shows policy tip
   - Violence
   - Illegal activities
   - Adult content (inappropriate context)
-- **Jailbreak prevention:** Can't trick Copilot into violating policies
+- **Jailbreak prevention:** Cannot trick Copilot into violating policies
 
 #### User Responsibilities
 
 **Verify Information:**
-- Don't blindly trust Copilot outputs
+- Do not blindly trust Copilot outputs
 - Check sources provided
 - Validate critical information
 - Use judgment
 
 **Protect Sensitive Data:**
-- Don't share credentials in prompts
+- Do not share credentials in prompts
 - Be cautious with highly sensitive data
 - Understand Copilot respects permissions but still review
 
@@ -4856,7 +4956,7 @@ Result: Copilot blocks, shows policy tip
 
 **Follow Policies:**
 - Respect organization's acceptable use policies
-- Don't use for prohibited purposes
+- Do not use for prohibited purposes
 - Comply with legal/regulatory requirements
 
 #### Admin Responsibilities
@@ -4950,7 +5050,7 @@ Result: Copilot blocks, shows policy tip
 
 **Feedback Loop:**
 ```
-User feedback → Microsoft analyzes → Model improvements → Better responses
+User feedback -> Microsoft analyzes -> Model improvements -> Better responses
 ```
 
 **Hands-On (Conceptual):**
@@ -4960,7 +5060,7 @@ User feedback → Microsoft analyzes → Model improvements → Better responses
    - Note how Copilot cites sources
    - Click source links
 3. Test limitations:
-   - Ask about something you don't have access to
+   - Ask about something you do not have access to
    - Copilot should say "no access"
 4. Provide feedback:
    - Get a response from Copilot
@@ -4994,7 +5094,7 @@ User feedback → Microsoft analyzes → Model improvements → Better responses
 
 **Purpose:** Help organizations understand and improve compliance posture
 
-**Location:** Purview Compliance Portal → Compliance Manager
+**Location:** purview.microsoft.com > **Solutions** > **Compliance Manager**
 
 **Core Capabilities:**
 - **Risk assessment:** Identify compliance gaps
@@ -5013,7 +5113,7 @@ User feedback → Microsoft analyzes → Model improvements → Better responses
 **Calculation:**
 - Points awarded for completing actions
 - Points possible = all actions
-- Score = (Points achieved / Points possible) × 100
+- Score = (Points achieved / Points possible) x 100
 
 **Example:**
 - Total possible points: 500
@@ -5065,7 +5165,7 @@ User feedback → Microsoft analyzes → Model improvements → Better responses
 - **CMMC:** Defense contractors
 
 **Creating Assessment:**
-1. Compliance Manager → Assessments → Add assessment
+1. Compliance Manager -> Assessments -> Add assessment
 2. Select template (e.g., GDPR)
 3. Name assessment
 4. Create
@@ -5088,7 +5188,7 @@ Title: Enable multi-factor authentication
 Category: Access Control
 Points: 27
 Implementation:
-  1. Navigate to Entra Admin → Security → MFA
+  1. Navigate to Entra Admin -> Security -> MFA
   2. Enable MFA for all users
   3. Configure trusted IPs
   4. Test with pilot users
@@ -5104,7 +5204,7 @@ Test: Verify MFA enforced for sample users
 #### Using Compliance Manager to Identify Risks
 
 **Step 1: Review Compliance Score**
-- Navigate to Compliance Manager → Overview
+- Navigate to Compliance Manager -> Overview
 - Check current score
 - Compare to: Previous months, Industry average
 
@@ -5187,7 +5287,7 @@ Click improvement action to see:
 #### Tracking Progress
 
 **Status Updates:**
-- Mark actions: Not started → In progress → Completed
+- Mark actions: Not started -> In progress -> Completed
 - Attach evidence (screenshots, policies)
 - Set implementation date
 - Notes on approach
@@ -5217,7 +5317,7 @@ Click improvement action to see:
 - Document readiness
 
 #### Hands-On:**
-1. Navigate to Purview → Compliance Manager
+1. Navigate to Purview -> Compliance Manager
 2. View compliance score (Overview)
 3. Check improvement actions:
    - Filter: Status = Not started
@@ -5227,11 +5327,11 @@ Click improvement action to see:
    - Check threats addressed
    - Note affected regulations
 5. Create assessment:
-   - Assessments → Add assessment
+   - Assessments -> Add assessment
    - Template: GDPR or ISO 27001
    - Review controls
 6. Assign action to yourself:
-   - Select action → Assign
+   - Select action -> Assign
    - Update status: In progress
 7. Export report (for management presentation)
 
@@ -5255,18 +5355,29 @@ Click improvement action to see:
 
 ### Skill: Identify sensitive information by using Microsoft Purview Data Explorer
 
+**Wording note (EXAM-CRITICAL):** the July 22, 2026 objective says **Microsoft Purview Data Explorer**, not Content explorer. Microsoft introduced a new **Data explorer** and renamed the older tool to **Content Explorer (classic)**. They are two different tools in two different places with two different role groups. Teach **Data explorer** as the current answer.
+
+| Tool | Path | Access roles |
+|------|------|-------------|
+| **Data explorer** (current, and the exam answer) | purview.microsoft.com > Solutions > **Information Protection** > **Explorers** > **Data explorer** | Data Explorer List viewer (see item and location) and/or Data Explorer Content viewer (see item contents). These two role groups are independent, not cumulative. |
+| **Content explorer (classic)** | purview.microsoft.com > Solutions > **Data Lifecycle Management** > **Explorers** > **Content explorer** | Content Explorer List viewer and Content Explorer Content viewer |
+
+**Latency note for Content explorer (classic):** counts can take up to 7 days to update, and up to 14 days for files in SharePoint.
+
 **What You Need to Know:**
-- Data Explorer (Content Explorer) shows where sensitive data is
+- Data explorer shows where sensitive data is
 - Critical for risk assessment and data protection
 - Visualizes labeled and classified content
 
 **Key Concepts:**
 
-#### What is Content Explorer?
+#### What is Data explorer?
 
-**Purpose:** Discover and visualize sensitive data across M365
+**Purpose:** Discover and visualize sensitive data across Microsoft 365
 
-**Location:** Purview → Data classification → Content Explorer
+**Location:** purview.microsoft.com > Solutions > **Information Protection** > **Explorers** > **Data explorer**
+
+**Reading note for the walkthroughs below:** the procedures that follow are written with the older "Content Explorer" label because the filtering workflow is the same in both tools. Where you see "Content Explorer" in a procedure, use **Data explorer** at the path above for current work and for exam answers.
 
 **What It Shows:**
 - All items with sensitivity labels
@@ -5278,7 +5389,7 @@ Click improvement action to see:
 #### Using Content Explorer to Identify Sensitive Information
 
 **View by Sensitivity Label:**
-1. Content Explorer → Filter: Sensitivity label
+1. Content Explorer -> Filter: Sensitivity label
 2. Select label (e.g., "Confidential")
 3. See all files with that label
 4. **Risk Identification:**
@@ -5287,7 +5398,7 @@ Click improvement action to see:
    - Who has access?
 
 **View by Sensitive Information Type:**
-1. Content Explorer → Filter: Sensitive info type
+1. Content Explorer -> Filter: Sensitive info type
 2. Select SIT (e.g., "Credit Card Number")
 3. See all content containing credit cards
 4. **Risk Identification:**
@@ -5316,7 +5427,7 @@ Click improvement action to see:
 **Scenario 1: Unprotected Credit Card Numbers**
 
 **Steps:**
-1. Content Explorer → Sensitive info types → Credit Card Number
+1. Content Explorer -> Sensitive info types -> Credit Card Number
 2. Review results
 3. **Risks found:**
    - 50 files with credit cards
@@ -5330,7 +5441,7 @@ Click improvement action to see:
 **Scenario 2: Confidential Data in Public Sites**
 
 **Steps:**
-1. Content Explorer → Sensitivity label → Highly Confidential
+1. Content Explorer -> Sensitivity label -> Highly Confidential
 2. Filter: Location
 3. **Risk found:**
    - Highly Confidential files in "Company Wide" site
@@ -5344,7 +5455,7 @@ Click improvement action to see:
 
 **Steps:**
 1. Employee announces resignation
-2. Content Explorer → Owner = Departing employee
+2. Content Explorer -> Owner = Departing employee
 3. **Risks found:**
    - 500 files with customer data
    - 100 labeled "Confidential"
@@ -5358,7 +5469,7 @@ Click improvement action to see:
 
 **Steps:**
 1. Before Copilot deployment
-2. Content Explorer → All locations
+2. Content Explorer -> All locations
 3. Filter: Items WITHOUT sensitivity labels
 4. Search for known sensitive locations (Finance, HR)
 5. **Risk:**
@@ -5384,7 +5495,7 @@ Click improvement action to see:
 - Share with stakeholders
 
 **Limitations:**
-- Requires permissions (Content Explorer Viewer role)
+- Requires permissions (Data Explorer List viewer or Content viewer role group)
 - Data may be delayed (not real-time)
 - Only shows indexed content
 
@@ -5432,13 +5543,19 @@ Click improvement action to see:
 
 #### Permissions Required
 
-**To View Content Explorer:**
-- Content Explorer Viewer role (minimum)
-- Or: Content Explorer Content Viewer (see file content)
-- Or: Information Protection Admin (full access)
+**To View Data explorer (current tool):**
+- Data Explorer List viewer role group (see item and location)
+- And/or: Data Explorer Content viewer role group (see item contents)
+- These two role groups are independent, not cumulative
+
+**To View Content explorer (classic):**
+- Content Explorer List viewer role group
+- Or: Content Explorer Content viewer role group (see file content)
+
+**Note:** the Content Explorer Content Viewer role group is also what an admin needs to see prompt and response **content** when drilling into Activity explorer. Without it, the activity is visible but the prompt and response text is not.
 
 **Assigning Roles:**
-1. Purview → Permissions → Roles
+1. Purview -> Permissions -> Roles
 2. Select role group
 3. Add members
 
@@ -5467,7 +5584,7 @@ Click improvement action to see:
 - Implement DLP
 
 **Hands-On:**
-1. Navigate to Purview → Data classification → Content Explorer
+1. Navigate to purview.microsoft.com -> Solutions -> Information Protection -> Explorers -> Data explorer
 2. Explore by sensitive info type:
    - Select "Email Address"
    - Review files containing emails
@@ -5480,7 +5597,7 @@ Click improvement action to see:
    - Location: SharePoint
    - Identify sites with most sensitive data
 5. Export results:
-   - Export → CSV
+   - Export -> CSV
    - Open in Excel
    - Analyze distribution
 6. Identify risks:
@@ -5489,7 +5606,7 @@ Click improvement action to see:
    - Abandoned data
 
 **Key Takeaways:**
-- Content Explorer = "Where is my sensitive data?"
+- Data explorer = "Where is my sensitive data?" (the older tool is now Content Explorer (classic))
 - Critical for risk assessment
 - Must-use before Copilot deployment
 - Guides label application and DLP policies
@@ -5513,7 +5630,7 @@ Click improvement action to see:
 
 **Purpose:** Detect and mitigate insider threats (malicious or negligent)
 
-**Location:** Purview → Insider Risk Management
+**Location:** Purview -> Insider Risk Management
 
 **Detects:**
 - Data theft by departing employees
@@ -5706,7 +5823,7 @@ Click improvement action to see:
 **How It Works:**
 - Insider Risk assigns user risk level
 - Adaptive DLP uses risk level for policy enforcement
-- High-risk users → Stricter DLP
+- High-risk users -> Stricter DLP
 
 **Example:**
 - Normal user: Can share confidential files internally
@@ -5737,9 +5854,9 @@ Click improvement action to see:
 - **Alert:** Investigator reviews
 
 #### Hands-On:**
-1. Navigate to Purview → Insider Risk Management
+1. Navigate to Purview -> Insider Risk Management
 2. Check if enabled (may need license/setup)
-3. Policies → Review pre-built templates
+3. Policies -> Review pre-built templates
 4. Understand policy components:
    - Triggering events
    - Indicators monitored
@@ -5812,7 +5929,7 @@ Click improvement action to see:
 
 #### Viewing DLP Alerts
 
-**Location:** Purview → Data Loss Prevention → Alerts
+**Location:** Purview -> Data Loss Prevention -> Alerts
 
 **Alert Dashboard:**
 - All active alerts
@@ -5925,7 +6042,7 @@ Click improvement action to see:
 
 **Response:**
 - Block email (already blocked by DLP)
-- Notify user: "Don't send credit cards via email"
+- Notify user: "Do not send credit cards via email"
 - Provide alternative: Secure payment link
 - Close alert: Resolved with user education
 
@@ -5964,7 +6081,7 @@ Click improvement action to see:
 - DLP blocked response
 
 **Response:**
-- Notify user: Don't request PII via Copilot
+- Notify user: Do not request PII via Copilot
 - Train on Copilot acceptable use
 - Review if user should have access to employee data
 - Close alert: User educated
@@ -6051,7 +6168,7 @@ Response: BLOCKED
 - Check for pattern (data harvesting attempt?)
 
 #### Hands-On:**
-1. Navigate to Purview → Data Loss Prevention → Alerts
+1. Navigate to Purview -> Data Loss Prevention -> Alerts
 2. Review active alerts (if any)
 3. Click alert to see details:
    - Policy matched
@@ -6067,11 +6184,11 @@ Response: BLOCKED
    - Follow-up needed?
 6. Close or escalate alert
 7. Review DLP reports:
-   - Reports → DLP policy matches
+   - Reports -> DLP policy matches
    - Identify trends
 
 **Best Practices:**
-- **Respond promptly:** Don't let alerts pile up
+- **Respond promptly:** Do not let alerts pile up
 - **Investigate thoroughly:** Understand context
 - **Document decisions:** Audit trail important
 - **Educate users:** Turn violations into learning

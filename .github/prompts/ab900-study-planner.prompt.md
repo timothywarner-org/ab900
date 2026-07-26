@@ -4,7 +4,7 @@ description: "Generate a personalized AB-900 study plan based on your confidence
 argument-hint: "Rate your confidence: 'Domain 1: Strong, Domain 2: Weak, Domain 3: Moderate'"
 agent: ab900-cert-buddy-agent
 tools:
-[vscode, execute, read, agent, edit, search, web, browser, 'azure-mcp/*', 'ab900buddy-markitdown/*', 'io.github.upstash/context7/*', 'microsoft/markitdown/*', 'microsoftdocs/mcp/*', todo]
+[vscode, execute, read, agent, edit, search, web, browser, 'ab900buddy-mslearn/*', 'ab900buddy-context7/*', 'ab900buddy-markitdown/*', todo]
 ---
 
 # AB-900 Study Planner
@@ -24,12 +24,25 @@ You must follow the workspace skill **ab900-study-planner** for workflow, domain
 ## Grounding and validation rules
 
 1. Ground all Microsoft Learn module links in **Microsoft Learn** using the **Microsoft Learn MCP** server and Copilot web search. Do not invent Learn URLs.
-2. Use the AB-900 exam skills outline for objective mapping.
+2. Use the AB-900 exam skills outline for objective mapping. The current version is **Skills measured as of July 22, 2026**; use its domain titles and objective wording verbatim.
 3. Prioritize weak domains first. Within equal confidence levels, prioritize by exam weight (Domain 2 first at 35-40%).
 
 ## Terminology
 
-Always use current Microsoft product names. Apply all mappings from the agent terminology table silently. Never use "Azure AD" (use "Microsoft Entra ID"), "compliance.microsoft.com" (use "purview.microsoft.com"), "per message" (use "per Copilot Credit"), "AI hub" (use "DSPM for AI (classic)"), or "Billing > Billing policies" (use "Copilot > Billing & usage").
+Always use current Microsoft product names. Apply all mappings from the agent terminology table silently. Never use:
+
+- "Azure AD", "AAD", or "Azure Active Directory" (use "Microsoft Entra ID")
+- "compliance.microsoft.com" (use "purview.microsoft.com")
+- "AI hub" (use "DSPM for AI")
+- "Azure AI Studio" (use "Microsoft Foundry")
+- "Microsoft 365 Defender" (use "Microsoft Defender XDR")
+- "Exchange Online admin center" (use "Exchange admin center")
+- "Content explorer" where the objective means "Data explorer"
+- "Requested agents tab" (use "Requests")
+- "Billing > Billing policies" for Copilot (use "Copilot > Billing & usage")
+- "restricted site access" in the SharePoint Advanced Management objective (use "restricted access control")
+
+The unit of consumption is the **Copilot Credit** at $0.01 per credit.
 
 ## Output format
 

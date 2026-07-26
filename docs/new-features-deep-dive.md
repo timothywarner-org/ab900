@@ -1,636 +1,740 @@
-# AB-900 New Features Deep Dive: Topics Experienced M365 Admins Are Most Likely to Miss
+# AB-900 New Features Deep Dive: What Changed Through July 2026
 
-**Audience:** IT professionals with existing M365 administration experience preparing to teach or sit the AB-900 (Microsoft 365 Copilot for Administrators) exam.
+**Audience:** IT professionals with existing Microsoft 365 administration experience preparing to teach or sit the AB-900 exam (Microsoft 365 Copilot and Agent Administration Fundamentals).
 
-**Purpose:** This document covers topics that are genuinely new to the AB-900 exam objective domain — features introduced or heavily expanded alongside the Microsoft 365 Copilot product line that do not appear in legacy M365 certification tracks (MS-102, MS-700, SC-400, etc.). Familiarity with Exchange, Teams, Intune, or Purview DLP does not substitute for understanding these areas.
+**Purpose:** This document covers topics that are genuinely new to the AB-900 objective domain, plus the material that **moved, was renamed, or changed status** between early 2026 and July 2026. Familiarity with Exchange, Teams, Intune, or Purview DLP does not substitute for understanding these areas, and familiarity with the early-2026 versions of these features is no longer sufficient either.
 
-**Last updated:** March 2026 — aligned to current Microsoft Learn documentation.
+**Last updated:** 2026-07-26, verified against Microsoft Learn and the AB-900 study guide dated **Skills measured as of July 22, 2026**.
+
+**Exam version in force:** AB-900 skills measured as of **July 22, 2026**. The change log for that refresh lists **three Minor** subsection changes and **ZERO Major** changes. Domain weightings are unchanged: Domain 1 at 30-35%, Domain 2 at 35-40%, Domain 3 at 25-30%.
 
 ---
 
 ## Table of Contents
 
-1. [DSPM for AI (Microsoft Purview)](#1-dspm-for-ai-microsoft-purview)
-2. [Microsoft 365 Copilot Researcher Agent](#2-microsoft-365-copilot-researcher-agent)
-3. [Microsoft 365 Copilot Analyst Agent](#3-microsoft-365-copilot-analyst-agent)
-4. [Microsoft 365 Copilot Pay-as-You-Go Billing](#4-microsoft-365-copilot-pay-as-you-go-billing)
-5. [SharePoint Advanced Management for Copilot AI Governance](#5-sharepoint-advanced-management-for-copilot-ai-governance)
+1. [What changed in the July 22, 2026 objective refresh](#1-what-changed-in-the-july-22-2026-objective-refresh)
+2. [DSPM: three entries in the Purview portal now](#2-dspm-three-entries-in-the-purview-portal-now)
+3. [Copilot Credits replaced the message as the billing unit](#3-copilot-credits-replaced-the-message-as-the-billing-unit)
+4. [Microsoft 365 E7 and Microsoft Agent 365](#4-microsoft-365-e7-and-microsoft-agent-365)
+5. [The Agents workload moved to a top-level admin center node](#5-the-agents-workload-moved-to-a-top-level-admin-center-node)
+6. [Researcher and Analyst: the governance mechanism restated](#6-researcher-and-analyst-the-governance-mechanism-restated)
+7. [Work IQ is an umbrella, not a peer of Microsoft Graph](#7-work-iq-is-an-umbrella-not-a-peer-of-microsoft-graph)
+8. [eDiscovery unified, Content search relocated](#8-ediscovery-unified-content-search-relocated)
+9. [Data explorer replaced Content explorer as the exam answer](#9-data-explorer-replaced-content-explorer-as-the-exam-answer)
+10. [SharePoint oversharing: RSS retiring, RAC and RCD are the answer](#10-sharepoint-oversharing-rss-retiring-rac-and-rcd-are-the-answer)
+11. [Identity changes with hard dates ahead](#11-identity-changes-with-hard-dates-ahead)
+12. [Rename table: say this, not that](#12-rename-table-say-this-not-that)
+13. [Cross-topic exam traps summary](#13-cross-topic-exam-traps-summary)
 
 ---
 
-## 1. DSPM for AI (Microsoft Purview)
+## 1. What changed in the July 22, 2026 objective refresh
 
-### What it is
+The AB-900 change log compares "Skill area prior to July 22, 2026" against "Skill area as of July 22, 2026" and contains exactly six rows.
 
-**Data Security Posture Management (DSPM) for AI** is a dedicated dashboard inside Microsoft Purview that gives compliance and security administrators a single, centralized view of how AI applications — Microsoft 365 Copilot, Copilot Chat, agents, and supported third-party tools such as ChatGPT Enterprise and Google Gemini — interact with sensitive organizational data. It is not a policy engine in isolation; rather, it aggregates signals from across Purview (Audit, DLP, Insider Risk Management, Communication Compliance, Information Protection) and surfaces them as unified insights, ready-to-deploy one-click policies, data risk assessments, and remediation recommendations.
-
-The version tested on AB-900 is the **classic** version accessed at `purview.microsoft.com > Solutions > DSPM for AI (classic)`. A newer preview version (simply named "Data Security Posture Management") is rolling out but is not yet the exam target.
-
-### Why it matters for AB-900
-
-DSPM for AI represents a category of administrative responsibility that does not exist in any legacy Purview or compliance certification. The exam tests whether candidates understand:
-
-- Where in the portal to find it (exact navigation path)
-- What it automatically does without configuration (the weekly default risk assessment)
-- What requires admin action (one-click policies, custom assessments)
-- Which prerequisites gate its functionality (Purview Audit, device onboarding, licenses)
-- How it relates to but differs from standalone DLP, Insider Risk, and Communication Compliance policies
-
-### How it works
-
-DSPM for AI operates through four integrated capability areas:
-
-**1. Insights and Analytics**
-The Reports section shows AI activity across three workload categories: *Copilot experiences and agents*, *Enterprise AI apps* (e.g., ChatGPT Enterprise), and *Other AI apps* (third-party generative AI sites). Activity Explorer provides event-level drill-down including activity type, user, timestamp, AI app, sensitive information types detected, and files referenced. Prompts and responses appear in Activity Explorer events (labeled "AI interaction") when the appropriate collection policy is active and the admin has the required permissions.
-
-**2. Ready-to-Use One-Click Policies**
-DSPM for AI surfaces pre-configured policies that can be activated without building policies from scratch. Examples include:
-- *DSPM for AI – Detect risky AI usage* (uses Insider Risk Management)
-- *DSPM for AI – Control unethical behavior in AI* (uses Communication Compliance)
-- *Extend your insights* (activates collection from third-party generative AI sites)
-- *Secure interactions from enterprise apps* (captures prompts/responses from Entra-registered AI apps)
-
-Each one-click policy, once activated, appears on the **Policies** page and can be edited from its native Purview solution.
-
-**3. Data Risk Assessments**
-This is the most distinctive DSPM for AI capability. A **default data risk assessment** runs automatically every week against the top 100 SharePoint sites by usage — no admin configuration required. The assessment identifies potentially overshared items: content accessible via "Anyone" links, "People in your organization" links, and content shared with "Everyone Except External Users."
-
-Admins can also create **custom assessments** targeting specific users, sites, or date ranges. Custom assessments support **item-level scanning** (currently limited to up to 10 SharePoint sites per assessment, maximum 200,000 items per location) which identifies individual files that are overshared, shows their sensitivity labels, and enables direct remediation actions: apply sensitivity label, remove sharing link, notify site owner, or resolve.
-
-Fabric workspaces can also be assessed, but this requires a one-time setup involving a registered Entra application and configuration of Admin API settings in the Fabric admin portal.
-
-**4. Compliance Controls and Recommendations**
-The Recommendations section presents tenant-specific, prioritized action items. Examples include creating default sensitivity labels, protecting labeled items from Copilot processing via DLP, enabling regulatory compliance controls via Compliance Manager templates, and configuring retention policies for stale content.
-
-### Admin controls
-
-**Required permissions:**
-- Microsoft Entra Compliance Administrator role (or equivalent)
-- For viewing prompts and responses in Activity Explorer: additional specific permissions documented at `learn.microsoft.com/purview/ai-microsoft-purview-permissions`
-
-**Prerequisites:**
-| Scenario | Prerequisite |
+| Skill area | Change |
 |---|---|
-| Monitoring Copilot and agents | Microsoft Purview Audit enabled (on by default for new tenants); users assigned M365 Copilot licenses |
-| Monitoring Copilot in Fabric / Security Copilot | Enterprise version of Purview data governance; collection policy active |
-| Monitoring third-party AI sites (ChatGPT, Gemini) | Devices onboarded to Microsoft Purview; Microsoft Purview browser extension; Edge DLP configuration |
-| Applying DLP to third-party AI apps | Endpoint DLP via onboarded devices |
+| Audience profile | No change |
+| **Identify the core features and objects of Microsoft 365 services** (functional group) | No change |
+| Identify the core objects of Microsoft 365 services | **Minor** |
+| Identify the core security features of Microsoft 365 services | **Minor** |
+| **Understand data protection and governance tasks for Microsoft 365 and Copilot** (functional group) | No change |
+| Identify and monitor oversharing in SharePoint in Microsoft 365 | **Minor** |
 
-**Portal navigation:**
-```
-purview.microsoft.com
-  └── Solutions
-        └── DSPM for AI (classic)
-              ├── Overview        (Get started checklist, top recommendations)
-              ├── Reports         (AI activity analytics by app category)
-              ├── Policies        (Status of DSPM-created and AI-related policies)
-              ├── Recommendations (Prioritized action items for the tenant)
-              ├── Apps and agents (Dashboard of AI apps/agents and their data access)
-              ├── Activity explorer (Event-level detail with filters)
-              └── Data risk assessments (Default weekly + custom assessments)
-```
+**There is no row for Domain 3** ("Perform basic administrative tasks for Copilot and agents") and no row for "Understand the Microsoft 365 security principles", "Understand Microsoft Purview", "Understand data security implications of Copilot", or "Identify data protection and governance risks for Microsoft 365 and Copilot". Under Microsoft's change log convention, unlisted areas were unchanged in this refresh.
 
-**Allow 24 hours** after activating new policies before data populates in Reports. Custom assessment results take **at least 48 hours** to appear after the assessment completes.
+### The three Minor changes, decoded
 
-### Key distinctions
+The change log does not spell out what changed inside each Minor subsection. Comparing the current objective text against the prior wording surfaces these differences, and each is high-probability exam material precisely because Microsoft flagged the subsection.
 
-- **DSPM for AI is not a DLP policy.** It surfaces risk insights and can create DLP policies via one-click recommendations, but the resulting policies live in the DLP solution, not in DSPM for AI itself.
-- **The weekly default assessment runs automatically.** Admins do not need to configure or schedule it. It assesses the top 100 SharePoint sites by usage.
-- **DSPM for AI (classic) vs. the new DSPM (preview).** The classic version is the current exam target. The new preview version introduces guided workflows and is being positioned as the successor, but new features are only being added to the preview, not to the classic version.
-- **Third-party AI site monitoring requires device onboarding.** Simply having Purview licenses is not enough — devices must be onboarded (shared with Defender for Endpoint onboarding) to monitor what users paste or type into ChatGPT or Gemini.
-- **DSPM for AI is not the same as the Microsoft Purview AI Hub.** The AI Hub is a broader concept; DSPM for AI is the specific administrative solution within the Purview portal.
-
-### Exam scenario examples
-
-**Scenario A:** A Contoso security admin opens DSPM for AI and sees that the Reports section shows no data despite having M365 Copilot licenses assigned. What is the most likely cause?
-
-*Answer:* Microsoft Purview Audit is not enabled. Auditing is a prerequisite for DSPM for AI to collect and display Copilot interaction data. Although auditing is on by default for new tenants, it may have been disabled in older tenants. The admin should verify audit status and, once enabled, wait at least 24 hours for data to populate.
-
-**Scenario B:** An admin wants to understand whether specific SharePoint files have been overshared before enabling Copilot for all users. Which DSPM for AI capability best addresses this?
-
-*Answer:* A custom data risk assessment with item-level scanning enabled. This produces a list of individual files that are potentially overshared (via external or anonymous sharing links), shows their sensitivity labels, and allows direct remediation — including removing sharing links, applying sensitivity labels, or notifying site owners — without leaving the Purview portal.
-
-**Scenario C:** A compliance officer asks why they can see that users visited ChatGPT but cannot see the actual content they typed. What must the admin configure?
-
-*Answer:* Two things: (1) Devices must be onboarded to Microsoft Purview (via Defender for Endpoint onboarding) to capture what users type into browser-based AI sites. (2) A "Secure interactions" collection policy must be active. Without both, only the visit event (site accessed) is captured, not the prompt content.
-
-### Quick-reference summary
-
-- **Portal path:** `purview.microsoft.com > Solutions > DSPM for AI (classic)`
-- **Default weekly risk assessment** runs automatically on top 100 SharePoint sites — no admin setup required
-- **One-click policies** activate pre-built Purview policies (DLP, IRM, Communication Compliance) from a single interface
-- **Item-level scanning** in custom assessments allows per-file remediation; limited to 10 SharePoint sites per assessment
-- **Third-party AI monitoring** (ChatGPT, Gemini) requires device onboarding AND the Purview browser extension — licenses alone are insufficient
-
-> **Exam Traps**
->
-> - Do not confuse "DSPM for AI (classic)" with the newer "Data Security Posture Management (preview)" — they are different versions in the portal and the classic version is the current exam target.
-> - The default assessment is automatic and weekly — exam questions may try to make you think an admin must manually run or schedule it.
-> - DSPM for AI requires **Compliance Administrator** permissions, not Global Administrator. An admin with only the SharePoint Admin role cannot access it.
-> - Budget alerts in the portal: allow **24 hours** for new policy data, **48 hours** for custom assessment results.
-> - Monitoring prompts sent to third-party AI sites requires **device onboarding** — this is frequently tested and commonly missed by candidates who assume Purview licensing alone is sufficient.
-
----
-
-## 2. Microsoft 365 Copilot Researcher Agent
-
-### What it is
-
-**Researcher** is a first-party Microsoft agent built into Microsoft 365 Copilot that handles **complex, multi-step research tasks**. Unlike standard Copilot chat — which is optimized for speed and handles quick tasks like summarizing an email or drafting a short reply — Researcher deliberately takes more time (typically under 5 minutes for simple queries; 10 to 45 minutes for highly complex ones) to retrieve, reason across, and synthesize information from two distinct sources simultaneously: **your Microsoft 365 work content** (files, emails, meetings, chats you have permission to access via Microsoft Graph) and **the web** (via Bing index). The output is a structured, source-cited report with headings, bullets, charts, and visual elements.
-
-Researcher is **preinstalled and pre-pinned** for all users with Microsoft 365 Copilot licenses. Users cannot remove or unpin it. It appears under **Agents** in the Microsoft 365 Copilot Chat interface.
-
-### Why it matters for AB-900
-
-Researcher introduces a new category of admin governance challenge: a Microsoft-built agent that is immune to the standard "disable all Copilot agents" toggle. The exam tests whether candidates understand how Researcher is governed, what admin controls actually work, and how Researcher differs from both standard Copilot chat and the Analyst agent.
-
-### How it works
-
-Researcher uses a two-source retrieval model:
-
-| Source | What it accesses | Governance control |
-|---|---|---|
-| Microsoft Graph | Files, emails, meetings, chats the signed-in user has permission to access | Existing M365 permissions and compliance; honors sensitivity labels and DLP |
-| Bing web index | Public web content for recent or external information | Tenant-level web search toggle |
-
-The agent follows a structured workflow:
-1. User submits a research query
-2. Researcher may ask clarifying questions to refine scope
-3. Agent retrieves from Graph and/or Bing (depending on scope selection and tenant settings)
-4. Agent synthesizes, reasons across sources, and generates a structured report with citations
-5. Output includes organized sections, source references, and optional visuals/charts
-
-**Usage limit:** 25 queries per user per month (as documented; subject to change).
-
-**Graph Connectors:** Researcher can fetch data from Microsoft Graph Connectors, enabling it to search indexed third-party data sources alongside native M365 content.
-
-**Computer Use (advanced feature):** A "Researcher with Computer Use" capability exists that allows Researcher to interact with web content in a sandboxed virtual machine. This is an admin-controlled opt-in feature.
-
-### Admin controls
-
-**Critical governance fact for AB-900:** Researcher is explicitly excluded from the standard Copilot agent toggle. The documentation states:
-
-> "This tool will remain accessible in Microsoft 365 Copilot Chat under Tools, even when Copilot agents are disabled for some or all users in Microsoft 365 admin center."
-
-**How to actually block Researcher:**
-
-Navigate to:
-```
-admin.microsoft.com
-  └── Agents (left navigation)
-        └── All Agents
-              └── Select "Researcher"
-                    └── Block (in the agent details pane)
-```
-
-The **Edit users** panel is disabled for Researcher and Analyst — you cannot assign them to a subset of users. The only choices are: available to everyone (default) or blocked for the entire tenant.
-
-**Web search control:**
-- If the tenant-level web search toggle is disabled, Researcher will not use Bing data
-- There is **no granular website allowlist/blocklist** — the only control is the global web search on/off toggle
-- If web search is disabled, Researcher still functions but draws only from Microsoft Graph (work content)
-
-**Computer Use admin controls:**
-```
-admin.microsoft.com > Copilot > Settings > Researcher with Computer Use
-```
-Admins can enable/disable Computer Use, restrict it to specific users or groups, and configure allowed/blocked domains for the sandbox environment.
-
-**Monitoring:**
-There is currently no admin reporting dashboard for Researcher usage metrics (query volume, user adoption). Admins can see that the feature is being used but cannot access the content of Researcher sessions through standard admin tools. The content of Researcher sessions is not accessible via eDiscovery by default.
-
-### Key distinctions
-
-- **Researcher is NOT disabled by the "Copilot agents" toggle.** This is the single most important governance fact about Researcher and is the most common exam trap.
-- **Researcher vs. standard Copilot chat:** Standard Copilot is fast and handles everyday tasks. Researcher is slower (by design), handles multi-step complex research, produces structured reports with citations, and spans both work data and the web simultaneously.
-- **Researcher vs. Analyst:** Researcher is optimized for research and synthesis across mixed sources (web + work). Analyst is optimized for data analysis and computation on structured data (particularly Excel). "Is Researcher agent suited for spreadsheet creation?" — No, that is what Analyst is for.
-- **Researcher is not trained on tenant data.** It can access tenant data at query time but is not fine-tuned on it. All data remains within the Microsoft 365 data processing boundary.
-- **Users cannot disable Researcher.** Individual users have no option to remove or disable it, though they can unpin it from the rail.
-
-### Exam scenario examples
-
-**Scenario A:** A Contoso IT admin has disabled the Copilot agents toggle in the Microsoft 365 admin center to prevent all agents from running. A user reports that the Researcher agent is still accessible. The admin asks why. What is the correct explanation?
-
-*Answer:* Researcher and Analyst are first-party Microsoft experiences that are part of the core Copilot chat experience, not governed by the agent toggle. The agent toggle applies to third-party and custom agents. To block Researcher, the admin must explicitly block it in `admin.microsoft.com > Agents > All Agents > Researcher > Block`.
-
-**Scenario B:** A financial services firm needs to prevent Researcher from using any publicly available web content due to data residency policies. What is the correct admin action?
-
-*Answer:* Disable the tenant-level web search toggle for Microsoft 365 Copilot. This prevents Researcher from using the Bing index. Note that this applies globally to the tenant — there is no per-agent or per-user web search control for Researcher specifically.
-
-**Scenario C:** An admin wants to assign Researcher only to a pilot group of 50 users before rolling it out broadly. How should they configure this?
-
-*Answer:* This is not possible. Researcher does not support granular user/group assignment — the Edit users panel is disabled. The only options are: available to all licensed users (default) or blocked for the entire tenant. To limit access, the admin would need to block Researcher tenant-wide and communicate to the pilot group that they should not use it, or restrict M365 Copilot licensing itself to the pilot group.
-
-### Quick-reference summary
-
-- Researcher is **preinstalled and pre-pinned** for all M365 Copilot licensed users; users cannot remove it
-- Uses **both Microsoft Graph (work data) AND Bing (web)** — dual-source retrieval distinguishes it from standard Copilot
-- The **agent toggle does NOT block Researcher** — admin must explicitly block it via `Agents > All Agents > Researcher > Block`
-- No granular user/group assignment for Researcher — it is all-or-nothing at the tenant level
-- **25 queries per user per month** usage limit; response time ranges from under 5 minutes to up to 45 minutes
-
-> **Exam Traps**
->
-> - "Disabling Copilot agents blocks Researcher" — FALSE. This is the most heavily tested misconception. The agent toggle explicitly does not apply to Researcher or Analyst.
-> - "Admins can assign Researcher to specific users" — FALSE. The Edit users panel is disabled; it is tenant-wide available or tenant-wide blocked.
-> - Do not confuse Researcher's web source (Bing) with an internet browsing capability. Researcher uses the Bing *index* (cached/crawled web data), not a real-time browser — unless Computer Use is specifically enabled.
-> - Researcher respects existing M365 permissions: it cannot surface data a user does not already have access to. This is a common data security concern that is actually not a risk.
-
----
-
-## 3. Microsoft 365 Copilot Analyst Agent
-
-### What it is
-
-**Analyst** is the second first-party Microsoft agent preinstalled and pre-pinned for all Microsoft 365 Copilot licensed users alongside Researcher. Where Researcher is built for multi-source research and synthesis, Analyst is purpose-built for **structured data analysis and computation** — particularly tasks involving Excel, tabular data, CSV files, and quantitative reasoning. Analyst can run Python code in a sandboxed environment, generate charts and visualizations, and work through complex multi-step analytical workflows.
-
-Analyst appears under **Agents** in the Microsoft 365 Copilot Chat interface. Like Researcher, it was deployed by Microsoft to existing M365 Copilot licensed users without requiring admin activation.
-
-### Why it matters for AB-900
-
-Analyst and Researcher are the two agents that are most likely to appear as a paired comparison question on AB-900. The exam tests whether candidates can differentiate the two agents' purposes, understand that both share identical governance behavior (both are immune to the agent toggle, both require explicit blocking), and correctly identify which agent is appropriate for a given scenario. Analyst's Python code execution capability is a distinctive technical detail frequently tested.
-
-### How it works
-
-Analyst operates on a **structured data + code execution** model rather than Researcher's retrieval-and-synthesis model.
-
-**Primary data focus:**
-- Excel workbooks and tabular/structured data
-- CSV files and datasets the user uploads or has access to in M365
-- Quantitative and analytical tasks requiring computation
-
-**Code execution:**
-Analyst can generate and execute **Python code** in a sandboxed environment. This is a capability Microsoft refers to as "Code Interpreter" functionality. The Python execution is isolated — it does not have access to the internet or to other tenant systems. Analyst uses this to:
-- Perform statistical analysis
-- Generate charts, graphs, and visualizations
-- Build and modify PivotTables and formulas
-- Conduct variance analysis and forecasting
-- Run calculations too complex for standard Copilot chat
-
-**Data sources:**
-Unlike Researcher, Analyst is primarily focused on data the user provides or has in their Microsoft 365 environment. It does not use Bing web search by default for its core analytical tasks.
-
-**Output:**
-Analyst produces structured outputs including Python-generated visualizations, data tables, narrative summaries of findings, and analytical reports. The "Think Deeper" mode, available for Copilot in Excel with Python, uses reasoning models for more elaborate multi-step analysis.
-
-### Admin controls
-
-Analyst shares **identical governance behavior** to Researcher:
-
-- **Preinstalled and pre-pinned** for all M365 Copilot licensed users
-- **NOT governed by the Copilot agents toggle** — the toggle does not apply
-- **No granular user/group assignment** — the Edit users panel is disabled
-- **Block/unblock applies tenant-wide only**
-
-**How to block Analyst:**
-```
-admin.microsoft.com
-  └── Agents (left navigation)
-        └── All Agents
-              └── Select "Analyst"
-                    └── Block (in the agent details pane)
-```
-
-**Key governance documentation quote:**
-> "For the Researcher and Analyst agents, the Edit users panel is disabled. To manage their availability, block the agent for the entire tenant by using the Block action in the Microsoft 365 admin center."
-
-**Monitoring:**
-Like Researcher, there is no existing reporting dashboard for Analyst usage metrics. Admins cannot access the content of Analyst sessions through standard compliance tooling.
-
-### Key distinctions
-
-| Attribute | Researcher | Analyst |
-|---|---|---|
-| **Primary use** | Multi-step research, synthesis, reports | Structured data analysis, computation |
-| **Best for** | "Research market trends using our emails and the web" | "Analyze this Excel file and identify variance patterns" |
-| **Data sources** | Microsoft Graph (work data) + Bing (web) | Primarily user-provided structured data |
-| **Code execution** | No | Yes — Python in sandboxed environment |
-| **Web access** | Yes (Bing index, unless disabled) | Primarily no (analytical sandbox is isolated) |
-| **Output type** | Structured research report with web + work citations | Charts, tables, visualizations, code output |
-| **Agent toggle** | Not governed by it | Not governed by it |
-| **User assignment** | Tenant-wide only | Tenant-wide only |
-
-**Analyst vs. standard "Copilot in Excel":** Standard Copilot in Excel performs in-context operations within a workbook (formula suggestions, data highlights, chart creation). Analyst is a standalone agent in Copilot Chat that performs deeper multi-step analysis and can run Python. They are complementary but distinct.
-
-**Analyst vs. Finance agents:** Microsoft offers specialized Finance agents (separate licensing) for finance-specific workflows like variance analysis in Excel integrated with ERP systems. Analyst is the general-purpose data analysis agent included with M365 Copilot licenses.
-
-### Exam scenario examples
-
-**Scenario A:** A user asks: "I need to analyze a 50,000-row dataset and identify quarterly sales variance trends with visualizations. Should I use standard Copilot chat, Researcher, or Analyst?"
-
-*Answer:* Analyst. It is purpose-built for structured data analysis, supports Python code execution in a sandboxed environment for statistical computation, and produces charts and visualizations. Researcher is built for research synthesis, not computation. Standard Copilot chat can handle basic data questions but lacks deep analytical and code execution capabilities.
-
-**Scenario B:** An admin has turned off the Copilot agents toggle in the admin center. A user reports that both Researcher and Analyst are still showing as available. Is this expected behavior?
-
-*Answer:* Yes, this is expected and by design. The Copilot agents toggle does not apply to Researcher or Analyst because they are first-party Microsoft experiences considered part of the core Copilot chat experience, not governed by agent policies. To block either or both agents, the admin must navigate to `admin.microsoft.com > Agents > All Agents`, select each agent individually, and choose Block.
-
-**Scenario C:** A user wants to use Analyst to research competitor products on the web and then run calculations on the findings. Which part of this request is outside Analyst's design?
-
-*Answer:* The web research component. Analyst's core purpose is structured data analysis and computation on data the user has access to or provides. Researcher is the appropriate agent for multi-source research that combines web data with work content. The user would be better served by using Researcher to gather and synthesize the web-based competitive data, and then using Analyst or Copilot in Excel to run calculations on the resulting dataset.
-
-### Quick-reference summary
-
-- Analyst is **preinstalled and pre-pinned** for all M365 Copilot licensed users — identical deployment model to Researcher
-- Purpose-built for **structured data analysis, computation, and Python code execution** in a sandboxed environment
-- The **agent toggle does NOT block Analyst** — must explicitly block via `Agents > All Agents > Analyst > Block`
-- No user/group assignment — all-or-nothing blocking at tenant level
-- Analyst does NOT use Bing web search as a primary data source; it is focused on user-provided and M365 structured data
-
-> **Exam Traps**
->
-> - "Researcher and Analyst can both be blocked by the agent toggle" — FALSE for both. This is the same trap as for Researcher but now applied to the pair. Exam questions may describe blocking one without the other, or assume the toggle covers both.
-> - "Analyst can access the web" — Generally false for its analytical core. Unlike Researcher, Analyst's sandboxed Python environment is isolated from the internet.
-> - Do not confuse Analyst with "Copilot in Excel" — they are different experiences. Analyst is a standalone agent in Copilot Chat. Copilot in Excel is an in-app Copilot experience within the Excel application.
-> - "Analyst is better for spreadsheet creation" — this is directly stated in Microsoft's Researcher FAQ as a way to differentiate the two agents, and is a likely distinction question.
-
----
-
-## 4. Microsoft 365 Copilot Pay-as-You-Go Billing
-
-### What it is
-
-**Microsoft 365 Copilot pay-as-you-go (PAYG)** is a consumption-based billing model that allows organizations to provide access to specific Copilot capabilities — primarily Microsoft 365 Copilot Chat agents and SharePoint agents — without requiring per-user prepaid Copilot licenses. Instead of paying a fixed monthly or annual fee per user, the organization pays only for actual usage, billed through an **Azure subscription** using Azure meters. This model is designed for organizations that want to:
-
-- Establish usage patterns before committing to prepaid licenses
-- Provide access to Copilot agents for users who do not have dedicated M365 Copilot licenses
-- Scale access dynamically based on demand
-
-PAYG is **disabled by default**. A Global administrator, Billing administrator, or AI administrator must explicitly configure it.
-
-### Why it matters for AB-900
-
-Pay-as-you-go billing represents a fundamentally different commercial model from standard M365 subscription management. The exam tests whether candidates understand the two-step configuration process, the Azure subscription dependency, where the controls live in the admin center, what gets billed and at what rate, and the critical distinction between what PAYG provides versus what a full M365 Copilot license provides. This is an area where experienced M365 admins frequently assume billing is managed entirely within the Microsoft 365 admin center and miss the Azure subscription dependency.
-
-### How it works
-
-**What PAYG covers:**
-- Microsoft 365 Copilot Chat (declarative agents, including SharePoint agents)
-- SharePoint agents specifically
-- Microsoft Copilot Retrieval API (preview)
-
-**What PAYG does NOT cover:**
-- Full Microsoft 365 Copilot features (Word Copilot, Teams meeting summarization, Outlook draft, Researcher, Analyst, etc.) — those require a paid per-user M365 Copilot license
-- PAYG provides access to *agents* running in Copilot Chat, not the full Copilot suite
-
-**Billing mechanism:**
-Usage is billed through the **Copilot Studio message meter** at **$0.01 per message** (a "message" is a request or response that triggers an agent action). Charges flow to the linked Azure subscription and appear in **Azure Cost Management**.
-
-**The two-step configuration process:**
-
-Step 1 — Add a billing policy:
-```
-admin.microsoft.com
-  └── Copilot
-        └── Billing & usage
-              └── Billing policies tab
-                    └── Add a billing policy
-```
-A billing policy defines: (a) the Azure subscription to charge, (b) the Azure resource group, (c) the Azure region (determines where tenant ID and usage data are stored), and (d) the user scope (all users or a specific security group). A budget limit with email alerting can optionally be configured. Up to 50 billing policies can be created per tenant.
-
-Step 2 — Connect the billing policy to a Copilot service:
-```
-admin.microsoft.com
-  └── Copilot
-        └── Billing & usage
-              └── Pay-as-you-go services tab
-                    └── Select "Microsoft 365 Copilot Chat" or "SharePoint agents"
-                          └── Connect billing policy
-```
-
-Creating a billing policy alone does not activate PAYG. Both steps are required.
-
-**Azure subscription prerequisites:**
-- Admin must have **Owner or Contributor** role on the Azure subscription
-- Admin must have **Owner or Contributor** role on the Azure resource group
-- Azure subscriptions and resource groups can be created from within the M365 admin center billing policy wizard — no need to navigate to the Azure portal separately
-- The billing account must be connected to a **Microsoft Customer Agreement (MCA)** to create new subscriptions from the M365 admin center
-
-**Monitoring and cost visibility:**
-- Usage monitoring: `admin.microsoft.com > Copilot > Billing & usage > Billing policies > [policy] > Budget tab > Spending`
-- Cost analysis: **Microsoft Cost Management** in the Azure portal (filter by the Power Platform account resource corresponding to the billing policy)
-- Detailed usage breakdown (by environment, app/agent, and user): downloadable report from the Power Platform admin center Billing plan page
-
-**Budget behavior (critical nuance):**
-Budget limits **trigger email notifications** when spending milestones are reached. They do **not enforce spending caps** — the service continues running even after the budget is exceeded. This is explicitly documented.
-
-**Disabling PAYG:**
-To disable: `Copilot > Billing & usage > Pay-as-you-go services tab > [service] > clear billing policy checkbox`. Note: after disconnection, it can take **up to two hours** for users to lose access.
-
-### Admin controls
-
-| Control | Where | Notes |
-|---|---|---|
-| Create billing policy | `admin.microsoft.com > Copilot > Billing & usage > Billing policies` | Requires Azure Owner/Contributor role |
-| Connect policy to service | `admin.microsoft.com > Copilot > Billing & usage > Pay-as-you-go services` | Must be done separately from policy creation |
-| Set budget / alerts | Within billing policy > Budget tab | Notifications only; does NOT enforce spending cap |
-| View spending | Within billing policy > Budget tab > Spending | |
-| View cost breakdown | Azure portal > Azure Cost Management | Filter by Power Platform account resource |
-| Detailed usage per user | Power Platform admin center > Billing plan > Download reports | |
-| Disable PAYG | `Copilot > Billing & usage > Pay-as-you-go services` | Takes up to 2 hours to take effect |
-
-**Roles that can manage PAYG:**
-- Global administrator
-- Billing administrator
-- AI administrator
-- Global reader (view only)
-
-### Key distinctions
-
-- **PAYG is not the same as a full M365 Copilot license.** A PAYG user can access Copilot Chat agents; they cannot use the full Copilot in-app experiences (Word Copilot, Teams meeting recap, Outlook drafting, Researcher, Analyst).
-- **The Azure subscription is non-negotiable.** PAYG cannot be configured without linking to an Azure subscription. Organizations with no Azure footprint must create one.
-- **Two steps are required.** Creating a billing policy does not activate PAYG — the policy must also be connected to a Copilot service. This two-step requirement is a frequent exam question.
-- **Budget limits are soft caps.** They notify; they do not block usage. This is a commonly missed distinction.
-- **The meter is the Copilot Studio message meter at $0.01/message.** This applies to declarative agent usage regardless of whether the agent was built in SharePoint, Copilot Studio, or provided by Microsoft.
-- **PAYG can coexist with Power Platform admin center billing policies.** If PAYG was already configured in the Power Platform admin center, a new policy in the M365 admin center can be added simultaneously; the billing system ensures no double-charging.
-
-### Exam scenario examples
-
-**Scenario A:** A Contoso admin wants to enable PAYG for Microsoft 365 Copilot Chat agents for a pilot group of 200 users. They navigate to `admin.microsoft.com > Copilot > Billing & usage`, create a billing policy linked to an Azure subscription, and scope it to the pilot security group. Users in the group still cannot access PAYG agents. What step was missed?
-
-*Answer:* The billing policy was created but not connected to a Copilot service. The admin must navigate to the **Pay-as-you-go services tab**, select Microsoft 365 Copilot Chat, and connect the newly created billing policy to the service. Creating the policy defines the billing infrastructure; connecting it activates access.
-
-**Scenario B:** A Contoso finance team has exceeded the $500 monthly budget set on their PAYG billing policy, but Copilot agents are still running and charges are still accruing. Is this expected? What can the admin do?
-
-*Answer:* Yes, this is expected behavior. Budget limits in PAYG are notification thresholds only — they generate email alerts but do not enforce spending caps or stop service. To stop charges, the admin must manually disconnect the billing policy from the Copilot service in the Pay-as-you-go services tab. Note that disconnection takes up to two hours to take effect.
-
-**Scenario C:** An admin is asked whether a user with PAYG access enabled can use the Researcher agent to do competitive research. How should the admin respond?
-
-*Answer:* No. Researcher is a feature of the **full Microsoft 365 Copilot license** — it is not accessible via PAYG. PAYG provides access to declarative agents running in Copilot Chat (such as SharePoint agents and other agents billed through the Copilot Studio meter). Full Copilot capabilities (Researcher, Analyst, in-app Copilot in Word/Excel/Teams/Outlook) require a paid per-user M365 Copilot license.
-
-### Quick-reference summary
-
-- PAYG covers **Copilot Chat agents and SharePoint agents** — NOT the full M365 Copilot suite
-- **Two-step process:** (1) create billing policy → (2) connect to Copilot service; either step alone does not activate access
-- Requires an **Azure subscription** (Owner/Contributor role required); billing flows through Azure Cost Management
-- **$0.01 per message** via the Copilot Studio message meter
-- Budget limits **send alerts only** — they do not block or cap usage; service continues after budget is exceeded
-- Primary admin portal: `admin.microsoft.com > Copilot > Billing & usage`
-
-> **Exam Traps**
->
-> - "Creating a billing policy enables PAYG" — FALSE. The policy must also be connected to a Copilot service. A very common two-step confusion.
-> - "Budget limits prevent overspending" — FALSE. They trigger email notifications only. Usage continues uninterrupted.
-> - "PAYG provides access to full M365 Copilot" — FALSE. PAYG provides access to agents in Copilot Chat only, not the full Copilot in-app experiences.
-> - "PAYG is configured in the Azure portal" — PARTIALLY FALSE. The billing policy is created in the Microsoft 365 admin center. Azure Cost Management is used to *monitor* charges, but configuration is done in the M365 admin center.
-> - Do not confuse the AI administrator role (which can manage PAYG) with the Compliance Administrator role (which manages DSPM for AI). They are different roles for different products.
-
----
-
-## 5. SharePoint Advanced Management for Copilot AI Governance
-
-### What it is
-
-**SharePoint Advanced Management (SAM)** is a governance add-on for SharePoint and OneDrive that provides a suite of capabilities specifically designed to control content sprawl, prevent oversharing, manage site lifecycle, and enforce access policies. In the context of Microsoft 365 Copilot, SAM takes on critical importance because **Copilot grounds its responses in content the signed-in user can access** — meaning overshared SharePoint content becomes a Copilot data exposure risk, not just a traditional file-sharing concern.
-
-SAM is either:
-- A **standalone paid add-on** (SharePoint Advanced Management Plan 1, per-user) for organizations without M365 Copilot licenses
-- **Included with Microsoft 365 Copilot licenses** — any tenant where at least one user is assigned an M365 Copilot license automatically gains access to SAM features required for Copilot deployment (with the exception of the Restricted Site Creation feature)
-
-### Why it matters for AB-900
-
-SAM represents a new administrative layer between SharePoint administration and Copilot governance. The exam tests whether candidates understand the specific SAM capabilities relevant to Copilot AI governance (not general SharePoint administration), the licensing model (included vs. paid add-on), and how SAM features map to Copilot-specific risks. This is an area where SharePoint admins may know SAM features exist but not understand their Copilot-specific implications.
-
-### How it works
-
-SAM provides capabilities across three governance domains:
-
-**Domain 1: Oversharing Controls**
-
-These are the capabilities most directly relevant to Copilot AI governance:
-
-| SAM Feature | What it does | Copilot relevance |
-|---|---|---|
-| **Data Access Governance Reports** | Identify sites with overshared or sensitive content: EEEU usage, "People in org" links, "Anyone" links, sensitivity labels, site permissions org-wide | Reveals sites whose content Copilot could surface to unauthorized users |
-| **Restricted Content Discovery (RCD)** | Prevents specific SharePoint sites from appearing in Copilot results and org-wide search; **does not change underlying permissions** | Key interim control — block Copilot access to a site without modifying who formally has permission |
-| **Restricted Access Control (RAC)** | Limits site access to users in a specific security group; **does change underlying permissions** | More restrictive than RCD; prevents access entirely, not just Copilot discovery |
-| **Site Access Reviews** | Delegates review of overshared sites to site owners via email; owners attest whether access is appropriate | Scales governance to site owners rather than requiring central admin action |
-| **Content Management Assessment** | Aggregates reporting and governance tools in one place; provides AI-powered insights on governance status | Starting point for Copilot readiness assessment |
-| **Block Download Policy** | Prevents file downloads from specified sites (browser-only access) | Limits data exfiltration risk for highly sensitive sites |
-| **Conditional Access Policies** | Links Microsoft Entra Conditional Access policies to specific SharePoint sites using authentication contexts | Enables site-level step-up authentication requirements |
-
-**Domain 2: Content Sprawl Controls**
-
-| SAM Feature | What it does |
+| Subsection | Wording that changed |
 |---|---|
-| **Site Ownership Policy** | Identifies ownerless sites; automates notifications to ownership candidates; run in simulation mode before going active |
-| **Inactive Sites Policy** | Detects sites with no activity over a configurable period; notifies owners for attestation; optionally archives or triggers deletion |
-| **Site Attestation Policy** | Prompts site owners and admins periodically to confirm a site is still needed and correctly governed |
-| **AI Insights** | AI-generated pattern analysis of report results; appears as "Get AI insights" button next to reports in SharePoint admin center |
+| Identify the core objects of Microsoft 365 services | The bullet now reads "**Exchange admin center** (mailboxes and **distribution groups**)". Previously "Exchange Online admin center" and "distribution lists". Also "**SharePoint admin center**", previously "SharePoint in Microsoft 365 admin center". |
+| Identify the core security features of Microsoft 365 services | The subsection now enumerates Identity Secure Score, audit log review, Privileged Identity Management, and App registrations plus Enterprise apps alongside the Entra ID, Conditional Access, and SSO bullets. |
+| Identify and monitor oversharing in SharePoint in Microsoft 365 | The SharePoint Advanced Management bullet now reads "including **restricted access control**". Previously "restricted site access". |
 
-**Domain 3: Content Lifecycle**
+> **Careful nuance on "SharePoint in Microsoft 365".** Do **NOT** blanket-replace this phrase. It is still current and correct when naming the **service**, as in "Identify the appropriate roles and permissions for sites in SharePoint in Microsoft 365" and the subsection heading "Identify and monitor oversharing in SharePoint in Microsoft 365". Only fix it where it modifies "admin center".
 
-| SAM Feature | What it does |
+### Exam logistics worth restating correctly
+
+| Fact | Value |
 |---|---|
-| **Site Change History Reports** | Track property changes to SharePoint sites over the last 180 days |
-| **Recent Admin Actions** | View the last 30 changes you personally made to site properties within 30 days |
-| **Catalog Management** | Organize sites into logical categories (by region, department, etc.) for targeted governance |
-| **Agent Insights** | Visibility into agents created in SharePoint and their activities |
-| **Insights on Agents Accessing Content** | Reports on how agents access content across SharePoint and OneDrive sites |
+| Passing score | **700 or greater** on a scale where 1000 is the maximum |
+| Exam duration | **45 minutes** working clock; **65 minutes** seat duration for a Fundamentals exam |
+| Question count | Microsoft publishes **no AB-900-specific count**. The official statement is generic: "Most Microsoft Certification exams typically contain between 40-60 questions; however, the number can vary depending on the exam." Present 40-60 as a Microsoft-wide typical range, **not** a verified AB-900 figure. |
+| Beta status | **NOT in beta.** AB-900 exited beta on January 28, 2026. Remove every reference to beta scoring delays or beta discount codes. |
+| Renewal | AB-900 **does NOT require renewal**. Microsoft states verbatim: "Fundamentals certifications do not expire." |
+| Access to Microsoft Learn during the exam | **NOT available.** The in-exam Learn resource "is only available on role-based exams, not fundamentals or Microsoft Office Specialist (MOS) exams." |
+| Retake | 24 hours after the first attempt; wait times increase for subsequent retakes |
+| Languages | **English only** as of July 22, 2026 |
+| Scheduling | Pearson VUE, or Certiport for students and educators. Proctored, and "may have interactive components". Price varies by country or region. |
+| Breaks | Unscheduled breaks allowed, but the clock keeps running and you cannot return to any question viewed before the break. Five minutes of break time is built into the duration. |
+| Preview features | "Most questions cover features that are general availability (GA). The exam may contain questions on Preview features if those features are commonly used." |
+| Sandbox | `https://aka.ms/examdemo`. The secure browser is not enabled in the sandbox. |
+| Practice assessment | A free official AB-900 Practice Assessment is live on Microsoft Learn |
 
-**The Copilot readiness workflow using SAM:**
+> **Renewal trap worth naming out loud.** The AB-900 study guide's own boilerplate renewal row says "Microsoft associate, expert, and specialty certifications expire annually", which learners routinely misread as applying to AB-900. It does not. Fundamentals certifications do not expire.
 
-Microsoft recommends a six-step approach to using SAM before and after enabling Copilot:
-
-1. Reduce accidental oversharing with SharePoint sharing settings (built-in, no SAM required)
-2. Ensure all sites have valid owners — use Site Ownership Policy
-3. Clean up unused sites — use Inactive Sites Policy
-4. Identify sites with potentially overshared content — use Data Access Governance Reports
-5. Control access to content — use RAC (changes permissions) or RCD (blocks Copilot discovery without changing permissions)
-6. Take proactive measures on business-critical sites — apply RAC proactively at site creation
-
-**RCD vs. RAC — the most important distinction for AB-900:**
-
-| | Restricted Content Discovery (RCD) | Restricted Access Control (RAC) |
-|---|---|---|
-| Changes file permissions? | **No** | **Yes** |
-| Blocks Copilot from surfacing content? | **Yes** | **Yes** (because users lose access) |
-| Blocks org-wide search? | Yes | Yes (because users lose access) |
-| Users who already have permissions can still access directly? | **Yes** | **No** |
-| Best used when | Permissions are correct but you want to exclude from Copilot/search temporarily | Access itself is too broad and needs restriction |
-
-### Admin controls
-
-**Prerequisites:**
-- SharePoint Administrator role to access SharePoint admin center
-- At least one M365 Copilot license assigned in the tenant (to access SAM features included with Copilot), OR a standalone SAM Plan 1 license purchased
-
-**Portal navigation:**
-```
-SharePoint admin center (admin.sharepoint.com)
-  └── Reports
-        └── Data access governance        (Oversharing reports: EEEU, sharing links, site permissions)
-  └── Policies
-        └── Site lifecycle management     (Inactive sites policy)
-        └── Site ownership policy
-        └── Restricted access control     (RAC policies)
-        └── Restricted content discovery  (RCD policies)
-  └── Content services
-        └── Content management assessment (Copilot readiness hub)
-```
-
-**Licensing detail for AB-900:**
-- SAM is included with **Microsoft 365 Copilot** license (WW, GCC, GCC-H, DoD variants)
-- The one SAM feature **not** included with M365 Copilot licenses: **Restricted Site Creation**
-- Organizations without any Copilot licenses can purchase **SharePoint Advanced Management Plan 1** as a standalone per-user add-on
-- The licensing model is per-user for the standalone add-on; external users do not require a license
-
-### Key distinctions
-
-- **SAM is not the same as the standard SharePoint admin center.** Many SharePoint admins are familiar with basic sharing settings and site management. SAM adds a governance layer with automated policies, AI insights, delegation workflows, and Copilot-specific controls that are not available in base SharePoint administration.
-- **RCD does not change permissions; RAC does.** This is the most tested SAM distinction on AB-900. RCD is the "soft" Copilot exclusion; RAC is the "hard" access restriction.
-- **SAM is included with M365 Copilot — it is not a separate purchase for Copilot customers.** A common mistake is to treat SAM as always requiring an add-on purchase. If the tenant has M365 Copilot licenses, SAM features for Copilot deployment are already available to SharePoint admins.
-- **SAM does not replace DSPM for AI.** They serve complementary roles: SAM handles SharePoint-level access governance (permissions, sharing, site lifecycle). DSPM for AI handles cross-platform AI activity monitoring, sensitive data detection in prompts, and policy creation across Purview solutions.
-- **Restricted SharePoint Search** (a separate feature allowing admins to temporarily limit Copilot search to a specific list of approved sites) is a related but distinct control from RCD — it limits what sites Copilot can search across the entire tenant, whereas RCD excludes specific individual sites.
-
-### Exam scenario examples
-
-**Scenario A:** Before enabling Microsoft 365 Copilot for all users, a Contoso SharePoint admin wants to prevent Copilot from surfacing content from the company's HR and Legal SharePoint sites while the permissions audit is being completed — but does not want to remove current user access during the audit. Which SAM feature should they use?
-
-*Answer:* Restricted Content Discovery (RCD). RCD prevents the HR and Legal sites from appearing in Copilot results and org-wide search, without changing who has file-level access to those sites. Users who currently have permissions can still navigate directly to the sites. Once the permissions audit is complete and access is corrected, RCD can be removed.
-
-**Scenario B:** A Contoso admin reviews the Data Access Governance report and finds 15 sites that are sharing content with "Everyone Except External Users." The admin wants site owners to review and remediate this. What is the correct SAM-based action?
-
-*Answer:* Use the **Site Access Review** feature to delegate the review to site owners. The admin initiates a site access review from the Data Access Governance report, which sends email notifications to the identified site owners, prompting them to review the sharing configuration and confirm whether the access is appropriate or take corrective action.
-
-**Scenario C:** A company is evaluating whether to purchase SharePoint Advanced Management. They already have Microsoft 365 Copilot licenses assigned to 500 of their 1,000 employees. Do they need to purchase SAM separately?
-
-*Answer:* No, for the Copilot-licensed users. Because the tenant has at least one user with an M365 Copilot license, SharePoint administrators automatically gain access to the SAM features required for Copilot deployment — at no additional cost. If the company also wants SAM features for the 500 non-Copilot users, or if they want the Restricted Site Creation feature (not included with Copilot), they would need to purchase standalone SAM Plan 1 licenses for those users.
-
-### Quick-reference summary
-
-- SAM is **included with M365 Copilot licenses** (at least one assigned user unlocks SAM for SharePoint admins); standalone SAM Plan 1 is available for organizations without Copilot
-- **RCD** blocks Copilot from surfacing a site's content without changing permissions — the "soft" interim control
-- **RAC** restricts actual site access to a security group — the "hard" permission change
-- **Data Access Governance Reports** identify overshared sites by type: EEEU, sharing links, site permissions — the starting point for Copilot readiness
-- Copilot grounds responses in content the user can access — **oversharing is a direct AI data exposure risk**, not just a file management concern
-
-> **Exam Traps**
->
-> - "SAM must always be purchased as an add-on" — FALSE. It is included with M365 Copilot licenses. Only organizations without any Copilot licenses need the standalone purchase.
-> - "RCD removes user access to a site" — FALSE. RCD only prevents the site from appearing in Copilot and org-wide search. Users with existing permissions can still access the site directly.
-> - "SAM features are available to all admin roles" — FALSE. SAM features are accessible to the **SharePoint Administrator** role. Compliance administrators access oversharing insights through DSPM for AI, not the SharePoint admin center directly.
-> - "SAM replaces DSPM for AI" — FALSE. They are complementary: SAM handles SharePoint-level access governance; DSPM for AI handles Purview-level AI activity monitoring and policy creation.
-> - "Restricted Site Creation is included with M365 Copilot licenses" — FALSE. This is the one SAM feature explicitly excluded from the M365 Copilot license bundle.
+> **MS-900 is gone.** MS-900 (Microsoft 365 Fundamentals) retired March 31, 2026. AB-900 is its successor Fundamentals credential in the Microsoft 365 space. Do not present MS-900 as a currently available alternative.
 
 ---
 
-## Cross-Topic Exam Traps Summary
+## 2. DSPM: three entries in the Purview portal now
 
-These are the most common cross-topic confusions that experienced M365 admins make on AB-900:
+### What changed
+
+Earlier course materials asserted, as an authoritative rule, that DSPM for AI is reached at `purview.microsoft.com > Solutions > DSPM for AI (classic)`. That path now points to the **legacy** experience. The **new unified Data Security Posture Management (DSPM)** reached general availability in **May 2026** and is the current front door.
+
+A learner opening **purview.microsoft.com > Solutions** today sees **three** DSPM entries:
+
+| Entry | What it is |
+|---|---|
+| **DSPM** (no qualifier) | The new unified experience. GA May 2026. Microsoft states most new features will be added to this version only. |
+| **DSPM for AI (classic)** | The previous AI-focused experience. Still a current, accurate UI label. **This is the wording the AB-900 objective uses.** |
+| **Data Security Posture Management (classic)** | The previous general data security posture experience. |
+
+Microsoft Learn instructs administrators to sign in to the Microsoft Purview portal and go to **Solutions > DSPM**, and warns explicitly not to confuse it with the previous versions, which are now named **Data Security Posture Management (classic)** and **DSPM for AI (classic)**. Microsoft also states that DSPM for AI and DSPM "have converged into a single, central solution."
+
+### How to teach this without getting it wrong on stage
+
+The AB-900 objective bullet still says **Microsoft Purview Data Security Posture Management (DSPM) for AI**, and a later bullet says "Discover and manage AI activity by using **DSPM for AI**". Answer exam items with the classic wording. In a live portal demo, open the new unified **DSPM** as the current front door and name the two classic entries so nobody is surprised by what they see.
+
+<!-- VERIFY: Microsoft has published no retirement date for the DSPM for AI (classic) experience. Do NOT state a classic sunset date on stage. -->
+
+### New unified DSPM key pages
+
+**Posture** (dashboard with 30-day trending), **Objectives** (data security objectives such as "Prevent data exposure in Microsoft 365 Copilot and Microsoft Copilot interactions" and "Prevent oversharing of sensitive data"), **AI observability** (inventory of AI apps and agents including Microsoft Agent 365, with activity in the last 30 days), **Asset explorer**, **Reports**, and **Setup tasks**.
+
+### Old-to-new navigation mapping
+
+Use this when a learner asks where their DSPM for AI page went.
+
+| Former location | New location in unified DSPM |
+|---|---|
+| Setup tasks | DSPM > **Getting Started**, or DSPM > Actions > Setup tasks |
+| Recommendations for AI apps | DSPM > **Actions > Remediation actions** |
+| Microsoft 365 Copilot overview page | DSPM > **Reports > Microsoft 365 Copilot** |
+| Policies for AI apps | DSPM > **Reports > Policies with AI workloads** |
+| Apps and agents | DSPM > **Discover > Apps and agents** |
+| Activity explorer | DSPM > **Discover > Activity explorer > AI activities tab** |
+| Data risk assessments | DSPM > **Discover > Data risk assessments** |
+
+**Coverage gap worth naming:** the unified DSPM's **Discover > Apps and agents** dashboard does **NOT** include Agent 365 agents. Microsoft directs admins to the **AI observability** page for Agent 365 coverage.
+
+### What still holds from the earlier material
+
+- The **weekly default data risk assessment** for the **top 100 SharePoint sites** by usage runs automatically with no admin configuration. This remains true.
+- Allow at least **24 hours** after activating one-click policies for data to populate.
+- Custom data risk assessments are in **preview**.
+- **Access roles:** Microsoft Entra **Compliance Administrator**, Microsoft Entra **Global Administrator**, or the Microsoft Purview **Compliance Administrator** role group. DSPM (classic) additionally requires **Microsoft 365 E5** or the **Microsoft Purview Suite**.
+- To view prompt and response **content** in activity explorer drill-down, the admin must be a member of the Microsoft Purview **Content Explorer Content Viewer** role group.
+
+### Purview's three AI app category names as they appear in the UI
+
+- **Copilot experiences and agents** -- Microsoft 365 Copilot, Security Copilot, Copilot in Fabric, Copilot Studio
+- **Enterprise AI apps** -- Microsoft Foundry, Entra-registered AI apps, Anthropic Claude Enterprise, ChatGPT Enterprise
+- **Other AI apps** -- browser-detected apps categorized as Generative AI in the Defender for Cloud Apps catalog, such as ChatGPT, Google Gemini, consumer Microsoft Copilot, DeepSeek
+
+### Named one-click policies
+
+"Secure interactions from enterprise apps", "Secure data in Azure AI apps and agents", "Detect sensitive info added to AI sites", "Detect when users visit AI sites", "Detect sensitive info shared in AI prompts in Edge", "Detect sensitive info shared with AI via network", "Control Unethical Behavior in AI" (remediated in Communication Compliance), and "Detect risky AI usage" (remediated in Insider Risk Management).
+
+> **Exam Traps**
+>
+> - The classic label is what the **objective** says; the unified DSPM is what the **portal** shows first. Both statements are true at the same time.
+> - The default assessment is automatic and weekly. Exam items may try to make you think an admin must manually run or schedule it.
+> - DSPM requires **Compliance Administrator** permissions, not necessarily Global Administrator. An admin with only the SharePoint Administrator role cannot access it.
+> - Monitoring prompts sent to third-party AI sites requires **device onboarding**, not just Purview licensing.
+> - "AI hub" is retired terminology. The Copilot usage report FAQ reads "Data Security Posture Management for AI (previously called AI Hub)."
+
+---
+
+## 3. Copilot Credits replaced the message as the billing unit
+
+### This is the headline correction in this document
+
+Earlier versions of this material stated that pay-as-you-go usage is billed through "the Copilot Studio **message** meter at **$0.01 per message**". **The unit noun is stale.** Microsoft Learn now states plainly: "Copilot Credits are the unit that measures agent usage" and "Copilot Credits are the unit of consumption in Microsoft 365 Copilot Chat and SharePoint agents for AI interactions." The pay-as-you-go rate is **$0.01 per Copilot Credit**.
+
+**The dollar figure did not change. The unit did.** That distinction matters commercially: a single complex Copilot Chat or SharePoint agent prompt can consume **12 credits ($0.12)**, not 1 message ($0.01).
+
+### The documentation conflict you must handle carefully on stage
+
+This is not a clean rename. Both vocabularies are live in current Microsoft documentation:
+
+| Source | What it says |
+|---|---|
+| Copilot Studio billing-rates page | Copilot Credits |
+| Power Platform pay-as-you-go meters page | "the total number of Copilot credits consumed by agents", billed "$0.01 per credit" |
+| Microsoft 365 admin center report | Literally named **Credits** |
+| Microsoft 365 Copilot pay-as-you-go **Meters** page | **NOT updated.** Still shows the meter as "Copilot Studio", describes "a billable Copilot Studio message", and bills "$0.01 per message". |
+| Azure invoice | The meter name is still **Copilot Studio** |
+
+**Safe on-stage phrasing:** the unit is the **Copilot Credit at $0.01 per credit**; the Azure meter is still named **Copilot Studio**; and some Learn pages still say "per message". Do **NOT** assert that 1 message equals 1 credit as a universal rule, because consumption is per-feature and ranges from 1 to 100 credits.
+
+> **Note for anyone maintaining this repo's CI.** The validation rule that flags "per message" as retired terminology is only partially right and will produce false positives against current Microsoft documentation. The Meters page genuinely still uses that phrasing.
+
+**The Azure public pricing page for Copilot Studio no longer displays a numeric per-credit figure.** It shows "Price per Copilot Credit: $-" and directs customers to the Azure pricing calculator or a sales specialist. Cite the $0.01 figure from Microsoft Learn, not from the Azure pricing page.
+
+### Consumption rates
+
+| Action | Credits |
+|---|---|
+| Classic answer | 1 |
+| Generative answer | 2 |
+| Agent action | 5 |
+| Tenant graph grounding for messages | 10 |
+| Agent flow actions | 13 per 100 actions |
+| Content processing tools | 8 per page |
+| Text and generative AI tools, basic | 1 per 10 responses (0.1 per 1K tokens) |
+| Text and generative AI tools, standard | 15 per 10 responses (1.5 per 1K tokens) |
+| Text and generative AI tools, premium | 100 per 10 responses (10 per 1K tokens) |
+| Classic Voice | 10 per minute |
+| GenAI Voice | 35 per minute |
+| Premium GenAI Voice | 75 per minute |
+
+**Users who ARE licensed with Microsoft 365 Copilot incur "No charge"** for classic answers, generative answers, agent actions, tenant graph grounding, agent flow actions, and AI tools in employee-facing (B2E) scenarios, subject to fair usage limits. **Pay-as-you-go credits are consumed by UNLICENSED users.**
+
+### Three purchase models
+
+| Model | Detail |
+|---|---|
+| **Pay-as-you-go** | $0.01 per Copilot Credit, billed to a linked Azure subscription. Up to **50** billing policies per tenant. |
+| **Prepaid capacity packs** | **$200.00 per pack per month for 25,000 Copilot Credits**. Replenished at the start of every monthly billing period and consumed **FIRST**, before pay-as-you-go billing applies. "Message packs" is the retired name. |
+| **Copilot Credit Pre-Purchase Plan** | Bought in the Azure portal under **Reservations**. Uses Copilot Credit Commit Units (CCCUs) over a one-year term at tiered discounts. **Cancellations and exchanges are NOT supported.** |
+
+**A newer billing construct arrived in 2026: Copilot credit policies**, which connect prepaid capacity pack credits to a specific set of users **without requiring an Azure subscription**. A tenant can create up to **10** Copilot credit policies. **They are currently available ONLY for Microsoft 365 Copilot Chat.** For SharePoint agents, administrators must continue using pay-as-you-go billing.
+
+> **Three different limits, three different things.** 50 pay-as-you-go billing policies per tenant. 10 Copilot credit policies per tenant. 10 SharePoint agent billing policies. Do not conflate them.
+
+**Overage enforcement:** Copilot Studio prepaid capacity triggers enforcement at **125%** of prepaid capacity, at which point custom agents are disabled until capacity is increased or reset. Users then see "There is a billing issue" or "This agent is currently unavailable. It has reached its usage limit."
+
+### The admin path is unchanged and still correct
+
+**admin.microsoft.com > Copilot > Billing & usage.** The **Billing policies** tab holds the policies; the **Pay-as-you-go services** tab connects them to services.
+
+The warning against the Billing node for Copilot also still holds. That page covers Microsoft 365 Backup, Microsoft 365 SharePoint Storage, and High Volume Email; for Copilot it only surfaces a "Go to Copilot Billing & usage" redirect link. Microsoft states explicitly: "Manage Copilot services in Copilot > Billing & usage."
+
+**Second route to the same destination:** Copilot > Settings > User access > Copilot pay-as-you-go billing.
+
+**Prerequisites:** Billing Administrator, AI Administrator, or Global Administrator role; an Azure subscription in the same tenant as Microsoft 365; an Azure resource group in that subscription; **Owner or Contributor** rights to both; and the tenant must have at least one SharePoint license or a license that includes SharePoint.
+
+**Three services are available for pay-as-you-go:** Microsoft 365 Copilot Chat, SharePoint agents, and the **Microsoft Copilot Retrieval API** (in preview). The Retrieval API is billed **per API call at $0.10**, not per credit.
+
+### Billing has bifurcated
+
+**Copilot Cowork** and the **Work IQ API** are **NOT** managed through the Copilot node pay-as-you-go flow. Microsoft explicitly redirects those to a **Cost Management dashboard** in the Microsoft admin center with **Overview** and **Consumption** tabs, supporting prepaid credits, pay-as-you-go, or existing capacity.
+
+**Microsoft 365 Copilot Cowork reached general availability in June 2026** for all Microsoft 365 Copilot tenants worldwide in tier-1 languages. It exposes a model selector including **Claude Opus 4.8**, **Claude Sonnet 5**, and **Claude Fable 5 (preview)**. Fable 5 is **off by default**; an admin turns it on in the Microsoft 365 admin center under Copilot settings. It requires data retention by the model provider, and Cowork shows a banner while it is selected.
+
+### SharePoint pay-as-you-go, called out because the objective names it
+
+The Domain 3 bullet reads "Compare Copilot monthly license model to pay-as-you-go, **including SharePoint**." Cover this specifically.
+
+- SharePoint agent usage **by unlicensed users** is billed as **Generative answer (2)** plus **Tenant graph grounding (10)**. Because SharePoint agents are always grounded in the tenant graph, Microsoft states each interaction uses **12 messages (10 + 2)** to respond to a single complex prompt.
+- Billing applies **only** when a user **WITHOUT** a Microsoft 365 Copilot license uses a SharePoint agent.
+- **Setup roles:** SharePoint administrator plus **Owner or Contributor** on the Azure subscription and resource group.
+- **Policy limit:** up to **10** billing policies, each assigned **one** security group. Only users in the assigned security group have access to SharePoint agents.
+- **Migration trap:** policies previously configured under **Org settings > Pay-as-you-go services** must be disconnected there (select SharePoint agents, then **Disconnect previous billing**) before a new Copilot-node billing policy can be linked.
+
+### The budget nuance that has not changed
+
+Budget limits **trigger email notifications only**. Microsoft states that the system does **NOT** enforce the budget or prevent the organization from exceeding it, and that usage can continue uninterrupted even after the budget is surpassed. Default alert threshold is **100%**, and alerts can take up to **24 hours** to arrive.
+
+> **Exam Traps**
+>
+> - "$0.01 per message" is **numerically** right and **linguistically** stale. The unit is the Copilot Credit.
+> - "Creating a billing policy enables PAYG" is FALSE. The policy must also be connected to a Copilot service.
+> - "Budget limits prevent overspending" is FALSE. They notify only.
+> - "PAYG provides full Microsoft 365 Copilot" is FALSE. PAYG covers Copilot Chat, SharePoint agents, and the Retrieval API preview, not the full in-app Copilot suite.
+> - Licensed Copilot users incur **no charge** for the credit-consuming actions in B2E scenarios. Credits are consumed by **unlicensed** users.
+
+---
+
+## 4. Microsoft 365 E7 and Microsoft Agent 365
+
+Both went generally available on **May 1, 2026**. Any licensing slide that stops at E5 is now incomplete.
+
+### Microsoft 365 E7 (the "Frontier Suite")
+
+**E7 = Microsoft 365 E5 + Microsoft 365 Copilot + Microsoft Entra Suite + Agent 365** in a single SKU. Microsoft Learn states E7 is a **strict superset of E5**: it only adds capabilities, it never removes them. Reported list price is **$99 per user per month**.
+
+**E7 customers do NOT buy the Copilot add-on separately.** E7 is also now an eligible license for Microsoft 365 Copilot Chat, listed alongside E3 and E5.
+
+### Microsoft Agent 365
+
+Documented as **the control plane for AI agents**, letting organizations deploy, govern, and manage all agents at scale regardless of where they were built or acquired. Licensed **per user** at general availability. Reported standalone list price is **$15 per user per month**; it is also included in E7.
+
+**Agents themselves do not require their own Agent 365 license.** All agents managed or owned by a licensed user are covered under that user's Agent 365 or Microsoft 365 E7 license.
+
+**Frontier licensing differs from GA.** In the Frontier program, licenses are assigned **per agent instance** and are required before an agent instance can be created. Frontier tenants confirm enrollment by checking for 25 active "Microsoft 365 Frontier for AI Teammates" licenses under Billing > Licenses. There is **NO** Service Level Agreement associated with Agent 365 Frontier, and Microsoft states Frontier should not be used for product evaluations, recommending Agent 365 trials instead.
+
+**Licensing gates on agent visibility:** a Microsoft E7 or Agent 365 license is required to see the **Risks** column in the Agent Registry, an agent's **Security** tab details, and an agent's **Activity** tab details.
+
+**Extending Microsoft Entra security features to agents** requires E7, or E5 paired with an Agent 365 license. Standalone paths for customers without E5 or E7, all still requiring an Agent 365 license: Conditional Access for agents needs Entra ID P1, ID Protection for agents needs Entra ID P2, and ID Governance for agents needs Entra ID P1.
+
+### Microsoft Entra Agent ID
+
+Now a named product within Microsoft Entra providing the platform for creating and managing agent identities and agent identity blueprints. It is available for **all** Microsoft Entra customers. Automatic creation of Entra Agent IDs per Copilot Studio agent is in **preview**. The Entra ID node in the Microsoft Entra admin center now includes an **Agents** area documented as Microsoft Entra Agent ID.
+
+### SMB pricing that changed July 1, 2026
+
+| SKU | Price | Notes |
+|---|---|---|
+| Microsoft 365 Copilot (enterprise add-on) | $30.00 per user per month (annual billing) | Requires a qualifying subscription |
+| Microsoft 365 Copilot Business | List 21.00 USD; **18 USD** under a 15% promotion extended through December 2026, no license minimum (1-300) | **300-seat MAXIMUM**, annual subscription with annual billing |
+| Microsoft 365 Business Standard with Copilot | 23.50 USD per user per month | New GA July 1, 2026; 300-license maximum |
+| Microsoft 365 Business Premium with Copilot | 32 USD per user per month | New GA July 1, 2026; 300-license maximum |
+
+> **The 300-seat number reversed direction and this is the single most dangerous stale licensing fact.** Microsoft removed the original **300-seat MINIMUM** for Copilot commercial plans in **January 2024**, and also removed the Microsoft 365 prerequisite so Office 365 E3 and E5 customers became eligible. **There is no seat minimum today.** The only surviving 300 is a **MAXIMUM** on Copilot Business and the Business-with-Copilot SKUs.
+
+**Copilot Business capability:** Microsoft states the Business add-on "delivers the same capabilities as the Microsoft 365 Copilot offering." The difference is price point and eligibility, **not** feature set. Business plans are sold **only** as an annual commitment; there is **NO** month-to-month purchasing agreement. Existing enterprise add-on customers **cannot** switch to Copilot Business until their annual commitment ends, and licenses do **NOT** auto-convert at renewal.
+
+---
+
+## 5. The Agents workload moved to a top-level admin center node
+
+### The path correction
+
+**Correct: admin.microsoft.com > Agents > All agents > Requests**
+
+Stale on both counts: "admin.microsoft.com > Copilot > Agents > Requested agents tab". The Agents workload is a **top-level node** in the Microsoft 365 admin center left navigation, not nested under Copilot, and the tab is named **Requests**, not "Requested agents". One legacy sentence in the agents admin guide still says "Requested agents tab", but its own numbered procedure directly below instructs "Select Agents > All agents > Requests".
+
+**"Manage agent requests in Microsoft 365 admin center" is generally available**, release-notes dated **July 15, 2026**. "Submit agent to Agent Store from Agent Builder" is also GA as of July 15, 2026. "Automate agent lifecycle management with policy-based rules" is GA as of June 2, 2026.
+
+### The four sub-pages
+
+**Agents > Overview** (dashboard with hero metrics and governance action cards), **Agents > All agents** (containing the **Registry** and **Requests** tabs), **Agents > Tools** (MCP server registration and approval), and **Agents > Settings** (agent policy configuration).
+
+**Hero metrics on Overview:** Agent registry (total agents in the catalog), Active users (unique users who sent a prompt and received a response in the last 30 days), Agent run-time (total hours worked by agents in the last 30 days), and Registry sync (external connected platforms scanned).
+
+**Four governance action cards:** Pending Requests for Agents, Agents at risk, Agents without owners, and Agents with exceptions.
+
+### Three request states
+
+| State | Admin action button |
+|---|---|
+| **Pending review** | **Publish to store** |
+| **Pending update** | **Update in store**. Until approved, users continue to access the **previous version**. |
+| **Pending activate** | Approve and activate, or reject; scope the audience to specific users, groups, or everyone |
+
+**Reject submission** is available from the ellipses to the right of the agent name. A fourth state, **"Allow user to install"**, appears when a user requests a **blocked Microsoft-built agent**; the admin must first select **Unblock agent**, then Approve or Reject.
+
+### Who can actually approve
+
+Only **AI Administrator** and **Global Administrator** can perform governance actions such as approving agent requests or assigning ownership. **Global Reader, AI Reader, Security Administrator, Security Reader, Reports Reader, and User Experience Success Manager** can view agent registry information but **cannot** take administrative action.
+
+### Agent Registry
+
+**admin.microsoft.com > Agents > All agents > Registry.** Three summary tiles: **Total agents**, **Agents without owners**, and **Unmanaged agents** (created or managed outside Agent 365, without its risk protection and observability).
+
+**Four publisher-based types:** Microsoft agents, External partner-built agents, Published by your org (LOB), and Shared by creator.
+
+**Agent risk types and severities:** Shadow agent (Critical), No owner assigned (Critical), Excessive permissions (Critical), Security misconfiguration (High), Prompt injection (High), Sensitive data access (High), Conditional access violation (High), Pending approval (Medium), Operational exceptions (Medium), Compliance/retention gap (Medium). Signals aggregate from Microsoft Entra, Microsoft Defender, and Microsoft Purview.
+
+**Pinning:** admins can pin a maximum of **three** agents for end users. End users cannot unpin administrator-pinned or Microsoft-pinned agents. It can take up to **six hours** for a pin to appear. An agent must be deployed and not blocked before it can be pinned.
+
+**Graph API access is in preview:** `GET packages` and `GET` package details, working with the AI Admin role.
+
+### Agents > Settings, five areas
+
+1. **Agent management rules** -- exactly two rule-based bulk actions today: **Install Microsoft agents** and **Reassign ownerless agents created with Agent Builder to manager** (per the Microsoft Entra ID hierarchy). The reassignment rule works **ONLY** for Agent Builder agents.
+2. **Allowed agent types** -- three toggles. **Exam trap:** agents built by Microsoft remain **VISIBLE** to users even when that setting is disabled; users simply cannot install them.
+3. **Security templates** (policy templates)
+4. **Sharing** -- All users, No users, Specific users. **Exam trap:** only Agent Builder agents are governed by the Sharing control, and under **No users** users can **STILL** share directly with specific individuals.
+5. **User access** -- All users (default), No users, Specific users/groups
+
+**Alternate legacy path that still exists:** Copilot > Settings > Data access > Agents, with a "Manage all agents" link that jumps to Agents > All agents. Both are current; **Agents > Settings** is the fuller surface.
+
+### Block versus Remove
+
+| Action | Effect |
+|---|---|
+| **Block** | Prevents any user in the tenant from accessing the agent **AND removes it from users who already installed it** |
+| **Uninstall / Remove** | Takes the agent out of inventory, but it **can be re-added** from the store. Applies only to first-party or external agents; admins can only remove shared agents and custom LOB agents. |
+
+**Blocking scope differs by build tool.** Blocking an **Agent Builder or Copilot Studio** agent affects Microsoft 365 Copilot **AND** other host products such as Outlook and Teams. Blocking a **SharePoint or Microsoft Foundry** agent affects only **Microsoft 365 Copilot Chat**. SharePoint documentation adds that blocking an agent affects only its availability in Copilot Chat, and does not yet apply to OneDrive, SharePoint, or Teams.
+
+### Availability and installation are independent
+
+On the **Users** tab, **Installed for** controls which users automatically have the agent pre-installed (Just me, Entire organization, Specific users/groups), and **Available to** controls which users can install and use it (No users can install, All users can install, Specific users/groups can install). Installing to the entire organization installs it **regardless** of the availability scope.
+
+### Two agent usage reports, different status
+
+Both at **admin.microsoft.com > Reports > Usage > Microsoft 365 Copilot > Agents**.
+
+| Report | Status | Coverage | Latency |
+|---|---|---|---|
+| Microsoft 365 Copilot **Agent** usage report (original) | **GA** | **EXCLUDES** SharePoint agents and agents built by Microsoft and Microsoft partners | Up to 72 hours |
+| Microsoft 365 Copilot **Agents** usage report (new) | **PREVIEW** | Declarative, SharePoint, and custom engine agents, including agents built by the org, Microsoft, and Microsoft partners | Within an hour |
+
+### MCP tool governance is a separate queue
+
+After a developer registers a tool such as a remote MCP server, an admin reviews it at **Agents > Tools > Requests**, then selects **Approve** or **Reject**. Only **AI Administrator** and **Global Administrator** meet both requirements (page access plus tenant-wide consent).
+
+### Division of labor with the Power Platform admin center
+
+Agents built with **Agent Builder** and **SharePoint** are managed primarily through the Microsoft 365 admin center. Agents built with **Copilot Studio** are managed through the **Power Platform admin center** with finer-grained controls, and **still require Microsoft 365 admin center approval** to reach the tenant-wide Microsoft 365 Copilot or Teams catalog.
+
+**Copilot Studio controls that live ONLY in the Power Platform admin center:** DLP policies to block publishing through specific channels, **Editor** and **Viewer** sharing roles, and block-or-limit-sharing rules at the managed environment or environment group level. **Power Platform inventory** includes all agents created in Copilot Studio **AND** all agents created in Agent Builder.
+
+---
+
+## 6. Researcher and Analyst: the governance mechanism restated
+
+### What was half right before
+
+Earlier materials said Researcher and Analyst "require a separate administrative block" and are "NOT governed by the general agent on/off toggle". **The conclusion is correct. The mechanism was wrong.**
+
+Microsoft's current wording is stronger and different: **"Researcher and Analyst are part of the core Copilot chat experience and will not fall under any agent-related settings."** They remain accessible in Microsoft 365 Copilot Chat under **Tools** even when Copilot agents are disabled for some or all users. They are not agents that escape a toggle; they are **core chat Tools** that sit outside agent settings entirely.
+
+Say it this way on stage: *they are not exempt from the agent toggle, they are outside the agent settings surface altogether.*
+
+### Status and licensing
+
+**Both reached general availability on June 2, 2025.** They debuted in April 2025 via the Frontier program before GA. They are GA, not preview, as of July 2026. Both **require a Microsoft 365 Copilot license**; Microsoft deployed them to existing licensed users and there is **NO** separate add-on license. They are listed as "Advanced Agents" that a Copilot license unlocks beyond Copilot Chat.
+
+They are the **only** agents Microsoft currently deploys via the "Microsoft-installed agents and features" method: preinstalled and pre-pinned for all licensed users. End users cannot remove or unpin Researcher.
+
+### How to actually restrict them
+
+Block the individual agent tenant-wide: **admin.microsoft.com > Agents > All agents > select the agent > Block**. The **Edit users** panel is **disabled** for Researcher and Analyst, so granular assignment to specific users or groups is **not possible**. Granular assignment controls are grayed out for Microsoft-installed agents.
+
+### What each one is for
+
+**Researcher** performs deep, multi-step research combining Microsoft Graph work data, **Microsoft 365 Copilot connectors**, and the **Bing index** for web data. Documented usage limit: **25 queries per user per month**.
+
+**Analyst** performs advanced data analysis using chain-of-thought reasoning and is **better suited than Researcher for Microsoft Excel tasks**.
+
+### Web control and Computer Use
+
+Researcher adheres to the tenant-level **Allow web search in Copilot** toggle. If web search is disabled at the tenant level, Researcher will not use any web data. There is **NO** granular setting to allow or block specific websites for standard Researcher.
+
+**Researcher with Computer Use** is a separately governed extension that lets Researcher interact with public, gated, and interactive web content through a **Windows 365**-backed virtual computer. Admins configure it on a dedicated **Computer use** tab at **Agents > Researcher > Computer use**, which exposes exactly three policies:
+
+1. Allow Researcher with Computer Use to perform actions on behalf of users (all users, specific users or groups only, no users)
+2. Allow Researcher to access work data
+3. Choose which websites are allowed for Computer Use (All websites, Allow specific URLs or domains only, Exclude specific URLs or domains)
+
+Web search is required for Computer use. Admins can also connect up to **10** additional agents to Researcher via the **Connected Agents** tab; agents added by the maker cannot be removed by admins.
+
+### Monitoring limits
+
+The Researcher FAQ states there is **NO** existing reporting tool for Copilot agents like Researcher and Analyst, and that by default the **content** of Researcher sessions is not accessible to admins or compliance tools. Admins can see usage metrics but not conversation content. The only exception is when a user explicitly submits feedback including session data.
+
+> **Exam Traps**
+>
+> - "Disabling Copilot agents blocks Researcher" is FALSE, and the reason matters: they do not fall under agent-related settings at all.
+> - "Admins can assign Researcher to specific users" is FALSE. Edit users is disabled; it is tenant-wide available or tenant-wide blocked.
+> - Researcher respects existing Microsoft 365 permissions and cannot surface data a user does not already have access to.
+> - Researcher is for research and synthesis across mixed sources. Analyst is for analysis and computation, and Microsoft explicitly names Analyst as better for Excel tasks.
+
+---
+
+## 7. Work IQ is an umbrella, not a peer of Microsoft Graph
+
+**Work IQ is a real, current, first-party Microsoft term**, not a garbled name. Microsoft Learn defines it as **"the intelligence layer that personalizes Microsoft 365 Copilot for users and organizations"**, built atop foundation models from providers including **OpenAI and Anthropic**.
+
+### The architecture correction
+
+Earlier course diagrams presented Copilot architecture as "Microsoft Graph + Work IQ + LLMs (Azure OpenAI) + Orchestration Service", showing Work IQ as a **peer** of Microsoft Graph. That is wrong on two counts.
+
+**Work IQ is composed of three integrated layers:**
+
+| Layer | Contains |
+|---|---|
+| **Data** | Microsoft Graph tenant data plus Microsoft 365 Copilot connectors |
+| **Context** | The **semantic index** |
+| **Skills and tools** | Agent skills and tool invocation |
+
+So Microsoft Graph sits **inside** Work IQ's data layer, and the semantic index sits **inside** its context layer. Work IQ is an umbrella over both, not a sibling alongside them. Second, the models are from **multiple providers**, not Azure OpenAI alone.
+
+### Work IQ API and Work IQ MCP
+
+The **Work IQ API** is documented with endpoints for **A2A (agent-to-agent)**, a **remote MCP server**, and a **REST API**. Its usage is **independent of Microsoft 365 Copilot licensing** and is available through usage-based billing, with governance and cost management controls in the Microsoft 365 admin center.
+
+**Work IQ MCP is a PREVIEW feature.** It collapses hundreds of operations into **10 generic tools** (verbs such as fetch, create, update) providing access to Microsoft 365 mail, calendar, files, people, chat, and sites, and it **requires a Microsoft 365 Copilot license**.
+
+### The semantic index is still called the semantic index
+
+Microsoft describes it as a superset of content within Microsoft Graph plus ingested content from Copilot connectors, mapping organizational data into an advanced lexical and semantic index while respecting permission structures. No rename here.
+
+### Connectors: renamed, and now two models
+
+**Microsoft Graph connectors are now officially Microsoft 365 Copilot connectors.** Microsoft Learn states it directly: "You can use Microsoft 365 Copilot connectors (formerly Microsoft Graph connectors)". The underlying API is still called the Microsoft Graph connectors API.
+
+| Model | Behavior |
+|---|---|
+| **Synced connectors** | Ingest and index content into Microsoft Graph; **support semantic indexing** |
+| **Federated connectors** | Retrieve content in real time using Model Context Protocol with **no data movement** and **NO semantic indexing**. Read-only, labeled **early access preview**. |
+
+A **Amazon S3 connector** shipped in the March 10, 2026 release notes, letting Copilot reference structured documents stored there. Worth knowing as a factual matter about connector breadth.
+
+### Microsoft IQ in Copilot Studio (preview)
+
+Copilot Studio shipped a **new agent experience** in June 2026 as a production-ready preview, using an enhanced orchestration runtime and running alongside the classic experience. It introduces **Microsoft IQ**, reusable skills, and per-user memory.
+
+**Microsoft IQ (preview)** is a context layer in Copilot Studio comprising three sources: **Work IQ** (emails, chats, files, activity, routed through the Agent 365 MCP gateway via a single M365Copilot server), **Fabric IQ** (Microsoft Fabric business data and analytics), and **Foundry IQ** (preview, Azure AI Search-indexed knowledge bases).
+
+### Other Copilot Studio milestones in 2026
+
+| Capability | Status |
+|---|---|
+| Agent evaluations | **GA March 2026** |
+| Agent-to-agent (A2A) protocol | **GA April 2026** |
+| Computer use | **GA May 2026** |
+| Claude Sonnet 5 and GPT-5.5 Chat as primary agent models | **GA June 2026** |
+| Agent inventory schema for admins | May 2026 |
+
+**Model currency warning:** GPT-4o was retired for generative orchestration between October 27-31, 2025 and fully unavailable after November 26, 2025. Any 2025-era slide naming GPT-4o as the current default is stale.
+
+### Deprecations to know
+
+- After the end of **June 2026**, the **Copilot Studio for Teams app** can no longer be used to create classic chatbots. The app redirects makers to the Copilot Studio web app.
+- Starting **January 2026**, Copilot chat in model-driven apps in environments not enabled for Dynamics 365 apps is deprecated. Microsoft 365 Copilot is the replacement.
+- The **Copilot Studio Kit** is being renamed to **Copilot Agent Kit**. The July 2026 guidance hub update describes this as "the first phase of the rename".
+
+---
+
+## 8. eDiscovery unified, Content search relocated
+
+**All classic eDiscovery experiences retired on August 31, 2025**, including classic Content Search, classic eDiscovery (Standard), and classic eDiscovery (Premium). Legacy eDiscovery guidance now applies only to organizations hosted in Microsoft 365 operated by 21Vianet (China).
+
+**There is now ONE solution named eDiscovery.** The products "eDiscovery (Standard)" and "eDiscovery (Premium)" no longer exist as separate solutions. Capabilities split into **eDiscovery feature support** and **premium eDiscovery feature support** based on subscription, and Microsoft's own comparison table uses those two column headings.
+
+### Where the old words survive
+
+Warn learners about exactly two places, because they will see them:
+
+1. **Case settings** show a **Premium features** toggle labeled "eDiscovery (Premium)" and a **License** field whose values are "eDiscovery (Premium)" or "eDiscovery (Standard)".
+2. The **Cases dashboard Case type filter** offers Premium, Standard, User data search, and Content search.
+
+### The current Content search path
+
+**purview.microsoft.com > Solutions > eDiscovery > Content Search**
+
+All content searches are contained in a single system-generated eDiscovery case named **Content search**, created by default for all members of the eDiscovery Manager and Administrator role groups. The Content search case has the **same capability as any user-created case** -- you can create holds and review sets in it, depending on subscription. To limit access, use **Case settings** to add or remove members of the Content search case.
+
+The AB-900 objective bullet reads exactly: "Search for files and emails by using **Content search in Microsoft Purview eDiscovery**", confirming it is tested as a component **within** eDiscovery. Note the lowercase "s" in "Content search" as Microsoft writes it in the objective.
+
+### Renamed eDiscovery concepts
+
+| Old term | Current term |
+|---|---|
+| Collections | **Statistics** (in searches). Searches are also no longer immutable after results are added to a review set. |
+| Jobs | **Processes** |
+| Custodians as the primary organizing unit | The **case** is the primary organizing unit |
+| Separate reindexing step | **Advanced indexing** runs automatically ("just in time") during each search |
+
+### eDiscovery over Copilot data
+
+User prompts and responses are stored in the **user's mailbox**. Create a case, select the user's mailbox as the data source, and in the query builder select **Add condition > Type > Contains any of > Edit > "Copilot activity"**. That condition covers all Copilot and other AI application activity.
+
+---
+
+## 9. Data explorer replaced Content explorer as the exam answer
+
+The July 22, 2026 objective says "Identify sensitive information by using Microsoft Purview **Data Explorer**" -- **not** Content explorer. Microsoft introduced a new **Data explorer** and renamed the old one **Content Explorer (classic)**. They live under different solutions.
+
+| Tool | Path | Access roles |
+|---|---|---|
+| **Data explorer** (current answer) | purview.microsoft.com > Solutions > **Information Protection > Explorers > Data explorer** | **Data Explorer List viewer** (see item and location) and **Data Explorer Content viewer** (see item contents). **Independent, not cumulative.** |
+| **Content explorer (classic)** | purview.microsoft.com > Solutions > **Data Lifecycle Management > Explorers > Content explorer** | Content Explorer List viewer and Content Explorer Content viewer |
+
+**Content explorer (classic) latency:** counts can take up to **7 days** to update, and **14 days** for files in SharePoint.
+
+**Activity explorer** shows activities related to sensitive data and labels (label downgrades, external sharing, DLP logs, auto-labeling, Endpoint DLP). It offers about **50 individual filters** and predefined filter sets including "Endpoint DLP activities", "Sensitivity labels applied, changed, or removed", "Egress activities", "DLP policies that detected activities", "Network DLP activities", and "Protected Browser". Filter options are generated from the **first 500 records**.
+
+**Licensing:** data classification analytics (the Content and Activity Explorer interfaces) requires **E5/A5/G5**, but Content Explorer data **aggregation** continues for E3/A3/G3 tenants.
+
+---
+
+## 10. SharePoint oversharing: RSS retiring, RAC and RCD are the answer
+
+This is the subsection the July 22, 2026 change log flags as **Minor**, which makes it disproportionately likely to appear.
+
+> **RETIREMENT ALERT.** **Restricted SharePoint Search (RSS) is retiring. Starting July 31, 2026, new enablement is blocked.** Microsoft directs customers to **Restricted Content Discovery (RCD)** instead. Do **NOT** teach RSS as a current recommendation. Related constraint: if Restricted SharePoint Search is enabled in the tenant, SharePoint **cannot** be used as a knowledge source for a declarative agent.
+
+### The naming resolution
+
+Both "restricted access control" and "restricted site access" are current, and Microsoft uses them interchangeably in the same article. The SharePoint Advanced Management overview says "Use restricted access control (RAC)". The feature article opens: "Restricted site access control (also referred to as restricted access control or site access restriction)...". **The July 2026 objective bullet says "restricted access control".** Teach **RAC** as the primary term and tell learners the portal UI uses "Site-level access restriction" and "Restricted site access" wording.
+
+### The one-line distinction
+
+**RAC controls ACCESS.** **RCD controls DISCOVERABILITY.** RAC is enforcement; RCD is concealment.
+
+| | Restricted access control (RAC) | Restricted content discovery (RCD) |
+|---|---|---|
+| Changes who can access the site? | **Yes** | **No** |
+| Blocks org-wide search and Copilot? | Yes, because users lose access | Yes, by concealment |
+| Users who already have permissions can still open the site directly? | **No** | **Yes** |
+| Scope | SharePoint sites, up to **10 groups** per site | SharePoint sites only, **NOT** OneDrive sites |
+| Best used when | Access itself is too broad and must be restricted | Permissions are correct or under review, and you want the content out of Copilot and search temporarily |
+
+**RAC detail:** users not in the control group cannot access the site or its content **EVEN IF** they had prior permissions or a shared link. Group membership alone does not grant access -- a user needs **BOTH** the site or content permission **AND** membership in the RAC group.
+
+**RAC paths, two levels:**
+- **Tenant enablement:** SharePoint admin center > **Policies > Access control > Site-level access restriction > Allow access restriction > Save**. PowerShell: `Set-SPOTenant -EnableRestrictedAccessControl $true`. May take up to one hour.
+- **Per-site:** SharePoint admin center > **Sites > Active sites** > select the site > **Settings** tab > **Edit** in the **Restricted site access** section > select **Restrict SharePoint site access to only users in specified groups** > add groups > **Save**.
+
+**RCD detail:** prevents content from a site appearing in org-wide search and Copilot **UNLESS** a user recently interacted with the content. It **does NOT change permissions** and does **not** remove content from the Microsoft 365 search index. Users can still discover content they own or recently interacted with.
+
+**RCD path:** SharePoint admin center > **Sites > Active sites** > select a site > **Settings** tab > under **Restrict content discovery** select **On** > **Save**. A **Restricted** tag becomes visible on covered sites.
+
+**RCD limits:** SharePoint sites only, not OneDrive. Does not affect searches originating from site context, nor Microsoft 365 Feed and Recommendations. Microsoft cautions that excessive use degrades Copilot response completeness and relevance, and positions RCD as a **temporary governance control during permissions review**. Requires the organization to have a Microsoft 365 Copilot license.
+
+**RCD tooling:** `Get-SPOSite -Identity <site-url> | Select RestrictContentOrgWideSearch`; tenant-wide reporting with `Start-SPORestrictedContentDiscoverabilityReport` and `Get-SPORestrictedContentDiscoverabilityReport`. Enable, disable, and justification events are captured in Purview audit log activities.
+
+### Data Access Governance reports
+
+**Exact path:** SharePoint admin center > left pane expand **Reports** > **Data access governance**.
+
+| Group | Reports |
+|---|---|
+| **Snapshot reports** | "Site permissions across your organization" (marked Recommended), "Sensitivity label applied to files", and a "Site permissions for users" report |
+| **Activity reports** | "Sharing links" and "Shared with 'Everyone except external users'" (EEEU). Cover the **last 28 days**. |
+
+**Remediation from the reports:** use RAC to limit access to a specific group; review the **Change history** report to find recent permission changes that caused oversharing; use **Site access review** to delegate review to site owners; generate AI insights with **Get AI insights**.
+
+**Licensing nuance:** admins with **Microsoft 365 E5** CAN access DAG reporting **without** SharePoint Advanced Management, but they cannot view or use other SAM features, do not get snapshot reports or remedial actions, and their activity reports return only up to **10,000 sites**. Organizations without SAM must explicitly enable data collection first; reports become available 24 hours after enabling, data is stored 28 days, and collection pauses if no reports are generated for 3 months.
+
+**Two blockers:** DAG reports do not work if the tenant uses nonpseudonymized report data -- a Global Administrator must go to the **Reports** setting in the Microsoft 365 admin center and **CLEAR** "Display concealed user, group, and site names in all reports". DAG reports are also unavailable for Microsoft 365 operated by 21Vianet.
+
+### SharePoint Advanced Management licensing, precisely
+
+**The answer to "paid add-on or bundled?" is BOTH.**
+
+- SAM capabilities that support a **Microsoft 365 Copilot deployment** are unlocked when **at least one user** in the organization is assigned a Microsoft 365 Copilot license. That user does not need to be a SharePoint administrator.
+- Organizations with SharePoint K, P1, or P2 can purchase the **SharePoint Advanced Management Plan 1** add-on.
+- **Microsoft 365 E7** also includes it.
+- **The caveat:** some SAM features still require the paid Plan 1 add-on and are **NOT** unlocked by a Copilot license. Microsoft names **restricted site creation** as an example.
+
+**Correct teaching line:** *a Copilot license unlocks the Copilot-readiness subset of SAM; the full SAM feature set still needs the Plan 1 add-on.*
+
+**Base subscription requirement:** Office 365 E3/E5/A5, or Microsoft 365 E1/E3/E5/A5, or Microsoft 365 GCC/GCC-High/DoD. Required roles: **SharePoint Administrator** or the broader **SharePoint Advanced Management Administrator** role. External users do not require a license.
+
+**SAM features included with a Copilot license** (WW, GCC, GCC-H, DoD): Restricted content discovery, Sharing links reports, Sensitivity labels report (requires E5 or G5), EEEU insights, Permission state reports for sites/OneDrive sites/files, Site access review for all reports, Catalog management, Change history - site settings, and Recent admin actions.
+
+---
+
+## 11. Identity changes with hard dates ahead
+
+Domain 1 covers authentication methods, and two dated changes will land between this session and the end of the exam objective's life. Teach them as forward guidance.
+
+### Mandatory MFA is fully in force
+
+| Phase | Scope | Status July 2026 |
+|---|---|---|
+| **Phase 1** | Azure portal, Microsoft Entra admin center, Microsoft Intune admin center since October 2024; Microsoft 365 admin center since February 2025 | In force. Postponement closed September 30, 2025. |
+| **Phase 2** | Azure CLI, Azure PowerShell, Azure mobile app, IaC tools, Azure SDK, REST API (control plane) for Create, Update, Delete | In force. Last postponement date was July 1, 2026. |
+
+Phase 2 is enforced server-side at Azure Resource Manager; only requests targeting `https://management.azure.com` are in scope, and Microsoft Graph APIs are generally **NOT** in scope. Read operations do not require MFA. Workload identities are not impacted; **user accounts used as service accounts ARE**. There is no opt-out, and it applies to break-glass accounts, B2B guests, and test tenants. Enforced in the public Azure cloud only.
+
+### Passkeys become the default, SMS and voice retire
+
+| Date | What happens |
+|---|---|
+| **August 1, 2026** | API support and opt-out information become available |
+| **September 1, 2026** | Users enabled for SMS or voice are auto-enabled for **passkeys**, and the tenant Registration Campaign is set to Microsoft Managed state targeting passkeys |
+| **September 18, 2026** | Customer-managed telecom provider options and terms publish in the Microsoft Security Store |
+| **October 30, 2026** | Customer-managed telecom provider configuration becomes available |
+| **February 1, 2027** | Microsoft-provided telecom delivery for SMS and voice is **fully retired** across Microsoft Entra including SSPR. Users whose only method is SMS or voice receive a **BLOCKING** prompt to register a passkey. Microsoft states there is **NO** opt-out from this behavior. |
+
+**Two passkey types:** **synced passkeys** (saved to a platform credential manager and synced across devices) and **device-bound passkeys** (Passkey in Microsoft Authenticator, Entra Passkey on Windows, FIDO2 hardware security key). Passkey support for B2B and internal guest users is planned by the end of calendar year 2026.
+
+Microsoft publishes a PowerShell script at `https://github.com/microsoft/entra-sms-voice-usage-analyzer` to find users still enabled for SMS or voice. Running it requires Global Reader, Authentication Policy Administrator, or Security Reader.
+
+### Authentication method management moved
+
+Managing authentication methods in the legacy MFA and legacy SSPR policies was **retired September 30, 2025**. Methods are now managed in the unified **Authentication methods policy** at **entra.microsoft.com > Entra ID > Authentication methods > Policies**. **Per-user MFA state (Enabled/Enforced/Disabled) was NOT retired** -- only the per-user MFA *service settings* moved.
+
+### Baseline security mode is new
+
+**admin.microsoft.com > ... Show all > Settings > Org Settings > Security and Privacy tab > Baseline Security Mode.** Available on all Microsoft 365 subscriptions. Two BSM settings surface in Microsoft Entra as Conditional Access policies -- **Require phishing resistant authentication for admins** and **Block legacy authentication** -- showing **Baseline security mode** in the **Created by** column. Unlike Microsoft-managed policies, BSM policies are attributed to the **administrator**, not Microsoft.
+
+**Known artifact:** tenants that accessed BSM between November 2025 and early February 2026 might show two draft Conditional Access policies in a Disabled state attributed to the admin who visited the page. Microsoft states this is not a security incident and a fix is in progress.
+
+### Navigation labels that changed
+
+- Conditional Access target selector is now **Resources (formerly cloud apps)**, and the all-resources option reads **All resources (formerly 'All cloud apps')**.
+- Conditional Access lives at **entra.microsoft.com > Entra ID > Conditional Access > Policies**.
+- Identity Secure Score lives at **entra.microsoft.com > Entra ID > Identity Secure Score**, and recalculates **every 24 hours**.
+- Privileged Identity Management lives at **entra.microsoft.com > ID Governance > Privileged Identity Management**, **NOT** under Entra ID. PIM audit data covers the past **30 days** only.
+
+<!-- VERIFY: The Microsoft Entra admin center left-navigation label is documented consistently as "Entra ID" in Learn procedures and breadcrumbs, but one Learn screenshot alt-text still reads "Identity menu", suggesting a rename that may not be fully rolled out in every tenant. Verify in the live tenant before screen-sharing. -->
+
+---
+
+## 12. Rename table: say this, not that
+
+| Do not say | Say instead |
+|---|---|
+| Exchange Online admin center | **Exchange admin center** |
+| distribution lists (when echoing the objective) | **distribution groups** (both terms are current; the EAC tab label is "Distribution list") |
+| SharePoint in Microsoft 365 admin center | **SharePoint admin center** (but keep "SharePoint in Microsoft 365" when naming the **service**) |
+| restricted site access | **restricted access control (RAC)** |
+| Microsoft 365 Defender | **Microsoft Defender XDR** (the portal is the **Microsoft Defender portal**) |
+| compliance.microsoft.com | **purview.microsoft.com** |
+| Azure AD, AAD, Azure Active Directory | **Microsoft Entra ID** |
+| Azure AD Connect | **Microsoft Entra Connect** |
+| AI hub | **Data Security Posture Management (DSPM) for AI** |
+| Content explorer (as the exam answer) | **Data explorer** |
+| Content Search as a standalone solution | **Content search inside Microsoft Purview eDiscovery** |
+| eDiscovery (Standard) / (Premium) as separate solutions | **eDiscovery** with premium features toggled per case |
+| Classification (Purview nav node) | **Classifiers** |
+| Collections (eDiscovery) | **Statistics** |
+| Jobs (eDiscovery) | **Processes** |
+| Data Estate Insights | **Reports** (Unified Catalog > Health management) |
+| Privacy Risk Management in Purview | **Microsoft Priva** portal |
+| Restricted SharePoint Search | **Restricted Content Discovery (RCD)** |
+| Copilot for Microsoft 365 | **Microsoft 365 Copilot** |
+| Copilot with commercial data protection | **Microsoft 365 Copilot Chat (with enterprise data protection)** |
+| Copilot Studio lite | **Agent Builder in Microsoft 365 Copilot** |
+| Teams Toolkit | **Microsoft 365 Agents Toolkit** |
+| Requested agents tab | **Requests** tab (under Agents > All agents) |
+| admin.microsoft.com > Copilot > Agents | **admin.microsoft.com > Agents > All agents** |
+| Integrated apps (as the agent management surface) | **Agents** section of the Copilot Control System |
+| Message packs | **Copilot Studio capacity packs** |
+| per message (as the billing unit) | **per Copilot Credit** (see section 3 for the live doc conflict) |
+| Microsoft Graph connectors | **Microsoft 365 Copilot connectors** |
+| Copilot Studio Kit | **Copilot Agent Kit** |
+| Agent Mode in Excel | **Edit with Copilot in Excel** (the rename is not universal; Agent Mode still exists in PowerPoint) |
+| Azure AI Studio | **Microsoft Foundry** |
+| 300-seat minimum | **No seat minimum**; 300-seat **maximum** on SMB SKUs |
+| Agent 365 (preview) | **Agent 365** (GA May 1, 2026) |
+| AB-900 (beta) | **AB-900** (generally available) |
+
+---
+
+## 13. Cross-topic exam traps summary
 
 | Misconception | Correct understanding |
 |---|---|
-| The Copilot agents toggle blocks Researcher and Analyst | It does NOT. Both must be explicitly blocked via `Agents > All Agents > [Agent] > Block` |
-| PAYG activates when you create a billing policy | You must also connect the billing policy to a Copilot service — two steps required |
-| Budget limits in PAYG prevent overspending | They send email alerts only; service continues after budget is exceeded |
-| DSPM for AI requires admin setup to run risk assessments | The default weekly assessment for top 100 SharePoint sites runs automatically — no setup required |
-| SAM always requires a paid add-on purchase | It is included with M365 Copilot licenses (one exception: Restricted Site Creation) |
-| RCD removes user access to SharePoint sites | RCD blocks Copilot/search discovery only; permissions are unchanged |
-| Monitoring third-party AI (ChatGPT) in DSPM for AI only requires Purview licenses | Device onboarding is also required |
-| PAYG provides full M365 Copilot functionality | PAYG provides access to Copilot Chat agents only, not the full Copilot suite |
-| Researcher only uses Microsoft Graph (work data) | Researcher uses BOTH Microsoft Graph AND Bing (web) |
-| Analyst can search the web like Researcher | Analyst's code execution sandbox is isolated; it does not use web search for its analytical tasks |
+| The Copilot agents toggle blocks Researcher and Analyst | It does not, and the reason matters: they do not fall under **any** agent-related settings. They are core chat Tools. Block each one tenant-wide. |
+| Admins can assign Researcher to a pilot group | The **Edit users** panel is disabled. It is tenant-wide available or tenant-wide blocked. |
+| PAYG activates when you create a billing policy | You must also **connect** the policy to a Copilot service. Two steps. |
+| Budget limits in PAYG prevent overspending | They send email alerts only. Usage continues after the budget is exceeded. |
+| Pay-as-you-go is billed per message | The unit is the **Copilot Credit** at $0.01 per credit. Some Learn pages still say "per message"; the Azure meter is still named Copilot Studio. |
+| A SharePoint agent prompt costs $0.01 | It can cost **12 credits ($0.12)** for an unlicensed user: generative answer (2) plus tenant graph grounding (10). |
+| Microsoft 365 Copilot has a 300-seat minimum | **No minimum since January 2024.** 300 is a **maximum** on Copilot Business and Business-with-Copilot SKUs. |
+| E5 is the top enterprise SKU | **E7** (GA May 1, 2026) = E5 + Copilot + Entra Suite + Agent 365. |
+| DSPM for AI is the only DSPM entry | Three entries now: **DSPM** (new unified, GA May 2026), DSPM for AI (classic), and Data Security Posture Management (classic). |
+| DSPM for AI requires admin setup to run risk assessments | The weekly default assessment for the top 100 SharePoint sites runs automatically. |
+| SAM always requires a paid add-on | The Copilot-readiness subset is unlocked by any single Copilot license. The full feature set (for example restricted site creation) still needs Plan 1. |
+| RCD removes user access to SharePoint sites | RCD blocks discoverability only. Permissions are unchanged. Use RAC to change access. |
+| Restricted SharePoint Search is the recommended oversharing control | RSS blocks new enablement **starting July 31, 2026**. Use RCD. |
+| Content explorer is the answer for finding sensitive data | The July 2026 objective says **Data explorer**. The old tool is Content Explorer (classic). |
+| Content Search is a standalone Purview solution | It is inside **eDiscovery**, in a system-generated case named "Content search". |
+| eDiscovery Standard and Premium are separate solutions | One unified eDiscovery solution with premium features toggled per case. |
+| Work IQ is a peer of Microsoft Graph | Work IQ is the umbrella intelligence layer; Graph sits in its **data** layer and the semantic index in its **context** layer. |
+| The agent approval queue is under Copilot > Agents | **Agents > All agents > Requests**, a top-level node. |
+| Any admin role can approve agent requests | Only **AI Administrator** and **Global Administrator**. |
+| Blocking any agent has the same scope | Agent Builder and Copilot Studio agents: Copilot **and** Outlook/Teams. SharePoint and Foundry agents: **Copilot Chat only**. |
+| Code interpreter and image generator are off by default | Both are **enabled by default** in Agent Builder. |
+| Purview audit logs are a valid Copilot usage report | Microsoft explicitly warns they are **not** intended for usage reporting. Use the usage report or Copilot Dashboard. |
+| AB-900 requires annual renewal | **Fundamentals certifications do not expire.** |
+| You can look things up in Microsoft Learn during AB-900 | The in-exam Learn resource is **role-based exams only**, not Fundamentals. |
+| AB-900 is still in beta | It exited beta January 28, 2026. |
 
 ---
 
-*Document compiled from Microsoft Learn documentation as of March 2026. Always verify current portal navigation and feature availability against official Microsoft documentation before delivering content in a training context.*
+*Verified against Microsoft Learn and the AB-900 study guide (Skills measured as of July 22, 2026) on 2026-07-26. Always confirm current portal navigation and feature status against official Microsoft documentation before delivering this content live.*

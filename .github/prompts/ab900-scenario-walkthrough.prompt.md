@@ -4,7 +4,7 @@ description: "Generate one AB-900 admin scenario walkthrough: a guided 5-10 minu
 argument-hint: "domain='Domain 2' scenarioType='DSPM for AI review' estimatedTime='10 min'"
 agent: ab900-cert-buddy-agent
 tools:
-[vscode, execute, read, agent, edit, search, web, browser, 'azure-mcp/*', 'ab900buddy-markitdown/*', 'io.github.upstash/context7/*', 'microsoft/markitdown/*', todo]
+[vscode, execute, read, agent, edit, search, web, browser, 'ab900buddy-mslearn/*', 'ab900buddy-context7/*', 'ab900buddy-markitdown/*', todo]
 ---
 
 # AB-900 Scenario Walkthrough
@@ -29,20 +29,36 @@ You must follow the workspace skill **ab900-scenario-walkthrough** for walkthrou
 
 ## Terminology
 
-Always use current Microsoft product names. Apply all mappings from the agent terminology table silently. Never use "Azure AD" (use "Microsoft Entra ID"), "compliance.microsoft.com" (use "purview.microsoft.com"), "per message" (use "per Copilot Credit"), "AI hub" (use "DSPM for AI (classic)"), or "Billing > Billing policies" (use "Copilot > Billing & usage").
+Always use current Microsoft product names. Apply all mappings from the agent terminology table silently. Never use:
+
+- "Azure AD", "AAD", or "Azure Active Directory" (use "Microsoft Entra ID")
+- "compliance.microsoft.com" (use "purview.microsoft.com")
+- "AI hub" (use "DSPM for AI")
+- "Azure AI Studio" (use "Microsoft Foundry")
+- "Microsoft 365 Defender" (use "Microsoft Defender XDR"; the portal is the "Microsoft Defender portal")
+- "Exchange Online admin center" (use "Exchange admin center")
+- "Content explorer" where the current tool is "Data explorer"
+- "Requested agents tab" (use "Requests")
+- "Billing > Billing policies" for Copilot (use "Copilot > Billing & usage")
+- "restricted site access" as the primary term (use "restricted access control"; note that the SharePoint admin center UI does label the per-site section "Restricted site access")
+
+The unit of consumption is the **Copilot Credit** at $0.01 per credit. The Azure invoice meter is still named "Copilot Studio", so a walkthrough that opens an invoice should say so.
 
 ## AB-900 accuracy rules
 
 Before generating the walkthrough, confirm all portal paths match exactly:
 
-- DSPM for AI: purview.microsoft.com > Solutions > DSPM for AI (classic)
-- Copilot PAYG billing: admin.microsoft.com > Copilot > Billing & usage
-- Agent approval queue: admin.microsoft.com > Agents > All agents > Requests
-- Researcher/Analyst block: admin.microsoft.com > Agents > All agents (separate block; not the general agent toggle)
-- Sensitivity labels: purview.microsoft.com > Solutions > Information protection > Labels
-- DLP policies: purview.microsoft.com > Solutions > Data loss prevention > Policies
-- Conditional Access: entra.microsoft.com > Protection > Conditional Access > Policies
-- Copilot license assignment: admin.microsoft.com > Users > Active users > [user] > Licenses and apps
+- DSPM for AI: purview.microsoft.com > Solutions > DSPM for AI (classic); oversharing review is under **Data risk assessments**
+- Copilot PAYG billing: admin.microsoft.com > Copilot > Billing & usage (Billing policies tab, Pay-as-you-go services tab)
+- Agent approval queue: admin.microsoft.com > Agents > All agents > **Requests**
+- Agent settings: admin.microsoft.com > Agents > Settings
+- Researcher and Analyst: part of the core Copilot chat experience, available under **Tools**, and outside agent-related settings; disable with a tenant-wide **Block** at admin.microsoft.com > Agents > All agents
+- Sensitivity labels: purview.microsoft.com > Solutions > Information Protection > Sensitivity labels
+- DLP policies: purview.microsoft.com > Data loss prevention > Policies (Copilot location is "Microsoft 365 Copilot and Copilot Chat")
+- Data access governance reports: SharePoint admin center > Reports > Data access governance
+- Conditional Access: entra.microsoft.com > Entra ID > Conditional Access > Policies
+- PIM: entra.microsoft.com > ID Governance > Privileged Identity Management
+- Copilot license assignment: admin.microsoft.com > Users > Active users > [user] > Licenses and Apps
 
 ## Output format
 

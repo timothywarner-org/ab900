@@ -2,6 +2,10 @@
 
 **Duration:** 50 minutes
 
+**Maps to AB-900 Domain 3: Perform basic administrative tasks for Copilot and agents (25-30%)**
+
+**Last updated:** 2026-07-26 (aligned to the AB-900 skills measured as of July 22, 2026)
+
 ## Learning Objectives
 
 By the end of this segment, you will be able to:
@@ -19,28 +23,34 @@ By the end of this segment, you will be able to:
 ### 1. Copilot Architecture and Capabilities (10 minutes)
 
 #### Architecture Components
-- Large Language Model (LLM) integration
-- Microsoft Graph integration
-- Semantic Index for Copilot
-- Data grounding and retrieval
-- Real-time orchestration
+- Foundation models from multiple providers, including OpenAI and Anthropic
+- **Work IQ**, the intelligence layer that personalizes Copilot for users and organizations. Work IQ is an **umbrella** over three layers named data, context, and skills/tools. Microsoft Graph tenant data and Copilot connectors sit inside the **data** layer, and the **semantic index** sits inside the **context** layer. Work IQ is **NOT** a sibling component alongside Microsoft Graph.
+- **Semantic index**, still current under that name, described as a superset of content within Microsoft Graph plus content ingested from Copilot connectors, mapped into a lexical and semantic index that respects permission structures
+- **Microsoft 365 Copilot connectors**, formerly Microsoft Graph connectors. Two models exist: **synced** connectors that ingest and index content into Microsoft Graph and support semantic indexing, and **federated** connectors that retrieve content in real time over Model Context Protocol with no data movement and **NO** semantic indexing.
+- Data grounding, retrieval, and real-time orchestration
 
 #### Copilot Experiences
 - **Copilot in Word** - Drafting, editing, summarizing
-- **Copilot in Excel** - Data analysis, formula generation, insights
+- **Copilot in Excel** - Data analysis, formula generation, insights. Note the rename: what was "Agent Mode" in Excel is now **Edit with Copilot in Excel**.
 - **Copilot in PowerPoint** - Presentation creation, design suggestions
 - **Copilot in Outlook** - Email drafting, meeting summaries
 - **Copilot in Teams** - Meeting recaps, chat assistance, call summaries
-- **Microsoft 365 Chat (Business Chat)** - Cross-app AI assistant
+- **Microsoft 365 Copilot Chat** - Cross-app AI assistant. Use this name, not "Business Chat".
 - **Copilot in Loop** - Collaborative workspace assistance
+- **Researcher** and **Analyst** - Microsoft-installed advanced agents that a Copilot license unlocks. Generally available since June 2, 2025.
 
 ### 2. Licensing and Prerequisites (8 minutes)
 
+Full detail lives in `resources/COPILOT-LICENSING-GUIDE.md`. The headlines:
+
 #### License Requirements
-- Microsoft 365 E3/E5 or Business Standard/Premium base license
-- Copilot for Microsoft 365 add-on license
-- License assignment methods
-- License optimization strategies
+- **Microsoft 365 Copilot** is a per-user **add-on** at 30.00 USD per user per month paid yearly, requiring an eligible base subscription: Microsoft 365 E7/E5/E3/F1/F3, Business Basic/Standard/Premium, Office 365 E5/E3/E1/F3, and several standalone Teams, Exchange, SharePoint, and OneDrive plans
+- **There is NO seat minimum.** The original 300-seat minimum was removed in January 2024. The only surviving 300 is a **maximum** on the SMB SKUs.
+- **Microsoft 365 Copilot Business** is a separate SMB add-on capped at **300 seats**, requiring a Microsoft 365 Business plan, sold annual-commitment only
+- **Microsoft 365 E7** (the Frontier Suite, generally available May 1, 2026) **includes** Microsoft 365 Copilot in the base SKU, alongside Microsoft Entra Suite and Agent 365. E7 customers do **NOT** buy the add-on separately.
+- **Microsoft 365 Copilot Chat** is included at no additional cost with an eligible subscription. Web-based chat is free; **work-based chat grounded in tenant data requires a Copilot license.**
+- License assignment methods: individual, group-based, and PowerShell via the Microsoft Graph SDK
+- Allow up to 24 hours after assignment for features to appear
 
 #### Technical Prerequisites
 - Supported Microsoft 365 apps versions
@@ -92,16 +102,28 @@ By the end of this segment, you will be able to:
 ### 4. Managing Copilot Settings and Policies (10 minutes)
 
 #### Admin Controls
-- **Copilot Toggle** - Enable/disable Copilot
-- **Web search in Copilot** - Control internet access
-- **Plugin management** - Manage Copilot extensibility
-- **Data sharing settings** - Control optional data sharing
+- **Web search in Copilot** - the tenant-level **Allow web search in Copilot** toggle. This matters beyond the obvious: Researcher adheres to it, and if web search is off at the tenant level Researcher uses no web data at all.
+- **Agent settings** - admin.microsoft.com > **Agents** > **Settings**, containing five areas: Agent management rules, Allowed agent types, Security templates, Sharing, and User access
+- **Copilot pay-as-you-go billing** - admin.microsoft.com > **Copilot** > **Billing & usage**
+- **Data access settings** - Copilot > **Settings** > **Data access**
+- **Copilot Frontier** enrollment - Copilot > **Settings** > **View all** > **Copilot Frontier**, with three options: No access (the default), All users, and Specific users
 
 #### Policy Configuration
-- Cloud Policy for Microsoft 365
-- Group Policy (for on-premises AD)
+- **Cloud Policy service for Microsoft 365** (renamed from Office cloud policy service)
+- Group Policy for domain-joined devices
 - Intune policies for mobile devices
 - Conditional Access policies
+
+#### Release channels
+Microsoft documents a three-tier audience-based release model. Knowing the names is worth a question:
+
+| Channel | Behavior |
+|---------|----------|
+| **Frontier** | Opt-in early access to pre-GA capabilities, under preview terms. Requires a Microsoft 365 Copilot license. Frontier agents appear in the Agent Store tagged **(Frontier)** under "Built by Microsoft". Allow up to three hours for availability. |
+| **Standard release** | The default |
+| **Deferred release** | Delays deferred-capable GA features up to 30 days |
+
+Modern standard and deferred release channels are **NOT** available for GCC, GCC High, and DoD. Note also that the Frontier control does **NOT** override agent settings: an agent turned off in the Agents view stays unavailable regardless of Frontier enrollment.
 
 #### Feature Controls
 - Disabling specific Copilot features
@@ -118,11 +140,24 @@ By the end of this segment, you will be able to:
 
 ### 6. Usage Analytics and Reporting (3 minutes)
 
-- Microsoft 365 admin center Copilot dashboard
-- Adoption reports
-- Usage metrics by app
-- User activity insights
-- Viva Insights integration
+There are **four** distinct reporting sources, and exam items often turn on picking the right one:
+
+| Source | What it gives you | Where |
+|--------|-------------------|-------|
+| Microsoft 365 admin center | Readiness and usage numbers | admin.microsoft.com > **Reports** > **Usage** > **Microsoft 365 Copilot** |
+| Viva Insights Copilot Analytics | Adoption, impact (assisted hours), sentiment | Viva Insights app > **Copilot Dashboard** |
+| Microsoft Purview audit logs | Compliance and security auditing | purview.microsoft.com > **Audit** |
+| Power Platform and Copilot Studio Analytics | Agent consumption and performance | Power Platform admin center |
+
+Within the admin center report, three views matter: **Usage**, **Credits**, and **Agents**. Data is typically available within 48 hours of the end of a day in UTC.
+
+**Copilot Analytics** is the umbrella term covering six areas: the readiness and adoption report in the admin center, the Copilot Dashboard in Viva Insights, the Agent Dashboard in Viva Insights, the Consumption Dashboard, ready-to-use Copilot Analytics reports, and Advanced Reporting through Viva Insights and Power BI.
+
+**Path correction worth stating.** The Copilot Dashboard is in the **Viva Insights** app, in Microsoft Teams or the Viva Insights web app, **NOT** the admin center. An AI Administrator first enables it and delegates access from the Microsoft 365 admin center.
+
+**Role mapping.** AI Administrator accesses Copilot reports in the admin center and enables/delegates the Copilot Dashboard. Global Administrator assigns the Insights Analyst and Insights Administrator roles. Audit Reader searches Purview audit logs. Copilot Studio Author accesses per-agent analytics.
+
+**Exam trap.** Microsoft explicitly warns that Purview audit log data is **NOT** intended as the basis for Copilot usage reporting, and aggregated metrics built on it may not match the official reports.
 
 ### 7. Troubleshooting Common Issues (2 minutes)
 
@@ -174,17 +209,19 @@ By the end of this segment, you will be able to:
 3. Test Copilot in PowerPoint (create presentation)
 4. Test Copilot in Outlook (compose email, summarize thread)
 5. Test Copilot in Teams (meeting recap, chat summary)
-6. Test Microsoft 365 Chat (cross-app query)
+6. Test Microsoft 365 Copilot Chat (cross-app query)
 
 ### Lab 3.5: Monitor Copilot Usage
 **Objective:** Access and interpret Copilot analytics
 
 **Steps:**
-1. Navigate to Copilot dashboard in admin center
-2. Review adoption metrics
-3. Analyze usage by application
-4. Identify top users and use cases
+1. In the Microsoft 365 admin center go to **Reports** > **Usage** > **Microsoft 365 Copilot**, then the **Usage** tab
+2. Switch to the **Credits** view to see credit consumption per user, per agent, and per billing policy
+3. Switch to the **Agents** view for agent usage
+4. Open the **Copilot Dashboard** in the Viva Insights app for adoption, impact, and sentiment metrics
 5. Export usage data for reporting
+
+Note the Credits report alerts administrators when a user exceeds 2,000 credits, and during preview it displays a maximum of 30 days of history.
 
 ### Lab 3.6: Troubleshoot Copilot Issues
 **Objective:** Diagnose and resolve common problems
@@ -264,7 +301,7 @@ By the end of this segment, you will be able to:
 - "Summarize key decisions from today's project meeting"
 - "What were the action items assigned to me this week?"
 
-**Microsoft 365 Chat:**
+**Microsoft 365 Copilot Chat:**
 - "What are the latest updates on Project Phoenix across all my emails and Teams chats?"
 - "Create a status report on customer requests from the past week"
 
@@ -288,16 +325,25 @@ By the end of this segment, you will be able to:
 ## Additional Resources
 
 ### Documentation
-- [Microsoft 365 Copilot Overview](https://docs.microsoft.com/microsoft-365-copilot/)
-- [Copilot Deployment Guide](https://docs.microsoft.com/microsoft-365-copilot/deploy)
+- [Microsoft 365 Copilot documentation](https://learn.microsoft.com/microsoft-365/copilot/)
+- [Microsoft 365 Copilot licensing](https://learn.microsoft.com/microsoft-365/copilot/microsoft-365-copilot-licensing)
+- [Set up pay-as-you-go for Copilot](https://learn.microsoft.com/microsoft-365/commerce/services/pay-as-you-go-setup-copilot)
+- [Copilot reports for admins](https://learn.microsoft.com/microsoft-365/copilot/microsoft-365-copilot-reports-for-admins)
+- [Copilot Control System overview](https://learn.microsoft.com/microsoft-365/copilot/copilot-control-system/overview)
+- [Work IQ](https://learn.microsoft.com/microsoft-365/copilot/extensibility/work-iq)
 - [Copilot Adoption Resources](https://adoption.microsoft.com/copilot/)
-- [Copilot Admin Settings](https://docs.microsoft.com/microsoft-365-copilot/admin)
 
-### Tools
-- [Microsoft 365 Admin Center](https://admin.microsoft.com/)
-- [Copilot Dashboard](https://admin.microsoft.com/Adminportal/Home#/copilot)
-- [Cloud Policy Management](https://config.office.com/)
-- [Adoption Score](https://admin.microsoft.com/Adminportal/Home#/adoption)
+### Tools and paths
+
+| Destination | Path |
+|-------------|------|
+| Microsoft 365 admin center | https://admin.microsoft.com/ |
+| Copilot billing and usage | admin.microsoft.com > **Copilot** > **Billing & usage** |
+| Copilot usage, credits, and agent reports | admin.microsoft.com > **Reports** > **Usage** > **Microsoft 365 Copilot** |
+| Agent management | admin.microsoft.com > **Agents** > **All agents** |
+| Copilot Dashboard | Viva Insights app > **Copilot Dashboard** |
+| Cloud Policy service for Microsoft 365 | https://config.office.com/ |
+| Microsoft 365 Copilot Chat | https://m365.cloud.microsoft/chat |
 
 ### Community
 - [Microsoft 365 Community](https://aka.ms/m365pnp)

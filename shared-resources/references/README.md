@@ -34,15 +34,20 @@ This directory will contain:
 ## External Reference Links
 
 ### Microsoft Documentation
-- [Microsoft 365 Documentation](https://docs.microsoft.com/microsoft-365/)
-- [Microsoft Graph API Reference](https://docs.microsoft.com/graph/api/overview)
-- [PowerShell for Microsoft 365](https://docs.microsoft.com/microsoft-365/enterprise/manage-microsoft-365-with-microsoft-365-powershell)
-- [Copilot Documentation](https://docs.microsoft.com/microsoft-365-copilot/)
+- [Microsoft 365 documentation](https://learn.microsoft.com/microsoft-365/)
+- [Microsoft 365 admin center help](https://learn.microsoft.com/microsoft-365/admin/)
+- [Microsoft Purview documentation](https://learn.microsoft.com/purview/)
+- [Microsoft 365 Copilot documentation](https://learn.microsoft.com/microsoft-365/copilot/)
+- [Microsoft Graph API reference](https://learn.microsoft.com/graph/api/overview)
+- [PowerShell for Microsoft 365](https://learn.microsoft.com/microsoft-365/enterprise/manage-microsoft-365-with-microsoft-365-powershell)
+
+These four are the documentation study resources the AB-900 study guide itself lists: Microsoft 365 documentation, the Microsoft 365 Copilot service description, Microsoft 365 admin center help, and Microsoft Purview documentation.
 
 ### Tools and Utilities
-- [Microsoft 365 Admin Center](https://admin.microsoft.com/)
-- [Azure Portal](https://portal.azure.com/)
-- [Microsoft Purview](https://compliance.microsoft.com/)
+- [Microsoft 365 admin center](https://admin.microsoft.com/)
+- [Microsoft Entra admin center](https://entra.microsoft.com/)
+- [Microsoft Purview portal](https://purview.microsoft.com/) -- **NOT** compliance.microsoft.com, which is retired
+- [Microsoft Defender portal](https://security.microsoft.com/)
 - [Microsoft Graph Explorer](https://developer.microsoft.com/graph/graph-explorer)
 
 ### Learning Resources

@@ -14,6 +14,16 @@ description: Generate realistic 5-10 minute admin scenario walkthroughs through 
 - Microsoft Learn (primary truth source for admin center navigation, feature behavior, and correct settings; access via Microsoft Learn MCP server and Copilot web search)
 - Context7 MCP (when M365 PowerShell cmdlets or Graph API syntax appears in a step)
 
+**Exam domains and weights (as of July 22, 2026):**
+
+| Domain | Title (verbatim from the study guide) | Weight |
+| --- | --- | --- |
+| Domain 1 | Identify the core features and objects of Microsoft 365 services | 30-35% |
+| Domain 2 | Understand data protection and governance tasks for Microsoft 365 and Copilot | 35-40% |
+| Domain 3 | Perform basic administrative tasks for Copilot and agents | 25-30% |
+
+Use this wording verbatim in the `exam_connection.domain` field. Populate `key_objectives` from the July 22, 2026 skills-measured document, not from memory.
+
 ## Style
 
 **Microsoft style:**
@@ -35,28 +45,40 @@ description: Generate realistic 5-10 minute admin scenario walkthroughs through 
 
 These navigation paths must be exact every time they appear. Do not approximate or invent alternative paths.
 
-- **DSPM for AI portal path:** purview.microsoft.com > Solutions > DSPM for AI (classic)
-- **Copilot PAYG billing:** admin.microsoft.com > Copilot > Billing & usage
+- **DSPM for AI portal path:** purview.microsoft.com > Solutions > DSPM for AI (classic). The Purview portal now also lists a unified **DSPM** entry (generally available May 2026) and a **Data Security Posture Management (classic)** entry. If a walkthrough demonstrates the unified experience, name it explicitly and use DSPM > Discover, DSPM > Actions, or DSPM > Reports.
+- **Copilot PAYG billing:** admin.microsoft.com > Copilot > Billing & usage (Billing policies tab and Pay-as-you-go services tab)
 - **Agent approval queue:** admin.microsoft.com > Agents > All agents > Requests
-- **Researcher and Analyst block:** admin.microsoft.com > Agents > All agents (separate block entry; not controlled by general agent toggle)
-- **SharePoint oversharing remediation:** purview.microsoft.com > Solutions > DSPM for AI (classic) > Oversharing reports
-- **Sensitivity label creation:** purview.microsoft.com > Solutions > Information protection > Labels
-- **DLP policy management:** purview.microsoft.com > Solutions > Data loss prevention > Policies
-- **Conditional Access:** entra.microsoft.com > Protection > Conditional Access > Policies
-- **PIM role activation:** entra.microsoft.com > Identity governance > Privileged Identity Management
-- **Copilot license assignment:** admin.microsoft.com > Users > Active users > [user] > Licenses and apps
+- **Agent settings:** admin.microsoft.com > Agents > Settings
+- **Agent Registry:** admin.microsoft.com > Agents > All agents > Registry
+- **Researcher and Analyst:** these are part of the core Copilot chat experience and do **NOT** fall under agent-related settings; they remain available under **Tools** in Copilot Chat. To disable one, use the tenant-wide **Block** action on the individual agent at admin.microsoft.com > Agents > All agents. **Edit users** is disabled for these agents.
+- **SharePoint oversharing review:** purview.microsoft.com > Solutions > DSPM for AI (classic) > **Data risk assessments** (there is no "Oversharing reports" node), or SharePoint admin center > Reports > Data access governance
+- **Restricted access control (tenant):** SharePoint admin center > Policies > Access control > Site-level access restriction
+- **Restricted access control (per site):** SharePoint admin center > Sites > Active sites > [site] > Settings tab > Restricted site access
+- **Restricted content discovery:** SharePoint admin center > Sites > Active sites > [site] > Settings tab > Restrict content discovery
+- **Sensitivity label creation:** purview.microsoft.com > Solutions > Information Protection > Sensitivity labels
+- **Sensitivity label publishing:** purview.microsoft.com > Solutions > Information Protection > Publishing policies
+- **DLP policy management:** purview.microsoft.com > Data loss prevention > Policies. The Copilot DLP location is named **Microsoft 365 Copilot and Copilot Chat**.
+- **Data explorer:** purview.microsoft.com > Solutions > Information Protection > Explorers > Data explorer
+- **Content search:** purview.microsoft.com > Solutions > eDiscovery > Content search
+- **Audit log search:** purview.microsoft.com > Audit (also reachable at security.microsoft.com > Audit)
+- **Conditional Access:** entra.microsoft.com > Entra ID > Conditional Access > Policies. In policy creation the target selector reads **Resources (formerly cloud apps)**.
+- **PIM role activation:** entra.microsoft.com > ID Governance > Privileged Identity Management > My roles
+- **Identity Secure Score:** entra.microsoft.com > Entra ID > Identity Secure Score
+- **Copilot license assignment:** admin.microsoft.com > Users > Active users > [user] > Licenses and Apps
+- **Copilot usage and Credits reports:** admin.microsoft.com > Reports > Usage > Microsoft 365 Copilot (then the Copilot, Agents, or Credits report)
 
 ## Supported scenario types
 
 Select one of the following scenario types per walkthrough:
 
-- **Copilot licensing:** Assigning or removing Microsoft 365 Copilot licenses, reviewing license consumption, or understanding subscription vs. pay-as-you-go models.
-- **Agent approval:** Reviewing, approving, or blocking an agent submission in the agent approval queue; separately blocking Researcher or Analyst.
-- **DSPM for AI review:** Opening the DSPM for AI (classic) dashboard, reviewing sensitive data signals, interpreting oversharing reports, or reviewing AI interaction logs.
-- **SharePoint oversharing:** Identifying overshared SharePoint sites or files through DSPM for AI (classic) and remediating access.
+- **Copilot licensing:** Assigning or removing Microsoft 365 Copilot licenses, reviewing license consumption, or comparing the monthly license model to pay-as-you-go (including SharePoint agents).
+- **Agent approval:** Reviewing, approving, updating, or blocking an agent submission in the agent approval queue (Pending review, Pending update, Pending activate); or blocking Researcher or Analyst tenant-wide.
+- **DSPM for AI review:** Opening the DSPM for AI (classic) dashboard, reviewing sensitive data signals, running or interpreting a data risk assessment, or reviewing AI interaction activity.
+- **SharePoint oversharing:** Running a data access governance report in the SharePoint admin center, then remediating with restricted access control (RAC) or restricted content discovery (RCD).
 - **Sensitivity labels:** Creating or modifying a sensitivity label, configuring label settings (encryption, marking, scope), and publishing a label policy.
-- **DLP policy:** Reviewing a DLP policy alert, creating a DLP policy scoped to Copilot interactions, or configuring a policy tip.
+- **DLP policy:** Reviewing a DLP policy alert, or creating a DLP policy that turns on the **Microsoft 365 Copilot and Copilot Chat** location.
 - **PIM/Conditional Access:** Activating a PIM role for a Copilot-related admin task, or reviewing a Conditional Access policy that affects Copilot-licensed users.
+- **Copilot pay-as-you-go billing:** Creating a billing policy at Copilot > Billing & usage, connecting a service on the Pay-as-you-go services tab, and setting an optional budget (which notifies but does **NOT** enforce a spending cap).
 
 ## Timebox guidance
 
@@ -136,7 +158,7 @@ Create {{count}} AB-900 admin scenario walkthrough(s).
 Inputs:
 
 - domain: {{domain}} (Domain 1 / Domain 2 / Domain 3, or pick from AB-900 exam domains)
-- scenario_type: {{scenario_type}} (Copilot licensing | Agent approval | DSPM for AI review | SharePoint oversharing | Sensitivity labels | DLP policy | PIM/Conditional Access)
+- scenario_type: {{scenario_type}} (Copilot licensing | Agent approval | DSPM for AI review | SharePoint oversharing | Sensitivity labels | DLP policy | PIM/Conditional Access | Copilot pay-as-you-go billing)
 - estimated_time: {{estimated_time}} (5 min | 10 min)
 
 Requirements:

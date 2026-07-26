@@ -1,5 +1,9 @@
 # Data Loss Prevention (DLP) Policy Template
 
+**Last updated:** 2026-07-26
+
+Create the policy at **purview.microsoft.com** > **Solutions** > **Data Loss Prevention** > **Policies** > **+ Create policy**. The former compliance.microsoft.com portal is retired.
+
 ## Policy Information
 
 **Policy Name:** [Enter Policy Name]  
@@ -13,12 +17,32 @@
 
 ### Locations
 - [ ] Exchange Online (Email)
-- [ ] SharePoint Online
-- [ ] OneDrive for Business
+- [ ] SharePoint in Microsoft 365
+- [ ] OneDrive for work and school
 - [ ] Microsoft Teams (Chat and Channel messages)
 - [ ] Devices (Endpoint DLP)
-- [ ] Power BI
+- [ ] Fabric and Power BI workspaces
 - [ ] Microsoft Defender for Cloud Apps
+- [ ] **Microsoft 365 Copilot and Copilot Chat** (see the Copilot section below)
+
+### Copilot protection (the AB-900-relevant location)
+
+Turn on the **Microsoft 365 Copilot and Copilot Chat** location on the Locations page to control what Copilot may ground on.
+
+Four supported condition and action pairs:
+
+| Condition | Action | Effect |
+|-----------|--------|--------|
+| Content contains > **Sensitivity labels** | Prevent Copilot from processing content | Item is excluded from the response summary, but may still appear in citations |
+| Content contains > **Sensitive information types** | Prevent Copilot from processing content > **Processing prompts** | Copilot does not respond to the prompt at all |
+| Content contains > **Sensitive information types** | Prevent Copilot from processing content > **Performing Web Searches** | Blocks external web search as a grounding source |
+| **Email is received from** > External users (preview) | Prevent Copilot from processing content | Excludes external email from grounding, summarization, and citation, reducing prompt injection risk |
+
+**Rule construction gotcha.** You can **NOT** combine the "Content contains sensitive info types" condition and the "Content contains sensitivity labels" condition in the **same rule**. Create a separate rule for each condition within the same policy.
+
+**Coverage limits.** Sensitivity-label rules cover stored files, actively open files, and emails sent on or after January 1, 2025. Calendar invites are **NOT** supported. In Word, Excel, and PowerPoint, the policy is evaluated **at file open**, so a label applied mid-session takes effect the next time the file is opened.
+
+**Related control worth knowing.** The **EXTRACT** usage right on an encrypted label is separate from DLP. If a user has VIEW but **NOT** EXTRACT, Copilot will not summarize the content regardless of DLP configuration, though it can still reference it with a link.
 
 ### Users
 - [ ] All users in organization
@@ -98,7 +122,7 @@ Select all that apply and configure confidence levels:
 - [ ] Notify compliance team
 
 #### For Devices (Endpoint DLP)
-- [ ] Audit only - Log activity but don't block
+- [ ] Audit only - Log activity but do not block
 - [ ] Block - Prevent action
 - [ ] Block with override - Allow with justification
 - [ ] Warn - Show warning to user

@@ -4,7 +4,7 @@ description: "Generate one exam-realistic AB-900 practice question grounded in M
 argument-hint: "domain='Domain 2' objective='DSPM for AI oversharing remediation' bloom='Apply' difficulty='medium'"
 agent: ab900-cert-buddy-agent
 tools:
-[vscode, execute, read, agent, edit, search, web, browser, 'azure-mcp/*', 'ab900buddy-markitdown/*', 'io.github.upstash/context7/*', 'microsoftdocs/mcp/*', todo]
+[vscode, execute, read, agent, edit, search, web, browser, 'ab900buddy-mslearn/*', 'ab900buddy-context7/*', 'ab900buddy-markitdown/*', todo]
 ---
 
 # AB-900 Practice Question
@@ -30,17 +30,33 @@ You must follow the workspace skill **ab900-item-creator** for item structure, g
 
 ## Terminology
 
-Always use current Microsoft product names. Apply all mappings from the agent terminology table silently. Never use "Azure AD" (use "Microsoft Entra ID"), "compliance.microsoft.com" (use "purview.microsoft.com"), "per message" (use "per Copilot Credit"), "AI hub" (use "DSPM for AI (classic)"), or "Billing > Billing policies" (use "Copilot > Billing & usage"). See the full terminology table in the agent file.
+Always use current Microsoft product names. Apply all mappings from the agent terminology table silently. Never use:
+
+- "Azure AD", "AAD", or "Azure Active Directory" (use "Microsoft Entra ID")
+- "compliance.microsoft.com" (use "purview.microsoft.com")
+- "AI hub" (use "DSPM for AI")
+- "Azure AI Studio" (use "Microsoft Foundry")
+- "Microsoft 365 Defender" (use "Microsoft Defender XDR"; the portal is the "Microsoft Defender portal")
+- "Exchange Online admin center" (use "Exchange admin center") or "distribution lists" in the Domain 1 objective (use "distribution groups")
+- "Content explorer" where the objective means "Data explorer"
+- "Requested agents tab" (use "Requests")
+- "Billing > Billing policies" for Copilot (use "Copilot > Billing & usage")
+- "restricted site access" in the SharePoint Advanced Management objective (use "restricted access control")
+
+The unit of consumption is the **Copilot Credit** at $0.01 per credit, but Microsoft's own pay-as-you-go Meters page still reads "$0.01 per message" and the Azure meter is still named "Copilot Studio". Do not write an item that turns on the message-versus-credit noun alone, and never assert that one message equals one credit. See the full terminology table in the agent file.
 
 ## AB-900 accuracy rules
 
 Before generating the item, confirm:
 
-- DSPM for AI path is purview.microsoft.com > Solutions > DSPM for AI (classic).
+- The objective wording matches the **Skills measured as of July 22, 2026** study guide.
+- DSPM for AI path is purview.microsoft.com > Solutions > DSPM for AI (classic), and oversharing review is under **Data risk assessments** (there is no "Oversharing reports" node).
 - Copilot PAYG billing path is admin.microsoft.com > Copilot > Billing & usage.
-- Agent approval queue is admin.microsoft.com > Agents > All agents > Requests.
-- Researcher and Analyst are NOT disabled by the general agent toggle.
-- Any item referencing license activation must note the 24-hour delay (not "immediately").
+- Agent approval queue is admin.microsoft.com > Agents > All agents > **Requests**.
+- Researcher and Analyst are part of the core Copilot chat experience and do **NOT** fall under agent-related settings; disabling one requires a tenant-wide **Block**.
+- Sensitivity labels are at purview.microsoft.com > Solutions > Information Protection > Sensitivity labels; DLP policies are at purview.microsoft.com > Data loss prevention > Policies.
+- Conditional Access is entra.microsoft.com > Entra ID > Conditional Access > Policies; PIM is entra.microsoft.com > ID Governance > Privileged Identity Management.
+- Any item referencing propagation timing must use a delay Microsoft actually publishes for that scenario (for example, up to 24 hours for Copilot to appear in some Microsoft 365 apps after license assignment). Do not apply a generic 24-hour rule to every scenario.
 
 ## Output format (exact) -- two-phase delivery
 

@@ -3,6 +3,9 @@
 **Learning Path:** Explore Microsoft 365 Administration
 **Source:** https://learn.microsoft.com/en-us/training/modules/introduction-microsoft-365-core-services-admin-control/
 **AB-900 Domain:** 1 -- Identify the core features and objects of Microsoft 365 services (30-35%)
+**Verified:** 2026-07-26 (against the AB-900 skills measured as of July 22, 2026)
+
+> **Objective mapping.** This module supports the Domain 1 subsection "Identify the core objects of Microsoft 365 services", which the July 22, 2026 change log marks as a **Minor** change. Two wording changes in that subsection are exam-relevant: the portal is the **Exchange admin center** (not "Exchange Online admin center"), and the objective bullet now reads **"mailboxes and distribution groups"**. The SharePoint bullet now reads **SharePoint admin center** (not "SharePoint in Microsoft 365 admin center"), while "SharePoint in Microsoft 365" remains correct when naming the **service**.
 
 ---
 
@@ -31,9 +34,13 @@
 
 **Exchange Online**
 - Cloud-based email and calendaring; anti-malware, anti-spam, DLP built in
-- Object types: user mailboxes, shared mailboxes, distribution lists (distribution groups)
+- Object types: user mailboxes, shared mailboxes, resource mailboxes, and **distribution groups**
 - Transport rules (mail flow rules) inspect content and headers to enforce policies
 - Supports hybrid configurations (on-premises plus cloud)
+
+> **Terminology, exactly as Microsoft uses it (verified 2026-07-26).** The AB-900 objective bullet reads "Identify the appropriate objects to configure by using the Exchange admin center (mailboxes and **distribution groups**)". Microsoft product documentation uses **distribution list** as the primary term with **distribution group** as an accepted synonym, and the Exchange admin center tab label is literally **Distribution list**. Both terms are current. Answer with **distribution group** when the question echoes the objective wording, and expect to see **Distribution list** on screen in the portal.
+
+**Exchange Online supports four group types that can distribute messages:** distribution groups (message distribution only), dynamic distribution groups (membership calculated from rules), mail-enabled security groups (distribute messages **and** grant resource access), and Microsoft 365 groups (collaboration workspace with shared mailbox, calendar, and files).
 
 **Microsoft Teams**
 - Collaboration hub: chat, meetings, calling, app integration
@@ -51,14 +58,15 @@
 - Personal cloud storage; typically 1 TB per user
 - Known Folder Move (KFM) redirects Desktop, Documents, Pictures to OneDrive
 - Sharing controls: view or edit permissions, expiration dates, passwords
-- Admins configure sharing policies via Microsoft Purview portal
+- Admins configure OneDrive sharing policies in the **SharePoint admin center** (OneDrive settings are managed there), not in the Microsoft Purview portal
 
 **Copilot and AI-Powered Agents**
 - Built-in AI assistant using large language models plus organizational data
 - Features: contextual assistance, content generation, workflow automation, personalized insights
 - Agents are task-oriented digital helpers that automate workflows, answer questions, and act on user intent
-- Custom agents built with Microsoft Copilot Studio
-- Managed through Microsoft 365 admin centers with controls for data access, compliance, responsible AI
+- Agents are built with **Agent Builder in Microsoft 365 Copilot** (low-code, in-Copilot), **SharePoint**, **Microsoft Copilot Studio**, or pro-code tooling such as the **Microsoft 365 Agents Toolkit**
+- Managed through a top-level **Agents** node in the Microsoft 365 admin center (**Agents > Overview**, **All agents**, **Tools**, **Settings**) with controls for data access, compliance, and responsible AI
+- **Microsoft Agent 365** is the control plane for AI agents regardless of where they were built or acquired; it reached general availability for the Commercial segment on **May 1, 2026**
 
 ### Copilot as Intelligence Layer Engine
 - Powers experiences across the platform via Microsoft Graph data layer
@@ -76,18 +84,31 @@
 ## Unit 2: Explore the Microsoft 365 Admin Center and Key Admin Tools
 
 ### Admin Center Overview
-- Web portal at **https://admin.microsoft.com**
+- Web portal at **https://admin.microsoft.com**. Microsoft Learn also documents **https://admin.cloud.microsoft** as a live equivalent, and many current procedures open with "Sign in to the Microsoft 365 admin center (https://admin.cloud.microsoft/)". Both URLs are correct.
 - Role-aware interface: features visible depend on assigned admin roles
 - Dashboard: user activity, license usage, service health, recommended actions
-- Navigation categories: Users, Devices, Roles, Billing, Reports, Settings
-- Links to specialized portals: Exchange admin center, Teams admin center, SharePoint admin center
+- Navigation categories: Users, Devices, Roles, Billing, Reports, Settings, plus top-level **Copilot** and **Agents** nodes
+- The **Admin centers** menu opens Exchange, Teams, SharePoint, Viva Engage, and Microsoft Entra. Which admin centers appear depends on the tenant's plan and region.
+
+**Exact admin center URLs (verified 2026-07-26):**
+
+| Admin center | URL |
+|--------------|-----|
+| Microsoft 365 | admin.microsoft.com (also admin.cloud.microsoft) |
+| Exchange | admin.exchange.microsoft.com |
+| SharePoint | admin.microsoft.com/sharepoint |
+| Microsoft Teams | admin.teams.microsoft.com |
+| Microsoft Entra | entra.microsoft.com |
+| Microsoft Purview | purview.microsoft.com |
+| Microsoft Defender | security.microsoft.com |
+| Power Platform | admin.powerplatform.microsoft.com |
 
 ### User and License Management
 - **Users > Active Users:** create users (manual or bulk import), assign or remove licenses, reset passwords, configure MFA, set metadata
 - **Billing > Licenses:** view subscriptions, assign licenses, purchase more
-- License types determine feature access (E3 = core productivity; E5 = advanced security, compliance, eDiscovery)
+- License types determine feature access (E3 = core productivity; E5 = advanced security, compliance, eDiscovery; **E7** = E5 plus Microsoft 365 Copilot plus Microsoft Entra Suite plus Agent 365, generally available May 1, 2026)
 - Group-based licensing: auto-provision licenses to group members; max 20 groups per assignment; no nested group support; users must have location set
-- Groups: M365 groups, security groups, distribution lists
+- Groups: Microsoft 365 groups, security groups, mail-enabled security groups, **distribution groups** (shown as **Distribution list** in the portal), and dynamic distribution groups
 
 ### Service Management Areas
 - **Exchange admin center (EAC):** mailboxes, shared mailboxes, resource mailboxes, mail flow rules, connectors, accepted domains, retention policies, litigation hold
@@ -237,9 +258,11 @@
 - Example: HR SharePoint site -- retain all documents 7 years, then auto-delete unless on legal hold
 
 ### Policy Deployment and Monitoring
-- **Microsoft Purview portal:** DLP alerts, audit logs, policy matches, incident investigation
-- **Microsoft Entra admin center:** conditional access sign-in logs (policies applied, access granted or blocked)
+- **Microsoft Purview portal (purview.microsoft.com):** DLP alerts, audit logs, policy matches, incident investigation. Reach each capability via **Solutions > _solution name_**.
+- **Microsoft Entra admin center (entra.microsoft.com):** Conditional Access sign-in logs at **Entra ID > Monitoring & health > Sign-in logs**, then the **Conditional Access** tab of a sign-in event
 - **Intune reporting dashboards:** device compliance status, app protection enforcement, trends
+
+> **Purview portal relocations that break old demo muscle memory (verified 2026-07-26).** Classification is renamed **Classifiers** and moved into each solution's left navigation. **Explorers**, **Policies**, and **Reports** also moved into each solution's left navigation. Roles and scopes moved to **Settings**. Content Search features are now core components of **eDiscovery**. Data Estate Insights is renamed **Reports** under Unified Catalog > Health management. Glossary moved to Unified Catalog > Discovery > Enterprise glossary. Privacy Risk Management moved out of Purview entirely to the **Microsoft Priva** portal.
 
 ---
 

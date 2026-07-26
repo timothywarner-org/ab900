@@ -18,21 +18,85 @@ jobs:
         continue-on-error: true
         run: |
           echo "Checking for retired and deprecated terminology..."
-          # Exclude copilot-instructions.md (contains the rename table), CLAUDE.md (references the table),
-          # and style-guide.md / fictional-companies.md (reference docs, not generated content)
-          RETIRED_TERMS='compliance\.microsoft\.com|Azure AD[^C]|\bAAD\b|Azure Active Directory|AI hub|per message|Billing > Billing policies|Azure AI Studio'
-          RESULTS=$(grep -rn --include="*.md" -E "$RETIRED_TERMS" \
-            --exclude="copilot-instructions.md" \
-            --exclude="CLAUDE.md" \
-            --exclude="CONTRIBUTING.md" \
-            --exclude="style-guide.md" \
-            --exclude="fictional-companies.md" \
-            . || true)
+          # Files exempt from this check are exactly those that must QUOTE a retired term in order
+          # to prohibit it. Everything under .github/ is governance authoring (rename tables,
+          # guardrail lists, distractor guidance) and legitimately names retired terms:
+          #   .github/**                -- rename tables, skill guardrails, prompt terminology blocks
+          #   CLAUDE.md                 -- references the rename table
+          #   references/style-guide.md -- Microsoft style reference
+          #
+          # Everything else IS validated, INCLUDING segment-0*/, shared-resources/, docs/, and
+          # references/ab900-objectives.md. Those trees were previously shielded because the old
+          # --exclude flags matched by BASENAME, so an exclusion intended for one root-level file
+          # silently exempted every same-named file anywhere in the tree.
+          #
+          # Deliberately NOT flagged: "per message". Microsoft's own pay-as-you-go Meters page still
+          # documents the Copilot Studio meter at "$0.01 per message", so flagging it produces false
+          # positives against current Microsoft documentation. The Copilot Credit guidance lives in
+          # the rename table instead.
+          RETIRED_TERMS='compliance\.microsoft\.com'
+          RETIRED_TERMS="$RETIRED_TERMS"'|Azure AD[^C]|\bAAD\b|Azure Active Directory'
+          RETIRED_TERMS="$RETIRED_TERMS"'|Azure AI Studio|\bAI hub\b'
+          RETIRED_TERMS="$RETIRED_TERMS"'|Billing > Billing policies'
+          # Portal and product renames confirmed against Microsoft Learn, July 2026
+          RETIRED_TERMS="$RETIRED_TERMS"'|Microsoft 365 Defender'
+          RETIRED_TERMS="$RETIRED_TERMS"'|Exchange Online admin center'
+          RETIRED_TERMS="$RETIRED_TERMS"'|SharePoint in Microsoft 365 admin center'
+          RETIRED_TERMS="$RETIRED_TERMS"'|Office 365 Security & Compliance Center|protection\.office\.com'
+          RETIRED_TERMS="$RETIRED_TERMS"'|Copilot for Microsoft 365'
+          RETIRED_TERMS="$RETIRED_TERMS"'|Copilot Studio lite'
+          RETIRED_TERMS="$RETIRED_TERMS"'|Microsoft Graph connectors'
+          RETIRED_TERMS="$RETIRED_TERMS"'|Teams Toolkit'
+          RETIRED_TERMS="$RETIRED_TERMS"'|commercial data protection'
+          # Navigation paths that no longer exist in the product
+          RETIRED_TERMS="$RETIRED_TERMS"'|Oversharing reports'
+          RETIRED_TERMS="$RETIRED_TERMS"'|Requested agents'
+          RETIRED_TERMS="$RETIRED_TERMS"'|Protection > Conditional Access'
+          RETIRED_TERMS="$RETIRED_TERMS"'|Identity governance > Privileged'
+          RETIRED_TERMS="$RETIRED_TERMS"'|Org settings > Pay-as-you-go'
+          # Superseded Purview and SharePoint features
+          RETIRED_TERMS="$RETIRED_TERMS"'|restricted site access'
+          RETIRED_TERMS="$RETIRED_TERMS"'|Restricted SharePoint Search'
+          RETIRED_TERMS="$RETIRED_TERMS"'|eDiscovery \(Standard\)|eDiscovery \(Premium\)'
+          RETIRED_TERMS="$RETIRED_TERMS"'|Data Estate Insights'
+          # Licensing claims that are now factually inverted
+          RETIRED_TERMS="$RETIRED_TERMS"'|300[ -]seat minimum|minimum of 300 seats'
+          RESULTS=$(grep -rn --include="*.md" -E "$RETIRED_TERMS" . \
+            --exclude-dir=".git" \
+            --exclude-dir="node_modules" \
+            --exclude-dir=".github" \
+            | grep -v '^\./CLAUDE\.md:' \
+            | grep -v '^\./references/style-guide\.md:' \
+            || true)
           if [ -n "$RESULTS" ]; then
             echo "::warning::Retired or deprecated terminology found:"
             echo "$RESULTS"
           else
             echo "No retired terminology found."
+          fi
+
+      - name: Check exam version currency
+        continue-on-error: true
+        run: |
+          echo "Checking that the skills-measured date is current..."
+          # The AB-900 skills measured were refreshed July 22, 2026. Any file asserting an older
+          # skills-measured date is stale. Update this date when Microsoft refreshes the exam.
+          CURRENT_SKILLS_DATE="July 22, 2026"
+          STALE=$(grep -rn --include="*.md" -E 'Skills measured as of' . \
+            --exclude-dir=".git" \
+            | grep -v "$CURRENT_SKILLS_DATE" || true)
+          if [ -n "$STALE" ]; then
+            echo "::warning::Skills-measured date does not match $CURRENT_SKILLS_DATE:"
+            echo "$STALE"
+          else
+            echo "No stale skills-measured dates found."
+          fi
+          # AB-900 exited beta; any beta framing is stale.
+          BETA=$(grep -rn --include="*.md" -iE 'AB-900 \(beta\)|AB-900 is (currently )?in beta|beta exam' . \
+            --exclude-dir=".git" || true)
+          if [ -n "$BETA" ]; then
+            echo "::warning::AB-900 beta references found (the exam is generally available):"
+            echo "$BETA"
           fi
 
       - name: Check for non-ASCII characters
@@ -52,11 +116,16 @@ jobs:
         run: |
           echo "Checking for common contractions..."
           CONTRACTIONS="don't|doesn't|won't|wouldn't|shouldn't|couldn't|isn't|aren't|wasn't|weren't|hasn't|haven't|hadn't|can't|it's|that's|there's|here's|what's|who's|let's|we're|they're|you're|I'm|we've|they've|you've|I've|we'll|they'll|you'll|I'll"
-          RESULTS=$(grep -rn --include="*.md" -iP "\b($CONTRACTIONS)\b" \
-            --exclude="CONTRIBUTING.md" \
-            --exclude="style-guide.md" \
-            --exclude="fictional-companies.md" \
-            . || true)
+          # Path-scoped excludes. Only the style guide is exempt, because it must quote
+          # contractions in order to prohibit them. Previously CONTRIBUTING.md and
+          # fictional-companies.md were excluded by basename, which also silently exempted
+          # any same-named file anywhere in segment-0*/ or shared-resources/.
+          RESULTS=$(grep -rn --include="*.md" -iP "\b($CONTRACTIONS)\b" . \
+            --exclude-dir=".git" \
+            --exclude-dir="node_modules" \
+            | grep -v '^\./references/style-guide\.md:' \
+            | grep -v '^\./CONTRIBUTING\.md:' \
+            || true)
           if [ -n "$RESULTS" ]; then
             echo "::warning::Contractions found:"
             echo "$RESULTS"

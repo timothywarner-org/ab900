@@ -5,21 +5,26 @@ Additional resources and reference materials for Segment 1.
 ## Quick Reference Links
 
 ### Microsoft 365 Services
-- [Microsoft 365 Admin Center](https://admin.microsoft.com/)
-- [Exchange Online Admin Center](https://admin.exchange.microsoft.com/)
-- [SharePoint Admin Center](https://admin.microsoft.com/sharepoint)
-- [Teams Admin Center](https://admin.teams.microsoft.com/)
-- [OneDrive Admin Center](https://admin.onedrive.com/)
+- [Microsoft 365 admin center](https://admin.microsoft.com/) (admin.cloud.microsoft also resolves)
+- [Exchange admin center](https://admin.exchange.microsoft.com/)
+- [SharePoint admin center](https://admin.microsoft.com/sharepoint)
+- [Microsoft Teams admin center](https://admin.teams.microsoft.com/)
 
 ### Identity and Access
-- [Azure Portal](https://portal.azure.com/)
-- [Microsoft Entra Admin Center](https://entra.microsoft.com/)
-- [Azure AD/Entra ID Documentation](https://docs.microsoft.com/azure/active-directory/)
+- [Microsoft Entra admin center](https://entra.microsoft.com/)
+- [Microsoft Entra ID documentation](https://learn.microsoft.com/entra/fundamentals/whatis)
+- [Microsoft Entra admin center navigation](https://learn.microsoft.com/entra/fundamentals/entra-admin-center)
+- [Conditional Access overview](https://learn.microsoft.com/entra/identity/conditional-access/overview)
+- [Identity Secure Score](https://learn.microsoft.com/entra/identity/monitoring-health/concept-identity-secure-score)
+
+### Security
+- [Microsoft Defender portal](https://security.microsoft.com/)
+- [Microsoft Defender XDR](https://learn.microsoft.com/defender-xdr/microsoft-365-defender-portal)
 
 ### Documentation
-- [Microsoft 365 Documentation](https://docs.microsoft.com/microsoft-365/)
-- [Microsoft 365 Architecture Center](https://docs.microsoft.com/microsoft-365/solutions/architecture-center)
-- [Microsoft 365 Licensing](https://www.microsoft.com/microsoft-365/compare-microsoft-365-enterprise-plans)
+- [Microsoft 365 documentation](https://learn.microsoft.com/microsoft-365/)
+- [Microsoft 365 admin center help](https://learn.microsoft.com/microsoft-365/admin/)
+- [Microsoft 365 Service Descriptions](https://learn.microsoft.com/office365/servicedescriptions/office-365-service-descriptions-technet-library)
 
 ## Reference Files
 

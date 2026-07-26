@@ -5,14 +5,22 @@ Additional resources and reference materials for Segment 3.
 ## Quick Reference Links
 
 ### Copilot Administration
-- [Copilot Dashboard](https://admin.microsoft.com/Adminportal/Home#/copilot)
-- [Copilot Documentation](https://docs.microsoft.com/microsoft-365-copilot/)
-- [Deployment Guide](https://docs.microsoft.com/microsoft-365-copilot/deploy)
+- [Microsoft 365 Copilot documentation](https://learn.microsoft.com/microsoft-365/copilot/)
+- [Microsoft 365 Copilot setup](https://learn.microsoft.com/microsoft-365/copilot/microsoft-365-copilot-setup)
+- [Copilot Control System overview](https://learn.microsoft.com/microsoft-365/copilot/copilot-control-system/overview)
+- [Copilot reports for admins](https://learn.microsoft.com/microsoft-365/copilot/microsoft-365-copilot-reports-for-admins)
+
+### Billing
+- [Set up pay-as-you-go for Copilot](https://learn.microsoft.com/microsoft-365/commerce/services/pay-as-you-go-setup-copilot)
+- [Copilot capacity packs and credit policies](https://learn.microsoft.com/microsoft-365/copilot/pay-as-you-go/copilot-capacity-packs)
+- [Copilot Studio billing rates](https://learn.microsoft.com/microsoft-copilot-studio/requirements-messages-management)
+
+Reminder on paths. Copilot billing is at admin.microsoft.com > **Copilot** > **Billing & usage**. The **Billing** node is **NOT** the place for Copilot; it covers Microsoft 365 Backup, SharePoint Storage, and High Volume Email, and only shows a redirect link for Copilot.
 
 ### Configuration
-- [Cloud Policy Management](https://config.office.com/)
+- [Cloud Policy service for Microsoft 365](https://config.office.com/)
+- [Get started with Copilot Frontier](https://learn.microsoft.com/microsoft-365/admin/manage/get-started-frontier)
 - [Adoption Resources](https://adoption.microsoft.com/copilot/)
-- [Admin Settings Reference](https://docs.microsoft.com/microsoft-365-copilot/admin)
 
 ### Training and Enablement
 - [Copilot Learning Paths](https://learn.microsoft.com/training/paths/copilot/)

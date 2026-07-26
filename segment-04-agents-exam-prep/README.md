@@ -2,6 +2,10 @@
 
 **Duration:** 50 minutes
 
+**Maps to AB-900 Domain 3: Perform basic administrative tasks for Copilot and agents (25-30%)**, plus exam logistics
+
+**Last updated:** 2026-07-26 (aligned to the AB-900 skills measured as of July 22, 2026)
+
 ## Learning Objectives
 
 By the end of this segment, you will be able to:
@@ -24,11 +28,38 @@ By the end of this segment, you will be able to:
 - Autonomous vs. semi-autonomous agents
 - Agent capabilities and limitations
 
-#### Types of Agents
-- **Declarative Agents** - Simple, no-code agents with instructions
-- **Custom Engine Agents** - Advanced agents with custom logic
-- **Power Platform Agents** - Low-code agents in Power Virtual Agents
-- **API Agents** - Programmatic agents via Graph API
+#### The two-way taxonomy Microsoft actually documents
+
+Microsoft documents **two** primary approaches to building agents for Microsoft 365 Copilot. Everything else is a variation on these.
+
+| Aspect | Declarative agent | Custom engine agent |
+|--------|-------------------|---------------------|
+| Hosting | Hosted in Microsoft 365, nothing extra to stand up | Requires hosting outside Microsoft 365 |
+| Model and orchestration | Uses Copilot's AI infrastructure, model, and orchestrator | Fully customizable, including choice of models and orchestration |
+| Intended use | Individual use | Individual use and group collaboration |
+| Proactive interactions | **NOT** supported; relies on user-initiated interactions | Supported; can trigger actions without direct user input |
+| Compliance posture | Inherits Microsoft 365 compliance | The builder must ensure their own compliance, Responsible AI practices, and security |
+| Availability | Microsoft 365 Copilot and Microsoft 365 apps such as Teams, Word, Excel, Outlook | Microsoft 365 and external apps |
+
+#### The four creator personas
+
+- **Users** create declarative agents in **Agent Builder** or **SharePoint**. Requires a Copilot license or a pay-as-you-go subscription, and tenant settings must permit it.
+- **Makers** use **Copilot Studio** for low-code agents.
+- **Developers** use the Copilot Studio SDK or the **Microsoft 365 Agents Toolkit** for pro-code agents.
+- Both Makers and Developers can add actions, connectors, and advanced logic.
+
+#### Naming corrections
+
+- The low-code, in-Copilot authoring surface is **Agent Builder in Microsoft 365 Copilot**, reached via **New agent** in the Microsoft 365 Copilot app. The older "Copilot Studio lite" label survives only in Learn URL slugs. Use **Agent Builder**.
+- **Power Virtual Agents** is retired branding. The product is **Microsoft Copilot Studio**.
+- **Teams Toolkit** is now the **Microsoft 365 Agents Toolkit**. The admin center agent type label is **Agent Toolkit**.
+- Prefer **Microsoft Foundry** over "Azure AI Studio" in agent contexts. The admin center type labels are **Foundry LOB**, **Foundry non-LOB**, and **Foundry hosted**.
+
+#### Admin-facing agent type labels
+
+The Microsoft 365 admin center classifies agents as: MCS DA (Copilot Studio declarative agent), MCS CEA (Copilot Studio custom engine agent), MCS BP (business process agent), Foundry LOB, Foundry non-LOB, Foundry hosted, Agent Builder, SharePoint, Agent Toolkit, and Agent instance.
+
+The **Agent Registry** separately divides agents by publisher into four types: Microsoft agents, External partner-built agents, Published by your org (LOB agents), and Shared by creator.
 
 #### Agent Use Cases
 - Customer service automation
@@ -41,10 +72,11 @@ By the end of this segment, you will be able to:
 ### 2. Copilot Studio and Agent Builder (12 minutes)
 
 #### Copilot Studio Overview
-- What is Copilot Studio
-- Relationship to Power Virtual Agents
-- Development environment
-- Publishing and deployment
+- What is Microsoft Copilot Studio. Note the branding: **Power Virtual Agents** is retired; the product is Copilot Studio.
+- Development environment, publishing, and deployment
+- **Division of labor.** Agents built with Microsoft 365 Copilot tooling (Agent Builder, SharePoint) are managed primarily through the Microsoft 365 admin center. Agents built with Copilot Studio are managed through the **Power Platform admin center** for finer-grained enterprise controls. Copilot Studio agents still require Microsoft 365 admin center approval to reach the tenant-wide Microsoft 365 Copilot or Teams catalog.
+- Controls that live **only** in the Power Platform admin center: DLP policies that block publishing through specific channels, Editor and Viewer sharing roles, and block-or-limit-sharing rules at the managed environment or environment group level.
+- **Deprecation:** after the end of June 2026, the Copilot Studio for Teams app can no longer be used to create classic chatbots; it redirects makers to the Copilot Studio web app.
 
 #### Creating Declarative Agents
 1. **Planning the Agent**
@@ -81,27 +113,81 @@ By the end of this segment, you will be able to:
 
 ### 3. Managing and Governing Agents (10 minutes)
 
-#### Agent Governance
-- Agent lifecycle management
-- Version control and updates
-- Approval workflows
-- Access control and permissions
-- Usage monitoring
+#### The agent approval path
+
+**admin.microsoft.com > Agents > All agents > Requests.** This exact path appears across current Microsoft Learn articles, and "Manage agent requests in Microsoft 365 admin center" reached general availability on July 15, 2026.
+
+The older path "Copilot > Agents > Requested agents tab" is stale on **both** counts. The Agents workload is a top-level node now, not nested under Copilot, and the tab is named **Requests**, not "Requested agents".
+
+Three request states appear under Requests:
+
+| State | Admin action | Note |
+|-------|--------------|------|
+| **Pending review** | **Publish to store** | Starts the publishing wizard |
+| **Pending update** | **Update in store** | Users keep the previous version until approved |
+| **Pending activate** | Approve and activate | For agents the user wants to instantiate |
+
+**Reject submission** is available from the ellipses next to the agent name. A fourth state, **Allow user to install**, appears when a user requests a blocked Microsoft-built agent; the admin must select **Unblock agent** first, then Approve.
+
+**Only AI Administrator and Global Administrator** can approve requests or assign ownership. Global Reader, AI Reader, Security Administrator, Security Reader, and Reports Reader can view but cannot act.
+
+#### The Agents workload
+
+Four sub-pages: **Overview** (dashboard), **All agents** (Registry and Requests tabs), **Tools** (MCP server registration and approval), and **Settings**.
+
+**Agents > Settings** contains exactly five areas: Agent management rules, Allowed agent types, Security templates, Sharing, and User access.
+
+Exam traps in this area:
+- Agents built by Microsoft remain **visible** to users even when "Allow apps and agents built by Microsoft" is disabled. Users simply cannot install them.
+- Only agents built with Agent Builder are governed by the **Sharing** control, and under "No users" users can **STILL** share directly with specific individuals.
+- Agent management rules support exactly two bulk actions today: **Install Microsoft agents**, and **Reassign ownerless agents created with Agent Builder to manager**. The reassignment rule works **ONLY** for Agent Builder agents.
+
+#### Block versus remove
+
+- **Block** prevents any user in the tenant from accessing the agent **AND** removes it from users who already installed it.
+- **Uninstall/Remove** takes the agent out of inventory, but it can be re-added from the store. Admins can only remove shared agents and custom LOB agents.
+
+**Blocking scope trap.** Blocking an agent built with Agent Builder or Copilot Studio affects availability in Microsoft 365 Copilot **and** other hosts such as Outlook and Teams. Blocking an agent built with SharePoint or Microsoft Foundry affects **only** Microsoft 365 Copilot Chat.
+
+#### Availability versus installation
+
+These are **independent** settings on the agent's Users tab:
+- **Installed for** controls automatic pre-installation (Just me, Entire organization, Specific users/groups)
+- **Available to** controls who can install and use it (No users, All users, Specific users/groups)
+
+Installing to the entire organization installs automatically regardless of the availability scope.
+
+#### Researcher and Analyst, restated correctly
+
+The older course claim that these "require a separate administrative block and are NOT governed by the general agent on/off toggle" reached the right conclusion by the wrong mechanism. Microsoft's current wording: Researcher and Analyst **"are part of the core Copilot chat experience and will not fall under any agent-related settings."** They stay available in Microsoft 365 Copilot Chat under **Tools** even when agents are disabled for some or all users.
+
+To disable one, use the **Block** action on the individual agent. The **Edit users** panel is **disabled** for Researcher and Analyst, so granular per-user assignment is not possible; blocking is tenant-wide only.
+
+**Researcher with Computer Use** is separately governed at Agents > select Researcher > **Computer use** tab, exposing three policies: who can perform actions on behalf of users, whether Researcher can access work data, and which websites are allowed. Web search is required for Computer use.
 
 #### Security and Compliance
 - Data protection in agent interactions
 - Authentication and authorization
-- Sensitivity labels for agents
 - DLP policies for agent content
 - Audit logging for agent activities
-- Privacy considerations
+- **Information Barriers are NOT supported on embedded files.** Any user who can access the agent sees responses grounded in that embedded content.
+- If **Restricted SharePoint Search** is enabled, SharePoint cannot be used as a knowledge source for a declarative agent
 
-#### Admin Controls
-- Tenant-level settings for agents
-- User permissions for agent creation
-- Agent publication policies
-- External sharing controls
-- Plugin governance
+#### Agent risk types
+
+The Agent Registry surfaces an "Agents at risk" card aggregating signals from Microsoft Entra, Microsoft Defender, and Microsoft Purview:
+
+| Severity | Risk types |
+|----------|------------|
+| Critical | Shadow agent, No owner assigned, Excessive permissions |
+| High | Security misconfiguration, Prompt injection, Sensitive data access, Conditional access violation |
+| Medium | Pending approval, Operational exceptions, Compliance/retention gap |
+
+A **Microsoft 365 E7 or Agent 365 license** is required to see the Risks column in the Registry, the Security tab, and the Activity tab details.
+
+#### MCP tool governance
+
+Separate from agent governance. After a developer registers a tool such as a remote MCP server, an admin reviews it at **Agents** > **Tools** > **Requests**, then selects Approve or Reject. Only AI Administrator and Global Administrator meet both requirements: page access plus the ability to grant tenant-wide consent.
 
 ### 4. Integration with Power Platform (8 minutes)
 
@@ -155,21 +241,32 @@ By the end of this segment, you will be able to:
 ### 6. Exam AB-900 Preparation (3 minutes)
 
 #### About Microsoft AB-900
-- **Official Title:** Microsoft 365 Certified: Copilot and Agent Administration Fundamentals
+- **Certification:** Microsoft 365 Certified: Copilot and Agent Administration Fundamentals
 - **Exam Code:** AB-900
-- **Status:** Beta (as of January 2025)
-- **Duration:** 45 minutes
-- **Passing Score:** 700
-- **Exam Page:** https://learn.microsoft.com/credentials/certifications/exams/ab-900/
+- **Status: GENERALLY AVAILABLE.** AB-900 is **NOT** in beta. It exited beta on January 28, 2026, and the live pages carry no "(beta)" designation. Learners receive scores immediately and can retake after 24 hours.
+- **Skills measured as of:** July 22, 2026
+- **Duration:** 45 minutes of exam time. Block **65 minutes** of seat time, which includes instructions, the Candidate Agreement, and comments.
+- **Passing Score:** 700 or greater, on a scale where 1000 is the maximum
+- **Question count:** Microsoft publishes **NO** AB-900-specific number. The official statement is generic: most Microsoft exams typically contain between 40 and 60 questions. Present 40-60 as a Microsoft-wide typical range, not a verified AB-900 figure.
+- **Language:** English only, as of July 22, 2026
+- **Delivery:** Pearson VUE, or Certiport for students and educators. Proctored, and may have interactive components.
+- **Renewal: NOT required.** Microsoft states "Fundamentals certifications do not expire." The study guide's boilerplate renewal row about associate, expert, and specialty certifications expiring annually does **NOT** apply to AB-900. This is a genuine exam trap.
+- **Microsoft Learn during the exam: NOT available.** The in-exam Learn resource is offered only on role-based exams, not Fundamentals. Correct any material implying learners can look things up.
+- **Breaks:** unscheduled breaks are allowed, but the clock keeps running and you cannot return to any question viewed before the break.
+- **Scope rule (verbatim):** "Most questions cover features that are general availability (GA). The exam may contain questions on Preview features if those features are commonly used."
+- **Exam Page:** https://learn.microsoft.com/credentials/certifications/copilot-and-agent-administration-fundamentals/
 - **Study Guide:** https://learn.microsoft.com/credentials/certifications/resources/study-guides/ab-900
+- **Free practice assessment:** live on Microsoft Learn. See the practice assessments availability table.
+- **Exam sandbox:** https://aka.ms/examdemo
 
 #### Related Certifications
-  - MS-900: Microsoft 365 Fundamentals
   - MS-102: Microsoft 365 Administrator
   - SC-300: Microsoft Identity and Access Administrator
   - SC-400: Microsoft Information Protection Administrator
   - AI-900: Microsoft Azure AI Fundamentals
   - PL-200: Power Platform Functional Consultant
+
+  Note: **MS-900 retired March 31, 2026.** AB-900 is the successor Fundamentals credential in the Microsoft 365 space. Do **NOT** present MS-900 as a currently available option.
 
 #### Study Strategies
 - Hands-on practice is essential
@@ -379,9 +476,14 @@ By the end of this segment, you will be able to:
 ## Additional Resources
 
 ### Documentation
-- [Copilot Studio Documentation](https://docs.microsoft.com/power-virtual-agents/)
-- [Microsoft 365 Copilot Extensibility](https://docs.microsoft.com/microsoft-365-copilot/extensibility/)
-- [Power Platform Documentation](https://docs.microsoft.com/power-platform/)
+- [Agents overview: declarative versus custom engine](https://learn.microsoft.com/microsoft-365/copilot/extensibility/agents-overview)
+- [Agent Builder in Microsoft 365 Copilot](https://learn.microsoft.com/microsoft-365/copilot/extensibility/agent-builder)
+- [Manage agent requests](https://learn.microsoft.com/microsoft-365/admin/manage/agent-requests)
+- [Agent registry](https://learn.microsoft.com/microsoft-365/admin/manage/agent-registry)
+- [Agent settings](https://learn.microsoft.com/microsoft-365/admin/manage/agent-settings)
+- [Microsoft Copilot Studio documentation](https://learn.microsoft.com/microsoft-copilot-studio/)
+- [Microsoft 365 Copilot extensibility](https://learn.microsoft.com/microsoft-365/copilot/extensibility/)
+- [Power Platform documentation](https://learn.microsoft.com/power-platform/)
 - [Responsible AI Guidelines](https://www.microsoft.com/ai/responsible-ai)
 
 ### Tools
@@ -434,7 +536,7 @@ Use this section to capture questions and answers from the live session:
 
 ## Course Wrap-Up
 
-### What We've Covered
+### What We have Covered
 1. **Segment 1:** Microsoft 365 foundations and core services
 2. **Segment 2:** Data protection, governance, and compliance
 3. **Segment 3:** Copilot features, deployment, and administration

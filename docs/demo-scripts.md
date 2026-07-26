@@ -1,10 +1,44 @@
-# AB-900 Demo Scripts — Instructor Delivery Guide
+# AB-900 Demo Scripts -- Instructor Delivery Guide
 
 **Instructor:** Tim Warner
-**Session:** O'Reilly Live Learning — AB-900: Microsoft 365 Copilot and Agent Administration Fundamentals
-**Total demos:** 16 (1A, 1B, 2A, 2B, 2C, 2D, 3A, 3B, 3C, 3D, 4A, 4B, 4C, 4D + two unlabeled walkthroughs folded into 3C and 4D)
+**Session:** O'Reilly Live Learning -- AB-900: Microsoft 365 Copilot and Agent Administration Fundamentals
+**Delivery date:** July 28, 2026
+**Skills measured version in force:** July 22, 2026
+**Total demos:** 14 labeled demos (1A, 1B, 2A, 2B, 2C, 2D, 3A, 3B, 3C, 3D, 4A, 4B, 4C, 4D)
 
-This document provides click-by-click scripts for every demo moment in the session. These are instructor-facing. Write narration in quotes as shown. Adapt language in the moment — do not read verbatim.
+This document provides click-by-click scripts for every demo moment in the session. These are instructor-facing. Narration is written in quotes as shown. Adapt language in the moment; do not read verbatim.
+
+---
+
+## How to Read the VERIFY Markers
+
+Portal navigation shifts faster than course material. Anywhere a path could not be confirmed against current Microsoft documentation, or where tenant configuration genuinely changes what you see, there is an inline marker:
+
+```
+<!-- VERIFY: what to confirm in the live tenant before going on camera -->
+```
+
+Walk every VERIFY marker in the demo tenant during setup. A wrong click path spoken with confidence on camera is worse than saying "let me show you where this lives" and navigating deliberately.
+
+---
+
+## July 2026 Navigation Changes That Break Older Demo Scripts
+
+Read this list once before rehearsal. Each of these was a working path in an earlier version of this document and is now wrong or incomplete.
+
+| Old path in prior scripts | Current path |
+|---------------------------|--------------|
+| admin.microsoft.com > Copilot > Agents > Requested agents | **admin.microsoft.com > Agents > All agents > Requests** |
+| purview.microsoft.com > Information protection > Labels | **purview.microsoft.com > Solutions > Information Protection > Sensitivity labels** |
+| purview.microsoft.com > Data classification > Content explorer | **Solutions > Information Protection > Explorers > Data explorer** (the old tool is now Content Explorer (classic) under Data Lifecycle Management) |
+| DLP "Test mode" | **"Run the policy in simulation mode"** |
+| Solutions > DSPM for AI (classic) as the only entry | **Solutions > DSPM** is the new unified front door; the classic entries still exist alongside it |
+| SharePoint admin center > "Sites shared with Everyone" report | **Reports > Data access governance > Shared with 'Everyone except external users'** |
+| Restricted SharePoint Search as the oversharing mitigation | **Restricted content discovery (RCD)**; RSS blocks new enablement July 31, 2026 |
+| Copilot settings web search toggle in the admin center | The admin center **links out** to the Microsoft 365 Apps admin center, where the **Allow web search in Copilot** cloud policy is created |
+| entra.microsoft.com > Protection > Conditional access | **entra.microsoft.com > Entra ID > Conditional Access** |
+| entra.microsoft.com > Identity governance > PIM | **entra.microsoft.com > ID Governance > Privileged Identity Management** |
+| Teams admin center > App permission policies | **App centric management** replaced permission policies for migrated tenants; scope per app on its **Users and groups** tab |
 
 ---
 
@@ -12,16 +46,26 @@ This document provides click-by-click scripts for every demo moment in the sessi
 
 Open and pin these tabs in this order before learners join:
 
-1. `admin.microsoft.com` — logged in as demo tenant global admin
-2. `purview.microsoft.com` — Solutions menu expanded
-3. `admin.microsoft.com/sharepoint` — SharePoint admin center
-4. `entra.microsoft.com` — Identity governance section visible
-5. `admin.teams.microsoft.com` — Teams apps > Manage apps
-6. `admin.powerplatform.microsoft.com` — Environments list visible
-7. `copilotstudio.microsoft.com` — Home screen
-8. `insights.viva.cloud.microsoft` — Copilot Dashboard (or navigate via M365 admin center)
+1. `admin.microsoft.com` -- signed in as demo tenant Global Administrator
+2. `purview.microsoft.com` -- Solutions menu expanded
+3. `admin.microsoft.com/sharepoint` -- SharePoint admin center
+4. `entra.microsoft.com` -- Entra ID and ID Governance both reachable
+5. `admin.exchange.microsoft.com` -- Exchange admin center (Recipients > Groups)
+6. `admin.teams.microsoft.com` -- Teams apps > Manage apps
+7. `admin.powerplatform.microsoft.com` -- Environments list visible
+8. `copilotstudio.microsoft.com` -- Home screen
+9. Microsoft 365 Copilot app -- for Agent Builder and the Tools menu
+10. Viva Insights (Teams app or web) -- Copilot Dashboard
 
-Pre-navigate each portal to its first demo landing page during the break before each segment. Portal load times — especially Purview and Power Platform — average 10–20 seconds. Do not navigate cold in front of learners.
+Setup verification pass, done once during rehearsal:
+
+- [ ] Confirm which DSPM entries appear under Purview > Solutions in this tenant
+- [ ] Confirm whether this tenant uses app centric management or the older app permission policies in the Teams admin center
+- [ ] Confirm the sensitivity label scheme in this tenant (classic parent/sublabel, or the modern label groups scheme that is default for tenants created on or after October 1, 2025)
+- [ ] Confirm the Copilot > Settings tabs present in this tenant. Microsoft states the page shows only licensed services and changes frequently.
+- [ ] Confirm whether the Agents node appears at the top level of the Microsoft 365 admin center left navigation
+
+Pre-navigate each portal to its first demo landing page during the break before each segment. Portal load times, especially Purview and Power Platform, average 10 to 20 seconds. Do not navigate cold in front of learners.
 
 ---
 
@@ -31,11 +75,11 @@ Pre-navigate each portal to its first demo landing page during the break before 
 
 **Duration:** 4 minutes
 **Portal URL:** `https://admin.microsoft.com`
-**Timing in segment:** 0:30–0:34
+**Timing in segment:** 0:30-0:34
 
 #### Pre-Demo Setup
 
-- Tab should already be open and logged in
+- Tab should already be open and signed in
 - Pre-navigate to Users > Active users before the segment begins
 - Have at least one test user in the tenant (any user works)
 - Confirm the tenant has at least one Copilot-eligible license visible under Billing > Licenses
@@ -45,39 +89,46 @@ Pre-navigate each portal to its first demo landing page during the break before 
 1. Switch to the `admin.microsoft.com` tab. The Active users list should be visible.
 2. Click the display name of any test user to open the user properties pane on the right side of the screen.
 
-   > "This right-side pane is the quick view. Notice the tabs across the top — Account, Devices, Licenses, Mail, OneDrive. For the exam, know that license assignment lives on the Licenses and apps tab, not under a separate Billing section for individual users."
+   > "This right-side pane is the quick view. Notice the tabs across the top. For the exam, know that license assignment happens on the Licenses and apps tab, not under a separate Billing section for individual users."
+
+   <!-- VERIFY: the exact tab set in the user properties pane varies by tenant licensing. Confirm which tabs render before narrating them by name. -->
 
 3. Click the **X** to close the user pane. Return to the Active users list.
 4. In the left navigation, click **Billing**, then click **Licenses**.
 
-   > "This is the tenant-level view of all licenses you own. Find the Microsoft 365 Copilot entry — if it's here, the tenant has purchased Copilot capacity. The number shown is how many seats you own, not how many are assigned. The exam distinguishes between license quantity and license assignment."
+   > "This is the tenant-level view of every license you own. Find the Microsoft 365 Copilot entry. If it is here, the tenant has purchased Copilot capacity. The number shown is how many seats you own, not how many are assigned. The exam distinguishes between license quantity and license assignment."
 
-5. Scroll the license list and call out any of these SKUs if visible: Microsoft 365 E3, Microsoft 365 E5, Microsoft 365 Business Standard, Microsoft 365 Business Premium.
+5. Scroll the license list and call out any of these base SKUs if visible: Microsoft 365 E3, Microsoft 365 E5, Microsoft 365 E7, Microsoft 365 Business Standard, Microsoft 365 Business Premium, and the Office 365 plans.
 
-   > "Copilot is an add-on. It requires one of these base licenses to already be assigned to the user before Copilot can activate. If a user has only an F1 or F3 license, Copilot cannot be added. The exam will test this prerequisite."
+   > "Copilot is an add-on. The user needs an eligible base license first. Microsoft's eligible list is broad -- it includes E3, E5, F1, F3, the Business plans, Microsoft 365 Apps, and the Office 365 E5, E3, E1, and F3 plans. And there is one important exception to the add-on model: Microsoft 365 E7, which went generally available on May 1 of this year, includes Microsoft 365 Copilot in the base SKU. An E7 customer does not buy the add-on separately."
+
+   > "One myth to kill right now, because it is still all over the internet. There is no 300-seat minimum for Microsoft 365 Copilot. Microsoft removed that requirement in January 2024. The only 300 that survives is a **maximum** on Copilot Business and the Business-with-Copilot SKUs. If an exam answer says minimum, that is your distractor."
 
 6. In the left navigation, click **Health**, then click **Service health**.
 
-   > "The service health dashboard is where you confirm whether M365 services are experiencing incidents. Notice the two categories — Advisory and Incident. Advisory means a degraded service; Incident means a service is down or significantly impaired. Know both terms for the exam."
+   > "The service health dashboard is where you confirm whether Microsoft 365 services are having problems. Notice the categories. Advisory means a degraded service. Incident means a service is down or significantly impaired. This dashboard is the first place an admin looks when users report trouble."
 
 7. In the left navigation, click **Settings**, then click **Org settings**.
 
-   > "Org settings is where tenant-wide defaults live — things like letting users install apps, enabling specific Copilot behaviors, and configuring external sharing defaults. When an exam question asks where to configure a setting that affects all users by default, Org settings is usually the answer."
+   > "Org settings is where tenant-wide defaults are configured -- whether users can install apps, external sharing defaults, and similar organization-level behavior. When an exam question asks where you configure something that affects all users by default, Org settings is usually the answer."
+
+   > "One caution for later: Copilot settings are **NOT** here. They are under the Copilot node in the left navigation, and we will get to that in Segment 3. Do not go hunting for Copilot pay-as-you-go under Org settings, because the SharePoint agent path that used to be there is now legacy."
 
 #### What Learners Should See
 
-- After step 2: A right-side pane showing user properties with tabs (Account, Devices, Licenses, Mail, OneDrive)
+- After step 2: A right-side pane showing user properties with tabs across the top
 - After step 4: A list of purchased licenses with columns for License name, Licenses purchased, and Licenses assigned
-- After step 6: The service health dashboard with a color-coded service list and any active advisories or incidents
-- After step 7: A scrollable list of org-wide settings grouped by category (Services, Security & privacy, News)
+- After step 6: The service health dashboard with a service list and any active advisories or incidents
+- After step 7: A scrollable list of org-wide settings grouped by category
 
 #### If Something Breaks
 
-- **Portal loads a blank screen or spins:** "While the portal loads, let me describe the structure — admin.microsoft.com is the hub for all Microsoft 365 administration. Every spoke admin center — Exchange, SharePoint, Teams, Purview — can be reached from here via the Admin centers link in the left navigation." Switch to the pre-loaded screenshot backup if available.
-- **Licensing tab shows no Copilot SKU:** "If you don't see Copilot here, the tenant hasn't purchased Copilot licenses yet. In a real deployment you'd see Microsoft 365 Copilot listed as a separate add-on entry." Proceed — the navigation path is the exam-relevant point, not the specific SKU.
-- **Settings > Org settings is missing:** Some trial tenants have a reduced navigation menu. Navigate via the search bar at the top of the admin center — type "Org settings" and select the result.
+- **Portal loads a blank screen or spins:** "While the portal loads, let me describe the structure. admin.microsoft.com is the hub for Microsoft 365 administration. The spoke admin centers -- Exchange, SharePoint, Teams, Entra, Purview -- are reachable from here through the Admin centers link in the left navigation. Which admin centers appear depends on the tenant's plan and region." Switch to the pre-loaded screenshot backup if available.
+- **Licensing page shows no Copilot SKU:** "If Copilot is not listed here, the tenant has not purchased Copilot licenses. In a production deployment you would see Microsoft 365 Copilot as a separate add-on entry." Proceed. The navigation path is the exam-relevant point, not the specific SKU.
+- **Settings > Org settings is missing:** Some trial tenants have a reduced navigation menu. Navigate through the search bar at the top of the admin center: type "Org settings" and select the result.
+- **The portal is at admin.cloud.microsoft instead:** That is expected and current. Microsoft has been consolidating admin centers onto the cloud.microsoft domain, and admin.cloud.microsoft resolves to the same app. Say so and keep going.
 
-> **Exam callout:** The Microsoft 365 admin center service health dashboard is explicitly tested — know that Advisory indicates degraded service and Incident indicates a down or severely impaired service, and that this dashboard is the first place an admin checks when users report M365 issues.
+> **Exam callout:** The Microsoft 365 admin center service health dashboard is explicitly tested. Advisory indicates degraded service, Incident indicates a down or severely impaired service, and this dashboard is the first place an admin checks when users report Microsoft 365 issues.
 
 ---
 
@@ -85,50 +136,53 @@ Pre-navigate each portal to its first demo landing page during the break before 
 
 **Duration:** 4 minutes
 **Portal URL:** `https://admin.microsoft.com` > Users > Active users
-**Timing in segment:** 0:34–0:38
+**Timing in segment:** 0:34-0:38
 
 #### Pre-Demo Setup
 
-- Remain on admin.microsoft.com from Demo 1A (or pre-navigate back to Users > Active users)
-- Identify a test user who does NOT currently have a Copilot license assigned — this makes the toggle action visible and meaningful
-- Do NOT pre-assign the license; the demo value is showing the assignment action live
+- Remain on admin.microsoft.com from Demo 1A, or pre-navigate back to Users > Active users
+- Identify a test user who does **NOT** currently have a Copilot license assigned, which makes the toggle action visible and meaningful
+- Do **NOT** pre-assign the license. The demo value is showing the assignment action live.
 
 #### Steps
 
 1. From the Active users list, click the display name of your designated test user.
 2. In the user properties pane, click the **Licenses and apps** tab.
 
-   > "This tab shows every license currently assigned to this user. You can see the base license — M365 Business Standard in this case — already toggled on. Notice Microsoft 365 Copilot is listed here but currently off."
+   > "This tab shows every license currently assigned to this user. The base license is already on. Microsoft 365 Copilot is listed here as a separate entry, currently off."
 
-3. Scroll down to find the **Microsoft 365 Copilot** entry in the license list. Toggle it **on**.
+3. Scroll down to find the **Microsoft 365 Copilot** entry in the license list. Turn it **on**.
 
-   > "I'm turning on the Copilot license. Notice there's no immediate confirmation — it queues the assignment. The exam has a specific fact here: it takes up to 24 hours for Copilot features to appear for the user after license assignment. If a user calls the help desk saying Copilot isn't showing up, the first question is when the license was assigned. If it was within the last 24 hours, tell the user to wait."
+   > "I am turning on the Copilot license. Notice there is no dramatic confirmation. It queues the assignment. Here is the fact the exam likes: users might wait up to 24 hours for Copilot to show up in some apps, and they might need to restart or refresh the app. So when a user calls the help desk on day one saying Copilot is missing, your first question is when the license was assigned. If it was in the last 24 hours, the answer is patience."
 
-4. Click **Save changes** (blue button at the bottom of the panel).
+4. Click **Save changes**.
 5. Close the user pane with the **X**.
-6. In the left navigation, click **Groups**, then click **Active groups**.
+6. In the left navigation, click **Teams and groups**, then click **Active teams and groups**.
 
-   > "Now I want to show you the scale approach. Instead of assigning Copilot one user at a time, you can assign it to a group. Microsoft 365 then automatically assigns the license to every member of that group — and removes it when someone leaves the group. This is called group-based licensing."
+   <!-- VERIFY: the Groups navigation label varies. Current Microsoft documentation uses "Teams and groups > Active teams and groups"; some tenants still render "Groups > Active groups". Confirm which one this tenant shows. -->
 
-7. Click any group name to open the group properties. Click the **Licenses** tab inside the group pane (if visible) or note its location.
+   > "Now the approach that scales. Instead of assigning Copilot one user at a time, you assign it to a group. Microsoft 365 then assigns the license to every member of that group automatically, and removes it when somebody leaves the group. That is group-based licensing, and it is how real organizations do this."
 
-   > "The Licenses tab on a group is where you'd configure group-based licensing. For the exam, know that both individual assignment and group-based assignment are valid methods, and that group-based assignment scales better for large organizations."
+7. Click any group name to open the group properties, then find the **Licenses** area within the group.
+
+   > "For the exam, know that both individual assignment and group-based assignment are valid, and that group-based assignment is the answer when a question describes scale or describes licenses that should follow department membership."
 
 8. Close the group pane.
 
 #### What Learners Should See
 
-- After step 2: The Licenses and apps tab showing a list of license entries with checkboxes/toggles, with the Copilot entry visible and currently unchecked
-- After step 4: A brief success notification or the pane refreshing with the Copilot entry now checked
-- After step 7: The group properties pane with a Licenses tab showing any licenses assigned to the group
+- After step 2: The Licenses and apps tab showing license entries with toggles, with the Copilot entry visible and currently off
+- After step 4: A brief success notification, or the pane refreshing with the Copilot entry now on
+- After step 7: The group properties pane showing the licenses assigned to that group
 
 #### If Something Breaks
 
-- **Copilot license is not visible in the user's Licenses and apps tab:** The tenant may not have a Copilot license purchased. Say: "In your production tenant, Microsoft 365 Copilot would appear here as a toggleable add-on, sitting below the base license. The key point is the assignment method — individual toggle here, or group-based at scale." Then navigate to Billing > Licenses to confirm what's available.
-- **Save changes button is greyed out:** Some trial tenants restrict license modifications. Do not force it — describe the action verbally and move to the group-based licensing discussion.
-- **Groups navigation is absent:** Navigate via the search bar at the top of admin.microsoft.com — type "Groups" and select Active groups.
+- **Copilot license is not visible in the user's Licenses and apps tab:** The tenant may not have a Copilot license purchased. Say: "In a production tenant, Microsoft 365 Copilot appears here as a separate add-on entry below the base license. The point is the assignment method -- individual toggle here, or group-based at scale." Then navigate to Billing > Licenses to show what is available.
+- **Save changes is unavailable:** Some trial tenants restrict license modifications. Do not force it. Describe the action and move to the group-based licensing discussion.
+- **Groups navigation is absent or differently named:** Use the search bar at the top of admin.microsoft.com and type "groups."
+- **A learner asks about assigning Copilot to a guest:** Microsoft states it is not supported to assign Copilot licenses to cross-tenant users, including guests. Good question, quick answer, move on.
 
-> **Exam callout:** The 24-hour activation delay after Copilot license assignment is a direct exam fact — it appears in troubleshooting scenario questions where a user reports Copilot features are not visible immediately after licensing.
+> **Exam callout:** The activation delay after Copilot license assignment is a direct exam fact. Microsoft documents that for some apps users might need to wait up to 24 hours for Copilot to appear, and might need to restart or refresh the app. This shows up in troubleshooting scenario questions.
 
 ---
 
@@ -138,48 +192,51 @@ Pre-navigate each portal to its first demo landing page during the break before 
 
 **Duration:** 3 minutes
 **Portal URL:** `https://purview.microsoft.com`
-**Timing in segment:** 0:24–0:27
+**Timing in segment:** 0:24-0:27
 
 #### Pre-Demo Setup
 
-- Tab should already be open and logged in to purview.microsoft.com
-- Pre-navigate to: Information protection > Labels
-- Confirm the tenant has at least one label configured (trial tenants include default labels; if not, note the fallback below)
-- Have a label with at least one sublabel available — the hierarchy is the key visual
+- Tab should already be open and signed in to purview.microsoft.com
+- Pre-navigate to: **Solutions > Information Protection > Sensitivity labels**
+- Confirm the tenant has at least one label configured. Trial tenants often include default labels; if not, use the fallback below.
+- <!-- VERIFY: confirm which label scheme this tenant uses. The classic scheme shows parent labels with sublabels. The modern label scheme, default for tenants created on or after October 1, 2025, uses standalone labels and label groups instead, and shows a green confirmation banner on the Sensitivity labels page. The narration below covers both. -->
 
 #### Steps
 
-1. Switch to the purview.microsoft.com tab. The Information protection > Labels page should be visible.
+1. Switch to the purview.microsoft.com tab. The Sensitivity labels page should be visible.
 
-   > "We're in the Microsoft Purview portal — purview.microsoft.com. Important note: the old compliance.microsoft.com URL is being retired. If you see Microsoft documentation that references the compliance portal, understand that purview.microsoft.com is where all of this now lives."
+   > "We are in the Microsoft Purview portal, purview.microsoft.com. One URL for every Purview solution, and you get to each one through Solutions in the left navigation. If you find Microsoft documentation or a course deck pointing at the old compliance portal, that portal is retired. Everything lives here now."
 
-2. Look at the label list. Point out the parent label and expand it to show the sublabels nested beneath it.
+2. Look at the label list and describe the structure you actually see.
 
-   > "This is the label hierarchy. A parent label — like 'Confidential' — can have sublabels beneath it — like 'Confidential - All Employees' or 'Confidential - Finance Only.' Users see the sublabels when they apply labels in Office apps. The parent exists to organize and inherit settings."
+   > If the tenant uses the classic scheme: "This is the label hierarchy. A parent label such as Confidential can have sublabels beneath it, like Confidential - All Employees or Confidential - Finance Only. Users pick the sublabel when they apply a label in Office apps, and the parent organizes them."
 
-3. Click the name of a sublabel to open its configuration panel.
-4. Review the **Name and description** section. Then click **Next** (or navigate to the relevant section showing scope and protection settings) to show the scope configuration.
+   > If the tenant uses the modern scheme: "Newer tenants use the modern label scheme, where labels are standalone and you group them into label groups for display. The mental model is the same -- a taxonomy your users can pick from -- but the plumbing changed, so do not be thrown if your tenant looks different from a screenshot in a study guide."
 
-   > "The scope setting tells you where this label can be applied — Files and emails, Groups and sites, or both. A label scoped to Groups and sites can classify an entire SharePoint site, which is relevant to Copilot governance: label a site as Confidential and that classification travels with all content in it."
+3. Click a label name to open its configuration.
+4. Show the scope page, **Define the scope for this label**.
 
-5. Navigate to the protection settings section. Show whether encryption is enabled or disabled.
+   > "Scope determines where the label can be applied. Files and other data assets, Emails, Meetings, and Groups and sites. That last one matters for Copilot governance: a label scoped to Groups and sites classifies an entire SharePoint site, and that classification carries across the content in it."
 
-   > "The exam tests whether you know the difference between labeling and protection. A label can be applied without enabling encryption — it's just a classification marker. Encryption is a separate action you configure here. For AI governance, even a label without encryption is valuable because Copilot respects label-based DLP rules."
+5. Navigate to the protection settings and show whether encryption is configured.
 
-6. Click **Cancel** or close the panel without saving changes.
+   > "Here is where the exam gets specific, and this one shows up more than people expect. A label and its protection are two different things. You can classify without encrypting. But when a label **does** apply encryption, Copilot needs the user to have the **EXTRACT** usage right on top of VIEW before it will return that content. If the user has VIEW but not EXTRACT, Copilot will not summarize the document. It can still hand back a link so the person opens it the normal way. View and extract. Remember that pair."
+
+6. Close the panel without saving changes.
 
 #### What Learners Should See
 
-- After step 2: The label list with parent labels expandable to show indented sublabels (e.g., Confidential > Confidential - All Employees)
-- After step 4: The label configuration panel showing scope options (Files and emails, Groups and sites, Schematized data assets)
-- After step 5: The protection settings section with an encryption toggle (on or off)
+- After step 2: The Sensitivity labels list, showing either parent labels with sublabels or standalone labels and label groups depending on the tenant's scheme
+- After step 4: The scope page showing the scope options
+- After step 5: The protection settings with the encryption configuration visible
 
 #### If Something Breaks
 
-- **No labels exist in the tenant:** "In a fresh tenant, this list would be empty until labels are created. Microsoft provides a default label scheme you can activate — Confidential, Highly Confidential, General — via the 'Create default labels' button if you see it. For this demo the key point is the structure: parent labels, sublabels, scope settings, and protection actions." Show the create-new-label wizard instead (first two screens only) and cancel.
-- **Portal won't load:** Say: "Purview is one of the slower-loading portals. While it loads, the key structure is: labels live under Information protection > Labels. Labels have scope — they apply to files/emails and/or to containers like SharePoint sites. Protection actions like encryption are optional and configured per label."
+- **No labels exist in the tenant:** "In a fresh tenant this list is empty until labels are created. Microsoft creates default labels and a default label policy for many new customers. For this demo the structure is the point: labels, their scope, and their optional protection actions." Open the **+ Create** label wizard, show the first two pages, and cancel without saving.
+- **The portal will not load:** "Purview is one of the slower portals. While it loads, here is the structure. Sensitivity labels are at Solutions, Information Protection, Sensitivity labels. Labels have a scope that decides where they apply, including whole SharePoint sites. Encryption is optional and configured per label, and an encrypting label brings the extract usage right into play for Copilot."
+- **The Information Protection card is not on the Solutions page:** Select **View all solutions**, then choose **Information Protection** from the Data Security section.
 
-> **Exam callout:** Sensitivity labels can be scoped to Groups and sites — meaning a single label applied to a SharePoint site classifies all content in that site — which is directly relevant to how Copilot data governance works at the container level.
+> **Exam callout:** Sensitivity labels can be scoped to Groups and sites, so a single label applied to a SharePoint site classifies that site. And when a label applies encryption, Copilot requires the **EXTRACT** usage right in addition to VIEW before it will summarize the content, though it can still return a link.
 
 ---
 
@@ -187,153 +244,202 @@ Pre-navigate each portal to its first demo landing page during the break before 
 
 **Duration:** 3 minutes
 **Portal URL:** `https://purview.microsoft.com` > Data loss prevention > Policies
-**Timing in segment:** 0:27–0:30
+**Timing in segment:** 0:27-0:30
 
 #### Pre-Demo Setup
 
 - Remain on purview.microsoft.com from Demo 2A
-- Pre-navigate to: Data loss prevention > Policies
+- Pre-navigate to: **Data Loss Prevention > Policies**
 - If at least one DLP policy exists, open it in read-only view before the segment begins
-- If no policies exist, the policy creation wizard works as a fallback — stop at step 3
+- If no policies exist, the policy creation wizard works as a fallback
 
 #### Steps
 
-1. In the left navigation of purview.microsoft.com, click **Data loss prevention**, then click **Policies**.
+1. In the left navigation of purview.microsoft.com, select **Data Loss Prevention**, then **Policies**.
 
-   > "DLP policies live here. The structure is: a policy is the container — it defines what workloads are monitored and what rules apply. A rule is inside the policy — it defines the conditions that trigger it and the actions that result."
+   > "DLP policies live here. The structure is worth saying plainly because the exam leans on it. The policy is the container: it defines which locations are monitored. The rule sits inside the policy and holds the conditions that trigger it and the actions that result. Policy, then rule. Conditions, then actions."
 
-2. Click the name of an existing policy to open it. Navigate to the **Policy settings** or rules section.
+2. Click an existing policy to open it and show the locations it covers.
 
-   > "Look at the workloads this policy covers — Exchange Email, SharePoint, OneDrive, Teams chat, and so on. For the exam, know that a single DLP policy can span multiple workloads simultaneously. You don't need a separate policy per service."
+   > "Look at the locations. Exchange, SharePoint, OneDrive, Teams, Devices, and, relevant to us, **Microsoft 365 Copilot and Copilot Chat**. A single DLP policy can span multiple locations at once. You do not need one policy per service."
 
-3. Navigate to the **Rules** tab or expand a rule to show its conditions and actions.
+3. Show a rule's conditions and actions.
 
-   > "Here's the rule logic. The condition is what triggers the rule — in this case, content containing a U.S. Social Security Number sensitive information type. The action is what happens — in this case, a policy tip notifies the user and blocks external sharing. Conditions and actions are the two elements that every DLP rule must have."
+   > "Here is the rule logic. The condition is what trips it, such as content containing a specific sensitive information type. The action is what happens: audit only, block with override, or block outright."
 
-4. Point to the **Test mode** setting if visible in the policy overview or policy creation flow.
+4. Focus on the Copilot-specific angle, which is what AB-900 actually tests.
 
-   > "Test mode is critical for exam scenarios about safe DLP rollout. In test mode, the policy evaluates content and logs matches, but takes no action on users. Admins use activity reports to assess impact before switching to Enforce mode. The exam tests this: what mode do you use to pilot a DLP policy without disrupting users? Test mode."
+   > "For Copilot, the DLP location is literally named Microsoft 365 Copilot and Copilot Chat, and there are four condition-and-action pairs Microsoft supports. One: content contains a sensitivity label, and you prevent Copilot from processing that content -- the item drops out of the summary, though it can still appear in citations. Two: content contains a sensitive information type, and you prevent Copilot from processing prompts, so Copilot does not respond at all. Three: same condition, but you block web searches as a grounding source. Four, and this one is in preview: email received from external users, which keeps external mail out of Copilot's grounding to reduce prompt injection risk."
 
-5. Click **Cancel** or close the panel without saving.
+   > "And here is the gotcha that makes a great distractor. You **cannot** put the sensitive information types condition and the sensitivity labels condition in the same rule. Two rules inside one policy, absolutely. One rule doing both, no."
+
+5. Move to the last page of the policy configuration and show the policy mode selection.
+
+   > "This is where safe rollout happens, and the name changed, so update your notes. It is **simulation mode** now. The old Test and Test with policy tips states were replaced. Select Run the policy in simulation mode, and the policy runs as if it were enforced without actually enforcing anything, and it reports every match on its own separate dashboard so simulation results never muddy your live policy results. There is a checkbox to show policy tips during simulation, and an option to turn the policy on automatically if you do not edit it within fifteen days."
+
+   > "Exam framing: which mode do you use to pilot a DLP policy without disrupting users? Simulation mode."
+
+6. Close the panel without saving.
 
 #### What Learners Should See
 
-- After step 2: The policy details showing workload scope — a list of services the policy monitors (Exchange, SharePoint, OneDrive, Teams, etc.)
-- After step 3: The rule editor showing a Conditions section (content contains sensitive information type X) and an Actions section (restrict access, notify user, block send, etc.)
-- After step 4: The policy status showing Test mode, or the mode selection in a creation wizard
+- After step 2: The policy details showing the locations the policy monitors
+- After step 3: The rule showing a Conditions section and an Actions section
+- After step 5: The policy mode page with **Run the policy in simulation mode**, **Turn it on right away**, and **Keep it off**
 
 #### If Something Breaks
 
-- **No DLP policies exist:** Open the creation wizard. Click **Create policy**, select **Custom policy** from the template list, and walk through: (1) name the policy, (2) choose workloads, (3) add a rule — show the conditions panel with sensitive information type selector, and the actions panel. Cancel without saving. "This wizard is the same flow for every DLP policy regardless of which workloads you select."
-- **Policy rules section is inaccessible (view-only tenant):** Navigate to the policy creation wizard as described above. The structure is identical.
+- **No DLP policies exist:** Open the creation wizard. Select **+ Create policy**, choose the **Custom** category and **Custom policy** template, then walk the flow: name the policy, choose locations, add a rule to show the conditions and actions panels, and land on the policy mode page. Cancel without saving. "This wizard is the same flow for every DLP policy regardless of which locations you select."
+- **The rules section is inaccessible in a view-only tenant:** Use the creation wizard as described above. The structure is identical.
+- **The Microsoft 365 Copilot location is not listed:** That location is documented as preview and depends on tenant licensing. Describe it rather than hunting for it: "In a tenant with this enabled, you would see Microsoft 365 Copilot and Copilot Chat in this location list, and turning it on is what brings Copilot interactions under DLP."
 
-> **Exam callout:** DLP policy test mode — where the policy logs matches but enforces no actions — is an explicitly tested concept for understanding how to safely pilot DLP changes before enforcing them against live user activity.
+> **Exam callout:** DLP **simulation mode** runs a policy as if enforced without acting on users and reports matches on a separate dashboard. It replaced the older Test and Test with policy tips states, and it is the answer when a question asks how to pilot a DLP policy safely.
+
+> **Exam callout:** In a DLP policy for Copilot, you cannot combine the **sensitive information types** condition and the **sensitivity labels** condition in the same rule. Separate rules within the same policy are supported.
 
 ---
 
-### Demo 2C: DSPM for AI
+### Demo 2C: DSPM (and DSPM for AI)
 
 **Duration:** 4 minutes
-**Portal URL:** `https://purview.microsoft.com` > Solutions > DSPM for AI (classic)
-**Timing in segment:** 0:30–0:34
+**Portal URL:** `https://purview.microsoft.com` > Solutions > DSPM
+**Timing in segment:** 0:30-0:34
+
+> **This demo changed materially since April 2026. Read the setup notes before rehearsing.**
+
+A new unified **Data Security Posture Management (DSPM)** reached general availability in May 2026. Microsoft renamed the previous experiences to **DSPM for AI (classic)** and **Data Security Posture Management (classic)**, and states that most new features are going into the new version only. Microsoft Learn says it directly: sign in to the Purview portal, go to Solutions, DSPM, and do not confuse it with the previous versions that are now named classic.
+
+Microsoft has **NOT** published a retirement date for the classic experience. Do not state one on stage.
+
+**What to teach versus what to show:** the AB-900 objective wording still says "Microsoft Purview Data Security Posture Management (DSPM) for AI," so the classic label is the exam-aligned answer. Show learners the new unified DSPM so they are not disoriented in a current tenant.
 
 #### Pre-Demo Setup
 
 - Remain on purview.microsoft.com
-- Pre-navigate to: Solutions in the left navigation
-- Identify the entry labeled "DSPM for AI (classic)" — it may also appear as "Data Security Posture Management for AI" in preview
-- If both entries appear, note which one you plan to show (classic recommended for exam alignment)
-- This demo is acceptable with an empty dashboard — the navigation path is the exam objective, not the data
+- Pre-navigate to **Solutions** in the left navigation
+- <!-- VERIFY: confirm which DSPM entries this tenant shows. A current tenant can display three: DSPM (new unified), Data Security Posture Management (classic), and DSPM for AI (classic). Decide which one you are demoing before you go live. -->
+- This demo works fine with an empty dashboard. The navigation and the concept are the exam objective, not the data.
 
 #### Steps
 
-1. In the left navigation of purview.microsoft.com, click **Solutions**.
+1. In the left navigation of purview.microsoft.com, select **Solutions**.
 
-   > "The Solutions menu in Purview is where specialty compliance and security features live — things that are feature-complete but scoped to specific scenarios. DSPM for AI is in here. Let me point out something before we click: if your tenant shows two entries — 'DSPM for AI (classic)' and a preview version labeled 'Data Security Posture Management' — both are valid. The classic version aligns to what the exam currently covers. The preview is the evolution of the same capability."
+   > "Solutions is the front door to every Purview capability. Before I click anything, look at the DSPM entries in this list, because this is the single biggest thing that moved in Purview since the spring. You may see up to three: plain **DSPM**, which is the new unified experience that went generally available in May; **Data Security Posture Management (classic)**; and **DSPM for AI (classic)**. Microsoft renamed the old ones and is putting most new features into the new one."
 
-2. Click **DSPM for AI (classic)**.
+   > "Now, exam alignment. The AB-900 objective still uses the phrase DSPM for AI. So on exam day, DSPM for AI is the phrase you are matching. In your tenant on Monday morning, DSPM is where the product is going. I am showing you both so neither one surprises you."
 
-   > "DSPM stands for Data Security Posture Management for AI. This is a Purview feature specifically designed for the AI era — it exists because Copilot creates a new attack surface: previously inaccessible data is now reachable by any user who asks Copilot the right question. DSPM for AI surfaces that risk."
+2. Select **DSPM**.
 
-3. Show the overview dashboard. Point to the main sections: AI app activity, sensitive data interactions, data oversharing risks.
+   > "DSPM is Data Security Posture Management, and the AI part of it exists for one reason. Copilot did not create new data and it did not break permissions. It made your existing permission problems reachable by anybody who knows how to phrase a question. DSPM is where you see that exposure."
 
-   > "The overview dashboard shows three things: what AI applications are active in your tenant, what sensitive data those AI apps are touching, and which users represent risk. Even if your demo tenant shows zeros because Copilot isn't actively used, the structure is what you're learning. In a production tenant with 500 active Copilot users, this dashboard would show you what sensitive information types appeared in Copilot prompts and responses."
+3. Show the **Posture** page, then the **AI observability** page.
 
-4. Click into any available report — for example, the **AI interaction data** or **Sensitive data in AI prompts and responses** section if it shows any entries.
+   > "The new DSPM organizes around a handful of pages. Posture is the dashboard with trending. Objectives holds data security objectives, and there is one named exactly what we care about: prevent data exposure in Microsoft 365 Copilot and Copilot interactions. AI observability is the inventory of every AI app and agent with activity in the last thirty days, including agents from Microsoft Agent 365, showing how many are high risk and how many have sensitive interactions."
 
-   > "This is the granular view — which users interacted with Copilot, which sensitivity labels appeared in those interactions, and which files were surfaced. If I see a spike of activity on files labeled Highly Confidential — Legal, that's a signal that Copilot is exposing content that needs tighter access controls."
+4. If your tenant shows DSPM for AI (classic) and you want the exam-aligned view, open it and show its overview and the Recommendations page.
 
-5. Return to the DSPM for AI overview.
+   > "In the classic experience, the recommendations page is where the one-click policies live. And there is a nice automatic behavior worth knowing: DSPM for AI runs a weekly data risk assessment against your top one hundred SharePoint sites by usage, with no setup at all. Give any of these one-click policies at least twenty-four hours to collect data before you judge the results."
 
-   > "For the exam: if a question describes an admin who needs to understand what sensitive data Copilot is accessing or surfacing to users — the answer is DSPM for AI in Microsoft Purview. Not Content Explorer, not Activity Explorer, not standard usage reports. DSPM for AI is the AI-specific answer."
+5. Give learners the old-to-new mapping so a study guide screenshot does not throw them.
+
+   > "If your notes say Apps and agents, that page is now DSPM, Discover, Apps and agents. Recommendations for AI apps is now Actions, Remediation actions. The Microsoft 365 Copilot overview page is now Reports, Microsoft 365 Copilot. And Activity explorer is now Discover, Activity explorer, on the AI activities tab. Same capabilities, new addresses."
+
+6. Land the exam framing.
+
+   > "So when a question describes an admin who needs to discover and manage AI activity, or figure out what sensitive data Copilot is reaching, DSPM is your answer. Not Data explorer, which finds where sensitive data lives. Not the usage reports, which count who is using Copilot. DSPM is the one that connects sensitive data to AI activity."
 
 #### What Learners Should See
 
-- After step 2: The DSPM for AI overview page with a dashboard showing tiles or cards for AI app activity, sensitive data interactions, and oversharing risks (may show zero values in demo tenant)
-- After step 4: A report view showing interaction data, with columns for user, sensitivity label, data type, and timestamp if data is available; otherwise an empty state with filter options
+- After step 2: The DSPM landing experience, with values possibly at zero in a demo tenant
+- After step 3: The Posture dashboard, and the AI observability inventory of AI apps and agents
+- After step 4: The DSPM for AI (classic) overview and its Recommendations page
 
 #### If Something Breaks
 
-- **DSPM for AI does not appear in the Solutions menu:** "In some tenants — particularly trial tenants without the right Purview add-on license — DSPM for AI may not be visible or fully functional. Here's what it looks like when available..." Switch to a screenshot if prepared, or describe the navigation: "Solutions > DSPM for AI (classic). The exam knows it exists here. For the exam, the key fact is: DSPM for AI lives in Purview, not in the M365 admin center, not in Entra, and not in Teams."
-- **Portal loads but dashboard shows a licensing error:** "This is a licensing gate — DSPM for AI requires Purview add-on licensing beyond the base E3/E5. For the exam, know that the feature exists in Purview and what it does. The specific licensing tier is less likely to be tested than the feature's purpose and location."
-- **Portal is slow to load:** Talk through the feature conceptually while waiting. "DSPM for AI has three main reports: AI interaction data shows what Copilot sessions touched, sensitive data reports show which sensitivity labels appeared in AI interactions, and data oversharing reports show which SharePoint sites are broadly accessible and therefore Copilot-accessible."
+- **No DSPM entry appears in Solutions:** "In some tenants, especially trials without the right Purview licensing, DSPM may not be visible. Access requires the Compliance Administrator or Global Administrator Entra role, or the Purview Compliance Administrator role group, and the classic DSPM additionally needs Microsoft 365 E5 or the Microsoft Purview Suite." Switch to a prepared screenshot, or describe the path. "The fact that matters for the exam is that DSPM is a **Purview** solution. Not the Microsoft 365 admin center, not Entra, not Teams."
+- **Only the classic entries appear:** That is fine. Demo DSPM for AI (classic), and tell learners the new unified DSPM exists and is where Microsoft is adding new features.
+- **Only the new DSPM appears:** Also fine. Demo it, and tell learners the exam objective still uses the DSPM for AI wording.
+- **The dashboard shows a licensing error:** "This is a licensing gate. For the exam, know what the feature does and where it lives. The specific licensing tier is far less likely to be tested than the purpose and the location."
+- **The portal is slow:** Talk through it while it loads. "DSPM answers three questions. Which AI apps and agents are active in my tenant. What sensitive data are those AI interactions touching. And where is my oversharing, which is the SharePoint problem we are about to look at."
 
-> **Exam callout:** DSPM for AI is a uniquely AB-900 topic — it is the specific Microsoft Purview tool an admin uses to assess and monitor data risk created by Copilot, and it is distinct from general-purpose tools like Content Explorer or Activity Explorer.
+> **Exam callout:** DSPM is a uniquely AB-900 topic. It is the Microsoft Purview solution for discovering and managing AI activity and the data risk Copilot creates, and it is distinct from **Data explorer** (which identifies where sensitive information lives) and **activity explorer** (which reports activities on labeled and sensitive content).
+
+> **Instructor note on terminology:** the AB-900 objective bullets read "Understand features and capabilities of ... Microsoft Purview Data Security Posture Management (DSPM) for AI" and "Discover and manage AI activity by using DSPM for AI." Establish the full name on first use, then abbreviate.
 
 ---
 
-### Demo 2D: SharePoint Advanced Management — Oversharing Reports
+### Demo 2D: SharePoint Data Access Governance -- Oversharing Reports
 
 **Duration:** 6 minutes
 **Portal URL:** `https://admin.microsoft.com/sharepoint` (SharePoint admin center)
-**Timing in segment:** 0:38–0:44
+**Timing in segment:** 0:38-0:44
+
+> **Report names changed since April 2026.** The old script referenced "Sites with most sharing links" and "Sites shared with Everyone." The current Data access governance landing page groups reports into **Snapshot reports** and **Activity reports** with different names. The corrected list is in step 3.
 
 #### Pre-Demo Setup
 
 - Open the SharePoint admin center tab (admin.microsoft.com/sharepoint)
-- Pre-navigate to: Reports > Data access governance
-- If the tenant has SharePoint Advanced Management enabled, this section should be populated
-- If the tenant is a basic trial, navigate to the section and show the empty state or the feature description panel — the navigation path is what matters
+- Pre-navigate to: **Reports > Data access governance**
+- If the tenant has SharePoint Advanced Management, this section is fully populated
+- If the tenant is a basic trial, navigate to the section and show the empty state or the feature description. The navigation path and the report names are what matter.
+- Note that for organizations **without** SAM, data collection must be explicitly enabled before activity reports generate, and reports become available 24 hours after enabling
 
 #### Steps
 
 1. Switch to the SharePoint admin center tab at `admin.microsoft.com/sharepoint`.
 
-   > "We're now in the SharePoint admin center — a separate admin center from the main M365 admin hub. The URL is admin.microsoft.com/sharepoint. You can also reach it from admin.microsoft.com > Admin centers > SharePoint."
+   > "We are in the SharePoint admin center, a separate admin center from the main Microsoft 365 hub. You can also reach it from admin.microsoft.com through Admin centers, SharePoint. And note the name: it is the **SharePoint admin center**. The July 22 refresh tightened that wording. The service is SharePoint in Microsoft 365; the admin center is just the SharePoint admin center."
 
-2. In the left navigation, click **Reports**, then click **Data access governance**.
+2. In the left pane, expand **Reports**, then select **Data access governance**.
 
-   > "Data access governance is the home of SharePoint oversharing reports. This is a SharePoint Advanced Management feature — it requires the SAM add-on license, but some capabilities are included with E5 or Copilot licensing. For the exam, know this navigation path and what this section shows."
+   > "Data access governance is where SharePoint oversharing reports live. Some of this is unlocked by SharePoint Advanced Management, and some of it comes along with E5 or with a Copilot license, and I will untangle that in a second. For the exam, know this path and know what is on this page."
 
-3. Show the available reports. Look for: **Sites shared with "Everyone" or "Everyone except external users"** and **Sharing links activity**.
+3. Show the two report groups on the landing page.
 
-   > "This first report — Sites shared with Everyone or Everyone except external users — is exactly the oversharing problem that creates Copilot risk. If a SharePoint site is shared with Everyone except external users, that means every person in the organization can access it. If Copilot is licensed for those users, Copilot can surface that content to any of them. This report lets you find every site with that permission pattern so you can fix it."
+   > "Two groups. **Snapshot reports** give you your current state: Site permissions across your organization, which Microsoft flags as Recommended; Sensitivity label applied to files; and a Site permissions for users report that lists every site a specific person can reach. **Activity reports** cover the last twenty-eight days: Sharing links, and Shared with Everyone except external users."
 
-4. Click into the **Sites shared with "Everyone"** report (or its equivalent label in your tenant).
+   > "That last one is the report that matters most for us. Everyone except external users is a built-in SharePoint group that includes every internal person and excludes guests. If a site is shared that way, every employee can reach it. Give those employees Copilot, and now every employee can ask Copilot a question and get that content back. This report is how you find every site with that pattern."
 
-   > "The report shows the site name, the URL, when it was last modified, and how many files it contains. Sort by file count or by last modified to prioritize which sites to remediate first. The exam may ask: 'What tool does an admin use to identify SharePoint sites that are oversharing?' — this is the answer."
+4. Open the **Shared with 'Everyone except external users'** report.
 
-5. Return to the Data access governance overview. Look for the **Site access review** capability or equivalent.
+   > "Sort and prioritize. You are looking for the sites with the most content and the most recent activity, because that is where the exposure is real rather than theoretical. When an exam question asks which tool an admin uses to identify SharePoint oversharing, this page is the answer."
 
-   > "Site access review is a governance workflow — the SharePoint admin triggers it, and it sends a notification to the site owner asking them to review and confirm who should have access. This is a lower-friction approach than the admin manually fixing permissions on every site — you delegate the review to the people who know the business context."
+5. Show the remediation options available from the reports.
 
-6. Navigate back to the SharePoint admin center left navigation. Click **Advanced management** if visible, or scroll the Reports section.
+   > "Three remediation moves come straight off these reports. **Restricted access control** locks the site down to specific groups. The **Change history** report shows you which recent permission changes caused the problem. And **Site access review** hands the review to the site owner, which is usually the right call, because the site owner knows the business context and you do not."
 
-   > "Restricted SharePoint Search is one more tool to know for the exam. It lets an admin limit Copilot's organizational search to a curated list of approved SharePoint sites. It is a short-term mitigation — a way to reduce Copilot's data surface while you do the longer work of fixing permissions. It is not a permanent solution because it also limits the value Copilot delivers."
+6. Cover the two SharePoint Advanced Management controls the exam names, and get the distinction crisp.
+
+   > "Two controls, similar names, completely different jobs, and the exam absolutely knows the difference."
+
+   > "**Restricted access control**, RAC, controls **access**. You restrict a site to members of specified Microsoft 365 groups or Entra security groups, up to ten groups per site. Anyone outside those groups cannot get in, even if they had permission before, even if they are holding a shared link. And group membership alone is not enough either -- a user needs both the site permission and the group membership. You turn it on at the tenant level under Policies, Access control, Site-level access restriction, and then apply it per site from Sites, Active sites, the site's Settings tab, Restricted site access."
+
+   > "**Restricted content discovery**, RCD, controls **discoverability**. It keeps a site's content out of organization-wide search and out of Copilot, and it does **NOT** change permissions at all. Somebody who already has access can still open the file directly. It is set per site under Sites, Active sites, the site's Settings tab, Restrict content discovery. Sites covered by it get a Restricted tag."
+
+   > "One line to remember: RAC is enforcement, RCD is concealment."
+
+7. Deliver the retirement callout.
+
+   > "If you have studied for this exam before, or you are working from anything written before this summer, you learned Restricted SharePoint Search as the containment answer. Update that. **Starting July 31, 2026 -- three days from today -- Microsoft blocks new enablement of Restricted SharePoint Search**, and points customers to restricted content discovery instead. If Restricted SharePoint Search shows up as an answer choice, treat it as the legacy option."
+
+   > "And note one dependency while we are here: if Restricted SharePoint Search is already enabled in a tenant, SharePoint cannot be used as a knowledge source for a declarative agent. That trips people up when they build an agent and cannot figure out why SharePoint will not attach."
 
 #### What Learners Should See
 
-- After step 2: The Data access governance section showing available report tiles or a list of reports with descriptions
-- After step 4: A report table listing SharePoint sites with columns for site name, URL, sharing type (Everyone, Everyone except external users), file count, and last activity
-- After step 6: The SharePoint admin center navigation showing Advanced management as a section or the Restricted SharePoint Search setting
+- After step 2: The Data access governance landing page with Snapshot reports and Activity reports groups
+- After step 4: A report table listing SharePoint sites
+- After step 6: The site Settings tab showing the Restricted site access section and the Restrict content discovery setting
 
 #### If Something Breaks
 
-- **Data access governance section is empty or missing:** "SharePoint Advanced Management — the add-on that fully unlocks these reports — may not be licensed in this trial tenant. Here's the navigation path that matters for the exam: SharePoint admin center > Reports > Data access governance. The reports you would see in a licensed tenant are: Sites with most sharing links, Sites shared with Everyone, and Sharing links activity." Proceed verbally.
-- **Reports section is not visible in the left nav:** The SharePoint admin center navigation can vary. Try searching for "Data access governance" in the admin center search bar, or navigate to the Reports section and scroll for governance-related entries.
-- **Restricted SharePoint Search is not listed:** Some tenants have not enabled SharePoint Advanced Management at all. Describe it verbally: "Restricted SharePoint Search is in SharePoint admin center under Settings. When enabled, it adds an allowlist — you specify which sites Copilot can draw from for organizational search. It's a containment measure while you remediate oversharing at scale."
+- **Data access governance is empty or reports will not generate:** "For organizations without SharePoint Advanced Management, you have to enable data collection first, and reports show up twenty-four hours later. Data is kept for twenty-eight days, and if nobody runs a report for three months, collection pauses and has to be turned back on." Then give the path verbally: "SharePoint admin center, Reports, Data access governance. Snapshot reports are Site permissions across your organization, Sensitivity label applied to files, and Site permissions for users. Activity reports are Sharing links and Shared with Everyone except external users."
+- **Reports section is not visible in the left pane:** The navigation varies. Search for "Data access governance" in the admin center search, or expand Reports and scroll.
+- **The reports return no data at all:** Microsoft documents one specific cause worth knowing. The reports do not work if the tenant uses nonpseudonymized report data. A Global Administrator fixes it in the Microsoft 365 admin center Reports setting by clearing **Display concealed user, group, and site names in all reports**. Reports are also unavailable for Microsoft 365 operated by 21Vianet regardless of licensing.
+- **A learner asks whether SharePoint Advanced Management is a paid add-on:** The honest answer is both, and it is worth the thirty seconds. The **Copilot-readiness subset** of SAM unlocks when at least one user in the organization holds a Microsoft 365 Copilot license, and that user does not have to be a SharePoint administrator. The **full** SAM feature set, restricted site creation for example, still needs the SharePoint Advanced Management Plan 1 add-on. Microsoft 365 E7 includes it. Separately, an E5 admin can reach data access governance reporting without SAM, but gets no snapshot reports, no remedial actions, and activity reports capped at 10,000 sites.
 
-> **Exam callout:** SharePoint Advanced Management's Data access governance reports — specifically the Sites shared with Everyone report — are the primary tool for identifying and remediating oversharing that creates Copilot data exposure risk.
+> **Exam callout:** The **Data access governance** reports in the SharePoint admin center are the primary tool for identifying oversharing that creates Copilot exposure. The current landing page splits into Snapshot reports (Site permissions across your organization, Sensitivity label applied to files, Site permissions for users) and Activity reports (Sharing links, Shared with 'Everyone except external users').
+
+> **Exam callout:** **Restricted access control** limits who can access a site and blocks even prior link holders. **Restricted content discovery** keeps content out of org-wide search and Copilot without changing permissions. The July 22, 2026 objective uses the wording "including restricted access control," and this subsection is one of the three flagged Minor in the change log, so this wording is high-probability exam material.
 
 ---
 
@@ -343,204 +449,266 @@ Pre-navigate each portal to its first demo landing page during the break before 
 
 **Duration:** 10 minutes
 **Portal URL:** `https://admin.microsoft.com`
-**Timing in segment:** 0:18–0:28
+**Timing in segment:** 0:18-0:28
 
 #### Pre-Demo Setup
 
 - Pre-navigate to admin.microsoft.com > Billing > Licenses before the segment begins
-- Also pre-navigate to admin.microsoft.com > Copilot > Billing & usage in a second tab or bookmark it
-- Confirm the tenant has an Azure subscription linked if you plan to show the PAYG billing configuration — if not, note the fallback
+- Also pre-navigate to admin.microsoft.com > **Copilot > Billing & usage** in a second tab or bookmark it
+- Confirm the tenant has an Azure subscription linked if you plan to show the pay-as-you-go configuration. If not, use the fallback.
 - Have a test user selected in Users > Active users for the license assignment portion
+- Setup prerequisites worth knowing if a learner asks: Billing Administrator, AI Administrator, or Global Administrator; an Azure subscription and resource group in the same tenant with Owner or Contributor rights on both; and at least one SharePoint license in the tenant
 
 #### Steps
 
 1. Navigate to `admin.microsoft.com` > **Billing** > **Licenses**.
 
-   > "Starting with subscription licensing — the fixed, per-user per-month model. Here under Billing > Licenses, you see every SKU the tenant has purchased. Find Microsoft 365 Copilot. The number in 'Licenses purchased' is your capacity. The number in 'Licenses assigned' is how many are in use. The gap between those two numbers is unused capacity you're paying for — an admin detail that matters for budget conversations."
+   > "Starting with the monthly license model, the fixed per-user per-month one. Under Billing, Licenses, you see every SKU the tenant purchased. Find Microsoft 365 Copilot. Licenses purchased is your capacity. Licenses assigned is what is actually in use. The gap between those two numbers is money you are spending on nothing, which is exactly the kind of thing that gets an admin invited to a budget meeting."
 
-2. Click on the **Microsoft 365 Copilot** entry to open the license details.
+2. Click the **Microsoft 365 Copilot** entry to open the license details.
 
-   > "From here you can see every user who currently has this license. You can also add or remove users from this view. The subscription model is straightforward: each named user gets a Copilot license, and they get full Copilot access in Word, Excel, PowerPoint, Outlook, Teams, and Microsoft 365 Chat — formerly called Business Chat."
+   > "From here you see every user who holds this license, and you can add or remove users. The monthly model is straightforward: thirty dollars per user per month paid yearly, thirty-one fifty if you pay monthly, and the user gets Copilot across Word, Excel, PowerPoint, Outlook, Teams, and Microsoft 365 Copilot Chat."
 
-3. Click **Assign licenses** (or close and navigate to Users > Active users > select a test user > Licenses and apps tab).
-4. On the test user's **Licenses and apps** tab, locate Microsoft 365 Copilot and show the toggle state.
+   > "Two variations worth naming. **Microsoft 365 Copilot Business** is the small and midsize SKU. List price twenty-one dollars, currently eighteen under a promotion Microsoft extended through December of this year, capped at three hundred seats, annual commitment only. Microsoft says flatly that it delivers the same capabilities as the enterprise offering, so the difference is price and eligibility, not features. And **Microsoft 365 E7**, which went GA on May 1, includes Copilot in the base SKU, so an E7 customer never buys the add-on."
 
-   > "Here's the individual assignment workflow. I find the user, go to their Licenses and apps tab, toggle on Copilot, and save. This is the path for assigning to individuals. The group-based path we showed in Segment 1 is how you do this at scale."
+3. Navigate to Users > Active users, select a test user, and open the **Licenses and apps** tab.
 
-5. Click **Save changes** if making a change, or leave it as-is and close the panel.
-6. In the left navigation, locate **Copilot** (in the main left nav, below Settings). Click **Copilot**, then click **Billing & usage**.
+   > "Individual assignment. Find the user, Licenses and apps, turn Copilot on, save. The group-based path from Segment 1 is how you do it at scale."
 
-   > "Now for the pay-as-you-go model — and here's the exam navigation fact: this is NOT under Billing. It is under the Copilot section in the left nav. Copilot > Billing & usage. If an exam question asks where you configure the Azure billing policy for Copilot pay-as-you-go consumption, the answer is the Copilot section of the M365 admin center, not the standard Billing section."
+4. Close the panel and return to the left navigation.
+5. In the left navigation, select **Copilot**, then **Billing & usage**.
 
-7. Click the **Billing policies** tab within Billing & usage.
+   > "Now the pay-as-you-go model, and here is the navigation fact the exam likes. This is **NOT** under Billing. It is under the Copilot node. Copilot, Billing and usage. If a question asks where you configure Copilot pay-as-you-go, that is the answer."
 
-   > "A billing policy connects the Microsoft 365 tenant to an Azure subscription and resource group. This is what enables consumption-based charging for things like Copilot Studio agents running on pay-as-you-go. You can set a spending limit here to prevent runaway costs. Without a billing policy configured, pay-as-you-go scenarios cannot run."
+   > "And to be clear about why Billing is wrong: the Billing node handles Microsoft 365 Backup, SharePoint storage, and High Volume Email. For Copilot it just shows you a link that says go to Copilot Billing and usage. Microsoft literally put a signpost there because so many admins went to the wrong place."
 
-8. Point out the fields: Azure subscription selector, resource group, and spending limit input.
+6. Select the **Billing policies** tab.
 
-   > "Three fields to know for the exam: the Azure subscription the charges flow to, the resource group for cost tracking, and the optional spending limit. The spending limit is a guardrail. Copilot Studio's PAYG billing unit is called a Copilot Credit — not a message, not a token. Copilot Credits. That specific terminology can appear in exam questions."
+   > "A billing policy connects this Microsoft 365 tenant to an Azure subscription and a resource group, and that is what makes consumption billing possible. Setup is four steps: create the policy with its billing details, which is the name, the Azure subscription, the resource group, the region, and accepting the terms of service. Then choose users, either all users or a specific group. Then set an optional budget. Then review and select Create policy."
+
+   > "A tenant can have up to fifty of these."
+
+7. Point out the budget field, and correct the common misconception about it.
+
+   > "Now, the budget field. This is a trap and it is a good one, because the intuitive answer is wrong. Setting a budget does not cap anything. Microsoft's own words: the system does not enforce the budget or prevent your organization from exceeding it, and usage can continue uninterrupted after the budget is surpassed. What it does is send email. Default threshold is one hundred percent, and the alert can take up to twenty-four hours to reach you. So a budget is a smoke detector, not a circuit breaker."
+
+8. Switch to the **Pay-as-you-go services** tab.
+
+   > "This tab is where you connect a policy to an actual service. Three services are available: Microsoft 365 Copilot Chat, SharePoint agents, and the Microsoft Copilot Retrieval API, which is in preview."
+
+   > "And a migration trap for anybody who set this up earlier: if you previously configured SharePoint agent billing under Org settings, Pay-as-you-go services, you have to go back there, select SharePoint agents, and choose Disconnect previous billing before a new Copilot-node policy will attach. Two places, one of them legacy, and the old one silently wins until you disconnect it."
+
+9. Land the billing unit clearly.
+
+   > "The consumption unit is the **Copilot Credit**, at one cent per credit. Not a message, not a token. Credits. And the rates are per feature: a classic answer is one credit, a generative answer is two, an agent action is five, tenant graph grounding is ten, agent flow actions are thirteen per hundred."
+
+   > "Do that math on a SharePoint agent. SharePoint agents are always grounded in the tenant graph, so a single prompt costs ten for the grounding plus two for the generative answer. Twelve credits. Twelve cents, not one cent. That is the number people get wrong."
+
+   > "And who pays? Users **without** a Copilot license. If the user is licensed, Microsoft charges nothing for classic answers, generative answers, agent actions, tenant graph grounding, or agent flows in employee-facing scenarios, subject to fair use. Pay-as-you-go exists for the unlicensed population."
+
+   > "One more purchase model to know: prepaid **capacity packs** at two hundred dollars per pack per month for twenty-five thousand credits. They refill at the start of each billing period and they are consumed **before** pay-as-you-go kicks in."
+
+   > "Last thing, and say this before somebody in chat catches it: if you go read the Microsoft 365 Copilot pay-as-you-go Meters page, it still says a penny per **message**, and the Azure meter is still named Copilot Studio. The dollar figure is right. The unit noun is what moved. Both vocabularies are live in Microsoft's own documentation right now, so do not let a stale page shake your confidence."
 
 #### What Learners Should See
 
-- After step 2: The Microsoft 365 Copilot license detail page showing assigned users and a list of users with the license
-- After step 6: The Copilot > Billing & usage section with a Billing policies tab visible
-- After step 8: The billing policy configuration form showing Azure subscription dropdown, resource group field, and spending limit input
+- After step 2: The Microsoft 365 Copilot license detail page showing assigned users
+- After step 5: The Copilot > Billing & usage section with the Billing policies and Pay-as-you-go services tabs
+- After step 6: The billing policy configuration showing the Azure subscription, resource group, region, and terms of service
+- After step 8: The Pay-as-you-go services tab listing Microsoft 365 Copilot Chat, SharePoint agents, and the Copilot Retrieval API
 
 #### If Something Breaks
 
-- **Copilot is not in the left navigation:** Some tenants organize this differently. Try Settings > Microsoft 365 Copilot, or search "billing policy" in the admin center search bar. Describe the intended path: "Copilot > Billing & usage > Billing policies. In some tenant configurations this is also accessible under Settings > Microsoft 365 Copilot."
-- **Billing policies tab shows no configuration options:** "In a trial tenant without an Azure subscription linked, the billing policy section may show an empty state or a prompt to link a subscription. The exam won't test the Azure subscription ID — it tests that you know this configuration lives in the Copilot section, not the Billing section of the admin center."
-- **Spending limit field is not visible:** The PAYG configuration UI has changed over time. Show whatever fields are available and narrate the expected content: "You'd see an Azure subscription selector, resource group, and a spending limit guardrail field here."
+- **Copilot is not in the left navigation:** Search "billing policy" in the admin center search bar. There is also a second route to the same destination: **Copilot > Settings > User access > Copilot pay-as-you-go billing**, which opens the Copilot Billing & usage page where you switch to the Pay-as-you-go services tab. Describe the canonical path either way: "Copilot > Billing & usage > Billing policies."
+- **Billing policies shows an empty state or prompts to link a subscription:** "In a trial tenant with no Azure subscription linked, this is what you get. The exam is not going to ask you for an Azure subscription ID. It is going to ask where this configuration lives, and the answer is the Copilot node, not the Billing node."
+- **The budget field is not visible:** Show what is there and narrate the rest: "You would see the Azure subscription, the resource group, the region, and an optional budget with an alert threshold."
+- **A learner asks about Copilot credit policies:** Worth thirty seconds. Copilot credit policies are newer and connect prepaid capacity pack credits to a set of users **without** requiring an Azure subscription, up to ten per tenant. They currently apply to Microsoft 365 Copilot Chat only; SharePoint agents still use pay-as-you-go billing.
 
-> **Exam callout:** Pay-as-you-go Copilot billing policy configuration lives at admin.microsoft.com > Copilot > Billing & usage > Billing policies — not under the standard Billing navigation node — and Copilot Studio's consumption unit is called a Copilot Credit.
+> **Exam callout:** Copilot pay-as-you-go billing policy configuration lives at **admin.microsoft.com > Copilot > Billing & usage > Billing policies**, not under the Billing navigation node. The consumption unit is the **Copilot Credit** at $0.01 per credit.
+
+> **Exam callout:** A budget on a pay-as-you-go billing policy sends **email notifications only**. Microsoft states the system does not enforce it and usage continues after the budget is exceeded.
 
 ---
 
 ### Demo 3B: Copilot Settings in the Admin Center
 
 **Duration:** 4 minutes
-**Portal URL:** `https://admin.microsoft.com` > Settings > Microsoft 365 Copilot (or Copilot in left nav)
-**Timing in segment:** 0:28–0:32 (compressed within the combined lecture + demo block)
+**Portal URL:** `https://admin.microsoft.com` > Copilot > Settings
+**Timing in segment:** 0:28-0:32 (compressed within the combined lecture and demo block)
+
+> **Correction from the April script:** the web search control is **NOT** an in-admin-center toggle. The Copilot Settings page links out to the Microsoft 365 Apps admin center, where the **Allow web search in Copilot** policy is created in the Cloud Policy service for Microsoft 365. Narrate it as a shortcut, not a switch.
 
 #### Pre-Demo Setup
 
 - Remain on admin.microsoft.com from Demo 3A
-- Navigate to Settings > Microsoft 365 Copilot (or the Copilot section in the left nav, whichever is available in your tenant)
-- This section's label and location vary by tenant configuration — be prepared to navigate by search if needed
+- Navigate to **Copilot > Settings**
+- <!-- VERIFY: confirm which tabs and which scenarios this tenant renders. Microsoft states the admin center shows only the services licensed in the tenant and that this page changes frequently, so the scenario list will differ from tenant to tenant. -->
 
 #### Steps
 
-1. In the left navigation of admin.microsoft.com, click **Settings**, then click **Microsoft 365 Copilot** — or click **Copilot** directly in the left nav if present.
+1. In the left navigation of admin.microsoft.com, expand **Copilot** and select **Settings**.
 
-   > "This is the central configuration panel for Microsoft 365 Copilot settings at the tenant level. Think of this as Copilot's feature control panel — you're not managing licenses here, you're managing behavior."
+   > "This is the tenant-level control panel for Copilot behavior. You are not managing licenses here. You are managing what Copilot is allowed to do."
 
-2. Locate the **Web search** toggle (may be labeled "Allow Copilot to access web content" or similar).
+2. Show the tabs across the top.
 
-   > "The web search toggle controls whether Copilot can include Bing-sourced web content in its responses. When this is on, Copilot can answer questions using both your organizational data and real-time web information. When it's off, Copilot is limited to organizational data only — your emails, files, meetings. Some organizations disable web search for compliance or information control reasons."
+   > "Four tabs. **User access** governs how users get to Copilot across products. **Data access** governs how Copilot gets and handles information. **Copilot actions** governs how Copilot responds relative to your policies. And **Other settings** is the catch-all."
 
-3. Locate the **Optional connected experiences** or data diagnostic sharing setting if visible.
+   > "Fair warning about this page in your own tenant: Microsoft only shows scenarios for services you are licensed for, and they say outright that this page changes frequently. So if your admin center has more or fewer entries than mine, that is expected, not broken."
 
-   > "Optional connected experiences is a setting that controls whether Copilot can use Microsoft's online services for features beyond what's strictly required. This is relevant to organizations with strict data handling policies. When exam questions describe an organization that needs to limit what data Microsoft can use for service improvement, this toggle is part of the answer."
+3. On the **Data access** tab, show the **Agents** scenario.
 
-4. Scroll to find any plugin management or extensibility settings.
+   > "Agents is configured right here: who can access agents, and which types of agents they can install. And notice the Manage all agents link, which jumps you over to the full Agents, All agents page. We will spend real time there in Segment 4, because that is where approval happens."
 
-   > "Plugin management controls whether users can connect third-party plugins to Copilot — things like a Salesforce connector or a Jira integration. Admins can allow all plugins, restrict to Microsoft-published plugins only, or block all plugins. This is a governance control — it prevents users from connecting Copilot to unsanctioned data sources through the plugin model."
+4. Also on **Data access**, show **AI providers for other large language models** if present.
 
-5. Point out the **Manage agents** or Agents section if visible.
+   > "This one is newer and worth knowing exists. It controls whether users can use other large language models inside Copilot Chat and Copilot Studio, for example Anthropic's Claude models. That is a governance decision an organization makes deliberately."
 
-   > "We'll spend more time on this in Segment 4, but note it lives here — Copilot settings is also where the tenant-level agent policy lives. This is the toggle that controls whether agents can be deployed in the tenant at all, and whether users can install agents that haven't been explicitly approved by an admin."
+5. Find the web search scenario and correct the common misconception out loud.
+
+   > "Here is where a lot of course material gets it wrong, mine included until recently. Web search for Copilot is **NOT** configured on this page. What you get here is a link out to the Microsoft 365 Apps admin center, where you create a cloud policy called **Allow web search in Copilot**. The Cloud Policy service is where the setting actually lives. This page is a signpost."
+
+   > "And the policy is not a simple on-off. Three options: enabled in both Microsoft 365 Copilot and Copilot Chat, disabled in both, or disabled in Copilot Work mode while still enabled in Web mode and Copilot Chat. That third option has a side effect worth remembering, because it is exactly the kind of detail an exam question hangs on: picking it also disables web search in Researcher and Analyst."
+
+   > "There is also a user-side control. If the admin allows web search, each user gets a **Web content** toggle they can turn off for themselves. If the admin turns web search off, that toggle goes away and the user cannot turn it back on."
 
 #### What Learners Should See
 
-- After step 2: A settings page with named toggles including web search, optional connected experiences, and similar Copilot behavior controls
-- After step 5: A section showing agent-related settings including allow/block agent policy options
+- After step 2: The Copilot Settings page with User access, Data access, Copilot actions, and Other settings tabs
+- After step 3: The Agents scenario with its access configuration and the Manage all agents link
+- After step 5: The web search scenario showing a link to the Microsoft 365 Apps admin center rather than an in-place toggle
 
 #### If Something Breaks
 
-- **Settings > Microsoft 365 Copilot is missing:** Search "Copilot settings" in the admin center search bar. If not found, the tenant may need the Copilot admin role assigned, or the feature may not be fully deployed to this tenant version. Navigate to any available Copilot-related setting and describe what would be visible in a production tenant.
-- **Toggles are greyed out:** The signed-in account may not have sufficient permissions. Describe what would be configurable: "In a tenant where the signed-in account has the Copilot Admin role, each of these toggles would be clickable. The role required to change Copilot feature settings is Copilot Admin — not Global Admin, though Global Admin can do it too."
+- **Copilot > Settings is missing:** Search "Copilot" in the admin center search bar. If it is still absent, the signed-in account may lack the required role, or the tenant may not have Copilot licensed. Describe the four tabs and move on.
+- **Settings appear unavailable to change:** The signed-in account may lack sufficient privilege. Describe what a properly permissioned admin sees. The relevant role for Copilot administration in current Microsoft documentation is the **AI Administrator**, and Global Administrator can also do it. Do not say "Copilot Admin," which is not the current role name.
+- **A learner asks where agent settings live versus Copilot settings:** Both exist and both are current. **Copilot > Settings > Data access > Agents** is the narrower page. **Agents > Settings** is the fuller surface with five areas: Agent management rules, Allowed agent types, Security templates, Sharing, and User access. The Agents node is where you want to be for governance work.
 
-> **Exam callout:** The Copilot Admin role — not Global Administrator — is the appropriate minimum-privilege role for managing Copilot feature settings including the web search toggle, plugin management, and agent policies in the M365 admin center.
+> **Exam callout:** The **AI Administrator** role is the least-privilege role for Copilot administration tasks including Copilot reports and agent governance. Global Administrator also works but is not the minimum-privilege answer.
+
+> **Exam callout:** Web search for Copilot is governed by the **Allow web search in Copilot** policy in the **Cloud Policy service for Microsoft 365**, reached through a link on the Copilot Settings page. It is not configured in the Microsoft 365 admin center itself.
 
 ---
 
 ### Demo 3C: Researcher and Analyst in Copilot
 
 **Duration:** 3 minutes
-**Portal URL:** `https://microsoft365.com` or Microsoft Teams (Copilot chat)
-**Timing in segment:** 0:32–0:35 (compressed within the combined lecture + demo block)
+**Portal URL:** Microsoft 365 Copilot app or Microsoft Teams, plus `https://admin.microsoft.com` > Agents > All agents
+**Timing in segment:** 0:32-0:35 (compressed within the combined lecture and demo block)
+
+> **Correction from the April script:** the admin control for Researcher and Analyst is **NOT** in Copilot settings as a pair of toggles. Researcher and Analyst appear as individual agents at **Agents > All agents**, and the disable mechanism is the **Block** action on the agent. The **Edit users** panel is disabled for them, so there is no per-user assignment.
 
 #### Pre-Demo Setup
 
-- If Copilot is licensed in the demo tenant: open Microsoft 365 (microsoft365.com) or Teams and navigate to Copilot chat
-- If Copilot is NOT fully licensed: use the admin settings view showing the control for these features — the control location is the fallback
-- This demo is acceptable as a brief UI orientation — the exam tests concepts about Researcher and Analyst, not their operational use
+- If Copilot is licensed in the demo tenant, open the Microsoft 365 Copilot app or Teams and find the **Tools** menu in Copilot Chat
+- If Copilot is not fully licensed, use the admin view at Agents > All agents. That is the better demo anyway, because the governance point is what the exam tests.
+- This demo works as a brief orientation. The exam tests the concept and the governance model, not operational use.
 
 #### Steps
 
-1. Navigate to `microsoft365.com` or open Copilot in Microsoft Teams (the Copilot icon in the Teams left rail).
+1. Open the Microsoft 365 Copilot app, or Copilot in Microsoft Teams.
 
-   > "Researcher and Analyst are built into Microsoft 365 Copilot — they are not agents you deploy from Copilot Studio, not plugins users install, and not something IT builds. They are part of the core Copilot experience for licensed users."
+   > "Researcher and Analyst are built into Microsoft 365 Copilot. They are not agents somebody deploys from Copilot Studio, they are not plugins users install, and IT does not build them. They came generally available in June of 2025, they require a Microsoft 365 Copilot license, and Microsoft preinstalls and pre-pins them for licensed users. A user cannot unpin Researcher."
 
-2. If Copilot is available, point to the Researcher or deep research option in the Copilot chat interface. It may appear as a prompt option, a mode selector, or a specific entry in the Copilot home panel.
+2. Show the **Tools** menu in Microsoft 365 Copilot Chat, where Researcher and Analyst appear.
 
-   > "Researcher performs multi-step research tasks. When a user invokes it, Copilot doesn't just answer once — it plans a sequence of steps, queries organizational data through Microsoft Graph, optionally queries the web through Bing, and synthesizes a structured research output. That's what makes it 'agentic' — it plans and executes a sequence of actions, not a single response."
+   > "Note where they are: under **Tools**. Say that word rather than agents pane, because being a Tool inside core chat is precisely the reason they behave the way they do when an admin turns agents off."
 
-3. Point to the Analyst option if visible.
+   > "Researcher does deep multi-step research. It works across your Microsoft Graph work data, Copilot connectors, and the Bing index for web content, and it synthesizes a structured result rather than answering once. It has a documented limit, twenty-five queries per user per month."
 
-   > "Analyst is the data-focused counterpart. It works with structured data — primarily Excel files and similar sources — to produce analysis, charts, and trend summaries. Think of it as Copilot with data analysis reasoning built in."
+   > "Analyst is the data counterpart. Advanced data analysis with chain-of-thought reasoning, and Microsoft says specifically that it is better suited than Researcher for Excel work. If a question contrasts the two, that Excel detail is a clean tiebreaker."
 
-4. Return to admin.microsoft.com > Settings > Microsoft 365 Copilot. Show the control for Researcher and/or Analyst if it is surfaced in the admin panel.
+3. Switch to admin.microsoft.com > **Agents** > **All agents** and select **Researcher**.
 
-   > "Here's the admin angle that the exam tests specifically: Researcher and Analyst are NOT disabled by the general agent on/off toggle in the admin center. If you turn off agents at the tenant level, Researcher and Analyst continue to work. They require a separate, explicit block action in the admin settings. Users cannot opt themselves out — only admins can block these experiences. This is a tested distinction."
+   > "Here is the governance point, and I want to give you Microsoft's actual wording because the mechanism matters more than the folklore. Microsoft says Researcher and Analyst are part of the core Copilot chat experience and **will not fall under any agent-related settings**. So turn agents off tenant-wide, for some users or all users, and these two keep right on working under Tools."
+
+4. Show the agent details pane, specifically that **Edit users** is unavailable and **Block** is present.
+
+   > "So how do you actually turn them off? You block the individual agent, right here. And notice what you cannot do: the Edit users panel is disabled for Researcher and Analyst. There is no assigning it to the marketing department and not to finance. Blocking is tenant-wide, all or nothing."
+
+5. If the tenant surfaces it, show the **Computer use** tab on the Researcher details pane.
+
+   > "One more control, newer, and worth knowing exists. **Researcher with Computer Use** lets Researcher interact with public, gated, and interactive web content through a virtual computer running on Windows 365. It is governed separately on this Computer use tab, with three policies: who can perform actions on behalf of users, whether Researcher can access work data, and which websites are allowed, either all websites, a specific allowlist, or an exclusion list. Web search has to be on for Computer use to function."
+
+6. Add the monitoring caveat.
+
+   > "And one thing admins ask about immediately: can you see what people asked Researcher? Microsoft says there is no existing reporting tool for the content of Researcher sessions. You get usage metrics. You do not get conversation content, unless a user explicitly submits feedback that includes session data."
 
 #### What Learners Should See
 
-- After step 2: The Copilot chat interface showing a mode selector or prompt option for Researcher / deep research
-- After step 4: The admin settings showing Researcher and/or Analyst as separately toggleable items, distinct from the general agent policy toggle
+- After step 2: The Tools menu in Copilot Chat listing Researcher and Analyst
+- After step 3: The Researcher entry in the Agents > All agents list
+- After step 4: The agent details pane with the Block action available and Edit users unavailable
+- After step 5: The Computer use tab with its three policy settings
 
 #### If Something Breaks
 
-- **Copilot is not licensed or available in the demo tenant:** Skip to step 4 — show the admin controls only. Say: "The UI for Researcher in the end user experience looks like a mode selector or a specific entry in the Copilot home panel. For the exam, the navigation to understand is the admin control — and specifically the fact that the general agent toggle does NOT disable Researcher and Analyst."
-- **Researcher and Analyst controls are not visible in admin settings:** Describe the expected behavior: "In a fully configured M365 Copilot tenant, the Settings > Microsoft 365 Copilot panel would show Researcher and Analyst as separately controlled features. The exam fact remains: they require explicit blocking, separate from the general agent governance toggle."
+- **Copilot is not licensed in the demo tenant:** Skip the end-user portion and run the admin view only. Say: "In the end-user experience, these show up under Tools in Copilot Chat. What matters for the exam is the admin side, and specifically that the general agent settings do not govern them."
+- **Researcher does not appear under Agents > All agents:** The tenant may lack Copilot licensing, since both require it. Describe the behavior: "In a licensed tenant, Researcher and Analyst appear here as individual agents with Block available and Edit users disabled."
+- **The Computer use tab is absent:** It is a newer capability and may not be present in every tenant. Describe the three policies rather than hunting for the tab.
+- **A learner asks whether they can allowlist specific sites for standard Researcher:** No. Standard Researcher follows the tenant-level **Allow web search in Copilot** policy, and if web search is off at the tenant level, Researcher uses no web data at all. Per-site allow and exclude lists exist only for Researcher with Computer Use.
 
-> **Exam callout:** Researcher and Analyst are built-in agentic experiences in Microsoft 365 Copilot — they are not disabled by the general agent management toggle and require a separate explicit admin action to block, making them distinct from Copilot Studio-deployed agents in the governance model.
+> **Exam callout:** Researcher and Analyst are part of the **core Copilot chat experience** and do **NOT** fall under agent-related settings. They stay available under **Tools** even when agents are disabled. The only way to turn them off is the **Block** action on the individual agent, and that block is tenant-wide because Edit users is disabled for them.
 
 ---
 
 ### Demo 3D: Copilot Dashboard in Viva Insights
 
 **Duration:** 5 minutes
-**Portal URL:** `https://insights.viva.cloud.microsoft` or admin.microsoft.com > Reports > Copilot Dashboard
-**Timing in segment:** 0:43–0:48
+**Portal URL:** Viva Insights app (Microsoft Teams or web), plus `https://admin.microsoft.com` > Reports > Usage
+**Timing in segment:** 0:43-0:48
+
+> **Access path correction:** Microsoft's current documented route to the Copilot Dashboard is to open the **Viva Insights** app in Microsoft Teams or the Viva Insights web app and select **Copilot Dashboard**. An **AI Administrator** enables the dashboard and delegates access from the Microsoft 365 admin center first.
 
 #### Pre-Demo Setup
 
-- Pre-navigate to insights.viva.cloud.microsoft and look for the Copilot Dashboard section
-- Alternatively, navigate from admin.microsoft.com > Reports > Copilot usage > select "Open in Viva Insights"
-- The dashboard may require the Insights Administrator or Global Administrator role to access fully
-- An empty dashboard in a trial tenant is acceptable — the four section names and their purpose are what matter
+- Open the Viva Insights app and locate the Copilot Dashboard
+- Also have admin.microsoft.com > Reports > Usage ready, so you can contrast the two reporting surfaces
+- An empty dashboard in a trial tenant is acceptable. The four metric categories and the contrast with the admin center reports are what matter.
+- Access note if a learner asks: the Copilot Dashboard is available to any customer with a Microsoft 365 or Office 365 business or enterprise subscription and an active Exchange Online account. Neither a paid Viva Insights license nor a Copilot license is required to view the dashboard, though feature depth scales with how many Copilot licenses the tenant has.
 
 #### Steps
 
-1. Navigate to `insights.viva.cloud.microsoft` or follow the path admin.microsoft.com > **Reports** > look for **Copilot Dashboard** or **Copilot usage**.
+1. Start in the admin center so the contrast lands. Navigate to `admin.microsoft.com` > **Reports** > **Usage**, then under Reports select **Microsoft 365 Copilot** and then **Copilot**.
 
-   > "The Copilot Dashboard is in Viva Insights, not in the standard M365 usage reports. This is an important exam navigation fact. The standard usage reports at admin.microsoft.com > Reports > Usage give you generic app usage data. The Copilot Dashboard gives you Copilot-specific adoption metrics broken down in a way that's actionable for admins and business sponsors."
+   > "There are two reporting worlds here and the exam expects you to know which is which. This one, in the Microsoft 365 admin center, gives you the **Readiness** tab and the **Usage** tab. Readiness answers who is eligible and who has a license. Usage answers who is actually using it. Data typically shows up within forty-eight hours of the end of a day in UTC."
 
-2. Show the dashboard and point to the four main sections: **Readiness**, **Adoption**, **Impact**, **Sentiment**.
+2. Point out the **Credits** report alongside it.
 
-   > "Four sections. Know all four names for the exam. Readiness shows how many users are licensed and enabled — your potential Copilot user base. Adoption shows how many of those licensed users are actually using Copilot, broken down by app — Teams, Outlook, Word, Excel. Impact attempts to quantify the value Copilot is delivering. Sentiment is optional survey data if the organization has configured pulse surveys."
+   > "Right next to it is the **Credits** report, which is how you watch Copilot Credit consumption: total credits, daily and cumulative trends, and credits broken out per user, per agent, per billing policy. It alerts you when a single user goes past two thousand credits. It is in preview, it holds thirty days of history, and it has no data before May 3, 2025."
 
-3. Click into the **Readiness** section.
+3. Open the **Viva Insights** app and select **Copilot Dashboard**.
 
-   > "Readiness is where an admin starts before a Copilot rollout. How many users have licenses? How many have activated? If 100 users are licensed and only 40 have activated, you have a change management problem — not a technology problem. Readiness surfaces that gap."
+   > "Now the other world. The Copilot Dashboard is in **Viva Insights**, not the admin center. An AI Administrator turns it on and delegates access from the admin center, and then you get to it through the Viva Insights app in Teams or on the web."
 
-4. Click into the **Adoption** section.
+4. Show the four metric categories: **Readiness**, **Adoption**, **Impact**, **Sentiment**.
 
-   > "Adoption breaks down active usage by app. This is where you see whether users are engaging with Copilot in the apps where it delivers the most value — Teams meetings, Outlook email drafts, Word documents. Low adoption in Teams but high adoption in Outlook might tell you the organization uses Teams differently than expected."
+   > "Four categories, and know all four names. Readiness is your potential user base: who is licensed, who is enabled. Adoption is who is actually using Copilot, broken out by app. Impact tries to quantify the value, and the headline metric there is Copilot assisted hours, which exists so you can answer the executive asking whether this investment is paying off. Sentiment is survey data, and it only populates if the organization has configured Viva Pulse or Glint."
 
-5. Click into the **Impact** section.
+5. Name the umbrella term, because the objective wording uses it.
 
-   > "Impact is the 'why does this matter to leadership' section. The key metric here is Copilot-assisted hours — an estimate of how much time Copilot is saving users based on usage patterns. This metric exists specifically for business justification conversations. Admins use this data to demonstrate ROI to sponsors asking whether the Copilot investment is worth it."
+   > "Microsoft's umbrella term for all of this is **Copilot Analytics**, and the July 22 objective says 'Monitor Copilot usage and adoption, including Copilot Analytics and the Microsoft 365 admin center.' Copilot Analytics covers six things: the readiness and adoption report in the admin center, the Copilot Dashboard in Viva Insights, the Agent Dashboard, the Consumption Dashboard, the ready-to-use reports, and advanced reporting through Power BI. You do not need to memorize all six. You need to know Copilot Analytics is the umbrella and where the two main surfaces are."
 
-6. Point to the **Sentiment** section.
+6. Deliver the trap.
 
-   > "Sentiment is optional — it requires pulse survey configuration to populate. If configured, it shows user-reported feedback on Copilot helpfulness. Not all tenants use it. For the exam, know it exists as one of the four sections but don't expect deep questions on its configuration."
+   > "And here is a trap worth the whole segment. Somebody always suggests pulling Copilot usage numbers out of the Purview audit log, because the interactions are all in there. Microsoft warns against it in writing: audit log data is **NOT** intended as the basis for Copilot usage reporting, and metrics built on it may not match the official reports. Audit is for compliance and investigation. Usage reporting is the admin center report or the Copilot Dashboard. Different tools, different jobs."
 
 #### What Learners Should See
 
-- After step 2: The Copilot Dashboard overview with four labeled sections or tabs: Readiness, Adoption, Impact, Sentiment
-- After step 3: The Readiness view showing licensed user count vs. activated user count
-- After step 4: The Adoption view showing active users by application (Teams, Outlook, Word, Excel, etc.) with trend lines
-- After step 5: The Impact view with the Copilot-assisted hours metric prominently displayed
+- After step 1: The Microsoft 365 Copilot report with Readiness and Usage tabs
+- After step 2: The Credits report showing credit consumption
+- After step 4: The Copilot Dashboard with Readiness, adoption, impact, and sentiment metrics
 
 #### If Something Breaks
 
-- **Viva Insights portal redirects or requires additional licensing:** "Viva Insights access for the Copilot Dashboard may require specific licensing in some tenants. Here's the navigation: insights.viva.cloud.microsoft, look for Copilot Dashboard in the left nav. You can also reach it from admin.microsoft.com > Reports > Copilot usage, then selecting the Viva Insights view. For the exam, know the four sections: Readiness, Adoption, Impact, Sentiment."
-- **Dashboard loads but all metrics show zero or N/A:** "A demo tenant with no real Copilot usage will show empty metrics — that's expected. The structure is what you're learning. In a production tenant with 200 active Copilot users, these sections would be populated with trend data." Proceed through the section descriptions verbally.
-- **Can't find Copilot Dashboard in Viva Insights nav:** Try admin.microsoft.com > Reports > Usage > Microsoft 365 Copilot usage > click "Open in Viva Insights." If that also fails, navigate to the Viva Insights home and look for Copilot-specific content under the Reports or Analytics sections.
+- **Viva Insights requires additional setup:** "The Copilot Dashboard has to be enabled and delegated by an AI Administrator from the Microsoft 365 admin center before it appears. For the exam, know that it is in Viva Insights and know the four metric categories: readiness, adoption, impact, and sentiment."
+- **The dashboard loads but every metric is zero or shows two dashes:** That is the documented empty state and it means nobody in the tenant has a Copilot license or nobody has used Copilot yet. "The structure is what you are learning. In a tenant with real usage, these populate with trend data." Also note the refresh behavior: the dashboard refreshes daily but always shows the previous 28-day period with up to six days of delay, and newly licensed employees take up to another seven days to appear.
+- **You cannot find the Copilot Dashboard in the Viva Insights navigation:** In Microsoft Teams, search for and open the **Viva Insights** app, then select **Copilot Dashboard**. If it is still missing, it has not been enabled and delegated in the admin center yet.
+- **A learner asks about agent usage reporting:** There are two agent usage reports and they differ. The original **Microsoft 365 Copilot Agent usage report** is generally available but excludes SharePoint agents and agents built by Microsoft and Microsoft partners, with up to 72 hours of latency. The newer **Microsoft 365 Copilot Agents usage report** is in preview, covers declarative, SharePoint, and custom engine agents including those built by Microsoft and partners, and shows usage within an hour. Both are at Reports > Usage > Microsoft 365 Copilot > Agents.
 
-> **Exam callout:** The Copilot Dashboard in Viva Insights — with its four sections (Readiness, Adoption, Impact, Sentiment) — is the specific tool for monitoring Copilot adoption and impact, and is distinct from the standard Microsoft 365 usage reports at admin.microsoft.com.
+> **Exam callout:** The **Copilot Dashboard in Viva Insights** covers readiness, adoption, impact, and sentiment, and is distinct from the **readiness and usage report** in the Microsoft 365 admin center. **Copilot Analytics** is the umbrella term for the whole reporting family.
+
+> **Exam callout:** Microsoft explicitly warns that **Purview audit log data is NOT intended as the basis for Copilot usage reporting**. Use the Copilot usage report or the Copilot Dashboard instead.
 
 ---
 
@@ -549,232 +717,308 @@ Pre-navigate each portal to its first demo landing page during the break before 
 ### Demo 4A: Agent Approval in the M365 Admin Center
 
 **Duration:** 6 minutes
-**Portal URL:** `https://admin.microsoft.com` > Copilot > Agents (or Settings > Microsoft 365 Copilot > Agents)
-**Timing in segment:** 0:14–0:20
+**Portal URL:** `https://admin.microsoft.com` > **Agents** > **All agents** > **Requests**
+**Timing in segment:** 0:14-0:20
+
+> **This is the single most important path correction in this document.** The April script said "Copilot > Agents > Requested agents tab." That is wrong on both counts now. **Agents** is a **top-level node** in the Microsoft 365 admin center left navigation, not nested under Copilot, and the tab is named **Requests**, not Requested agents. The authoritative path appears in current Microsoft Learn articles: **admin.microsoft.com > Agents > All agents > Requests**.
 
 #### Pre-Demo Setup
 
-- Pre-navigate to admin.microsoft.com and locate the Agents section — it may be under:
-  - Copilot > Agents in the left nav, OR
-  - Settings > Microsoft 365 Copilot > Agents tab, OR
-  - The specific path may be labeled "Integrated apps" in older tenant configurations
-- If the tenant has any pending agent submissions, those will show in the Requests queue — ideal for the demo
-- If no pending requests exist, the empty state is acceptable — describe what would appear
+- Pre-navigate to admin.microsoft.com > **Agents** > **All agents**
+- <!-- VERIFY: confirm the Agents node appears at the top level of the left navigation in this tenant. Agent visibility in the admin center is licensing dependent. -->
+- If the tenant has pending agent submissions, they show under the Requests tab, which is ideal for the demo
+- If no pending requests exist, the empty state is fine. Describe what would appear.
+- Note that a narrower alternate page still exists at Copilot > Settings > Data access > Agents, with a **Manage all agents** link that jumps here. Both are current; this one is the fuller surface.
 
 #### Steps
 
-1. Navigate to `admin.microsoft.com`. In the left navigation, locate **Copilot** and expand it, then click **Agents**. If the path differs in your tenant, try **Settings** > **Microsoft 365 Copilot** > and look for an Agents tab or section.
+1. Navigate to `admin.microsoft.com`. In the left navigation, select **Agents**.
 
-   > "This is the primary agent governance location in the M365 admin center. This is where the AB-900 exam expects you to go when a question asks: 'Where does an admin approve a Copilot agent for org-wide deployment?' — the answer is here. Not in the Teams admin center, not in Copilot Studio — here."
+   > "Look at where this lives now. **Agents** is a top-level node in the left navigation. It is not tucked under Copilot anymore. If your study material has you clicking Copilot and then Agents, fix that page in your notes tonight, because this is exactly the kind of navigation detail this exam tests."
 
-2. Show the tenant-level agent policy setting. It typically presents as three options: Allow all agents, Allow only specific agents, or Block all agents.
+2. Show the **Overview** page briefly.
 
-   > "The tenant-level policy is the master switch. Allow all means any published agent becomes available to users. Block all means no agents run in the tenant regardless of who built them. The middle option — Allow only specific agents — is the most governance-appropriate choice: admins review and approve individual agents before they reach users."
+   > "The Overview is the dashboard. Four hero metrics: the agent registry count, active users over the last thirty days, agent run-time in hours, and registry sync for connected external platforms. Underneath are the governance action cards, and the first one is Pending Requests for Agents, which links straight to where we are going."
 
-3. Navigate to the **Requests** tab or queue within the Agents section.
+3. Select **All agents**, and show the **Registry** tab.
 
-   > "This is the approval queue. When a maker in Copilot Studio submits an agent for org-wide publication, it lands here as a pending request. The request shows the agent's name, description, the maker's identity, and what permissions or knowledge sources the agent is requesting access to."
+   > "All agents has two tabs. **Registry** is your inventory: three tiles across the top for total agents, agents without owners, and unmanaged agents, meaning agents created or managed outside the governance plane. You can filter by status, publisher type, channel, platform, and data source, and you can export the whole thing to CSV."
 
-4. If a pending request exists, click it and walk through the review pane.
+   > "The registry sorts agents into four publisher types: Microsoft agents, external partner-built agents, published by your org, and shared by creator."
 
-   > "As the reviewing admin, I'm looking at three things: What is this agent supposed to do? What data sources does it access — is it limited to SharePoint within my tenant, or does it reach external services? And who built it — is this a maker in a business-sanctioned department, or an unknown source? Based on that review, I approve or reject."
+4. Switch to the **Requests** tab.
 
-5. Show the Approve and Reject (or Block) buttons.
+   > "And **this** is the approval queue. Requests. Not Requested agents. When a maker publishes an agent to the organization, it lands here."
 
-   > "Approve means the agent becomes available per the tenant policy. Reject or Block means the agent is prevented from publishing. For the exam, the key navigation is: M365 admin center > Agents > Requests for the approval queue, and the agent policy setting at the top of this page for the tenant-level master control."
+   > "Three states, and know all three. **Pending review** is a brand new agent waiting for you. **Pending update** is an agent already in the store whose maker shipped a new version, and until you approve it, your users keep getting the previous version. **Pending activate** is somebody asking to activate an agent so they can create agent instances from it."
 
-6. Return to the main Agents page without making changes.
+   > "You can filter this list by state, and by channel: Teams, Copilot, Office, Outlook, Word, Excel, PowerPoint."
+
+5. Open a pending request if one exists, and walk the review.
+
+   > "As the reviewing admin, you are looking at four things: what the agent can do, what data sources it touches, its security and permissions posture, and what custom actions it wants to run. That is your review. Then you decide."
+
+6. Show the actions.
+
+   > "Two actions. **Publish to store** starts the publishing wizard: you pick who can install it, optionally pick who gets it preinstalled, choose a policy template, review permissions and grant admin consent if that is appropriate, and publish. Or **Reject submission**, which is under the ellipsis next to the agent name."
+
+   > "One label difference to catch: for a **Pending update**, that first button reads **Update in store** instead of Publish to store. Same idea, different word, and it is the kind of thing that shows up in a screenshot question."
+
+7. Show **Agents > Settings**.
+
+   > "Settings has five areas. **Agent management rules**, which today supports exactly two bulk actions: install Microsoft agents tenant-wide, and reassign ownerless Agent Builder agents to the previous owner's manager. **Allowed agent types**, with three toggles for agents built by Microsoft, by your organization, and by external publishers. **Security templates**. **Sharing**. And **User access**."
+
+   > "Two traps live in this page. First, agents built by Microsoft stay **visible** to users even when you disable that setting; users just cannot install them. Second, under Sharing, the No users option still lets users share directly with specific individuals, and Sharing only governs agents built with Agent Builder in the first place."
+
+8. Name the role requirement.
+
+   > "Last thing, and it is a clean exam answer. Only **AI Administrator** or **Global Administrator** can approve an agent request or assign ownership. Global Reader, AI Reader, Security Administrator, Security Reader, Reports Reader can all look at every screen we just walked and cannot click approve. When a question asks for the least-privileged role that can approve an agent, the answer is AI Administrator."
 
 #### What Learners Should See
 
-- After step 2: The agent policy setting showing three radio button or dropdown options (Allow all, Allow specific, Block all)
-- After step 3: A Requests tab showing either pending agent submissions with columns for agent name, submitter, and status — or an empty queue with a message about how submissions will appear here
-- After step 5: The review pane for an individual agent request with an Approve and a Reject/Block action button
+- After step 1: **Agents** at the top level of the admin center left navigation
+- After step 3: The Registry tab with Total agents, Agents without owners, and Unmanaged agents tiles
+- After step 4: The Requests tab, either with pending submissions or an empty queue
+- After step 6: The review pane with Publish to store, and Reject submission under the ellipsis
+- After step 7: The Agents Settings page with its five configuration areas
 
 #### If Something Breaks
 
-- **Agents section is not visible in the left nav:** Navigate via Settings > Microsoft 365 Copilot and look for an Agents section or tab. Some tenant configurations also surface this under Settings > Integrated apps. Say: "The navigation label may vary slightly by tenant configuration — in current tenants it's under Copilot > Agents, but you may also see it under Settings > Microsoft 365 Copilot > Agents."
-- **No pending agent requests exist:** "An empty queue means no agents have been submitted for review. In a production tenant where makers are actively building in Copilot Studio, you would see submissions here. The empty state shows you what the queue looks like — agent name, submitter, submission date. Let me describe what you'd do with an actual submission." Proceed through steps 4–5 verbally.
-- **Tenant shows "Integrated apps" instead of "Agents":** This is an older UI label for the same feature. Navigate to Settings > Integrated apps > All apps and filter for agent-type apps. The governance model is the same — the label changed.
+- **The Agents node is not in the left navigation:** Agent management visibility in the admin center is licensing dependent. Try the alternate page at **Copilot > Settings > Data access > Agents**, which includes a **Manage all agents** link. Say: "The full Agents workload requires the right licensing. Microsoft 365 plans, Microsoft 365 Copilot, and Microsoft Agent 365 all enable agent management in the admin center."
+- **No pending agent requests exist:** "An empty queue means nobody has submitted an agent. In a tenant where makers are actively building, you would see submissions here with the agent name, the submitter, and the state." Walk steps 5 and 6 verbally.
+- **The tenant shows "Integrated apps" rather than Agents:** That is the older surface. SharePoint documentation notes the Agents section was formerly known as integrated apps. The governance model is the same; the location and label moved. Do not teach Integrated apps as the current answer.
+- **A learner asks about MCP tools:** Good question, quick answer, because it is a separate queue. Tool governance is at **Agents > Tools > Requests**, where an admin approves or rejects a registered tool such as a remote MCP server. Only AI Administrator and Global Administrator meet both the page access and tenant-wide consent requirements.
+- **A learner asks about blocking versus removing:** **Block** prevents any user in the tenant from accessing the agent and removes it from users who already installed it. **Uninstall** or **Remove** takes it out of inventory, but the agent can be reacquired from the store. And blocking scope depends on where the agent was built: blocking an Agent Builder or Copilot Studio agent affects Microsoft 365 Copilot **and** other hosts such as Outlook and Teams, while blocking a SharePoint or Foundry agent affects Microsoft 365 Copilot Chat only.
 
-> **Exam callout:** The M365 admin center Agents section (Copilot > Agents > Requests) is the primary approval queue for Copilot Studio agent submissions intended for org-wide deployment — this is separate from the Teams admin center, which handles app permission policies after the agent is approved.
+> **Exam callout:** The approval queue is **admin.microsoft.com > Agents > All agents > Requests**. Agents is a top-level navigation node. The three request states are **Pending review**, **Pending update**, and **Pending activate**, and the actions are **Publish to store** (or **Update in store** for an update) and **Reject submission**.
+
+> **Exam callout:** Only **AI Administrator** and **Global Administrator** can perform agent governance actions such as approving requests or assigning ownership. Reader roles can view the registry but cannot act.
 
 ---
 
-### Demo 4B: Teams Admin Center — App Governance for Agents
+### Demo 4B: Teams Admin Center -- App and Agent Governance
 
 **Duration:** 3 minutes
 **Portal URL:** `https://admin.teams.microsoft.com` > Teams apps > Manage apps
-**Timing in segment:** 0:20–0:23
+**Timing in segment:** 0:20-0:23
+
+> **Naming changed since April.** Many tenants are migrated to **app centric management**, which replaced app permission policies and scopes access on a per-app basis from the app's **Users and groups** tab. Some tenants still show the older Permission policies page. Confirm which one this tenant uses before you narrate it.
 
 #### Pre-Demo Setup
 
-- Open admin.teams.microsoft.com tab (should be pre-loaded)
-- Navigate to Teams apps > Manage apps before the segment
-- Use the search/filter to find any Copilot-related apps or agents if available in the tenant
-- If a previously approved agent is visible, use it; otherwise use any first-party Microsoft app as a structural example
+- Open the admin.teams.microsoft.com tab (should be pre-loaded)
+- Navigate to **Teams apps** > **Manage apps** before the segment
+- <!-- VERIFY: check whether this tenant is migrated to app centric management. If the Permission policies page still lists policies, the tenant is on the older model. Microsoft shows a banner on the permission policy page for migrated tenants. -->
+- Use the search box to find a Copilot-related app or agent if one exists in the tenant. Otherwise use any first-party Microsoft app as a structural example.
 
 #### Steps
 
-1. Switch to the `admin.teams.microsoft.com` tab. Navigate to **Teams apps** > **Manage apps**.
+1. Switch to the `admin.teams.microsoft.com` tab and navigate to **Teams apps** > **Manage apps**.
 
-   > "The Teams admin center handles the second layer of agent governance — after an agent is approved in the M365 admin center, it enters the Teams app ecosystem. Agents published as Teams apps follow the same governance model as any other Teams app. If you already understand Teams app governance, you already understand Copilot agent deployment governance."
+   > "This is the second governance layer. Once an agent is approved in the Microsoft 365 admin center, it lives in the app ecosystem, and agents distributed as Teams apps follow the same model as any other Teams app. If you already govern Teams apps, you already govern most of this."
 
-2. In the Manage apps list, look for any Copilot-related apps or agents. Use the search bar to filter by "Copilot" or "agent" if needed.
+2. Show the app list.
 
-   > "Each row here represents an app or agent that exists in the tenant's app catalog. The Status column shows whether the app is Allowed or Blocked. The Type column distinguishes Microsoft-published apps from Custom — agents you build in your org show up as Custom."
+   > "Each row is an app or an agent in the tenant catalog. Status shows whether it is allowed or blocked. And there is an export to CSV button up here, which is genuinely useful when your security team wants the whole inventory in a spreadsheet."
 
-3. Click on any relevant app to open its detail panel. Show the permission and availability settings.
+3. Open an app's detail page and select the **Users and groups** tab.
 
-   > "Inside the app detail, I can see what permissions this app requests — whether it can read messages, access files, or call external APIs. I can also set availability: assign the app to specific users or groups, or make it available to everyone. This is how you scope a Copilot agent to a specific department rather than the whole organization."
+   > "Inside the app, this is where you scope who gets it. Availability, edit availability, and then either everyone or specific users and groups. That is how you give an agent to the sales team and nobody else."
 
-4. Return to the Manage apps list. Point to **App permission policies** in the left navigation.
+   > "Now, a naming caution, because Microsoft has been consolidating this and your tenant may look different from mine. This per-app model is called **app centric management**, and for migrated tenants it replaced app permission policies. If your tenant still shows a Permission policies page with policies on it, you are on the older model and that is fine, it still works. Microsoft has been auto-migrating tenants, so expect either one in the wild."
 
-   > "App permission policies are the template approach. Instead of managing every app per-user, you create a policy — 'Finance Users can access these apps, everyone else cannot' — and assign it to groups. When you approve a new agent in the M365 admin center and want to deploy it only to the Sales team, you add it to the Sales team's app permission policy here."
+4. Mention the synchronization behavior.
+
+   > "One more thing that saves confusion. **Unified agent and app management** synchronizes org-wide settings, app status, and availability between this admin center and the Microsoft 365 admin center automatically, in both directions, for tenants that have been unified. So a change you make here shows up there and the other way around. Before your tenant is unified, you have to keep both in sync yourself or you get surprises."
+
+5. Set expectations on timing.
+
+   > "And plan for latency. Availability changes take up to twenty-four hours to reach clients, and Microsoft says in rare cases up to six days. So when you flip a switch here and a user calls twenty minutes later saying nothing changed, that is not a bug."
 
 #### What Learners Should See
 
-- After step 2: The Manage apps list with columns for Name, Status (Allowed/Blocked), Type (Microsoft/Custom), and availability settings
-- After step 3: An app detail panel showing the Permissions section and an Availability setting with options to restrict by user or group
-- After step 4: The App permission policies section in the Teams admin center left nav showing a list of named policies
+- After step 2: The Manage apps list with app names, status, and availability information
+- After step 3: An app detail page with the Users and groups tab and its availability configuration
+- After step 4: Either the app centric management experience or, in an unmigrated tenant, the Permission policies page
 
 #### If Something Breaks
 
-- **No Copilot-related apps are visible:** Use any Microsoft-published app as a structural example — the governance model is identical. Say: "The same permission and availability controls that govern this app apply equally to Copilot agents published as Teams apps. The agent would show up here as a Custom app after being approved in the M365 admin center."
-- **Manage apps shows no entries:** In a fresh trial tenant, the app list may be empty or show only system apps. Navigate to App permission policies as the primary visual and describe the Manage apps structure verbally.
+- **No Copilot-related apps are visible:** Use any Microsoft-published app as a structural example. The governance model is identical. Say: "The same availability controls that govern this app govern agents distributed as Teams apps."
+- **Manage apps shows almost nothing:** In a fresh trial tenant the catalog may be sparse. Show the structure and describe the rest.
+- **The tenant shows Permission policies rather than per-app assignment:** That tenant has not migrated to app centric management. Narrate what is on screen and note that Microsoft replaced this model with per-app assignment for migrated tenants.
 
-> **Exam callout:** Copilot agents published as Teams apps are governed through the Teams admin center's Manage apps and app permission policies — these controls determine which users can install and use an agent after it has been approved in the M365 admin center.
+> **Exam callout:** Agents distributed as Teams apps are governed in the Teams admin center through **Manage apps**, where availability is scoped to users and groups. **App centric management** replaced app permission policies for migrated tenants, and **unified agent and app management** synchronizes settings between the Teams admin center and the Microsoft 365 admin center in both directions.
 
 ---
 
-### Demo 4C: Power Platform Admin Center — Environment and DLP Controls
+### Demo 4C: Power Platform Admin Center -- Environment and Data Policy Controls
 
 **Duration:** 3 minutes
 **Portal URL:** `https://admin.powerplatform.microsoft.com`
-**Timing in segment:** 0:23–0:26
+**Timing in segment:** 0:23-0:26
 
 #### Pre-Demo Setup
 
-- Open admin.powerplatform.microsoft.com tab (should be pre-loaded)
-- Pre-navigate to Environments — the list of environments should be visible
-- Identify which environment Copilot Studio uses in this tenant (default environment is most common)
-- Navigate to Policies > Data policies (DLP) and have at least one policy visible or the creation wizard ready
+- Open the admin.powerplatform.microsoft.com tab (should be pre-loaded)
+- Pre-navigate to **Environments** so the list is visible
+- Identify which environment Copilot Studio uses in this tenant. The default environment is most common.
+- Navigate to **Policies > Data policies** and have at least one policy visible, or the creation wizard ready
 
 #### Steps
 
 1. Switch to the `admin.powerplatform.microsoft.com` tab. The Environments list should be visible.
 
-   > "The Power Platform admin center is the third governance layer for agents. Here's how the three centers divide responsibility: the M365 admin center controls whether agents can be deployed to users; the Teams admin center controls which users can install and use an agent; the Power Platform admin center controls what the agent is allowed to do — specifically which data sources and connectors it can access."
+   > "Third governance layer, and here is how the three divide the work. The Microsoft 365 admin center decides whether an agent is approved and deployed at all. The Teams admin center decides which users can install and use it. And the Power Platform admin center decides what the agent is allowed to reach: which data sources and which connectors."
 
-2. Click on the **default environment** (or whichever environment Copilot Studio is active in).
+2. Select the **default environment**, or whichever environment Copilot Studio uses here.
 
-   > "Every Copilot Studio agent is built inside a Power Platform environment. The environment is a container — it has its own data store, its own security model, and its own DLP policies. Admins control which users can create agents by controlling who has the Maker role in the environment."
+   > "Every Copilot Studio agent is built inside a Power Platform environment. An environment is a container with its own data store, its own security model, and its own data policies. Control who has maker rights in the environment and you control who can build agents there in the first place."
 
-3. Briefly show the environment details — note the environment type, location, and any Copilot Studio resources listed.
-4. Navigate back to the admin center. In the left navigation, click **Policies**, then click **Data policies**.
+3. Show the environment details briefly, including type and region.
+4. Return to the left navigation, select **Policies**, then **Data policies**.
 
-   > "Data policies — called DLP policies in the Power Platform context — control which connectors agents can invoke. This is distinct from the Purview DLP we saw earlier. Purview DLP governs data movement and classification. Power Platform DLP governs connector access — which external services a Power Automate flow or a Copilot Studio agent can connect to."
+   > "**Data policies**, and note the naming. In the Power Platform context this is what people historically called DLP, but the current UI calls them data policies. Either way, this is a completely different thing from the Purview DLP we looked at in Segment 2. Purview DLP governs data movement and classification. Power Platform data policies govern **connector access**: which external services a flow or a Copilot Studio agent is allowed to touch."
 
-5. Click on an existing DLP policy (or the creation wizard if none exist). Show the connector classification view.
+5. Open a data policy and show the connector classification.
 
-   > "Connectors are classified into three buckets: Business, Non-business, and Blocked. Business connectors can work together in a single agent or flow. Non-business connectors are isolated — they can't share data with Business connectors. Blocked connectors simply cannot be used at all. If I add a third-party CRM connector to the Blocked category, no agent or flow in this environment can invoke it — regardless of whether that agent was approved in the M365 admin center."
+   > "Three groups: **Business**, **Non-business**, and **Blocked**. Connectors in the same group can work together. Connectors in different groups cannot share data with each other. Blocked cannot be used at all. So if I drop a third-party CRM connector into Blocked, no agent and no flow in scope can invoke it, and it does not matter one bit that somebody approved that agent over in the Microsoft 365 admin center."
 
-6. Point out the separation between M365 admin center approval and Power Platform DLP enforcement.
+   > "Two details worth knowing. When you create a policy, every connector starts in **Non-business** by default, and Microsoft recommends leaving Non-business as the default landing group for new connectors so that anything new has to be deliberately promoted rather than silently trusted. And some connectors simply cannot be blocked, because they carry core functionality: Dataverse, Approvals, Notifications, and the Microsoft 365 standard connectors. You can classify those as Business or Non-business, but not Blocked."
 
-   > "This is a critical exam concept: an agent can be approved in the M365 admin center and still be unable to function if its required connector is blocked by a Power Platform DLP policy. The two governance layers are independent and complementary. Approving the agent controls who can use it; the DLP policy controls what it can do."
+6. Make the two-layer point explicit.
+
+   > "This is the exam concept in one sentence: an agent can be fully approved in the Microsoft 365 admin center and still fail to function because a data policy blocked the connector it needs. Two layers, independent, complementary. Approval controls **who can use it**. The data policy controls **what it can reach**. And Copilot Studio enforces these in real time, so the maker and the user both see an error message rather than a silent failure."
+
+7. Mention Power Platform inventory if time allows.
+
+   > "One more surface worth naming: **Power Platform inventory** gives tenant admins a unified view of every agent, app, and flow built on Power Platform, and importantly that includes agents created in Agent Builder, not just Copilot Studio. When somebody asks how you find every agent in the estate, that is one of the answers."
 
 #### What Learners Should See
 
-- After step 1: The Environments list showing one or more Power Platform environments with columns for Name, Type, and Region
-- After step 5: The DLP policy connector classification view showing connectors divided into Business, Non-business, and Blocked columns (or tiles)
-- After step 6: The connector classification view with at least one connector visible in the Blocked category
+- After step 1: The Environments list with name, type, and region
+- After step 5: The connector classification view with Business, Non-business, and Blocked groups
+- After step 6: At least one connector visible in a restricted group
 
 #### If Something Breaks
 
-- **No DLP policies exist:** Use the creation wizard. Click **New policy**, proceed through the workload selection, and land on the connector classification screen — this is the key visual. Cancel without saving. "The connector classification screen is what matters — this is where you drag connectors from one classification to another. Putting a connector in Blocked prevents any agent in this environment from invoking it."
-- **Power Platform admin center shows access denied:** The demo account may need the Power Platform Service Admin or Global Admin role. Show what you can access and describe the rest: "In a properly permissioned tenant, Policies > Data policies would show the connector classification view I just described. The key exam fact is that these DLP policies are in the Power Platform admin center, not Purview, and they govern connector access for Copilot Studio agents."
-- **Environment list is empty:** "A fresh M365 trial tenant creates a default Power Platform environment automatically. If it's not showing, it may be provisioning. The default environment is where Copilot Studio operates unless the organization has created separate environments for development, testing, and production."
+- **No data policies exist:** Use the creation wizard. Select **New policy**, proceed through the flow, and land on the connector classification screen, which is the key visual. Cancel without saving. "The classification screen is the whole point. This is where you move a connector between groups, and putting one in Blocked stops any agent in scope from invoking it."
+- **The Power Platform admin center denies access:** The demo account may need the Power Platform Administrator or Global Administrator role. Show what you can and describe the rest: "In a properly permissioned tenant, Policies, Data policies shows the connector classification I just described. The exam fact is that these policies are in the Power Platform admin center, not Purview, and they govern connector access for Copilot Studio agents."
+- **The environment list is empty:** "A fresh tenant provisions a default Power Platform environment automatically, and it may still be spinning up. The default environment is where Copilot Studio operates unless the organization created separate environments for development, test, and production."
+- **A learner asks about advanced connector policies:** Worth naming in passing. Advanced connector policies use a strict allowlist model where connectors are blocked unless explicitly allowed, and they currently apply to certified connectors only. Classic data policies remain the answer for custom and HTTP connectors. This is beyond AB-900 scope, so name it and move on.
 
-> **Exam callout:** Power Platform data policies (DLP) — configured in the Power Platform admin center under Policies > Data policies — control which connectors Copilot Studio agents can invoke, and a Blocked connector prevents agent actions regardless of the agent's approval status in the M365 admin center.
+> **Exam callout:** Power Platform **data policies**, configured under Policies > Data policies, classify connectors as **Business**, **Non-business**, or **Blocked** and control which connectors a Copilot Studio agent can invoke. A blocked connector stops an agent action regardless of whether the agent was approved in the Microsoft 365 admin center.
 
 ---
 
-### Demo 4D: Copilot Studio — Declarative Agent Creation Walkthrough
+### Demo 4D: Build an Agent and Close the Loop to Approval
 
 **Duration:** 8 minutes
-**Portal URL:** `https://copilotstudio.microsoft.com`
-**Timing in segment:** 0:26–0:34
+**Portal URL:** Microsoft 365 Copilot app (Agent Builder), or `https://copilotstudio.microsoft.com`
+**Timing in segment:** 0:26-0:34
+
+> **Pick your surface before rehearsal.** **Agent Builder in Microsoft 365 Copilot** is the safer live demo because it needs no separate Copilot Studio licensing, and it maps directly to the exam's "Create an agent" objective for the user persona. Copilot Studio is Option B below if the tenant supports it.
+
+> **Naming correction:** the in-Copilot authoring surface is **Agent Builder in Microsoft 365 Copilot**. "Copilot Studio lite" survives only in Microsoft Learn URL slugs and one FAQ phrase. Use Agent Builder.
 
 #### Pre-Demo Setup
 
-- Open copilotstudio.microsoft.com and sign in with the demo tenant account
-- Navigate to the home screen — the Create agent button should be visible
-- Do NOT pre-create a draft agent; create live so learners see the full flow
-- Have a SharePoint site URL ready to paste as a knowledge source (any intranet SharePoint URL in the tenant works)
-- Confirm you will NOT click Publish during the demo — stop at the publish screen
+- Have a SharePoint site URL ready to paste as a knowledge source. Any intranet site in the tenant works.
+- Do **NOT** pre-create the agent. Build it live so learners see the flow.
+- Confirm you will **NOT** publish to the organization during the demo. A real submission creates a real request you then have to clean up.
+- Agent Builder availability: it requires a Microsoft 365 Copilot license, or a tenant with pay-as-you-go enabled for Copilot Studio. It works at microsoft365.com/chat, office.com/chat, and in the Teams desktop and web clients, on both the Work and Web toolbar options. It is **NOT** available on mobile versions of those apps.
 
-#### Steps
+#### Option A: Agent Builder in Microsoft 365 Copilot (preferred)
 
-1. Navigate to `copilotstudio.microsoft.com`. The Copilot Studio home screen should be visible.
+1. Open the Microsoft 365 Copilot app and select **New agent**.
 
-   > "Copilot Studio is the low-code platform for building agents. Everything here is visual and configuration-driven — makers do not need to write code to build a functional agent. This is the creation tool; the admin centers we visited are the governance tools."
+   > "This is Agent Builder, the low-code surface built right into Copilot. No code, no separate portal. This is the creation tool. The admin centers we just walked are the governance tools."
 
-2. Click **Create** in the left navigation, then click **New agent** (or equivalent label in the current UI).
+2. Use the **Describe** tab to state what the agent should do in plain language, then switch to the **Configure** tab.
 
-   > "The creation experience starts with a conversation or a form — depending on the UI version you see. Either way, the result is the same: a named agent with a description, a system prompt, knowledge sources, and optionally, actions."
+   > "Two ways in. Describe lets you say what you want and the AI drafts the agent. Configure gives you the fields directly. Same destination. I am switching to Configure so you can see the anatomy of a declarative agent, because that anatomy is what the exam asks about."
 
-3. Name the agent: type `HR Policy Assistant` (or any clear demo name).
-4. Write a brief description: `Answers employee questions about HR policies using company documentation.`
-5. Write a system prompt. Type or paste:
+3. Name the agent `Contoso HR Policy Assistant` and add a description.
 
-   ```
-   You are an HR assistant for Contoso. Answer questions about company HR policies using only the provided knowledge sources. If you cannot answer from the knowledge sources, say you don't know.
-   ```
+   > "The Description field caps at one thousand characters. Worth knowing, because Microsoft publishes these limits and this exam has a taste for published limits."
 
-   > "The system prompt is the instruction layer that shapes how the agent behaves — its tone, its scope, and its limitations. For the exam, know that a declarative agent is defined primarily by its system prompt, its knowledge sources, and its conversation starters. No code is required."
-
-6. Navigate to the **Knowledge** section. Click **Add knowledge** (or equivalent label).
-
-   > "Knowledge sources are where the agent gets its information. Copilot Studio supports several knowledge source types: SharePoint sites and document libraries, uploaded files, public websites, and custom connectors. The knowledge source you add here determines what data the agent can draw from when answering questions."
-
-7. Select **SharePoint** as the knowledge source type. Paste a SharePoint site URL from the demo tenant.
-
-   > "I'm adding a SharePoint site. The agent will index this site's content and use it to answer questions. This is important for understanding the data governance angle: the agent respects SharePoint permissions — it can only surface content that the end user asking the question has permission to access. The agent does not bypass SharePoint security."
-
-8. Click **Add** to confirm the knowledge source.
-9. Navigate to the **Conversation starters** section. Add one example question:
+4. Add instructions.
 
    ```
-   What is the company's policy on remote work?
+   You are an HR assistant for Contoso. Answer questions about company HR policies
+   using only the provided knowledge sources. If you cannot answer from the
+   knowledge sources, say so plainly rather than guessing.
    ```
 
-   > "Conversation starters are suggested prompts that appear to users when they open the agent. They help users understand what the agent can do. They are not required for the agent to function, but they improve discoverability."
+   > "Instructions shape behavior: tone, scope, and limits. The cap here is eight thousand characters. And this is the core definition to hold onto -- a declarative agent is instructions plus knowledge plus starter prompts, running on Copilot's own orchestrator and models. That is what makes it declarative rather than a custom engine agent, where you bring your own model, your own orchestration, and your own hosting, and you own your own compliance posture."
 
-10. Scroll to find the **Publish** button (typically in the top right or via the Publish navigation section). Click it to open the publication options panel.
+5. Add a **SharePoint** knowledge source.
 
-    > "Here is where the creation-to-governance pipeline connects. When I click Publish, Copilot Studio will ask me where to publish this agent — Teams and Microsoft 365, SharePoint, a standalone website, or all of the above. If I choose 'Publish to your organization,' this triggers the submission that lands in the M365 admin center approval queue we saw in Demo 4A. The maker hits Publish here; the admin sees a pending request there."
+   > "Knowledge is where the agent gets its facts. Here are the limits, and these are very much fair game: twenty knowledge sources total per agent. Within that, up to four public website URLs, up to a hundred SharePoint files, folders, or sites, one SharePoint list, fifty OneDrive files, five Teams chat URLs, and twenty embedded uploaded files."
 
-11. Point out the publication destination options without clicking Publish.
+   > "The governance point matters more than the numbers. The agent respects SharePoint permissions. It surfaces only what the person asking already has rights to see. An agent is not a permissions bypass."
 
-    > "I'm going to stop here without actually publishing. In a demo tenant, hitting Publish for org-wide distribution would create a real pending request and I'd have to clean it up. The important visual is what you see here: the connection between this Publish action and the M365 admin center approval queue. That is the pipeline the exam tests."
+   > "Two gotchas on knowledge. First, if Restricted SharePoint Search is enabled in the tenant, SharePoint cannot be used as a knowledge source for a declarative agent at all, and people lose an afternoon to that one. Second, Purview Information Barriers are **NOT** supported on embedded uploaded files, so anyone who can reach the agent can see responses grounded in those files."
 
-12. Click **Cancel** or navigate away without publishing.
+6. Show the **Capabilities** section.
+
+   > "Now correct something if you learned it earlier, because it flipped. **Create documents, charts, and code**, which is the code interpreter, and **Create images**, which is the image generator, are both **on by default** in Agent Builder. Older guidance said both were off. They are on. If you want them off, you turn them off right here."
+
+   > "A licensing detail that makes a clean distractor: code interpreter and image generator require neither a Copilot license nor metered usage. Web search does not either. But Copilot connectors, SharePoint, OneDrive, embedded file content, and Dataverse do require a license or metered usage, and email, people, Teams messages, and Teams meetings require an actual Copilot **license**, where metered usage is not sufficient."
+
+7. Add one starter prompt.
+
+   ```
+   What is the company policy on remote work?
+   ```
+
+   > "Starter prompts help people understand what the agent is for. Microsoft says there is no minimum number, and here is the part worth flagging: Microsoft does **NOT** publish a maximum. If you have seen a course claim the limit is three, or five, or any number at all for Agent Builder, that figure is not in Microsoft's documentation. Do not memorize a ceiling that does not exist."
+
+8. Show the **Only use specified sources** toggle if present.
+
+   > "Subtler than it looks. Turning it on **prioritizes** your knowledge sources. It does not hard-block general model knowledge. Microsoft states plainly that Agent Builder cannot fully block general knowledge, and if you need that level of control, the answer is Copilot Studio."
+
+9. Stop before publishing to the organization.
+
+   > "And here is where the loop closes. When a maker publishes an agent to the organization, that submission lands in the admin center under Agents, All agents, Requests, in the Pending review state, and it sits there until an AI Administrator or a Global Administrator acts on it. The maker presses publish here. The admin sees a request there. That is the entire pipeline the exam is testing, and you have now watched both ends of it."
+
+#### Option B: Copilot Studio
+
+1. Navigate to `copilotstudio.microsoft.com`.
+2. From the **Home** page or the **Agents** page, describe the agent in natural language, or select **Create an agent** to start from scratch. **Advanced create** lets you set primary language, solution, and schema name.
+
+   > "Copilot Studio is the maker-grade platform. Describe what you want, and the AI generates the name, description, and instructions, then suggests triggers, channels, knowledge, and tools. You accept, ignore, or dismiss those suggestions."
+
+3. Configure instructions and add a **SharePoint** knowledge source.
+
+   > "Copilot Studio limits are far larger than Agent Builder's: five hundred knowledge sources per agent, eight thousand characters of instructions, five hundred uploaded files, a hundred skills, and a thousand topics per agent in Dataverse environments. When a scenario needs scale, or needs strict grounding control, Copilot Studio is the answer and Agent Builder is not."
+
+4. Add a suggested prompt, then open the **Channels** page.
+
+   > "Channels is the deployment surface. The one that matters here is **Teams and Microsoft 365 Copilot**, because that is the channel that routes an agent to the organization and into the admin approval queue. There are others -- SharePoint, a demo website, a custom website, and more -- but that is the one wired to the governance flow we just walked."
+
+5. Stop without publishing to the organization.
+
+   > "I am stopping here deliberately. Publishing for real would create a genuine pending request in this tenant, and I would be cleaning that up over lunch. The connection is the point: publish to the Teams and Microsoft 365 Copilot channel, and an admin gets a request under Agents, All agents, Requests."
 
 #### What Learners Should See
 
-- After step 5: The agent creation canvas showing the agent name, description, and a system prompt input field with the typed instructions
-- After step 8: The Knowledge section showing the SharePoint site URL added as a knowledge source with a status indicator
-- After step 10: The publication options panel showing available channels (Teams and Microsoft 365, SharePoint, web) with a Publish button — NOT yet clicked
-- After step 12: The Copilot Studio canvas with the agent saved as a draft
+- The agent configuration surface with name, description, and instructions filled in
+- The Knowledge section showing the SharePoint source added
+- The Capabilities section with code interpreter and image generator both on by default (Agent Builder)
+- The publish or channel configuration, **NOT** confirmed
 
 #### If Something Breaks
 
-- **Copilot Studio requires sign-in or shows a licensing error:** "Copilot Studio access requires either a Copilot Studio standalone license or a Microsoft 365 Copilot license in the tenant. In a demo tenant without that, the portal will prompt for licensing. Here's the structure I'd show you if we could get in..." Walk through the creation steps verbally using the session agenda description as a reference.
-- **Agent creation wizard shows a different flow (conversational vs. form):** Some Copilot Studio versions open a conversational creation experience — a chat prompt that asks you to describe the agent. Either enter the agent description conversationally and then navigate to the configuration canvas, or look for a "Skip to manual configuration" option.
-- **SharePoint knowledge source fails to add (authentication error):** "The knowledge source needs the agent's identity to have read permissions on the SharePoint site. In a fresh demo tenant, this permissions setup may not be complete. Describe what would happen: the URL is entered, Copilot Studio validates access, and if successful, indexes the site's content. For the demo, the structure is what matters — not the data."
-- **Publish button is missing or greyed out:** Some trial tenant configurations restrict publication. Navigate to the Publish section in the left nav of Copilot Studio if the button isn't on the main canvas. If still unavailable, say: "In a fully licensed environment, the Publish button would be here, and clicking it opens the channel selection screen. That selection — particularly 'publish to your organization' — is what creates the pending request in the M365 admin center."
+- **Agent Builder does not appear:** It requires a Microsoft 365 Copilot license, or a tenant with pay-as-you-go enabled for Copilot Studio, and it is unavailable on mobile clients. Fall back to Option B, or describe the flow.
+- **Copilot Studio shows a licensing error:** "Access requires Copilot Studio licensing or a Microsoft 365 Copilot license. Here is the structure I would show you." Walk the steps verbally.
+- **The creation experience opens conversationally rather than as a form:** That is current and expected. Describe the agent in natural language, then move to the configuration surface. In Agent Builder, look for the option to skip to configuration.
+- **The SharePoint knowledge source fails to attach:** Check whether **Restricted SharePoint Search** is enabled in the tenant, because that alone prevents SharePoint from serving as a knowledge source for a declarative agent. Otherwise the agent identity may lack read permission on the site. Describe the intended behavior and move on. The structure is the teaching point, not the indexing.
+- **Publish or the channel configuration is unavailable:** Some trial configurations restrict publication. Say: "In a fully licensed environment this is where you would publish, and choosing the Teams and Microsoft 365 Copilot channel is what creates the pending request in the admin center."
+- **A learner asks about SharePoint agents specifically:** Three creation entry points, worth naming: the site homepage via **New > Agent**, the document library command bar via the **AI actions** menu, and a file's right-click or ellipsis context menu. Agents created from the homepage are stored in **Site contents > Site Assets > Copilots**; agents created from a library save to the current folder. The knowledge limit is **20 source items** in any combination, which is a different number from Agent Builder's limits. And SharePoint agents are stored as **.agent** files, so file permissions decide who can access or edit them.
 
-> **Exam callout:** When a maker clicks Publish in Copilot Studio and selects org-wide distribution, this action creates a pending agent request in the M365 admin center (Copilot > Agents > Requests) — connecting the creation workflow in Copilot Studio directly to the admin approval workflow in the M365 admin center.
+> **Exam callout:** When a maker publishes an agent to the organization, the submission creates a **Pending review** request at **admin.microsoft.com > Agents > All agents > Requests**, connecting the creation workflow directly to the admin approval workflow.
+
+> **Exam callout:** In **Agent Builder**, code interpreter ("Create documents, charts, and code") and image generator ("Create images") are **ENABLED by default**. Microsoft publishes **no maximum** for starter prompts. The "Only use specified sources" toggle **prioritizes** the listed sources rather than fully blocking general model knowledge.
 
 ---
 
@@ -785,19 +1029,19 @@ Use this table during live delivery when you need to quickly orient to the right
 | Demo | Portal | Key Navigation Path |
 |------|--------|---------------------|
 | 1A | admin.microsoft.com | Users > Active users; Billing > Licenses; Health > Service health; Settings > Org settings |
-| 1B | admin.microsoft.com | Users > Active users > [user] > Licenses and apps |
-| 2A | purview.microsoft.com | Information protection > Labels > [select a label] |
-| 2B | purview.microsoft.com | Data loss prevention > Policies > [select a policy] > Rules |
-| 2C | purview.microsoft.com | Solutions > DSPM for AI (classic) > Overview dashboard |
-| 2D | admin.microsoft.com/sharepoint | Reports > Data access governance > Sites shared with Everyone |
-| 3A | admin.microsoft.com | Billing > Licenses; [user] > Licenses and apps; Copilot > Billing & usage > Billing policies |
-| 3B | admin.microsoft.com | Settings > Microsoft 365 Copilot (or Copilot in left nav) |
-| 3C | microsoft365.com or Teams | Copilot chat > Researcher / Analyst entry point; admin.microsoft.com > Settings > Microsoft 365 Copilot > controls |
-| 3D | insights.viva.cloud.microsoft | Copilot Dashboard > Readiness, Adoption, Impact, Sentiment sections |
-| 4A | admin.microsoft.com | Copilot > Agents > Requests (approval queue); agent policy setting |
-| 4B | admin.teams.microsoft.com | Teams apps > Manage apps; Teams apps > Permission policies |
-| 4C | admin.powerplatform.microsoft.com | Environments > [select env]; Policies > Data policies > [connector classification] |
-| 4D | copilotstudio.microsoft.com | Create > New agent > [configure] > Publish (stop before confirming) |
+| 1B | admin.microsoft.com | Users > Active users > [user] > Licenses and apps; Teams and groups > Active teams and groups |
+| 2A | purview.microsoft.com | **Solutions > Information Protection > Sensitivity labels** > [select a label] |
+| 2B | purview.microsoft.com | Data Loss Prevention > Policies > [select a policy] > rules and policy mode (simulation mode) |
+| 2C | purview.microsoft.com | **Solutions > DSPM** (new unified); Solutions > DSPM for AI (classic) is the exam-aligned label |
+| 2D | admin.microsoft.com/sharepoint | **Reports > Data access governance**; snapshot and activity reports, including Shared with 'Everyone except external users' |
+| 3A | admin.microsoft.com | Billing > Licenses; [user] > Licenses and apps; **Copilot > Billing & usage > Billing policies** and **> Pay-as-you-go services** |
+| 3B | admin.microsoft.com | **Copilot > Settings** (User access, Data access, Copilot actions, Other settings). Web search links out to the Microsoft 365 Apps admin center Cloud Policy service. |
+| 3C | Microsoft 365 Copilot app or Teams | Copilot Chat > **Tools** > Researcher / Analyst; admin.microsoft.com > **Agents > All agents** > Researcher > Block |
+| 3D | Viva Insights app (Teams or web) | Copilot Dashboard (readiness, adoption, impact, sentiment); contrast with admin.microsoft.com > Reports > Usage > Microsoft 365 Copilot |
+| 4A | admin.microsoft.com | **Agents > All agents > Requests** (approval queue); Agents > All agents > Registry; Agents > Settings |
+| 4B | admin.teams.microsoft.com | Teams apps > Manage apps > [app] > **Users and groups** (app centric management) |
+| 4C | admin.powerplatform.microsoft.com | Environments > [select environment]; Policies > Data policies > connector classification |
+| 4D | Microsoft 365 Copilot app, or copilotstudio.microsoft.com | New agent > Describe or Configure > Knowledge > Capabilities (stop before publishing to the organization) |
 
 ---
 
@@ -805,8 +1049,28 @@ Use this table during live delivery when you need to quickly orient to the right
 
 When any portal is unavailable, slow, or showing an unexpected state, use this protocol:
 
-1. **Narrate the navigation path aloud** — say the exact clicks you would make even if the screen is not cooperating. Learners lock in the navigation path from hearing it.
-2. **State the exam-relevant fact explicitly** — every demo has an exam callout. If you cannot show the UI, deliver the exam callout statement directly.
-3. **Use the admin center quick reference table** (at the end of the session agenda) as a verbal reference — it lists every key navigation path.
-4. **Do not dwell on technical issues** — acknowledge once ("the portal is loading slowly — common in demo environments") and immediately pivot to verbal delivery. Return to the portal if it loads while you are talking.
-5. **Screenshots as backup** — if you have a secondary device, pull up screenshots of each key portal screen. A static screenshot of the DSPM for AI dashboard, the agent approval queue, and the DLP connector classification view covers the three most visually important demos.
+1. **Narrate the navigation path aloud.** Say the exact clicks you would make even if the screen is not cooperating. Learners lock in a navigation path from hearing it, and hearing it correctly is worth more than seeing it slowly.
+2. **State the exam-relevant fact explicitly.** Every demo has an exam callout. If you cannot show the interface, deliver the callout directly.
+3. **Use the admin center quick reference table** at the end of the session agenda as a verbal reference. It lists every key navigation path in current form.
+4. **Do not dwell on technical issues.** Acknowledge once, something like "the portal is taking its time, which is normal in a demo tenant," then pivot to verbal delivery. Return to the portal if it comes up while you are talking.
+5. **Screenshots as backup.** On a secondary device, keep screenshots of the key portal screens. The three most visually important are the DSPM dashboard, the agent approval queue at Agents > All agents > Requests, and the Power Platform connector classification view.
+6. **When the tenant contradicts the script, say so and keep teaching.** Portal navigation moves faster than course material, and admitting a label changed is more credible than pretending the screen says something it does not. Give learners the exam-aligned answer and the live-portal reality as two separate facts.
+
+---
+
+## Known Live-Portal Divergences to Expect
+
+These are places where a current tenant may legitimately differ from what the exam objectives say. Handle each by stating both, and label which is which.
+
+| What the exam objective says | What a current tenant may show |
+|------------------------------|--------------------------------|
+| DSPM for AI | **DSPM** (new unified, GA May 2026), alongside **DSPM for AI (classic)** and **Data Security Posture Management (classic)** |
+| Data Explorer | Data explorer under Information Protection > Explorers, with **Content Explorer (classic)** under Data Lifecycle Management |
+| Content search in Microsoft Purview eDiscovery | One unified eDiscovery solution, with Standard and Premium wording surviving in case settings and the Cases dashboard filter |
+| SharePoint Advanced Management, including restricted access control | The SharePoint admin center uses "Site-level access restriction" and "Restricted site access" wording for the same feature |
+| distribution groups (Exchange) | The Exchange admin center tab label reads **Distribution list**; both terms are current in Microsoft documentation |
+
+---
+
+*Document version: 2.0 -- July 2026 (aligned to the AB-900 skills measured as of July 22, 2026)*
+*Maintained in: `/c/github/ab900/docs/demo-scripts.md`*
