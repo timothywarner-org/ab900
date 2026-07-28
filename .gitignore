@@ -137,4 +137,8 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
-~$warner-ab900.pptx
+# Microsoft Office lock/owner files. The pattern must stay GENERIC -- an earlier
+# rule hardcoded one deck filename and stopped matching when the deck was renamed.
+~$*.pptx
+~$*.docx
+~$*.xlsx

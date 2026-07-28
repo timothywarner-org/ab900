@@ -35,7 +35,10 @@ docs/
   module-05-copilot-admin-tasks.md         # Distilled from MS Learn: license mgmt, PAYG, prompts
   module-06-agent-admin-tasks.md           # Distilled from MS Learn: agent creation, approval, lifecycle
   demo-scripts.md                          # Live demo scripts for O'Reilly session
-  exam-traps-cheatsheet.md                # Common exam pitfalls
+  session-opener-governance.md             # 10-min maker-spectrum + governance opener
+  exam-traps-cheatsheet.md                # Common exam pitfalls, task-first lookup
+  portal-reference.md                      # Portals by exam DOMAIN, with verification caveats
+  PORTAL-CHEAT-SHEET.md                   # Portals by PORTAL, one block each, per-portal traps
   new-features-deep-dive.md               # Recent feature changes
   session-agenda.md                        # Full session agenda
   tenant-setup-guide.md                    # Lab tenant setup
@@ -46,7 +49,9 @@ references/
   style-guide.md                           # Microsoft Writing Style Guide key principles
 shared-resources/
   references/                              # Exam guide, practice questions, skills breakdown
-  scripts/                                 # PowerShell helpers (license assign, usage report)
+  scripts/                                 # PowerShell helpers + demo-tenant provisioning
+    Deploy-AB900Foundry.ps1                # Azure AI Foundry demo env (idempotent, verified live)
+    Initialize-AB900PurviewDemo.ps1        # Purview DLP/labels/retention via Security & Compliance PS
   templates/                               # Deployment checklist, DLP policy template
 slides/workspace/                          # Deck build tooling (build-deck.js) + background assets
 images/banner.png                          # README banner
@@ -55,16 +60,84 @@ segment-02-data-protection-governance/     # Segment 2: demos, labs, slides, res
 segment-03-copilot-administration/         # Segment 3: demos, labs, slides, resources
 segment-04-agents-exam-prep/              # Segment 4: demos, labs, slides, resources
 course-plan-july-2026.md                   # Live session plan (4 x 50-min segments)
-warner-ab900.pptx                          # THE deck -- exactly one, always at the root
+warner-ab900-July-2026.pptx                # THE deck -- exactly one, always at the root
 README.md / QUICKSTART.md / FAQ.md         # Repo front door and onboarding
 CONTRIBUTING.md / LICENSE                  # Contribution guidance and license
 ```
 
 The course plan file is named by delivery month. It was `course-plan-april-2026.md` and is now `course-plan-july-2026.md`. When a new delivery is scheduled, rename the file and update every reference in `README.md` and this file.
 
+## Commands
+
+There is no build, no test suite, and no package manager. The only executable checks are content validation. Run these before pushing -- they are the same checks `validate.yml` runs, but locally and faster.
+
+**Full local validation (all four CI checks):**
+
+```bash
+# 1. Retired terminology (see the known false positives section below before "fixing" hits)
+grep -rnE 'compliance\.microsoft\.com|Azure AD[^C]|\bAAD\b|Azure Active Directory|AI hub|per message|Billing > Billing policies|Azure AI Studio' --include="*.md" . | grep -v '^./.git'
+
+# 2. Non-ASCII punctuation -- MUST return zero
+python -c "import glob; [print(f) for f in glob.glob('**/*.md',recursive=True) if '.git' not in f and any(c in open(f,encoding='utf-8',errors='replace').read() for c in '\u2013\u2014\u2018\u2019\u201c\u201d')]"
+
+# 3. Contractions (excludes CONTRIBUTING.md, style-guide.md, fictional-companies.md)
+grep -rnEi "\b(don't|isn't|doesn't|won't|can't|it's|you're|we're|that's|didn't|aren't)\b" --include="*.md" .
+
+# 4. Broken internal links -- MUST return zero
+python -c "
+import re,os,glob
+for f in glob.glob('**/*.md',recursive=True):
+    if '.git' in f: continue
+    d=os.path.dirname(f)
+    for m in re.finditer(r'\[([^\]]*)\]\(([^)]+)\)', open(f,encoding='utf-8',errors='replace').read()):
+        t=m.group(2).split('#')[0].strip()
+        if t and not t.startswith(('http','mailto:')) and not os.path.exists(os.path.normpath(os.path.join(d,t))):
+            print(f'{f} -> {t}')"
+```
+
+**External link check** (283 URLs; run serially or expect HTTP 429 rate-limiting from learn.microsoft.com, which is NOT breakage):
+
+```bash
+grep -rhoE 'https?://[^ )>"`]+' --include="*.md" . | sed 's/[.,;:]*$//' | sort -u > /tmp/urls.txt
+cat /tmp/urls.txt | xargs -P 5 -I{} sh -c 'echo "$(curl -s -o /dev/null -w "%{http_code}" -L --max-time 20 -A "Mozilla/5.0" "{}") {}"' | grep -v '^200'
+```
+
+Expected non-200 responses that are NOT defects: **403** from login-gated portals (entra.microsoft.com, portal.azure.com) and microsoft.com marketing pages, **401** from Graph API example URLs, **000** from placeholders (`https://<tenant>`, `yourdomain.sharepoint.com`), **429** from rate-limiting.
+
+**Cross-reference chain check** (tool IDs, agent, skills, prompts):
+
+```bash
+python -c "
+import json,glob,re
+ids=set(json.load(open('.vscode/mcp.json',encoding='utf-8'))['servers'].keys())
+used=set()
+for f in glob.glob('.github/**/*.md',recursive=True):
+    used |= set(re.findall(r'ab900buddy-[a-z0-9]+', open(f,encoding='utf-8',errors='replace').read()))
+print('undefined tool IDs:', used-ids or 'none')
+agent=open('.github/agents/ab900-cert-buddy-agent.agent.md',encoding='utf-8').read()
+skills={re.search(r'^name:\s*(\S+)',open(p,encoding='utf-8').read(),re.M).group(1) for p in glob.glob('.github/skills/*/SKILL.md')}
+print('skills not referenced in agent body:', [s for s in skills if s not in agent] or 'none')"
+```
+
+**Reading the deck safely.** The deck is often open in PowerPoint, which locks the file. Copy it before reading with `python-pptx`, and never write to it while a `~$` lock file is present:
+
+```bash
+cp warner-ab900-July-2026.pptx /tmp/deck.pptx   # use a Windows-native path on Windows
+python -c "from pptx import Presentation; p=Presentation(r'C:\path\to\deck.pptx'); print(len(p.slides))"
+```
+
+**Demo-tenant provisioning.** Both scripts are idempotent and support `-WhatIf`. Always dry-run first:
+
+```powershell
+./shared-resources/scripts/Deploy-AB900Foundry.ps1 -WhatIf
+./shared-resources/scripts/Initialize-AB900PurviewDemo.ps1 -UserPrincipalName <admin>@<tenant> -WhatIf
+```
+
+`Initialize-AB900PurviewDemo.ps1` connects to Microsoft 365 even under `-WhatIf`, deliberately: the connection is read-only and every existence check depends on it. A dry run that skips connecting reports hypothetical creates for objects that may already exist.
+
 ## Deck Rule: Exactly One PPTX
 
-The repository holds **exactly one** deck, `warner-ab900.pptx` at the root. Do **NOT** create a second, per-delivery, or archival copy. Two decks previously drifted apart and one grew to 41 MB of uncompressed PNG backgrounds while the other stayed at 1 MB.
+The repository holds **exactly one** deck, `warner-ab900-July-2026.pptx` at the root. Do **NOT** create a second, per-delivery, or archival copy. Two decks previously drifted apart and one grew to 41 MB of uncompressed PNG backgrounds while the other stayed at 1 MB.
 
 - Update the existing deck in place. Git history is the archive.
 - Edit with `python-pptx` at the **run** level (`run.text`), never by assigning to `shape.text_frame.text` -- that assignment destroys font face, size, color, bold, and any animation timing bound to the run. Tim's layouts, colors, fonts, and slide order must survive byte-for-byte.
@@ -107,7 +180,21 @@ The `docs/module-*.md` files are distilled CliffsNotes from the official AB-900T
 
 ### Live Session Structure
 
-The O'Reilly session runs 4 x 50-min segments with 10-min breaks. The segment plan in `course-plan-july-2026.md` does NOT follow the exam domain order -- it leads with Copilot (the draw), then agents, then data protection (heaviest domain), then admin/identity/security wrap-up with exam prep. The `segment-0{1-4}-*` folder names follow exam domain grouping, not delivery order, so folder numbers and live segment numbers deliberately differ.
+The O'Reilly session runs a 10-min governance opener plus 4 x 50-min segments with 10-min breaks.
+
+**Segment order follows EXAM DOMAIN order and matches the `segment-0{1-4}-*` folder names.** Folder numbers and live segment numbers are the SAME. This was changed on July 28, 2026; an earlier plan led with Copilot and deliberately diverged from the folders. Do not reintroduce that split.
+
+| Slot | Topic | Domain |
+|------|-------|--------|
+| Opener | No-Code, Low-Code, Pro-Code: Who Builds What, and Who Governs It | framing |
+| 1 | Core Features and Objects of Microsoft 365 Services | 1 (30-35%) |
+| 2 | Data Protection and Governance for Microsoft 365 and Copilot | 2 (35-40%) |
+| 3 | Copilot Features and Administration | 3 (25-30%) |
+| 4 | Agent Administration and Exam Success | 3 (25-30%) + logistics |
+
+The opener script is `docs/session-opener-governance.md`. Its framing is Tim's: **the exam is governance, not building.**
+
+**The deck is still in the OLD order.** `warner-ab900-July-2026.pptx` was built when Copilot led, so slide numbers do NOT match segment numbers until the deck is reordered. The remap table lives in `course-plan-july-2026.md` under "Deck remap". Demo IDs already follow domain numbering (Demo 1x = Segment 1, Demo 2x = Segment 2), so those line up correctly.
 
 ### How It Works
 
@@ -212,6 +299,36 @@ Two of the eight patterns produce legitimate warnings that should NOT be "fixed"
 - **`compliance.microsoft.com`** trips whenever content teaches learners which portal is retired. Phrase it as "the Microsoft Purview compliance portal is retired; use purview.microsoft.com" rather than spelling out the retired host, which keeps the teaching point and clears the rule.
 
 Also note that the non-ASCII rule flags en dashes, but the official AB-900 study guide writes its percentage ranges with en dashes (for example, 30-35%). When quoting the study guide verbatim, convert those to plain hyphens to satisfy house style.
+
+## Provisioning Boundary (what can and cannot be automated)
+
+Established July 27, 2026 against Tim's techtrainertim.com tenant. Do not re-derive this.
+
+- **Microsoft Purview compliance solutions are NOT Azure resources.** DLP, sensitivity labels, retention, and DSPM for AI are Microsoft 365 tenant features provisioned by licensing. There is no ARM template and no `az` command. The Azure resource type `Microsoft.Purview/accounts` is a **different product** (data governance for Azure data estates) and is **NOT** on the AB-900 exam.
+- **The scripted path is PowerShell, not MCP.** Use `Connect-IPPSSession` from the **ExchangeOnlineManagement** module for Purview compliance objects, and the Microsoft Graph PowerShell SDK for identity and licensing. `Connect-ExchangeOnline` does **NOT** expose the DLP, label, or retention cmdlets -- that mistake produces "term not recognized" errors.
+- **Genuinely portal-only, no documented PowerShell:** DSPM for AI, Compliance Manager, Insider Risk Management, Communication Compliance, Data Explorer, Activity Explorer, the agent approval queue, and Copilot pay-as-you-go billing.
+- **ExchangeOnlineManagement version floor is 3.2.0** (full REST support for Security & Compliance began there). Do **NOT** chase the newest module before a delivery: 3.5.0 to 3.9.2 need PowerShell 7.4.0+, while 3.10.0+ needs PowerShell 7.6.0+ for .NET 10 assemblies.
+
+### Azure OpenAI model deployment (cost real time to learn)
+
+`az cognitiveservices account list-models` returns models that **cannot be deployed**. The catalog's `deprecation.inference` date does **NOT** predict deployability -- as of July 2026 both `gpt-4o-mini` and `gpt-4.1-mini` advertise 2027 retirement yet are rejected with `ServiceModelDeprecating`. Separately, `gpt-5.4-mini` had zero quota in this subscription. Always walk a **fallback list** of candidates rather than trusting the catalog.
+
+**Reasoning-model smoke tests need a large token budget.** gpt-5 family models spend tokens on internal reasoning before emitting visible text. `max_completion_tokens: 60` returns an empty string and looks like a broken deployment. Budget 800 or more.
+
+## Verification Discipline
+
+This repository is teaching material delivered live to paying learners. A confident wrong portal path is worse than an omission.
+
+**Adversarial verification is not optional for factual sweeps.** In two grounding passes this session, **33 of 44** and **8 of 28** proposed "corrections" were rejected by verifiers that re-fetched the cited Microsoft Learn page. Unverified single-pass edits inject errors at a high rate. When correcting facts at scale, have a second pass try to **refute** each change and default to REFUTED on uncertainty.
+
+**Known Microsoft-side documentation conflicts.** These are real and currently live. Name the conflict rather than silently picking a side:
+
+- **Copilot Dashboard:** the Copilot reporting page still says "Enable the Copilot Dashboard" and links to the Viva page stating that control **was removed**. The Viva page is product-specific and more recent, so it wins. Access is now governed by enabling or disabling the Viva Insights web app.
+- **Agent settings templates:** the same Learn article calls it **Security templates** in its overview bullet and **Policy templates** in the section heading. The live nav path is **Agents > Settings > Templates**.
+- **"Copilot Studio SDK" does not exist.** Current documentation names the **Microsoft 365 Agents SDK**. Microsoft's own Agents FAQ says "Copilot Studio SDK" in one bullet and contradicts itself two answers later.
+- **Restricted content discovery toggle:** Learn shows two labels for the same control, "Restrict content from Microsoft 365 Copilot" and "Restrict content discovery". Navigate to it live rather than committing to one on a slide.
+
+**Facts that vary by tenant -- verify before asserting on stage:** the sensitivity label scheme (classic `+ Create a label` versus modern `+ Create` then `Label`), how many DSPM entries appear under Solutions (one or three), and the Researcher per-user query limit (a figure of 25 per month appears in course notes but could **not** be reconfirmed on Microsoft Learn on July 28, 2026).
 
 ## Default Behaviors
 

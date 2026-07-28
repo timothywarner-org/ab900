@@ -7,31 +7,46 @@
 **Skills measured version in force:** July 22, 2026
 
 > **THIS FILE IS THE RUNNING ORDER.** Teach from this document. Everything else is a lookup:
-> `docs/demo-scripts.md` for click-by-click, `warner-ab900.pptx` for slides, `docs/exam-traps-cheatsheet.md` for the last-minute review.
+> `docs/demo-scripts.md` for click-by-click, `warner-ab900-July-2026.pptx` for slides, `docs/exam-traps-cheatsheet.md` for the last-minute review.
 
 ## Delivery Map (one screen, keep this open)
 
-Segment order is **delivery order**, not exam-domain order. Deck slide numbers and demo IDs are listed because both were numbered under the older domain ordering and do **NOT** match segment numbers.
+**Segment order now follows EXAM DOMAIN order and matches the `segment-0N-*` folder names.** Domain 1, then Domain 2, then Domain 3 split across two segments. A short governance opener runs before Segment 1.
 
-| Segment | Topic | Domain | Deck slides | Demo scripts |
-|---------|-------|--------|-------------|--------------|
-| **1** | Microsoft 365 Copilot | 3 (25-30%) | 4-11 | Demo 3C (Researcher and Analyst), Demo 3D (Copilot Dashboard) |
-| **2** | Copilot Agents and Agent Builder | 3 (25-30%) | 13-21 | Demo 4D (build agent), Demo 4A (approval queue) |
-| **3** | Data Protection and Governance | **2 (35-40%)** | 23-32 | Demo 2A (labels), Demo 2B (DLP), Demo 2C (DSPM), Demo 2D (oversharing) |
-| **4** | M365 Admin, Identity, Security + exam prep | 1 (30-35%) | 34-46 | Demo 1A (admin center), Demo 1B (licenses), Demo 3A (PAYG billing), Demo 3B (Copilot settings) |
+| Slot | Topic | Domain | Folder |
+|------|-------|--------|--------|
+| **Opener** | No-Code, Low-Code, Code-First: Who Builds What, and Who Governs It | framing | (none) |
+| **1** | Core Features and Objects of Microsoft 365 Services | 1 (30-35%) | `segment-01-core-m365-services` |
+| **2** | Data Protection and Governance for Microsoft 365 and Copilot | **2 (35-40%)** | `segment-02-data-protection-governance` |
+| **3** | Copilot Features and Administration | 3 (25-30%) | `segment-03-copilot-administration` |
+| **4** | Agent Administration and Exam Success | 3 (25-30%) + logistics | `segment-04-agents-exam-prep` |
 
-**Break slides:** 12, 22, 33. **Exam tips:** 45. **Close:** 46.
+### Deck remap (the deck is still in the OLD order)
+
+`warner-ab900-July-2026.pptx` was built under the previous delivery order, so **slide numbers do NOT match segment numbers until the deck is reordered.** Until then, teach from this table.
+
+| New segment | Content lives on deck slides | Demos |
+|-------------|------------------------------|-------|
+| **1** Core M365 services | **35-42** (was Segment 4) | Demo 1A (admin center), Demo 1B (licenses) |
+| **2** Data protection | **24-31** (was Segment 3) | Demo 2A (labels), Demo 2B (DLP), Demo 2C (DSPM), Demo 2D (oversharing) |
+| **3** Copilot administration | **5-10** (was Segment 1) | Demo 3A (PAYG billing), Demo 3B (Copilot settings), Demo 3C (Researcher and Analyst), Demo 3D (Copilot Dashboard) |
+| **4** Agents and exam prep | **14-20**, then 44-45 | Demo 4A (approval queue), Demo 4D (build agent), Demo 4B (Teams), Demo 4C (Power Platform) |
+
+**Demo IDs already follow domain numbering,** so Demo 1x belongs to Segment 1, Demo 2x to Segment 2, and so on. That part lines up cleanly.
+
+Section-divider slides in the deck (4, 13, 23, 34) still carry the OLD segment numbers. Break slides: 12, 22, 33. Portal paths: 44. Exam tips: 45. Close: 46.
 
 ## Pacing Guardrails
 
 | Checkpoint | Wall clock | If you are behind |
 |------------|-----------|-------------------|
-| End Segment 1 | :50 | Cut the per-app Copilot tour to Word and Teams only |
-| End Segment 2 | 1:50 | Cut Demo 4D, keep Demo 4A -- the approval queue is the tested path |
-| End Segment 3 | 2:50 | Cut Demo 2A and 2B, protect Demo 2C and 2D. This is the heaviest domain -- **do NOT** cut it for time |
-| End Segment 4 | 3:50 | Cut the identity deep-dive, protect the exam-tips block |
+| End opener | :10 | Cut the code-first tier to one sentence and go straight to the governance questions |
+| End Segment 1 | 1:00 | Cut the identity deep-dive, protect licensing and the admin center tour |
+| End Segment 2 | 2:00 | Cut Demo 2A and 2B, protect Demo 2C and 2D. Heaviest domain -- **do NOT** cut it for time |
+| End Segment 3 | 3:00 | Cut the per-app Copilot tour to Word and Teams only |
+| End Segment 4 | 3:50 | Cut Demo 4D, keep Demo 4A -- the approval queue is the tested path. Protect the exam-tips block |
 
-**The one rule:** if you must lose a segment's demo, lose it in Segment 1 or 4. Segment 3 covers 35-40% of the exam.
+**The one rule:** if you must lose a demo, lose it in Segment 1 or 3. Segment 2 covers 35-40% of the exam.
 
 ## Exam Domain Weights (keep visible while teaching)
 
@@ -73,75 +88,51 @@ Use this box near the top of the session. It sets the tone: the material is fres
 
 ---
 
-## Segment 1: Microsoft 365 Copilot (50 min)
+## Opener: No-Code, Low-Code, Pro-Code -- Who Builds What, and Who Governs It (10 min)
 
-*Lead with the thing everyone came to learn about.*
+*Orient on the maker spectrum, then pivot hard to governance. Full script in [docs/session-opener-governance.md](docs/session-opener-governance.md).*
 
-- What Copilot actually is -- **NOT** a standalone app, embedded in Word, Excel, PowerPoint, Outlook, and Teams
-- Architecture: **Work IQ** is the intelligence layer. Microsoft Graph and Copilot connectors sit inside its data layer, and the semantic index sits inside its context layer. Work IQ is the umbrella, not a peer of Graph.
-- Work IQ is built on foundation models from multiple providers, including OpenAI and Anthropic
-- Grounded prompting -- the user prompt is enriched with tenant data before it reaches the model
-- Semantic index -- meaning-based retrieval that respects permission structures, not keyword matching
-- **Key security point:** Copilot can only see what the user can already see. Graph enforces permissions.
-- Data stays inside the service boundary and is never used to retrain public models
-- Copilot in each app: Word (draft and summarize), Excel (Edit with Copilot, formerly Agent Mode), PowerPoint (outline to deck), Outlook (thread summary and draft), Teams (meeting recap and action items)
-- Microsoft 365 Copilot Chat -- cross-app search, multi-meeting summaries, tenant-wide queries
-- Responsible AI: data minimization, transparency through source references, content filtering, auditability
-- Licensing overview:
-  - **Microsoft 365 Copilot Chat** -- included at no additional cost with an eligible Microsoft 365 subscription. Web-based chat is included free; work-based chat requires a Microsoft 365 Copilot license.
-  - **Microsoft 365 Copilot** (enterprise add-on) -- $30.00 per user per month (annual billing)
-  - **Microsoft 365 Copilot Business** (SMB add-on) -- list $21.00 per user per month, available at $18 under a 15 percent promotion extended through December 2026, **300-seat maximum**, annual commitment only, same capabilities as the enterprise SKU
-  - **Microsoft 365 E7** -- includes Microsoft 365 Copilot in the base SKU, so E7 customers do not buy the add-on separately
-  - **Trap to name out loud:** there is no 300-seat minimum. That requirement was removed in January 2024. The only surviving 300 is a **maximum** on Copilot Business and the Business-with-Copilot SKUs.
-- Monthly per-user license versus pay-as-you-go -- when to use which. Note that the objective wording explicitly says "including SharePoint," so cover SharePoint pay-as-you-go specifically.
-- **Demo:** Copilot in action across apps (show Graph grounding and source references)
+- **The maker spectrum.** No-code (Agent Builder in Microsoft 365 Copilot, SharePoint agents) > low-code (Microsoft Copilot Studio) > pro-code (Microsoft 365 Agents Toolkit, Microsoft 365 Agents SDK). Microsoft's word is **pro-code**, not "code-first."
+  - **There is NO "Copilot Studio SDK."** Current Learn documentation names the **Microsoft 365 Agents SDK**. The Agents FAQ still says otherwise in one bullet and contradicts itself two answers later.
+  - **"Copilot Studio lite" is NOT the product name.** It is **Agent Builder in Microsoft 365 Copilot**. The names collide because Copilot Studio processes Agent Builder capabilities behind the scenes.
+- **The two-way taxonomy.** Microsoft describes **two approaches to building** agents, not "two agent types." **Declarative** agents inherit Microsoft 365 compliance and Responsible AI posture. **Custom engine** agents make that posture yours to own.
+  - Agent type and coding approach are **independent axes**. A declarative agent can be built no-code, low-code, or pro-code.
+- **Six governance questions** that frame the whole session: who can build, what can it reach, who approves it, who pays, how do we watch it, how do we stop it. Each maps to an exact admin center path.
+- **The pivot line** (say it out loud): everything shown so far is how an agent gets **made**, and AB-900 tests none of it. The exam tests what happens **next**. Fundamentals is an **administrator** credential, not a builder credential.
+- **Scope guard:** Microsoft Foundry (formerly Azure AI Foundry) appears **NOWHERE** in the July 22, 2026 objectives. Mention only if a learner raises it, and say plainly that it is not on the exam.
 
 ---
 
-## Segment 2: Copilot Agents and Agent Builder (50 min)
+## Segment 1: Core Features and Objects of Microsoft 365 Services (50 min)
 
-*Agents are the exam's growth area. Pair them with the creation surfaces the exam actually tests.*
+*Start where the exam starts. This is the foundation every later segment assumes.*
 
-- What agents are -- software that automates tasks, answers questions, and acts on user intent
-- The canonical Microsoft taxonomy is a two-way split:
-  - **Declarative agents** -- hosted in Microsoft 365, use Copilot's orchestrator and foundation models, designed for individual use, user-initiated only (they do **NOT** support proactive interactions)
-  - **Custom engine agents** -- fully customizable model and orchestration, support group collaboration and proactive interactions, hosted outside Microsoft 365, and the builder owns their own compliance and Responsible AI posture
-- Creator personas: **Users** build in Agent Builder or SharePoint, **Makers** build in Copilot Studio, **Developers** build with the Copilot Studio SDK or the Microsoft 365 Agents Toolkit
-- Prebuilt agent use cases: **Researcher** (multi-step research across Graph work data, Copilot connectors, and the Bing index) and **Analyst** (advanced data analysis with chain-of-thought reasoning, better suited than Researcher for Excel work)
-- **Researcher and Analyst are part of the core Copilot chat experience and do NOT fall under any agent-related settings.** They stay available in Microsoft 365 Copilot Chat under **Tools** even when agents are disabled for some or all users. To disable them, the admin blocks the individual agent tenant-wide. The Edit users panel is disabled for them, so granular per-user assignment is not possible.
-- Researcher usage limit: a maximum of 25 queries per user per month
-- Researcher honors the tenant-level **Allow web search in Copilot** policy. There is no per-site allowlist for standard Researcher.
-- **Researcher with Computer Use** is separately governed on a dedicated **Computer use** tab in the agent details pane, with three policies: who can perform actions, whether Researcher can access work data, and which websites are allowed
-- Copilot versus agents: reactive and assistive versus task-scoped and increasingly autonomous
-- Creating an agent in **Agent Builder in Microsoft 365 Copilot** (the current product name; "Copilot Studio lite" survives only in Microsoft Learn URL slugs):
-  - Describe tab (natural language) versus Configure tab (manual)
-  - Knowledge limits: up to **20 knowledge sources total**, up to **4 public website URLs**, up to **100 SharePoint files, folders, or sites**, **1 SharePoint list**, **50 OneDrive files**, **5 Teams chat URLs**, **20 embedded uploaded files**
-  - Field limits: Description 1,000 characters; Instructions 8,000 characters
-  - Capabilities: **Code interpreter ("Create documents, charts, and code") and Image generator ("Create images") are both ENABLED by default.** This is a reversal from earlier course material that said both were off.
-  - Starter prompts: Microsoft documents **no minimum and publishes no maximum**. Do **NOT** assert a ceiling.
-  - "Only use specified sources" **prioritizes** the listed sources. Agent Builder cannot fully block general model knowledge. Use Copilot Studio for stricter control.
-  - Governance trap: **Information Barriers are NOT supported on embedded files.** Any user who can access the agent sees responses grounded in that content.
-- Creating a **SharePoint agent**:
-  - Three entry points: the site homepage via **New > Agent**, the document library command bar via the **AI actions** menu, and a file's right-click or ellipsis context menu
-  - Storage: homepage-created agents land in **Site contents > Site Assets > Copilots**; library-created agents save to the current folder
-  - Knowledge limit: up to **20 source items** in any combination of sites, libraries, folders, and files
-  - Agents are stored as **.agent files**, and the file permissions determine who can access or edit the agent
-  - Code interpreter and image generator are **NOT documented as available** for SharePoint agents
-  - Requires either an assigned Microsoft 365 Copilot license or pay-as-you-go billing configured for the organization
-- Agent approval workflow -- the authoritative path is **admin.microsoft.com > Agents > All agents > Requests**
-  - Three request states: **Pending review**, **Pending update**, **Pending activate**
-  - Primary actions: **Publish to store** and **Reject submission**. For a Pending update, the button reads **Update in store**.
-  - Only **AI Administrator** or **Global Administrator** can approve. Global Reader and the other reader roles can view but cannot act.
-- Agent lifecycle: create, request, approve, deploy, monitor, block or remove
-  - **Block** prevents access tenant-wide AND removes the agent from users who already installed it
-  - **Uninstall/Remove** takes it out of inventory, but it can be reacquired from the store
-  - **Blocking scope trap:** blocking an Agent Builder or Copilot Studio agent affects Microsoft 365 Copilot and other hosts such as Outlook and Teams. Blocking a SharePoint or Foundry agent affects Microsoft 365 Copilot Chat only.
-- Agent licensing buckets: included with a Copilot license, consumption-billed through pay-as-you-go, or covered by Microsoft Agent 365 and Microsoft 365 E7
-- **Demo:** Create an agent in Agent Builder and a SharePoint agent side by side, then show the Requests queue
+- Microsoft 365 admin center (**admin.microsoft.com**, and **admin.cloud.microsoft** now resolves to the same app): dashboard, users, groups, billing, reports, service health
+- Core services configuration:
+  - **Exchange admin center** (admin.exchange.microsoft.com): mailboxes and **distribution groups**. The Groups page tab label reads **Distribution list**, and both terms are current in Microsoft documentation.
+  - **SharePoint admin center** (admin.microsoft.com/sharepoint): sites, libraries, folders, and site roles and permissions
+  - **Microsoft Teams admin center** (admin.teams.microsoft.com): teams, channels, policies
+- Identity and security:
+  - Zero Trust: verify explicitly, use least privilege access, assume breach
+  - **Microsoft Entra ID** -- never "Azure AD." Cloud-only versus hybrid identities.
+  - Authentication methods are managed in the unified **Authentication methods policy** at entra.microsoft.com > Entra ID > Authentication methods > Policies. Legacy MFA and SSPR method management retired September 30, 2025.
+  - **Passkey-first is the current guidance.** Microsoft-provided SMS and voice retire February 1, 2027, with passkey auto-enablement starting September 1, 2026.
+  - Mandatory MFA is in force for both Phase 1 and Phase 2 as of July 2026. There is no opt-out, and it applies to break-glass accounts and guests.
+  - SSO across Microsoft 365 and third-party apps
+  - Conditional Access: **entra.microsoft.com > Entra ID > Conditional Access**. The target selector now reads **Resources (formerly cloud apps)**.
+  - **Identity Secure Score:** entra.microsoft.com > Entra ID > Identity Secure Score. It recalculates every 24 hours and represents the Identity category of the broader Microsoft Secure Score viewed in the Defender portal.
+  - **PIM:** entra.microsoft.com > **ID Governance** > Privileged Identity Management. It is not under Entra ID. Assignment types are **Eligible** and **Active**.
+  - **App registrations versus Enterprise applications:** an app registration is the application object, the app's definition, and it exists only in the home tenant. An enterprise application is the service principal, the local instance in a tenant, and it is where SSO, user assignment, and provisioning are configured.
+  - **Microsoft Defender XDR** is the service; **security.microsoft.com** is the Microsoft Defender portal. Never "Microsoft 365 Defender."
+- RBAC: prefer least-privilege roles. Microsoft describes Global Administrator as a highly privileged role reserved for cases where a lower-privileged role cannot do the job.
+- Group types: Security, Microsoft 365, Mail-enabled Security, Distribution, Dynamic
+- Audit logs: **purview.microsoft.com > Audit** or **security.microsoft.com > Audit**. Audit (Standard) retains 180 days by default.
+- Troubleshooting: sign-in logs, the What If tool, audit logs
+- **Demo:** Admin center tour -- license assignment, Copilot pay-as-you-go billing, Conditional Access, service health
 
 ---
 
-## Segment 3: Data Protection and Governance (50 min)
+## Segment 2: Data Protection and Governance for Microsoft 365 and Copilot (50 min)
 
 *Heaviest exam domain at 35-40%. Give it the time it deserves.*
 
@@ -186,15 +177,27 @@ Use this box near the top of the session. It sets the tone: the material is fres
 
 ---
 
-## Segment 4: M365 Admin, Identity, and Security (50 min)
+## Segment 3: Copilot Features and Administration (50 min)
 
-*Tie it all together with the admin center, identity stack, and exam prep.*
+*Now the thing everyone came to learn about, framed as administration rather than usage.*
 
-- Microsoft 365 admin center (**admin.microsoft.com**, and **admin.cloud.microsoft** now resolves to the same app): dashboard, users, groups, billing, reports, service health
-- Core services configuration:
-  - **Exchange admin center** (admin.exchange.microsoft.com): mailboxes and **distribution groups**. The Groups page tab label reads **Distribution list**, and both terms are current in Microsoft documentation.
-  - **SharePoint admin center** (admin.microsoft.com/sharepoint): sites, libraries, folders, and site roles and permissions
-  - **Microsoft Teams admin center** (admin.teams.microsoft.com): teams, channels, policies
+- What Copilot actually is -- **NOT** a standalone app, embedded in Word, Excel, PowerPoint, Outlook, and Teams
+- Architecture: **Work IQ** is the intelligence layer. Microsoft Graph and Copilot connectors sit inside its data layer, and the semantic index sits inside its context layer. Work IQ is the umbrella, not a peer of Graph.
+- Work IQ is built on foundation models from multiple providers, including OpenAI and Anthropic
+- Grounded prompting -- the user prompt is enriched with tenant data before it reaches the model
+- Semantic index -- meaning-based retrieval that respects permission structures, not keyword matching
+- **Key security point:** Copilot can only see what the user can already see. Graph enforces permissions.
+- Data stays inside the service boundary and is never used to retrain public models
+- Copilot in each app: Word (draft and summarize), Excel (Edit with Copilot, formerly Agent Mode), PowerPoint (outline to deck), Outlook (thread summary and draft), Teams (meeting recap and action items)
+- Microsoft 365 Copilot Chat -- cross-app search, multi-meeting summaries, tenant-wide queries
+- Responsible AI: data minimization, transparency through source references, content filtering, auditability
+- Licensing overview:
+  - **Microsoft 365 Copilot Chat** -- included at no additional cost with an eligible Microsoft 365 subscription. Web-based chat is included free; work-based chat requires a Microsoft 365 Copilot license.
+  - **Microsoft 365 Copilot** (enterprise add-on) -- $30.00 per user per month (annual billing)
+  - **Microsoft 365 Copilot Business** (SMB add-on) -- list $21.00 per user per month, available at $18 under a 15 percent promotion extended through December 31, 2026, **300-seat maximum**, sold on an annual commitment with either annual or monthly billing (there is no month-to-month agreement), same capabilities as the enterprise SKU
+  - **Microsoft 365 E7** -- includes Microsoft 365 Copilot in the base SKU, so E7 customers do not buy the add-on separately
+  - **Trap to name out loud:** there is no 300-seat minimum. That requirement was removed in January 2024. The only surviving 300 is a **maximum** on Copilot Business and the Business-with-Copilot SKUs.
+- Monthly per-user license versus pay-as-you-go -- when to use which. Note that the objective wording explicitly says "including SharePoint," so cover SharePoint pay-as-you-go specifically.
 - Copilot admin tasks:
   - Assign licenses individually or by group. Users may wait up to **24 hours** for Copilot to appear in some apps after assignment.
   - Pay-as-you-go billing: **admin.microsoft.com > Copilot > Billing & usage**, with a **Billing policies** tab and a **Pay-as-you-go services** tab
@@ -209,23 +212,50 @@ Use this box near the top of the session. It sets the tone: the material is fres
   - Monitor usage: **admin.microsoft.com > Reports > Usage > Microsoft 365 Copilot > Copilot**, then the **Usage** tab. The **Credits** report sits alongside it. The **Copilot Dashboard** is in **Viva Insights**, not the admin center.
   - Prompt governance: save, share, schedule, delete
   - Agent management: the Microsoft 365 admin center handles deployment, approval, and the agent registry. The Power Platform admin center handles environment governance and data policies for Copilot Studio agents.
-- Identity and security:
-  - Zero Trust: verify explicitly, use least privilege access, assume breach
-  - **Microsoft Entra ID** -- never "Azure AD." Cloud-only versus hybrid identities.
-  - Authentication methods are managed in the unified **Authentication methods policy** at entra.microsoft.com > Entra ID > Authentication methods > Policies. Legacy MFA and SSPR method management retired September 30, 2025.
-  - **Passkey-first is the current guidance.** Microsoft-provided SMS and voice retire February 1, 2027, with passkey auto-enablement starting September 1, 2026.
-  - Mandatory MFA is in force for both Phase 1 and Phase 2 as of July 2026. There is no opt-out, and it applies to break-glass accounts and guests.
-  - SSO across Microsoft 365 and third-party apps
-  - Conditional Access: **entra.microsoft.com > Entra ID > Conditional Access**. The target selector now reads **Resources (formerly cloud apps)**.
-  - **Identity Secure Score:** entra.microsoft.com > Entra ID > Identity Secure Score. It recalculates every 24 hours and represents the Identity category of the broader Microsoft Secure Score viewed in the Defender portal.
-  - **PIM:** entra.microsoft.com > **ID Governance** > Privileged Identity Management. It is not under Entra ID. Assignment types are **Eligible** and **Active**.
-  - **App registrations versus Enterprise applications:** an app registration is the application object, the app's definition, and it exists only in the home tenant. An enterprise application is the service principal, the local instance in a tenant, and it is where SSO, user assignment, and provisioning are configured.
-  - **Microsoft Defender XDR** is the service; **security.microsoft.com** is the Microsoft Defender portal. Never "Microsoft 365 Defender."
-- RBAC: prefer least-privilege roles. Microsoft describes Global Administrator as a highly privileged role reserved for cases where a lower-privileged role cannot do the job.
-- Group types: Security, Microsoft 365, Mail-enabled Security, Distribution, Dynamic
-- Audit logs: **purview.microsoft.com > Audit** or **security.microsoft.com > Audit**. Audit (Standard) retains 180 days by default.
-- Troubleshooting: sign-in logs, the What If tool, audit logs
-- **Demo:** Admin center tour -- license assignment, Copilot pay-as-you-go billing, Conditional Access, service health
+- **Demo:** Copilot in action across apps (show Graph grounding and source references)
+
+---
+
+## Segment 4: Agent Administration and Exam Success (50 min)
+
+*Agents are the exam growth area. Close with logistics so it is the last thing they hear.*
+
+- What agents are -- software that automates tasks, answers questions, and acts on user intent
+- The canonical Microsoft taxonomy is a two-way split:
+  - **Declarative agents** -- hosted in Microsoft 365, use Copilot's orchestrator and foundation models, designed for individual use, user-initiated only (they do **NOT** support proactive interactions)
+  - **Custom engine agents** -- fully customizable model and orchestration, support group collaboration and proactive interactions, hosted outside Microsoft 365, and the builder owns their own compliance and Responsible AI posture
+- Creator personas: **Users** build in Agent Builder or SharePoint, **Makers** build in Copilot Studio, **Developers** build with the **Microsoft 365 Agents SDK** or the Microsoft 365 Agents Toolkit
+- Prebuilt agent use cases: **Researcher** (multi-step research across Graph work data, Copilot connectors, and the Bing index) and **Analyst** (advanced data analysis with chain-of-thought reasoning, better suited than Researcher for Excel work)
+- **Researcher and Analyst are part of the core Copilot chat experience and do NOT fall under any agent-related settings.** They stay available in Microsoft 365 Copilot Chat under **Tools** even when agents are disabled for some or all users. To disable them, the admin blocks the individual agent tenant-wide. The Edit users panel is disabled for them, so granular per-user assignment is not possible.
+- Researcher usage limit: course notes carry a figure of 25 queries per user per month. **VERIFY IN YOUR TENANT BEFORE ASSERTING IT** -- this number could not be reconfirmed on Microsoft Learn on July 28, 2026, and Microsoft adjusts these caps. If a learner asks and you are unsure, say the limit exists and is documented per-plan rather than quoting a number.
+- Researcher honors the tenant-level **Allow web search in Copilot** policy. There is no per-site allowlist for standard Researcher.
+- **Researcher with Computer Use** is separately governed on a dedicated **Computer use** tab in the agent details pane, with three policies: who can perform actions, whether Researcher can access work data, and which websites are allowed
+- Copilot versus agents: reactive and assistive versus task-scoped and increasingly autonomous
+- Creating an agent in **Agent Builder in Microsoft 365 Copilot** (the current product name; "Copilot Studio lite" survives only in Microsoft Learn URL slugs):
+  - Describe tab (natural language) versus Configure tab (manual)
+  - Knowledge limits: up to **20 knowledge sources total**, up to **4 public website URLs**, up to **100 SharePoint files, folders, or sites**, **1 SharePoint list**, **50 OneDrive files**, **5 Teams chat URLs**, **20 embedded uploaded files**
+  - Field limits: Description 1,000 characters; Instructions 8,000 characters
+  - Capabilities: **Code interpreter ("Create documents, charts, and code") and Image generator ("Create images") are both ENABLED by default.** This is a reversal from earlier course material that said both were off.
+  - Starter prompts: Microsoft documents **no minimum and publishes no maximum**. Do **NOT** assert a ceiling.
+  - "Only use specified sources" **prioritizes** the listed sources. Agent Builder cannot fully block general model knowledge. Use Copilot Studio for stricter control.
+  - Governance trap: **Information Barriers are NOT supported on embedded files.** Any user who can access the agent sees responses grounded in that content.
+- Creating a **SharePoint agent**:
+  - Three entry points: the site homepage via **New > Agent**, the document library command bar via the **AI actions** menu, and a file's right-click or ellipsis context menu
+  - Storage: homepage-created agents land in **Site contents > Site Assets > Copilots**; library-created agents save to the current folder
+  - Knowledge limit: up to **20 source items** in any combination of sites, libraries, folders, and files
+  - Agents are stored as **.agent files**, and the file permissions determine who can access or edit the agent
+  - Code interpreter and image generator are **NOT documented as available** for SharePoint agents
+  - Requires either an assigned Microsoft 365 Copilot license or pay-as-you-go billing configured for the organization
+- Agent approval workflow -- the authoritative path is **admin.microsoft.com > Agents > All agents > Requests**
+  - Three request states: **Pending review**, **Pending update**, **Pending activate**
+  - Primary actions: **Publish to store** and **Reject submission**. For a Pending update, the button reads **Update in store**.
+  - Only **AI Administrator** or **Global Administrator** can approve. Global Reader and the other reader roles can view but cannot act.
+- Agent lifecycle: create, request, approve, deploy, monitor, block or remove
+  - **Block** prevents access tenant-wide AND removes the agent from users who already installed it
+  - **Uninstall/Remove** takes it out of inventory, but it can be reacquired from the store
+  - **Blocking scope trap:** blocking an Agent Builder or Copilot Studio agent affects Microsoft 365 Copilot and other hosts such as Outlook and Teams. Blocking a SharePoint or Foundry agent affects Microsoft 365 Copilot Chat only.
+- Agent licensing buckets: included with a Copilot license, consumption-billed through pay-as-you-go, or covered by Microsoft Agent 365 and Microsoft 365 E7
+- **Demo:** Create an agent in Agent Builder and a SharePoint agent side by side, then show the Requests queue
 - Exam tips and wrap-up:
   - Domain 2 is the heaviest. If learners study one domain deeply, make it Domain 2.
   - Know the portal paths: admin.microsoft.com, purview.microsoft.com, entra.microsoft.com, admin.exchange.microsoft.com, admin.teams.microsoft.com, security.microsoft.com

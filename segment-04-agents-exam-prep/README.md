@@ -45,7 +45,7 @@ Microsoft documents **two** primary approaches to building agents for Microsoft 
 
 - **Users** create declarative agents in **Agent Builder** or **SharePoint**. Requires a Copilot license or a pay-as-you-go subscription, and tenant settings must permit it.
 - **Makers** use **Copilot Studio** for low-code agents.
-- **Developers** use the Copilot Studio SDK or the **Microsoft 365 Agents Toolkit** for pro-code agents.
+- **Developers** use the **Microsoft 365 Agents SDK** or the **Microsoft 365 Agents Toolkit** for pro-code agents.
 - Both Makers and Developers can add actions, connectors, and advanced logic.
 
 #### Naming corrections

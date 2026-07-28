@@ -114,7 +114,7 @@ The **Agent Registry** separately divides agents into four **publisher-based** t
 |---------|------|-------------|
 | **Users** | **Agent Builder in Microsoft 365 Copilot**, or SharePoint | A Copilot license or subscription, and tenant settings must permit it |
 | **Makers** | Copilot Studio (lite or full) for low-code agents | Can add actions, connectors, and advanced logic |
-| **Developers** | Copilot Studio SDK or **Microsoft 365 Agents Toolkit** for pro-code agents | Can add actions, connectors, and advanced logic |
+| **Developers** | **Microsoft 365 Agents SDK** or **Microsoft 365 Agents Toolkit** for pro-code agents | Can add actions, connectors, and advanced logic |
 
 > **Naming rule.** Microsoft's current name for the low-code, in-Copilot authoring surface is **Agent Builder in Microsoft 365 Copilot**, reached via the **New agent** option in the Microsoft 365 Copilot app. "Copilot Studio lite" survives only in Learn URL slugs and one FAQ phrase. Use **Agent Builder**. Likewise, "Teams Toolkit" is now **Microsoft 365 Agents Toolkit**.
 
@@ -141,7 +141,7 @@ The **Agent Registry** separately divides agents into four **publisher-based** t
 - Can use templates or custom options and rules
 
 **4. Advanced Agents (require programming or maker skills)**
-- Built using Copilot Studio, the Copilot Studio SDK, or the Microsoft 365 Agents Toolkit
+- Built using Copilot Studio, the **Microsoft 365 Agents SDK**, or the Microsoft 365 Agents Toolkit
 - Large connector catalog, custom actions, and advanced orchestration
 - Central administration and compliance management, primarily through the **Power Platform admin center** for Copilot Studio agents
 
@@ -267,7 +267,7 @@ Microsoft 365 E7, E5, E3, F1, F3; Business Basic, Standard, Premium; Microsoft 3
 |------|-----|-------------|-------------|
 | **Microsoft 365 Copilot Chat** | Any user with an eligible Microsoft 365 subscription and a work or school account | Free web-grounded chat with enterprise data protection; can use no-cost Agent Store agents if the admin enables them | Work-based chat (org data grounding) requires a Copilot license; agents that use organizational data are billed via metered consumption |
 | **M365 Personal or Family** | Home users | Copilot in Office apps, 1 TB OneDrive | No Graph work data, no SharePoint or Teams, no admin controls, no agents |
-| **Microsoft 365 Copilot Business** | Organizations of 300 or fewer users on Business Basic, Standard, Premium, or Apps for Business | **Same capabilities as the enterprise SKU** | **300-seat maximum**; annual commitment only |
+| **Microsoft 365 Copilot Business** | Organizations of 300 or fewer users on Business Basic, Standard, Premium, or Apps for Business | **Same capabilities as the enterprise SKU** | **300-seat maximum**; annual commitment with annual or monthly billing |
 | **Microsoft 365 Copilot** (enterprise add-on) | Tenants on a qualifying Microsoft 365 or Office 365 plan | Copilot across the apps plus Graph grounding | Some features need additional licenses; agent usage may incur Copilot Credits |
 | **Microsoft 365 E7** | Enterprises wanting one SKU | E5 + Microsoft 365 Copilot + Microsoft Entra Suite + Agent 365 | E7 customers do **NOT** buy the Copilot add-on separately |
 | **Copilot Studio and agents** | Tenants building custom agents | Build custom agents, integrate connectors and APIs | Usage governed by Copilot Credits |

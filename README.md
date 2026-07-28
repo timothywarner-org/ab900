@@ -307,7 +307,7 @@ ab900/
 │   ├── scripts/                                # PowerShell helpers (license assign, usage report)
 │   └── templates/                              # Deployment checklist, DLP policy template
 ├── slides/workspace/                           # Deck build tooling and background assets
-├── warner-ab900.pptx                           # Current session deck
+├── warner-ab900-July-2026.pptx                 # Current session deck
 └── segment-0{1-4}-*/                           # Per-segment demos, labs, slides, resources
 ```
 
