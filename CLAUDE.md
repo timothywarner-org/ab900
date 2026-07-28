@@ -141,8 +141,10 @@ The repository holds **exactly one** deck, `warner-ab900-July-2026.pptx` at the 
 
 - Update the existing deck in place. Git history is the archive.
 - Edit with `python-pptx` at the **run** level (`run.text`), never by assigning to `shape.text_frame.text` -- that assignment destroys font face, size, color, bold, and any animation timing bound to the run. Tim's layouts, colors, fonts, and slide order must survive byte-for-byte.
-- The deck currently has **NO** authored speaker notes. All 46 notes slides are empty. If notes are ever added, use the `tim-warner-voice` skill so they sound like Tim.
-- Before embedding images, recompress them. Background PNGs are what caused the 41 MB bloat.
+- The deck is **59 slides**. Slides **1-13 are O'Reilly housekeeping front matter**; AB-900 content starts at slide **14**. The slide-to-segment remap table lives in `course-plan-july-2026.md`.
+- Speaker notes are essentially **unauthored** (1 of 59 slides has any note text). If notes are added, use the `tim-warner-voice` skill so they sound like Tim.
+- **Recompress images before embedding them.** Background PNGs caused the 41 MB bloat once and an 11 MB regression in July 2026. Run `slides/workspace/Compress-DeckImages.ps1 -WhatIf` to check, then without `-WhatIf` to fix. It rewrites only `ppt/media/*` and never parses slide XML, so layouts, fonts, colors, and animation timings survive byte-for-byte.
+- **Close PowerPoint before any scripted write.** A `~$` lock file means the app will overwrite your result on its next save. The compression script refuses to run while the lock exists; apply the same rule to any `python-pptx` write.
 
 ## Exam Currency
 

@@ -23,18 +23,20 @@
 
 ### Deck remap (the deck is still in the OLD order)
 
-`warner-ab900-July-2026.pptx` was built under the previous delivery order, so **slide numbers do NOT match segment numbers until the deck is reordered.** Until then, teach from this table.
+`warner-ab900-July-2026.pptx` is **59 slides**. Slides **1-13 are O'Reilly housekeeping front matter** (course flow, materials, recording and badge, mobile app, study model). AB-900 content starts at **slide 14**.
+
+The content section was built under the previous delivery order, so **slide numbers do NOT match segment numbers until the deck is reordered.** Until then, teach from this table.
 
 | New segment | Content lives on deck slides | Demos |
 |-------------|------------------------------|-------|
-| **1** Core M365 services | **35-42** (was Segment 4) | Demo 1A (admin center), Demo 1B (licenses) |
-| **2** Data protection | **24-31** (was Segment 3) | Demo 2A (labels), Demo 2B (DLP), Demo 2C (DSPM), Demo 2D (oversharing) |
-| **3** Copilot administration | **5-10** (was Segment 1) | Demo 3A (PAYG billing), Demo 3B (Copilot settings), Demo 3C (Researcher and Analyst), Demo 3D (Copilot Dashboard) |
-| **4** Agents and exam prep | **14-20**, then 44-45 | Demo 4A (approval queue), Demo 4D (build agent), Demo 4B (Teams), Demo 4C (Power Platform) |
+| **1** Core M365 services | **48-55** (deck Segment 4 block) | Demo 1A (admin center), Demo 1B (licenses) |
+| **2** Data protection | **37-44** (deck Segment 3 block) | Demo 2A (labels), Demo 2B (DLP), Demo 2C (DSPM), Demo 2D (oversharing) |
+| **3** Copilot administration | **18-23** (deck Segment 1 block) | Demo 3A (PAYG billing), Demo 3B (Copilot settings), Demo 3C (Researcher and Analyst), Demo 3D (Copilot Dashboard) |
+| **4** Agents and exam prep | **27-33**, then 57-58 | Demo 4A (approval queue), Demo 4D (build agent), Demo 4B (Teams), Demo 4C (Power Platform) |
 
 **Demo IDs already follow domain numbering,** so Demo 1x belongs to Segment 1, Demo 2x to Segment 2, and so on. That part lines up cleanly.
 
-Section-divider slides in the deck (4, 13, 23, 34) still carry the OLD segment numbers. Break slides: 12, 22, 33. Portal paths: 44. Exam tips: 45. Close: 46.
+Deck landmarks: title **14**, exam domains **15**, roadmap **16**. Section dividers **17, 26, 36, 47** still carry the OLD segment numbers. DEMO slides **24, 34, 45, 56**. Breaks **25, 35, 46**. Portal paths **57**. Exam tips **58**. Close **59**.
 
 ## Pacing Guardrails
 

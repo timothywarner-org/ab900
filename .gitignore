@@ -153,3 +153,7 @@ vite.config.ts.timestamp-*
 ~$*.pptx
 ~$*.docx
 ~$*.xlsx
+
+# Local backups written by Compress-DeckImages.ps1. Git history is the archive,
+# and these are multi-megabyte binaries that would bloat the repo permanently.
+*.pptx.bak
