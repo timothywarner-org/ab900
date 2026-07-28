@@ -123,7 +123,7 @@ Copilot surfaces whatever the user already has permission to see. Oversharing th
 - [ ] Establish the agent approval process at admin.microsoft.com > **Agents** > **All agents** > **Requests**. Only AI Administrator and Global Administrator can approve.
 - [ ] Review MCP tool requests at **Agents** > **Tools** > **Requests**
 - [ ] Set up usage reporting at admin.microsoft.com > **Reports** > **Usage** > **Microsoft 365 Copilot**
-- [ ] Enable and delegate the Copilot Dashboard in Viva Insights (an AI Administrator does this from the Microsoft 365 admin center)
+- [ ] Confirm the **Viva Insights web app** is enabled (ON by default). This governs Copilot Dashboard access; the separate admin-center control to enable the dashboard was removed
 
 ## Post-Deployment Phase
 

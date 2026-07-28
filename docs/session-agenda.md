@@ -421,7 +421,7 @@ This is a complex licensing area that the exam tests directly. Be deliberate her
 - **Monthly license model (per user per month):**
   - Fixed cost assigned to named users
   - **Microsoft 365 Copilot** is $30.00 per user per month (annual billing)
-  - **Microsoft 365 Copilot Business** is the SMB SKU at $21.00 list, currently $18 under a 15 percent promotion extended through December 2026, with a **300-seat maximum** and annual commitment only. Microsoft states it delivers the same capabilities as the enterprise offering; the difference is price point and eligibility.
+  - **Microsoft 365 Copilot Business** is the SMB SKU at $21.00 list, currently $18 under a 15 percent promotion extended through December 31, 2026, with a **300-seat maximum**, available as an annual commitment with either annual or monthly billing (there is no month-to-month purchasing agreement). Microsoft states it delivers the same capabilities as the enterprise offering; the difference is price point and eligibility.
   - **Microsoft 365 E7** includes Microsoft 365 Copilot in the base SKU. E7 went generally available May 1, 2026 and equals E5 plus Microsoft 365 Copilot plus Microsoft Entra Suite plus Agent 365.
   - **Microsoft 365 Copilot Chat** is the free tier, included at no additional cost with an eligible Microsoft 365 subscription. Web-based chat is included; **work-based chat requires a Microsoft 365 Copilot license**.
   - **Correct the old 300-seat myth out loud.** There is no seat minimum for Microsoft 365 Copilot. Microsoft removed that requirement in January 2024. The only surviving 300 is a **maximum** on Copilot Business and the Business-with-Copilot SKUs.

@@ -581,7 +581,7 @@ Configuring agent actions to query SharePoint via Microsoft Graph API is a devel
 
 **Microsoft Learn References:**
 - [Build Declarative Agents](https://learn.microsoft.com/microsoft-365-copilot/extensibility/build-declarative-agents)
-- [Add knowledge sources to agents](https://learn.microsoft.com/microsoft-copilot-studio/knowledge-sources-configure)
+- [Add knowledge sources to agents](https://learn.microsoft.com/microsoft-copilot-studio/knowledge-add-existing-copilot)
 - [Copilot Studio documentation](https://learn.microsoft.com/microsoft-copilot-studio/)
 
 ---

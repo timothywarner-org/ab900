@@ -4838,7 +4838,7 @@ Result: Copilot blocks, shows policy tip
 - Prepare environment BEFORE Copilot deployment
 - Monitor continuously
 
-**Documentation:** https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-security
+**Documentation:** https://learn.microsoft.com/microsoft-365/copilot/microsoft-365-copilot-privacy
 
 ---
 
@@ -6202,7 +6202,7 @@ Response: BLOCKED
 - Copilot interactions monitored by DLP
 - Alert management is ongoing process
 
-**Documentation:** https://learn.microsoft.com/en-us/purview/dlp-alerts-dashboard
+**Documentation:** https://learn.microsoft.com/purview/dlp-configure-view-alerts-policies
 
 ---
 

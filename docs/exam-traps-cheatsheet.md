@@ -9,7 +9,7 @@
 
 | Task | Portal | Exact Path |
 |------|--------|------------|
-| Sensitivity labels | purview.microsoft.com | Solutions > Information Protection > Labels |
+| Sensitivity labels | purview.microsoft.com | Solutions > Information Protection > **Sensitivity labels** |
 | DLP policies | purview.microsoft.com | Solutions > Data Loss Prevention > Policies |
 | **DSPM (new unified, GA May 2026)** | purview.microsoft.com | Solutions > **DSPM** |
 | **DSPM for AI (classic)** -- the wording the objective uses | purview.microsoft.com | Solutions > **DSPM for AI (classic)** |
@@ -31,7 +31,7 @@
 | Copilot usage report | admin.microsoft.com | Reports > Usage > Microsoft 365 Copilot > Copilot > **Usage** tab |
 | Copilot Credits report | admin.microsoft.com | Reports > Usage > Microsoft 365 Copilot > **Credits** |
 | Agent usage reports | admin.microsoft.com | Reports > Usage > Microsoft 365 Copilot > **Agents** |
-| **Copilot Dashboard** | **Viva Insights app** (Teams or web) | Open **Viva Insights** > **Copilot Dashboard**. An **AI Administrator** enables and delegates it from admin.microsoft.com. |
+| **Copilot Dashboard** | **Viva Insights app** (Teams or web) | Open **Viva Insights** > **Copilot Dashboard**. The old admin-center control to enable the dashboard was REMOVED; access is now governed by enabling or disabling the **Viva Insights web app**. |
 | Baseline security mode | admin.microsoft.com | ... Show all > Settings > Org Settings > Security and Privacy > Baseline Security Mode |
 | **PIM** | entra.microsoft.com | **ID Governance > Privileged Identity Management** |
 | **Conditional Access** | entra.microsoft.com | **Entra ID > Conditional Access > Policies** |

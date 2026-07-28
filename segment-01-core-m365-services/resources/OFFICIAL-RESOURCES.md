@@ -291,7 +291,7 @@ Domain 1 contains exactly three subsections: "Identify the core objects of Micro
 
 ### Video Training
 - **Microsoft Mechanics YouTube Channel**
-  - https://www.youtube.com/c/MicrosoftMechanics
+  - https://techcommunity.microsoft.com/t5/microsoft-mechanics-blog/bg-p/MicrosoftMechanicsBlog
   - Technical deep dives and feature demos
 
 ### Community

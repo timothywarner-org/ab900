@@ -553,7 +553,7 @@ Domain 3 has exactly three subsections: "Understand features and capabilities of
 
 ### Videos
 - **Microsoft Mechanics**
-  - https://www.youtube.com/c/MicrosoftMechanics
+  - https://techcommunity.microsoft.com/t5/microsoft-mechanics-blog/bg-p/MicrosoftMechanicsBlog
   - Technical demos and deep dives
 
 ---

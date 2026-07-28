@@ -556,7 +556,7 @@ Use the exam sandbox to see the real question types rather than guessing at the 
 - **Microsoft 365 blog:** <https://www.microsoft.com/en-us/microsoft-365/blog/>
 - **Microsoft 365 Copilot release notes:** <https://learn.microsoft.com/microsoft-365/copilot/release-notes>
 - **Microsoft 365 Copilot community hub:** <https://techcommunity.microsoft.com/category/microsoft365copilot>
-- **Microsoft Mechanics:** <https://www.youtube.com/c/MicrosoftMechanics>
+- **Microsoft Mechanics:** <https://techcommunity.microsoft.com/t5/microsoft-mechanics-blog/bg-p/MicrosoftMechanicsBlog>
 
 ### Tools for Practice
 

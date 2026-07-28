@@ -25,11 +25,65 @@ This repository contains instructor materials for the O'Reilly Live Learning ses
 
 ### AB-900 Certification
 
-- [AB-900 Certification Page](https://learn.microsoft.com/credentials/certifications/copilot-and-agent-administration-fundamentals/)
-- [AB-900 Study Guide](https://learn.microsoft.com/credentials/certifications/resources/study-guides/ab-900)
-- [Free official practice assessment](https://learn.microsoft.com/credentials/certifications/practice-assessments-for-microsoft-certifications)
+- [AB-900 certification page](https://learn.microsoft.com/credentials/certifications/copilot-and-agent-administration-fundamentals/) -- the credential
+- [AB-900 exam page](https://learn.microsoft.com/credentials/certifications/exams/ab-900) -- schedule and exam details
+- [AB-900 study guide (skills measured as of July 22, 2026)](https://learn.microsoft.com/credentials/certifications/resources/study-guides/ab-900) -- **the authoritative scope document**
 - [Exam sandbox (try the question types)](https://aka.ms/examdemo)
+
+### Register, Pay, and Save
+
+- [Pearson VUE Microsoft page](https://home.pearsonvue.com/microsoft) -- schedule at a test center or online
+- [Microsoft certification exam offers and deals](https://learn.microsoft.com/credentials/certifications/deals) -- discounts and vouchers
+- [Online (proctored) exam requirements](https://learn.microsoft.com/credentials/certifications/online-exams) -- system and room rules before you book
+
+### Policies and FAQ
+
+- [Certification exam policies and FAQ](https://learn.microsoft.com/credentials/certifications/certification-exam-policies)
 - [Exam duration and exam experience](https://learn.microsoft.com/credentials/support/exam-duration-exam-experience)
+- [Exam scoring and score reports](https://learn.microsoft.com/credentials/certifications/exam-scoring-reports) -- **700 or greater passes**
+- [Exam retake policy](https://learn.microsoft.com/credentials/certifications/exam-retake-policy) -- 24 hours before a first retake
+- [Certification renewal](https://learn.microsoft.com/credentials/certifications/renew-your-microsoft-certification) -- **Fundamentals certifications do NOT expire, so AB-900 needs no renewal**
+
+### Practice Assessments
+
+- [Free official Microsoft practice assessment](https://learn.microsoft.com/credentials/certifications/practice-assessments-for-microsoft-certifications) -- start here; Microsoft notes practice questions are not exam questions and do not reflect exam length
+- [MeasureUp (search results for AB-900)](https://www.measureup.com/catalogsearch/result/?q=AB-900) -- paid, third party
+- [Whizlabs AB-900](https://www.whizlabs.com/microsoft-365-copilot-agent-administration-fundamentals-ab-900/) -- paid, third party
+
+> Third-party practice tests are **not** endorsed by Microsoft and their answers are not authoritative. When a third-party answer disagrees with the study guide or Microsoft Learn, Microsoft Learn wins.
+
+### Trials and Tenants
+
+- [Microsoft 365 E5 trial signup](https://signup.microsoft.com/get-started/signup?products=e77f0fb2-8d0f-46a0-b1ba-6c1b5ba4b1a4) -- the fastest path to a lab tenant with Purview and Defender
+- [Microsoft 365 Developer Program](https://developer.microsoft.com/microsoft-365/dev-program) -- sandbox tenant with sample data
+- [Copilot Studio trial](https://copilotstudio.microsoft.com) -- sign in and start a trial to build agents
+- See [docs/tenant-setup-guide.md](docs/tenant-setup-guide.md) for the full lab build
+
+### Product Documentation Roots
+
+One root per product family the exam covers.
+
+| Product | Docs root | Exam domain |
+|---------|-----------|-------------|
+| Microsoft 365 admin | [learn.microsoft.com/microsoft-365/admin](https://learn.microsoft.com/microsoft-365/admin/) | 1 and 3 |
+| Exchange | [learn.microsoft.com/exchange](https://learn.microsoft.com/exchange/) | 1 |
+| SharePoint | [learn.microsoft.com/sharepoint](https://learn.microsoft.com/sharepoint/) | 1 and 2 |
+| Microsoft Teams | [learn.microsoft.com/microsoftteams](https://learn.microsoft.com/microsoftteams/) | 1 |
+| Microsoft Entra | [learn.microsoft.com/entra](https://learn.microsoft.com/entra/) | 1 |
+| Microsoft Defender XDR | [learn.microsoft.com/defender-xdr](https://learn.microsoft.com/defender-xdr/) | 1 |
+| Microsoft 365 security | [learn.microsoft.com/microsoft-365/security](https://learn.microsoft.com/microsoft-365/security/) | 1 |
+| Microsoft Purview | [learn.microsoft.com/purview](https://learn.microsoft.com/purview/) | **2 (heaviest)** |
+| Microsoft 365 Copilot | [learn.microsoft.com/microsoft-365/copilot](https://learn.microsoft.com/microsoft-365/copilot/) | 3 |
+| Copilot service description | [Copilot service description](https://learn.microsoft.com/office365/servicedescriptions/office-365-platform-service-description/microsoft-365-copilot) | 3 (licensing) |
+| Microsoft Copilot Studio | [learn.microsoft.com/microsoft-copilot-studio](https://learn.microsoft.com/microsoft-copilot-studio/) | 3 |
+| Power Platform admin | [learn.microsoft.com/power-platform/admin](https://learn.microsoft.com/power-platform/admin/) | 3 |
+| Viva Insights (Copilot Dashboard) | [learn.microsoft.com/viva/insights](https://learn.microsoft.com/viva/insights/) | 3 |
+| Microsoft 365 Apps | [learn.microsoft.com/microsoft-365-apps](https://learn.microsoft.com/microsoft-365-apps/) | 1 |
+
+### Official Training
+
+- [Manage Microsoft 365 Copilot administration (learning path)](https://learn.microsoft.com/training/paths/manage-microsoft-365-copilot-administration/)
+- [Manage agents for Microsoft 365 Copilot (module)](https://learn.microsoft.com/training/modules/manage-agents-microsoft-365-copilot/)
 
 ### Microsoft 365 Portals
 

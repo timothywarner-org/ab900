@@ -136,14 +136,14 @@ The Azure MCP server is intentionally excluded. AB-900 is a Microsoft 365 admini
 ### Cross-Reference Dependencies
 
 - **Prompt files** reference the agent via `agent: ab900-cert-buddy-agent` in YAML frontmatter. If the agent `name` field changes, update all `.github/prompts/*.prompt.md` files.
-- **Agent file** references skills by their YAML frontmatter `name` (not folder name). If a skill is renamed, update the agent's `skills` list.
+- **Agent file** references skills by their YAML frontmatter `name` (not folder name) in its Markdown **body**, not in frontmatter. There is no `skills:` frontmatter key. If a skill is renamed, update every mention in the agent body.
 - **Tool IDs** in agent and prompt files must match server IDs in `.vscode/mcp.json`.
 
 ## Authoring Conventions
 
 - **Skill files**: YAML frontmatter (`name`, `description`) followed by Markdown body. The `name` field in frontmatter is the canonical skill identifier (not the folder name).
 - **Prompt files**: YAML frontmatter with `name`, `description`, `agent`, and `tools` fields followed by Markdown body.
-- **Agent files**: YAML frontmatter with `tools` and `skills` lists. Tool IDs must match MCP server IDs from `.vscode/mcp.json`.
+- **Agent files**: YAML frontmatter with `name`, `description`, `argument-hint`, and a `tools` list. Skills are referenced in the Markdown body, NOT in frontmatter. Tool IDs must match MCP server IDs from `.vscode/mcp.json`.
 - **Plain ASCII only** -- no curly quotes, no en dashes, no em dashes. Use straight quotes and `--`.
 - **No contractions** in any generated content.
 - **Microsoft style** -- use official UI labels, sentence-style capitalization, and Microsoft instruction formatting.
@@ -181,7 +181,7 @@ These navigation paths are authoritative for AB-900 content. Always use the exac
 ### Additional current paths worth pinning
 
 - **Copilot usage report**: admin.microsoft.com > **Reports** > **Usage** > **Microsoft 365 Copilot** > **Copilot**, then the **Usage** tab. Sibling reports under the same node: **Credits** and **Agents**.
-- **Copilot Dashboard**: opened from the **Viva Insights** app in Microsoft Teams or the Viva Insights web app, NOT from the Microsoft 365 admin center. An AI Administrator enables and delegates it from the admin center first.
+- **Copilot Dashboard**: opened from the **Viva Insights** app in Microsoft Teams or the Viva Insights web app, NOT from the Microsoft 365 admin center. The previous admin-center control to enable the dashboard (and the PowerShell equivalent) is **no longer available**; access is now governed by enabling or disabling the **Viva Insights web app**, which is ON by default. NOTE a live Microsoft-side conflict: the Copilot reporting page still says "Enable the Copilot Dashboard" and links to the Viva page stating the control was removed. The Viva page is product-specific and more recent, so it wins.
 - **Content search**: purview.microsoft.com > **Solutions** > **eDiscovery** > **Content Search**. Classic standalone Content Search retired August 31, 2025.
 - **Data explorer**: purview.microsoft.com > **Solutions** > **Information Protection** > **Explorers** > **Data explorer**. The older tool is now **Content Explorer (classic)** under Data Lifecycle Management > Explorers.
 - **Data access governance reports**: SharePoint admin center > **Reports** > **Data access governance**.

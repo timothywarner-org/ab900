@@ -1,7 +1,7 @@
 # Microsoft Fictional Companies
 
 Source: <https://microsoft.fandom.com/wiki/List_of_fictional_Microsoft_companies>
-Purpose: Use these company names in exam question scenarios and lab exercises. The AZ-104 exam uses fictional companies to create realistic workplace scenarios.
+Purpose: Use these company names in exam question scenarios and lab exercises. The AB-900 exam uses fictional companies to create realistic workplace scenarios.
 
 ## Companies
 

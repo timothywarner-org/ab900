@@ -353,7 +353,7 @@ Note the Credits report alerts administrators when a user exceeds 2,000 credits,
 ### Training
 - [Copilot Learning Path](https://learn.microsoft.com/training/paths/copilot/)
 - [Effective Prompts Guide](https://support.microsoft.com/copilot)
-- [Admin Training](https://learn.microsoft.com/training/modules/microsoft-365-copilot-admin/)
+- [Admin Training](https://learn.microsoft.com/training/paths/manage-microsoft-365-copilot-administration/)
 
 ## Q&A Notes
 

@@ -598,7 +598,7 @@ Compliance Manager, Data explorer, activity explorer, and Content search appear 
 | Microsoft Learn | https://learn.microsoft.com/ | Official training |
 | Tech Community | https://techcommunity.microsoft.com/ | Forums and blogs |
 | M365 PnP | https://aka.ms/m365pnp | Community resources |
-| Microsoft Mechanics | https://youtube.com/c/MicrosoftMechanics | Video training |
+| Microsoft Mechanics | https://techcommunity.microsoft.com/t5/microsoft-mechanics-blog/bg-p/MicrosoftMechanicsBlog | Video training |
 
 ### Exam Resources
 | Resource | URL | Purpose |

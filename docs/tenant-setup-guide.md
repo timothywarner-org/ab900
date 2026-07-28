@@ -134,7 +134,7 @@ Complete all items below **before the session starts**. Attempting to do this du
 Verify you can sign in to each portal with your admin account:
 
 - [ ] [https://admin.microsoft.com](https://admin.microsoft.com) -- Microsoft 365 admin center
-- [ ] [https://purview.microsoft.com](https://purview.microsoft.com) -- Microsoft Purview compliance portal
+- [ ] [https://purview.microsoft.com](https://purview.microsoft.com) -- Microsoft Purview portal
 - [ ] [https://admin.teams.microsoft.com](https://admin.teams.microsoft.com) -- Teams admin center
 - [ ] [https://admin.exchange.microsoft.com](https://admin.exchange.microsoft.com) -- Exchange admin center
 - [ ] [https://entra.microsoft.com](https://entra.microsoft.com) -- Microsoft Entra admin center
@@ -241,7 +241,7 @@ Sign in to each portal and leave the tabs open. This eliminates sign-in delays w
 
 **Fix:**
 1. Sign in to [https://entra.microsoft.com](https://entra.microsoft.com).
-2. Go to **Identity > Users > All users** and select your admin account.
+2. Go to **Entra ID > Users** and select your admin account.
 3. Select **Assigned roles** and confirm **Global Administrator** is listed.
 4. If it is not, go to **Roles & admins > All roles**, find **Global Administrator**, and add your account.
 5. Sign out and sign back in to all portals to pick up the updated token.

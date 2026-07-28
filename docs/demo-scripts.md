@@ -469,7 +469,7 @@ Microsoft has **NOT** published a retirement date for the classic experience. Do
 
    > "From here you see every user who holds this license, and you can add or remove users. The monthly model is straightforward: thirty dollars per user per month paid yearly, thirty-one fifty if you pay monthly, and the user gets Copilot across Word, Excel, PowerPoint, Outlook, Teams, and Microsoft 365 Copilot Chat."
 
-   > "Two variations worth naming. **Microsoft 365 Copilot Business** is the small and midsize SKU. List price twenty-one dollars, currently eighteen under a promotion Microsoft extended through December of this year, capped at three hundred seats, annual commitment only. Microsoft says flatly that it delivers the same capabilities as the enterprise offering, so the difference is price and eligibility, not features. And **Microsoft 365 E7**, which went GA on May 1, includes Copilot in the base SKU, so an E7 customer never buys the add-on."
+   > "Two variations worth naming. **Microsoft 365 Copilot Business** is the small and midsize SKU. List price twenty-one dollars, currently eighteen under a promotion Microsoft extended through December of this year, capped at three hundred seats, sold on an annual commitment with either annual or monthly billing. Microsoft says flatly that it delivers the same capabilities as the enterprise offering, so the difference is price and eligibility, not features. And **Microsoft 365 E7**, which went GA on May 1, includes Copilot in the base SKU, so an E7 customer never buys the add-on."
 
 3. Navigate to Users > Active users, select a test user, and open the **Licenses and apps** tab.
 

@@ -134,7 +134,7 @@
 
 | Role | What it grants |
 |------|----------------|
-| **AI Administrator** | Accesses Copilot reports in the Microsoft 365 admin center; enables and delegates the Copilot Dashboard |
+| **AI Administrator** | Accesses Copilot reports in the Microsoft 365 admin center. NOTE: the dedicated admin-center control to enable the Copilot Dashboard was REMOVED; dashboard access is now governed by enabling or disabling the Viva Insights web app |
 | **Global Administrator** | Assigns the Insights Analyst and Insights Administrator roles |
 | **Insights Analyst** | Uses the Advanced Insights Analyst Workbench to build Copilot Power BI templates |
 | **Insights Administrator** | Manages settings in the Analyst Workbench (security, privacy, org data uploads) |
@@ -205,7 +205,7 @@
 ### Admin Roles and Permissions
 - Do **NOT** rely on Global Administrator. Microsoft describes Global Administrator as "a highly privileged role" whose use should be limited to emergency scenarios when a lower-privileged role cannot be used. Least privilege is the answer posture AB-900 items expect.
 - Key roles:
-  - **AI Administrator:** the primary Copilot and agent administration role. Accesses Copilot reports in the Microsoft 365 admin center, enables and delegates the Copilot Dashboard, manages pay-as-you-go billing, and performs agent governance actions such as approving agent requests and assigning ownership.
+  - **AI Administrator:** the primary Copilot and agent administration role. Accesses Copilot reports in the Microsoft 365 admin center, manages pay-as-you-go billing, and performs agent governance actions such as approving agent requests and assigning ownership. Microsoft states that the previous controls to manage Copilot Dashboard access from the Microsoft 365 admin center or PowerShell "are no longer available"; access is now governed by enabling or disabling the **Viva Insights web app**, which is ON by default.
   - **Billing Administrator:** can create and manage Copilot pay-as-you-go billing policies
   - **Helpdesk Administrator:** password resets only
   - **License Administrator:** assign and remove licenses without broader tenant access
