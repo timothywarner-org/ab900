@@ -70,6 +70,17 @@ web_modules/
 .env.*
 !.env.example
 
+# Credential material. This is a public teaching repo -- nothing here should ever
+# hold a private key, certificate, or downloaded publish profile.
+*.pem
+*.pfx
+*.p12
+*.key
+*.publishsettings
+id_rsa
+id_rsa.*
+*.credentials.json
+
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 .parcel-cache
