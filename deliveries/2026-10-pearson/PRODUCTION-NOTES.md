@@ -89,3 +89,39 @@ Copilot Studio did not reach a stable authoring page: the existing Tim account f
 | Claude review handoff | Codex prepared; Claude acceptance pending | Detailed CLAUDE-HANDOFF.md prepared for Tim to copy; Claude records accepted, amended, or deferred disposition before taking ownership | Tim pastes the handoff into Claude |
 
 The completion distinction is intentional: files are prepared and checked, safe read-only tenant observations are recorded, and live gates are explicit. A fallback walkthrough does not count as a completed live demonstration. No publisher upload, email send, or public Git push occurred.
+
+## Claude last-mile review and v04, October 19, 2026 (Central)
+
+Tim asked Claude to finish delivery to the publisher, with explicit permission to disagree with Codex. Claude reviewed v03 slide by slide, ran the voice linter on the live notes, and had a separate agent check every source link and the main factual claims against current Microsoft Learn.
+
+**v04 replaces v03 as the active deck.** It was built by patching only the affected slide and notes XML parts of v03. Every other package part is byte-identical, and animation timing and run formatting match v03 on all 36 slides. The v03 bytes, the previous audience PDF, Speaker-Notes.html, START-HERE.html, manifests, ZIP and receipts are preserved with SHA-256 hashes in `.pearson-build/2026-10/superseded/v03-20261019/`.
+
+| Change | Slides | Reason |
+|---|---|---|
+| "it'sn't" and "We'ren't" corrected to "it isn't" and "We aren't" | Notes 16, 27, 28, 29 | The build's contraction pass broke these words; Tim reads the notes aloud. Voice lint now reports zero errors (v03 had two) |
+| "does not" changed to "doesn't" on audience-facing lines | 11, 13, 31 and their TAKEAWAY notes | Tim's voice rules ban uncontracted negations |
+| "Viva Copilot Dashboard" renamed "Microsoft Copilot Dashboard" | 16 face and notes | Current Learn names it the Microsoft Copilot Dashboard under Copilot Analytics |
+| "Tim Warner \| TechTrainerTim.com" on the closing slide | 36 | Tim's contact belongs on his decks; v03 had none |
+
+The same text fixes were carried into `instructor/Speaker-Notes.html`, `authoring/course-content.mjs` (apostrophes escaped inside single-quoted literals; `node --check` passes), and the private build inputs `course-content.json` and `spoken.txt`. The audience PDF was re-exported from v04 through PowerPoint with hidden slides excluded. `verify-handoff-v04.py` (Codex's verifier with the v04 name and without the v03 finalize receipt) and `package-handoff.py` both passed: 36 slides, 36 notes, six hidden polls, a 30-page audience PDF, 13 companion PDF pages, 26 local links with none broken, 120 planned minutes, and a 16-entry ZIP that matches MANIFEST.json. v04 SHA-256: `20847e114189f5c24d99c56a058bfb03ba1ebd3a6f8a1ea3cfb4b084578e07f8`.
+
+**Known build defect, deferred.** The contraction substitutions near the end of `authoring/course-content.mjs` turn "it's not" and "We're not" into broken words. A rebuild through that pipeline will reintroduce them. Trigger: fix the substitution list before any rebuild.
+
+**Fact check, October 19.** All source links resolve, and one redirects (the architecture page now lives under `/microsoft-365/copilot/`). Confirmed: the 24-hour license delay, budget alerts that don't stop usage, the DLP location, label condition, prevent-processing action and citation behavior, the Agents > All agents > Requests path, no publishing on a Studio trial, and uploaded knowledge visible to everyone who chats with the agent (the stronger source is `microsoft-copilot-studio/nlu-documents#uploading-a-file`). Items for rehearsal, not slide changes:
+
+- The approval button in the admin center reads **Publish to store**, not Approve.
+- Copilot Studio's quickstart now has makers turn off **New experience** to reach the standard authoring view.
+- Blocking sensitive information types in typed prompts is in **preview**, and DLP doesn't scan files uploaded into a prompt. Say both if asked.
+- Purview now calls the older experiences **DSPM (classic)** and **DSPM for AI (classic)**; the current product is Data Security Posture Management (DSPM).
+- Licensing changes on December 1, 2026 (no base subscription required for new offers). The slide is accurate for October 27.
+- The public `timothywarner-org/ab900` repository, named on slide 34, still describes itself as O'Reilly Live Learning material. Tim decides whether to retitle it before Pearson attendees visit.
+
+**Disposition of Codex's proposed follow-ups**
+
+| Follow-up | Disposition |
+|---|---|
+| 1. Studio sign-in, entitlement, T01-T08 | Accepted, Claude as rehearsal operator with Tim present for sign-in. Trigger: next prep session before October 21 |
+| 2. DLP fixture and controlled retest | Accepted on the same terms. Trigger: before the live policy demo is called ready |
+| 3. SharePoint report capability and evidence | Accepted on the same terms. Trigger: before the live report demo is called ready |
+| 4. Timed rehearsal and October 21 producer check | Accepted; Tim owns the timing and the producer call |
+| 5. Package review before external delivery | Amended: Pearson asked for the deck, so the delivery email draft attaches only v04 (polls are hidden slides 2-7). The ZIP stays the production handoff. Tim reviews and sends the draft |

@@ -2,8 +2,8 @@
   "engagement": "Pearson Copilot and Agent Administration Fundamentals",
   "sessionDate": "2026-10-27",
   "localRoot": "C:\\github\\ab900\\deliveries\\2026-10-pearson\\handoff-v1",
-  "deck": "Warner-Copilot-Agent-Administration-Pearson-2026-10-27-v03.pptx",
-  "deckSha256": "cf8b84261558bededa8231b5cb5f0caf015d136ec8248fdc443ca97ab15b2239",
+  "deck": "Warner-Copilot-Agent-Administration-Pearson-2026-10-27-v04.pptx",
+  "deckSha256": "20847e114189f5c24d99c56a058bfb03ba1ebd3a6f8a1ea3cfb4b084578e07f8",
   "audiencePdf": "Warner-Copilot-Agent-Administration-Slides.pdf",
   "entryPoint": "START-HERE.html",
   "slides": 36,
@@ -31,8 +31,8 @@
     },
     {
       "path": "instructor/Speaker-Notes.html",
-      "sha256": "ad7daab667cc3597fea2d92f2f4dbdc182a95de19024dcc52e67c5617682aa25",
-      "bytes": 27789
+      "sha256": "287a2ad3c4bacd9d305279b8d484b6051e0fb4f0f26f524c3984a0824c061fa4",
+      "bytes": 27778
     },
     {
       "path": "instructor/Technical-Prep.html",
@@ -81,18 +81,18 @@
     },
     {
       "path": "START-HERE.html",
-      "sha256": "b81a702325da5e7b95afac5b3d5f44b7498f33abe367b80bab65e03fcd914b1f",
+      "sha256": "4ee2a0c196b1307a7a9d91037ca3ac05ee621643adb13802689c19e6fa694201",
       "bytes": 4033
     },
     {
-      "path": "Warner-Copilot-Agent-Administration-Pearson-2026-10-27-v03.pptx",
-      "sha256": "cf8b84261558bededa8231b5cb5f0caf015d136ec8248fdc443ca97ab15b2239",
-      "bytes": 5696282
+      "path": "Warner-Copilot-Agent-Administration-Pearson-2026-10-27-v04.pptx",
+      "sha256": "20847e114189f5c24d99c56a058bfb03ba1ebd3a6f8a1ea3cfb4b084578e07f8",
+      "bytes": 5698328
     },
     {
       "path": "Warner-Copilot-Agent-Administration-Slides.pdf",
-      "sha256": "dcf853c75750b10b8efe677172db3bb17851486e26305f8e508f0ae303dde498",
-      "bytes": 425700
+      "sha256": "fb5340e6a785b75c65aacf0e90d7c8f1da59ec9ea87d46e4f6d4871150e62e3f",
+      "bytes": 425827
     }
   ]
 }
