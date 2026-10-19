@@ -163,3 +163,6 @@ vite.config.ts.timestamp-*
 deliveries/2026-10-pearson/handoff-v1/
 deliveries/2026-10-pearson/*.zip
 deliveries/2026-10-pearson/CLAUDE-HANDOFF.md
+
+# Private Pearson repository metadata (second Git repo over this folder; see deliveries/2026-10-pearson/README.md).
+.git-pearson/

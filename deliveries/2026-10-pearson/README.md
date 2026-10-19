@@ -23,8 +23,10 @@ The delivery contains 36 slides: 30 audience slides and six hidden producer poll
 
 `authoring/` holds the content model. `learner-resources/` holds source fixtures. Publisher-branded files are local under ignored `handoff-v1/`; private build and validation evidence is under ignored `.pearson-build/2026-10/` at the repository root.
 
+**Private record.** Every file in this folder and in `.pearson-build/2026-10/` (except `node_modules` and caches) is tracked in the private repository `timothywarner-org/ab900-pearson`. It uses a second Git directory, `.git-pearson`, over this same working folder, so nothing is copied. Commit and push it with `pwsh -NoProfile -ExecutionPolicy Bypass -File C:\Scripts\Sync-PearsonPrivateRepo.ps1`. The public `.gitignore` excludes `.git-pearson/`; never add it or the private paths to this public repo.
+
 ## Completion boundaries
 
 The production record is `PRODUCTION-NOTES.md`. Keep artifact validation, tenant configuration, observed behavior, instructor rehearsal, platform rehearsal, and external delivery separate. The initial starter test matrix is deliberately marked NOT RUN. Do not turn those rows into PASS based on expected answers.
 
-Tim explicitly said Claude is working on the other deck and that its reply to Laura is staged but unsent. This work does not authorize changing or sending that reply. The separate Markdown handoff records the proposed follow-up for Claude; it does not claim Claude has accepted it.
+**Delivery status, October 19, 2026:** deck v04 and the learner handouts were sent to the publisher. Claude's review, the v04 changes, and its disposition of Codex's follow-ups are in `PRODUCTION-NOTES.md`; the message record is in the private repo under `.pearson-build/2026-10/correspondence/`. Live-demo rehearsal remains open.

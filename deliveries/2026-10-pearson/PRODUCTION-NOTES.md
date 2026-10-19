@@ -136,3 +136,12 @@ After the deck went out, the publisher asked for the handouts. A last-mile check
 - Checks: `render-pdfs.py` page counts unchanged; the voice linter reports zero errors on the learner PDF text; first pages inspected as rendered images; `verify-handoff-v04.py` and `package-handoff.py` PASS. The ZIP's SHA-256 is recorded in `zip-validation.json`.
 - Not changed: the agent fixture files (service guide, instructions, test cases, sharing report). Their wording is test data the T01-T08 cases depend on, not Tim's narration.
 - Sent to the publisher as a draft for Tim to review: the 30-page audience slides PDF, the four handout PDFs, and a starter-files ZIP holding the four fixture files. The instructor folder stays with Tim and the producer.
+
+## Delivery and private record, October 19, 2026
+
+- **15:25 Central:** Tim sent deck v04 to the publisher (SHA-256 `20847e11...e07f8`).
+- **17:09 Central:** Claude sent the learner handouts at Tim's instruction: the audience slides PDF, the four handout PDFs, and a starter-files ZIP. Each attachment's hash is in the private correspondence record.
+- **Private repository:** Tim asked for every file and every word of this engagement to be tracked and pushed. Because `timothywarner-org/ab900` is public, Tim chose a new private repository, `timothywarner-org/ab900-pearson`. It tracks all of `deliveries/2026-10-pearson/` and `.pearson-build/2026-10/` except dependency and cache folders, which a lockfile or rerun recreates.
+  - **How it works:** a second Git directory, `.git-pearson`, over this same working folder, so nothing is copied or duplicated.
+  - **Sync and verify:** `C:\Scripts\Sync-PearsonPrivateRepo.ps1` (a copy is in `.pearson-build/2026-10/tools/`). It force-adds the private paths, scans for credentials, commits, pushes, and reads back ahead/behind.
+  - **Guards:** it refuses a remote GitHub reports as public, and the public `.gitignore` excludes `.git-pearson/`.
