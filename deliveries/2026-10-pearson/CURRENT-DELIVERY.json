@@ -21,13 +21,13 @@
   "artifacts": [
     {
       "path": "instructor/Demo-Runbook.html",
-      "sha256": "98536f5b9f7652661b1d1e1c83df6f567ced562c16887fbcdfab09a432aad271",
-      "bytes": 15115
+      "sha256": "8d98b0ceaaf4f7313bee0c1d74982de59420fefecb7b07bea2ad9ba58f361040",
+      "bytes": 15215
     },
     {
       "path": "instructor/Producer-Polls.pdf",
-      "sha256": "65136329baa1fa3a626728e9b3a987bb7f2b670149d95adf0b5d33e0a48dbdea",
-      "bytes": 75590
+      "sha256": "689267716ff48292511d1053c93edc465ffb51c849b3a43ecf5f5a1659fb5a2c",
+      "bytes": 77014
     },
     {
       "path": "instructor/Speaker-Notes.html",
@@ -36,28 +36,28 @@
     },
     {
       "path": "instructor/Technical-Prep.html",
-      "sha256": "350167e9a00996356317888a06ca4ad2423abe3617c1ea80ce7c87f5f115a83a",
-      "bytes": 9024
+      "sha256": "d602fbdc6bb8db487b391b6728f0555dd93268e86f7088d410ff8a7e9b6719ff",
+      "bytes": 9064
     },
     {
       "path": "learner-resources/01-Admin-Portal-Map.pdf",
-      "sha256": "95f14361557b2af25f4b20197ba1e2b658378e4999b9016a0885f3c1abd28cf8",
-      "bytes": 80463
+      "sha256": "265776fd1964070b47392a2b61d210e35eb2c235f4554712d9b20aa1adbc01ca",
+      "bytes": 81847
     },
     {
       "path": "learner-resources/02-Admin-and-Purview-Walkthrough.pdf",
-      "sha256": "5572edd5cfd6a2395327ffb19cc6df1ae52a59fb1c65c1a4eaf27529794bd9e9",
-      "bytes": 84567
+      "sha256": "bb39e9f4e6c5766df2043c8e0d2ac71007f0a3a76258ea0ec69df58df996a269",
+      "bytes": 85926
     },
     {
       "path": "learner-resources/03-Sample-DLP-and-DSPM-Configurations.pdf",
-      "sha256": "57a0891babc62daffe16febbefe617162b3b28afaa8ba3be73222da0f5427327",
-      "bytes": 78390
+      "sha256": "85fb67fd9d30354872bdc865bc08531316c53da4e71630fe7d119f999770e85a",
+      "bytes": 79753
     },
     {
       "path": "learner-resources/04-Starter-Agent-Configuration.pdf",
-      "sha256": "21bf3d78eeaf008982305f975b0c82bc6f51febdf8cb3a1efd35f4b51259869c",
-      "bytes": 81965
+      "sha256": "c8932ebc5e61f8ffde6ab76651af1a7b87385cced5e3fae75fb0fe642d5fe9ce",
+      "bytes": 83321
     },
     {
       "path": "learner-resources/agent-instructions.txt",
@@ -81,8 +81,8 @@
     },
     {
       "path": "START-HERE.html",
-      "sha256": "4ee2a0c196b1307a7a9d91037ca3ac05ee621643adb13802689c19e6fa694201",
-      "bytes": 4033
+      "sha256": "e8db3a2e16dcc934072e71faa9cd8add3f6499d8d438f7e027da619c4c01de5a",
+      "bytes": 4026
     },
     {
       "path": "Warner-Copilot-Agent-Administration-Pearson-2026-10-27-v04.pptx",

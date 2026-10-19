@@ -125,3 +125,14 @@ The same text fixes were carried into `instructor/Speaker-Notes.html`, `authorin
 | 3. SharePoint report capability and evidence | Accepted on the same terms. Trigger: before the live report demo is called ready |
 | 4. Timed rehearsal and October 21 producer check | Accepted; Tim owns the timing and the producer call |
 | 5. Package review before external delivery | Amended: Pearson asked for the deck, so the delivery email draft attaches only v04 (polls are hidden slides 2-7). The ZIP stays the production handoff. Tim reviews and sends the draft |
+
+## Handout rebuild for the publisher, October 19, 2026 (Central, evening)
+
+After the deck went out, the publisher asked for the handouts. A last-mile check of the learner PDFs found uncontracted negations throughout, plus two stale names: "Copilot Dashboard in Viva Insights" (now Microsoft Copilot Dashboard) and "DSPM for AI classic" (Learn writes "DSPM for AI (classic)"). The DLP handout title now reads "Sample DLP and DSPM configurations", which matches its file name.
+
+- Fixed in the source: `authoring/handouts.json` (39 edits) and `authoring/support-content.json` (10 edits). Only the words changed; the files keep their original layout, and both still parse as JSON.
+- Rebuilt with `build-handouts-v04.py`, a copy of `build-handouts.py` that differs only in linking START-HERE to the v04 deck.
+- Preserved first, with hashes: the earlier files are in `.pearson-build/2026-10/superseded/handouts-pre-20261019/`.
+- Checks: `render-pdfs.py` page counts unchanged; the voice linter reports zero errors on the learner PDF text; first pages inspected as rendered images; `verify-handoff-v04.py` and `package-handoff.py` PASS. The ZIP's SHA-256 is recorded in `zip-validation.json`.
+- Not changed: the agent fixture files (service guide, instructions, test cases, sharing report). Their wording is test data the T01-T08 cases depend on, not Tim's narration.
+- Sent to the publisher as a draft for Tim to review: the 30-page audience slides PDF, the four handout PDFs, and a starter-files ZIP holding the four fixture files. The instructor folder stays with Tim and the producer.
