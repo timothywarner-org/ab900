@@ -145,3 +145,7 @@ After the deck went out, the publisher asked for the handouts. A last-mile check
   - **How it works:** a second Git directory, `.git-pearson`, over this same working folder, so nothing is copied or duplicated.
   - **Sync and verify:** `C:\Scripts\Sync-PearsonPrivateRepo.ps1` (a copy is in `.pearson-build/2026-10/tools/`). It force-adds the private paths, scans for credentials, commits, pushes, and reads back ahead/behind.
   - **Guards:** it refuses a remote GitHub reports as public, and the public `.gitignore` excludes `.git-pearson/`.
+
+## Public repository retitle, October 19, 2026 (17:20 Central)
+
+At Tim's direction, the public `timothywarner-org/ab900` repository no longer presents itself as O'Reilly material, because slide 34 sends Pearson attendees there. The GitHub description changed from "O'Reilly Live Learning course materials" to "Tim Warner's Copilot and agent administration course materials", and the README tagline now reads "Copilot and agent administration course repository + AI-powered study buddy". README sections that document the July O'Reilly session are unchanged.

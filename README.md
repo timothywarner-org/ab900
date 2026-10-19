@@ -4,7 +4,7 @@
 
 # AB-900: Microsoft 365 Copilot and Agent Administration Fundamentals
 
-**O'Reilly Live Learning course repository + AI-powered study buddy**
+**Copilot and agent administration course repository + AI-powered study buddy**
 
 [![Website](https://img.shields.io/badge/TechTrainerTim.com-0078D4?style=for-the-badge&logo=microsoft-edge&logoColor=white)](https://techtrainertim.com)
 [![GitHub](https://img.shields.io/badge/timothywarner-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/timothywarner)
