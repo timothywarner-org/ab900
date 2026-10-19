@@ -17,6 +17,8 @@
 
 This repository contains instructor materials for the O'Reilly Live Learning session on AB-900, plus an embedded GitHub Copilot study companion that generates exam-realistic practice questions, scenario walkthroughs, and personalized study plans.
 
+**Pearson October 27, 2026:** The separate two-hour **Copilot and Agent Administration Fundamentals** engagement is documented in [the Pearson delivery index](deliveries/2026-10-pearson/README.md). Its learner resources and authoring content preserve that proposal's scope. The July O'Reilly deck remains the authority for the earlier longer course. Publisher-branded binaries are held in the local handoff folder, outside the public Git payload.
+
 > **Currency:** Aligned to the **Skills measured as of July 22, 2026** version of the AB-900 study guide. Content last reviewed **July 26, 2026** for the July 28, 2026 live delivery.
 
 ---

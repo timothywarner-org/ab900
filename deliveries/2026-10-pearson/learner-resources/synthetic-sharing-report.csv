@@ -1,0 +1,3 @@
+EvidenceType,Site,ReportType,Finding,IntendedAudience,Owner,ProposedAction
+SYNTHETIC EXERCISE - NOT TENANT EVIDENCE,Contoso ServiceHub,Site permissions snapshot,Everyone except external users has read access,Service Team only,Kim Akers,Review and remove excess access through approved process then retest
+SYNTHETIC EXERCISE - NOT TENANT EVIDENCE,Contoso ServiceHub,Sharing-link activity,No new broad links in the selected 28-day window,Service Team only,Kim Akers,Do not infer that existing broad permissions are absent

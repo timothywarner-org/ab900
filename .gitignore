@@ -157,3 +157,9 @@ vite.config.ts.timestamp-*
 # Local backups written by Compress-DeckImages.ps1. Git history is the archive,
 # and these are multi-megabyte binaries that would bloat the repo permanently.
 *.pptx.bak
+
+# Local Pearson source correspondence, template staging, and render evidence stay private.
+.pearson-build/
+deliveries/2026-10-pearson/handoff-v1/
+deliveries/2026-10-pearson/*.zip
+deliveries/2026-10-pearson/CLAUDE-HANDOFF.md

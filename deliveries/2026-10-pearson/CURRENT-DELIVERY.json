@@ -1,0 +1,98 @@
+{
+  "engagement": "Pearson Copilot and Agent Administration Fundamentals",
+  "sessionDate": "2026-10-27",
+  "localRoot": "C:\\github\\ab900\\deliveries\\2026-10-pearson\\handoff-v1",
+  "deck": "Warner-Copilot-Agent-Administration-Pearson-2026-10-27-v03.pptx",
+  "deckSha256": "cf8b84261558bededa8231b5cb5f0caf015d136ec8248fdc443ca97ab15b2239",
+  "audiencePdf": "Warner-Copilot-Agent-Administration-Slides.pdf",
+  "entryPoint": "START-HERE.html",
+  "slides": 36,
+  "hiddenSlides": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "plannedMinutes": 120,
+  "liveRehearsal": "NOT COMPLETE",
+  "published": false,
+  "artifacts": [
+    {
+      "path": "instructor/Demo-Runbook.html",
+      "sha256": "98536f5b9f7652661b1d1e1c83df6f567ced562c16887fbcdfab09a432aad271",
+      "bytes": 15115
+    },
+    {
+      "path": "instructor/Producer-Polls.pdf",
+      "sha256": "65136329baa1fa3a626728e9b3a987bb7f2b670149d95adf0b5d33e0a48dbdea",
+      "bytes": 75590
+    },
+    {
+      "path": "instructor/Speaker-Notes.html",
+      "sha256": "ad7daab667cc3597fea2d92f2f4dbdc182a95de19024dcc52e67c5617682aa25",
+      "bytes": 27789
+    },
+    {
+      "path": "instructor/Technical-Prep.html",
+      "sha256": "350167e9a00996356317888a06ca4ad2423abe3617c1ea80ce7c87f5f115a83a",
+      "bytes": 9024
+    },
+    {
+      "path": "learner-resources/01-Admin-Portal-Map.pdf",
+      "sha256": "95f14361557b2af25f4b20197ba1e2b658378e4999b9016a0885f3c1abd28cf8",
+      "bytes": 80463
+    },
+    {
+      "path": "learner-resources/02-Admin-and-Purview-Walkthrough.pdf",
+      "sha256": "5572edd5cfd6a2395327ffb19cc6df1ae52a59fb1c65c1a4eaf27529794bd9e9",
+      "bytes": 84567
+    },
+    {
+      "path": "learner-resources/03-Sample-DLP-and-DSPM-Configurations.pdf",
+      "sha256": "57a0891babc62daffe16febbefe617162b3b28afaa8ba3be73222da0f5427327",
+      "bytes": 78390
+    },
+    {
+      "path": "learner-resources/04-Starter-Agent-Configuration.pdf",
+      "sha256": "21bf3d78eeaf008982305f975b0c82bc6f51febdf8cb3a1efd35f4b51259869c",
+      "bytes": 81965
+    },
+    {
+      "path": "learner-resources/agent-instructions.txt",
+      "sha256": "c470cc70c60ee62c89f4165ed0abb2409a09d81142be1b2bb9425e4f222b5e8d",
+      "bytes": 1189
+    },
+    {
+      "path": "learner-resources/agent-test-cases.csv",
+      "sha256": "728bc15685b905c3de02444872e4d381bd018176d4dd0ed08177fd095b799008",
+      "bytes": 1567
+    },
+    {
+      "path": "learner-resources/contoso-service-guide.txt",
+      "sha256": "f08734fc93f8b3f30e2d36eeecdccfc7d509f1f56337e183adad9bfbc358c951",
+      "bytes": 2524
+    },
+    {
+      "path": "learner-resources/synthetic-sharing-report.csv",
+      "sha256": "f2a0af2d51b79fe7d20b3316f8edae0a44f1b58abf8adfcb0a85a7ea1938bd9b",
+      "bytes": 520
+    },
+    {
+      "path": "START-HERE.html",
+      "sha256": "b81a702325da5e7b95afac5b3d5f44b7498f33abe367b80bab65e03fcd914b1f",
+      "bytes": 4033
+    },
+    {
+      "path": "Warner-Copilot-Agent-Administration-Pearson-2026-10-27-v03.pptx",
+      "sha256": "cf8b84261558bededa8231b5cb5f0caf015d136ec8248fdc443ca97ab15b2239",
+      "bytes": 5696282
+    },
+    {
+      "path": "Warner-Copilot-Agent-Administration-Slides.pdf",
+      "sha256": "dcf853c75750b10b8efe677172db3bb17851486e26305f8e508f0ae303dde498",
+      "bytes": 425700
+    }
+  ]
+}
