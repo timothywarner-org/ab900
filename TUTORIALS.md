@@ -212,9 +212,11 @@ against the source, and look at what publishing would require.
 6. Compare every answer with the guide itself, and write the actual answer, agent
    version, and date in the **Observed result** column. An expected answer is not an
    observed one.
-7. Go to **Channels > Teams and Microsoft 365 Copilot** and read the availability
-   options and the organization review route. Do not submit unless the environment is
-   licensed and the release is authorized.
+7. Go to **Channels** and open the **Teams and Microsoft Copilot** channel. Microsoft
+   Learn labels this channel a few different ways, so pick the Teams and Copilot
+   channel your tenant shows. Read the availability options and the organization
+   review route. Do not submit unless the environment is licensed and the release is
+   authorized.
 
 **Quick quiz.** Can you publish this agent from a trial environment? **No.** Trial
 authoring lets you build and test, but it cannot publish.
@@ -245,8 +247,10 @@ it ships.
 
 **What to remember:**
 
-- Only the **AI Administrator** and **Global Administrator** roles can approve agent
-  requests.
+- In the Microsoft 365 admin center, only the **AI Administrator** and
+  **Global Administrator** roles can approve agent requests. Agents sent to the Teams
+  store can also be approved in the Teams admin center under
+  **Teams apps > Manage apps**.
 - Approval says the agent was reviewed for distribution to an audience. It does not
   grant anyone access to the sources underneath, it does not make the answers accurate,
   and it does not replace DLP and labeling.
@@ -254,6 +258,8 @@ it ships.
   source or capability change.
 
 Sources: [Agent requests](https://learn.microsoft.com/microsoft-365/admin/manage/agent-requests),
+[Approve custom apps in the Teams admin center](https://learn.microsoft.com/microsoftteams/submit-approve-custom-apps),
+[Teams and Microsoft Copilot channel](https://learn.microsoft.com/microsoft-copilot-studio/publication-add-bot-to-microsoft-teams),
 [Agent management roles and permissions](https://learn.microsoft.com/microsoft-365/admin/manage/agent-roles-perms),
 [Agent Registry](https://learn.microsoft.com/microsoft-365/admin/manage/agent-registry),
 [Microsoft Agent 365 overview](https://learn.microsoft.com/microsoft-agent-365/overview).
