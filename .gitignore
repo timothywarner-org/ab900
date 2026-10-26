@@ -158,9 +158,8 @@ vite.config.ts.timestamp-*
 # and these are multi-megabyte binaries that would bloat the repo permanently.
 *.pptx.bak
 
-# Local Pearson source correspondence, template staging, render evidence, and the whole
-# October 2026 delivery folder stay private. They're tracked in the private ab900-pearson
-# repo through .git-pearson. The learner-facing copies live in starter-files/ instead.
+# Local publisher files, build evidence, and the October 2026 delivery folder stay out of
+# this public repository. The learner-facing copies live in starter-files/ instead.
 .pearson-build/
 /deliveries/2026-10-pearson/
 

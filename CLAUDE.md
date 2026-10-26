@@ -310,24 +310,18 @@ Also note that the non-ASCII rule flags en dashes, but the official AB-900 study
 
 ## Provisioning Boundary (what can and cannot be automated)
 
-Established July 27, 2026 against Tim's techtrainertim.com tenant. Do not re-derive this.
+Established July 27, 2026 against the instructor demo tenant. Do not re-derive this.
 
 - **Microsoft Purview compliance solutions are NOT Azure resources.** DLP, sensitivity labels, retention, and DSPM for AI are Microsoft 365 tenant features provisioned by licensing. There is no ARM template and no `az` command. The Azure resource type `Microsoft.Purview/accounts` is a **different product** (data governance for Azure data estates) and is **NOT** on the AB-900 exam.
 - **The scripted path is PowerShell, not MCP.** Use `Connect-IPPSSession` from the **ExchangeOnlineManagement** module for Purview compliance objects, and the Microsoft Graph PowerShell SDK for identity and licensing. `Connect-ExchangeOnline` does **NOT** expose the DLP, label, or retention cmdlets -- that mistake produces "term not recognized" errors.
 - **Genuinely portal-only, no documented PowerShell:** DSPM for AI, Compliance Manager, Insider Risk Management, Communication Compliance, Data Explorer, Activity Explorer, the agent approval queue, and Copilot pay-as-you-go billing.
 - **ExchangeOnlineManagement version floor is 3.2.0** (full REST support for Security & Compliance began there). Do **NOT** chase the newest module before a delivery: 3.5.0 to 3.9.2 need PowerShell 7.4.0+, while 3.10.0+ needs PowerShell 7.6.0+ for .NET 10 assemblies.
 
-### Azure OpenAI model deployment (cost real time to learn)
-
-`az cognitiveservices account list-models` returns models that **cannot be deployed**. The catalog's `deprecation.inference` date does **NOT** predict deployability -- as of July 2026 both `gpt-4o-mini` and `gpt-4.1-mini` advertise 2027 retirement yet are rejected with `ServiceModelDeprecating`. Separately, `gpt-5.4-mini` had zero quota in this subscription. Always walk a **fallback list** of candidates rather than trusting the catalog.
-
-**Reasoning-model smoke tests need a large token budget.** gpt-5 family models spend tokens on internal reasoning before emitting visible text. `max_completion_tokens: 60` returns an empty string and looks like a broken deployment. Budget 800 or more.
-
 ## Verification Discipline
 
 This repository is teaching material delivered live to paying learners. A confident wrong portal path is worse than an omission.
 
-**Adversarial verification is not optional for factual sweeps.** In two grounding passes this session, **33 of 44** and **8 of 28** proposed "corrections" were rejected by verifiers that re-fetched the cited Microsoft Learn page. Unverified single-pass edits inject errors at a high rate. When correcting facts at scale, have a second pass try to **refute** each change and default to REFUTED on uncertainty.
+**Adversarial verification is not optional for factual sweeps.** In two grounding passes in July 2026, **33 of 44** and **8 of 28** proposed "corrections" were rejected by verifiers that re-fetched the cited Microsoft Learn page. Unverified single-pass edits inject errors at a high rate. When correcting facts at scale, have a second pass try to **refute** each change and default to REFUTED on uncertainty.
 
 **Known Microsoft-side documentation conflicts.** These are real and currently live. Name the conflict rather than silently picking a side:
 
