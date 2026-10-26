@@ -1,12 +1,12 @@
 # Earlier edition: July 2026, four hours
 
-Before the two-hour Pearson class, this course ran as a four-hour O'Reilly Live Learning
-session. Its study notes, demo scripts, labs, and segment folders are kept here for
+Before the two-hour Pearson class, I taught this course as a four-hour O'Reilly Live
+Learning session. Its study notes, demo scripts, labs, and segment folders stay here for
 self-study. Back to the [course home](../../README.md).
 
-> **Currency:** This material was last reviewed **July 26, 2026** against the AB-900 study
-> guide dated **July 22, 2026**. The current study guide is dated **October 14, 2026**. Check
-> its [change log](https://learn.microsoft.com/credentials/certifications/resources/study-guides/ab-900)
+> **Currency:** I last reviewed this material on **July 26, 2026** against the AB-900
+> study guide dated **July 22, 2026**. The current study guide is dated **October 14, 2026**.
+> Check its [change log](https://learn.microsoft.com/credentials/certifications/resources/study-guides/ab-900)
 > before you rely on a dated detail here. For the current class, start with the
 > [course home](../../README.md) and the [tutorials](../../TUTORIALS.md).
 
@@ -24,10 +24,10 @@ self-study. Back to the [course home](../../README.md).
 Quick references from the same edition:
 
 - [Exam traps cheat sheet](docs/exam-traps-cheatsheet.md): common pitfalls, organized by task.
-- [New features deep dive](docs/new-features-deep-dive.md): DSPM, Researcher, Analyst, and Copilot Credits billing.
+- [What changed through July 2026](docs/new-features-deep-dive.md): DSPM, Researcher, Analyst, and Copilot Credits billing.
 - [Portal reference by exam domain](docs/portal-reference.md) and [portal cheat sheet by portal](docs/PORTAL-CHEAT-SHEET.md).
 - [Practice questions](shared-resources/references/AB-900-PRACTICE-QUESTIONS.md): 15 scenario-based questions, five per domain.
-- [Free official practice assessment](https://learn.microsoft.com/credentials/certifications/practice-assessments-for-microsoft-certifications). Microsoft notes that practice questions are not exam questions and do not reflect exam length.
+- [Free official practice assessment](https://learn.microsoft.com/credentials/certifications/practice-assessments-for-microsoft-certifications). Microsoft notes that practice questions aren't exam questions and don't reflect exam length.
 
 ## Demos and labs
 
@@ -38,8 +38,8 @@ Quick references from the same edition:
 
 ## Segment folders
 
-Each folder holds the demos, labs, slide notes, and official resources for one segment.
-The folders follow exam domain order.
+Each folder holds the demos, labs, slide notes, and official resources for one segment,
+in exam domain order.
 
 | Folder | Topic | Exam domain |
 | --- | --- | --- |
@@ -53,5 +53,5 @@ breakdown, PowerShell helpers for a lab tenant, and templates. [FAQ.md](FAQ.md) 
 [QUICKSTART.md](QUICKSTART.md) are the July edition's onboarding pages. For the study
 buddy, see the [study buddy page](../../docs/study-buddy.md).
 
-The July session plan, agenda, and slide deck are instructor materials. They are not part
-of this public repository.
+The July session plan, agenda, and slide deck are instructor materials, so they aren't
+in this public repository.

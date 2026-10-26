@@ -26,12 +26,14 @@ ROOT = Path(__file__).resolve().parents[1]
 
 # The learner front door. Each must be tracked and every local link in it must work.
 COURSE_HOME_DOCS = ["README.md", "TUTORIALS.md", "AGENTS.md", "NOTICE.md", "starter-files/README.md",
-                    "handouts/README.md", "evidence/README.md"]
-# Documents written for the Pearson course home, held to the repository writing rules
-# in full. README.md is checked from its byline to the end (see PEARSON_SECTION), so the
+                    "handouts/README.md", "evidence/README.md", "docs/certify.md", "docs/study-buddy.md",
+                    "docs/tenant-setup-guide.md", "archive/july-2026/README.md"]
+# Documents written for the Pearson course home in Tim's teaching voice, held to the
+# writing rules in full. README.md is checked from its byline to the end (see PEARSON_SECTION), so the
 # banner HTML and badge URLs above the byline are exempt.
 STRICT_DOCS = ["TUTORIALS.md", "AGENTS.md", "NOTICE.md", "starter-files/README.md", "handouts/README.md",
-               "evidence/README.md"]
+               "evidence/README.md", "docs/certify.md", "docs/study-buddy.md", "docs/tenant-setup-guide.md",
+               "archive/july-2026/README.md"]
 PEARSON_SECTION = (r"^Tim Warner \| Pearson Enterprise Live Training", r"\Z")
 
 # The series identity: every Pearson course repo ships the same two generated images, at
@@ -64,11 +66,21 @@ HANDOUTS = {
 TEST_HEADER = ["ID", "Category", "Prompt", "Acceptance criterion", "Observed result", "Status"]
 MARKER = "SERVICE-ORCHID-42"
 
-# Same list the repository's validate.yml uses, so local and CI agree.
-CONTRACTIONS = re.compile(
-    r"\b(don't|doesn't|won't|wouldn't|shouldn't|couldn't|isn't|aren't|wasn't|weren't|hasn't|"
-    r"haven't|hadn't|can't|it's|that's|there's|here's|what's|who's|let's|we're|they're|you're|"
-    r"I'm|we've|they've|you've|I've|we'll|they'll|you'll|I'll)\b", re.IGNORECASE)
+# Tim's teaching voice uses contractions. WHY flag "do not" and friends: an uncontracted
+# negation is the most reliable sign that a machine drafted the line, and it reads stiff
+# to a learner. Auxiliary plus "not" only, so "whether or not" stays legal. Exam-item
+# content (archive/july-2026/, .github/ prompts) keeps Microsoft's no-contraction style
+# and isn't checked here.
+UNCONTRACTED = re.compile(
+    r"\b(do|does|did|is|are|was|were|has|have|had|would|should|could|must|will|can|need)\s+not\b"
+    r"|\bcannot\b", re.IGNORECASE)
+# Filler that reads as machine-written. WHY a short list: each entry has a plain word that
+# says the same thing, so a hit is always fixable without losing meaning.
+AI_FILLER = re.compile(
+    r"\b(delv(e|es|ed|ing)|robust|crucial|seamless(ly)?|comprehensive|leverag(e|es|ed|ing)|"
+    r"utiliz(e|es|ed|ing)|game[- ]changer|cutting[- ]edge|tapestry|ever[- ]evolving|paramount|"
+    r"furthermore|moreover|in conclusion|key takeaways?|deep dive|here'?s the thing|"
+    r"it'?s worth noting|load[- ]bearing)\b", re.IGNORECASE)
 
 
 def require(condition: bool, message: str) -> None:
@@ -172,7 +184,7 @@ def check_documents(paths: list[str]) -> int:
 
 
 def check_writing_rules() -> int:
-    """Plain ASCII and no contractions, the rules validate.yml warns on for every Markdown file."""
+    """Plain ASCII, contracted negations, and no AI filler phrases in the course home."""
     texts = {name: (ROOT / name).read_text(encoding="utf-8") for name in STRICT_DOCS}
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     start = re.search(PEARSON_SECTION[0], readme, flags=re.MULTILINE)
@@ -185,9 +197,10 @@ def check_writing_rules() -> int:
             bad = [ch for ch in line if ord(ch) > 127]
             if bad:
                 require(False, f"Non-ASCII character {bad[0]!r} in {name}:{number}")
-            hit = CONTRACTIONS.search(line)
-            if hit:
-                require(False, f"Contraction {hit.group(0)!r} in {name}:{number}")
+            for pattern, label in ((UNCONTRACTED, "Uncontracted negation"), (AI_FILLER, "AI filler phrase")):
+                hit = pattern.search(line)
+                if hit:
+                    require(False, f"{label} {hit.group(0)!r} in {name}:{number}")
     return len(texts)
 
 
@@ -257,7 +270,7 @@ def main() -> int:
         brand = check_brand(paths)
         print(f"PASS: {len(COURSE_HOME_DOCS)} course-home documents and {links} local links/anchors checked.")
         print(f"PASS: {brand} series brand images at their sizes, with generator, spec, and evidence record.")
-        print(f"PASS: {docs} documents meet the ASCII and no-contraction rules.")
+        print(f"PASS: {docs} documents meet the ASCII and teaching-voice rules.")
         print(f"PASS: {starters} starter files present, ASCII, and intact.")
         print(f"PASS: {handouts} handouts match the copies Pearson distributes.")
         print(f"PASS: {len(paths)} tracked paths respect the public/private boundary.")

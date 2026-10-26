@@ -116,12 +116,13 @@ jobs:
         run: |
           echo "Checking for common contractions..."
           CONTRACTIONS="don't|doesn't|won't|wouldn't|shouldn't|couldn't|isn't|aren't|wasn't|weren't|hasn't|haven't|hadn't|can't|it's|that's|there's|here's|what's|who's|let's|we're|they're|you're|I'm|we've|they've|you've|I've|we'll|they'll|you'll|I'll"
-          # Path-scoped excludes. Only the style guide is exempt, because it must quote
-          # contractions in order to prohibit them. Previously CONTRIBUTING.md and
-          # fictional-companies.md were excluded by basename, which also silently exempted
-          # any same-named file anywhere in the archived July edition.
-          RESULTS=$(grep -rn --include="*.md" -iP "\b($CONTRACTIONS)\b" . \
-            --exclude-dir=".git" \
+          # Scope: exam-item content only, which follows Microsoft item-writing style.
+          # The course home (README, TUTORIALS, docs/, handouts, starter files, evidence)
+          # is written in Tim's teaching voice with contractions, and
+          # scripts/Test-CourseHome.py checks it instead. The style guide is exempt because
+          # it quotes contractions in order to prohibit them, and CONTRIBUTING.md because
+          # it describes both voices.
+          RESULTS=$(grep -rn --include="*.md" -iP "\b($CONTRACTIONS)\b" ./archive ./.github ./references \
             --exclude-dir="node_modules" \
             | grep -v '^\./references/style-guide\.md:' \
             | grep -v '^\./\.github/CONTRIBUTING\.md:' \

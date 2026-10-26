@@ -57,8 +57,8 @@ grep -rnE 'compliance\.microsoft\.com|Azure AD[^C]|\bAAD\b|Azure Active Director
 # 2. Non-ASCII punctuation -- MUST return zero
 python -c "import glob; [print(f) for f in glob.glob('**/*.md',recursive=True) if '.git' not in f and any(c in open(f,encoding='utf-8',errors='replace').read() for c in '\u2013\u2014\u2018\u2019\u201c\u201d')]"
 
-# 3. Contractions (excludes .github/CONTRIBUTING.md, style-guide.md, fictional-companies.md)
-grep -rnEi "\b(don't|isn't|doesn't|won't|can't|it's|you're|we're|that's|didn't|aren't)\b" --include="*.md" .
+# 3. Contractions in exam-item content only (the course home uses Tim's teaching voice)
+grep -rnEi "\b(don't|isn't|doesn't|won't|can't|it's|you're|we're|that's|didn't|aren't)\b" --include="*.md" archive .github references | grep -v -e '^\.github/CONTRIBUTING\.md:' -e '^references/style-guide\.md:'
 
 # 4. Broken internal links -- MUST return zero
 python -c "
@@ -203,10 +203,11 @@ The Azure MCP server is intentionally excluded. AB-900 is a Microsoft 365 admini
 - **Prompt files**: YAML frontmatter with `name`, `description`, `agent`, and `tools` fields followed by Markdown body.
 - **Agent files**: YAML frontmatter with `name`, `description`, `argument-hint`, and a `tools` list. Skills are referenced in the Markdown body, NOT in frontmatter. Tool IDs must match MCP server IDs from `.vscode/mcp.json`.
 - **Plain ASCII only** -- no curly quotes, no en dashes, no em dashes. Use straight quotes and `--`.
-- **No contractions** in any generated content.
+- **No contractions** in exam-item content: practice questions, walkthroughs, study plans, the study notes in `archive/july-2026/`, and `references/`. This follows Microsoft item-writing style.
+- **Tim's teaching voice** in the course home (`README.md`, `TUTORIALS.md`, `docs/`, `handouts/README.md`, `starter-files/README.md`, `evidence/README.md`): contractions, first person for Tim, direct "you" for the learner, the point first, and a reason for every claim. No AI filler (delve, robust, seamless, comprehensive, leverage, and the rest of the list in `scripts/Test-CourseHome.py`). The checker fails on uncontracted negations and on those phrases.
 - **Microsoft style** -- use official UI labels, sentence-style capitalization, and Microsoft instruction formatting.
 - **Current terminology only** -- never use deprecated Microsoft 365 product names or portal URLs. A full rename table lives in `copilot-instructions.md`.
-- Negatives only when required; if used, **CAP** + **bold** the negative word.
+- In exam items, negatives only when required; if used, **CAP** + **bold** the negative word. The course home doesn't use caps emphasis.
 - Distractors in questions must reference real Microsoft 365 services, portals, or settings (never invent fake ones).
 - **Rationale depth** -- every choice explanation must be exactly 2 sentences (why correct/incorrect + context).
 - **Fictional companies** -- use names from `references/fictional-companies.md` (Contoso, Fabrikam, Tailwind Traders, etc.) for scenario context in questions and walkthroughs.
@@ -254,7 +255,7 @@ The `validate.yml` workflow runs on PRs to main. It is non-blocking: the job set
 
 1. **Retired terminology** -- flags `compliance.microsoft.com`, `Azure AD`, `AAD`, `Azure Active Directory`, `AI hub`, `per message`, `Billing > Billing policies`, `Azure AI Studio` (excludes copilot-instructions.md, CLAUDE.md, .github/CONTRIBUTING.md, style-guide.md, fictional-companies.md)
 2. **Non-ASCII characters** -- curly quotes, em dashes, en dashes
-3. **Contractions** -- common contractions like don't, isn't, etc. (excludes .github/CONTRIBUTING.md, style-guide.md, fictional-companies.md)
+3. **Contractions** -- common contractions like don't, isn't, etc., in exam-item content only: `archive/`, `.github/` prompts, agents, and skills, and `references/` (excludes .github/CONTRIBUTING.md and style-guide.md)
 4. **Markdown link check** -- broken links via gaurav-nelson/github-action-markdown-link-check, configured by `.github/workflows/mlc-config.json`
 
 To check locally before pushing, grep for the retired terms pattern:

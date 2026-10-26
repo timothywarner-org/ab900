@@ -69,10 +69,10 @@ We welcome the following types of contributions:
 The `validate.yml` workflow greps every Markdown file for these. It is non-blocking, but findings should be resolved before merge.
 
 - **Plain ASCII only.** No curly quotes, no en dashes, no em dashes. Use straight quotes and `--`.
-- **No contractions.** Write "do not", not "don't". This file, `style-guide.md`, and `fictional-companies.md` are excluded from that check.
+- **Two voices.** The course home (`README.md`, `TUTORIALS.md`, `docs/`, and the READMEs in `handouts/`, `starter-files/`, and `evidence/`) is written in Tim's teaching voice: contractions, plain sentences, the point first, and no AI filler phrases. `scripts/Test-CourseHome.py` fails on uncontracted negations and banned phrases there. Exam-item content (`archive/july-2026/`, `.github/` prompts, agents, and skills, and `references/`) uses no contractions, following Microsoft item-writing style. This file and `style-guide.md` are excluded from that check.
 - **Microsoft Writing Style Guide.** Use official UI labels, sentence-style capitalization, and Microsoft instruction formatting.
 - **Current terminology only.** Never use retired product names or portal URLs. The full rename table is in `.github/copilot-instructions.md`, and the authoritative navigation paths are in the Portal Accuracy Rules section of `CLAUDE.md`.
-- **Negatives only when required.** If a negative is necessary, write it in CAPS and bold.
+- **Negatives in exam items only when required.** If a negative is necessary in a question stem, write it in CAPS and bold.
 - **No color-only signaling.** Differentiate with a label, shape, or position as well as color.
 - **Fictional companies only.** Use names from `references/fictional-companies.md` (Contoso, Fabrikam, Tailwind Traders) for scenario context.
 - **Practice question rationale** must be exactly 2 sentences per choice, and distractors must reference real Microsoft 365 services, portals, or settings.
@@ -102,7 +102,7 @@ Before submitting:
 - [ ] Confirm every portal navigation path matches the Portal Accuracy Rules in `CLAUDE.md`
 - [ ] Check all links work correctly
 - [ ] Run the retired-terminology grep above
-- [ ] Confirm no contractions, curly quotes, em dashes, or en dashes
+- [ ] Confirm no curly quotes, em dashes, or en dashes, and the right voice for the file (see House Style)
 - [ ] Ensure formatting is consistent
 - [ ] Review for typos and errors
 

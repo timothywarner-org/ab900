@@ -1,14 +1,14 @@
 # Starter files for the Contoso service assistant
 
 These four files are the synthetic material for the Pearson October 27, 2026 class
-**Copilot and Agent Administration Fundamentals**. Tim uses them in the live demos, and
+**Copilot and Agent Administration Fundamentals**. I use them in the live demos, and
 you can use them in your own lab tenant afterward. Follow [TUTORIALS.md](../TUTORIALS.md)
 for every click.
 
 Everything here is fictional. Contoso, Ltd., the ServiceHub application, Debra, and
 Kim Akers are training characters. The files contain no real customer data,
 credentials, tenant settings, or production instructions, so uploading them to a lab
-agent cannot leak anything real.
+agent can't leak anything real.
 
 | File | Used in | What it is |
 | --- | --- | --- |
@@ -33,17 +33,17 @@ Use these values when you build the agent in Copilot Studio.
 | Audience | A named pilot group, with no public channel |
 | Authentication | Keep authenticated access, and inspect it before publishing |
 
-## Three rules for these files
+## How to use these files
 
 1. **Record what you observe, not what you expect.** The test matrix lists an
    acceptance criterion for each prompt. Fill in the `Observed result` column with
-   the agent's actual answer, the agent version, and the date. An expected answer is
-   not a result. The instructor's own run is in [evidence](../evidence/README.md).
+   the agent's actual answer, the agent version, and the date. An expected answer
+   isn't a result. My own run is in [evidence](../evidence/README.md).
 2. **Treat the sharing report as an exercise.** Its first column says
-   `SYNTHETIC EXERCISE - NOT TENANT EVIDENCE`. It shows how to read a finding. It does
-   not describe any real tenant.
+   `SYNTHETIC EXERCISE - NOT TENANT EVIDENCE`. It shows you how to read a finding,
+   and it doesn't describe any real tenant.
 3. **Remember who can read uploaded knowledge.** Content in a file uploaded to an
    agent is available to anyone who chats with that agent, whatever the original
-   file's permissions were. That is why this guide is synthetic.
+   file's permissions were. That's why this guide is synthetic.
    See [Upload files as a knowledge source](https://learn.microsoft.com/microsoft-copilot-studio/knowledge-add-file-upload)
    and [Use uploaded files with generative answers](https://learn.microsoft.com/microsoft-copilot-studio/nlu-documents).

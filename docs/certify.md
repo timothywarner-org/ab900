@@ -1,53 +1,56 @@
 # Certify (optional): exam AB-900
 
-The Pearson class teaches Copilot and agent administration first. The same coverage maps to
-the Microsoft AB-900 objectives, so this page collects the exam links for anyone who decides
-to certify. Back to the [course home](../README.md).
+The Pearson class teaches Copilot and agent administration first. The same coverage maps
+to the Microsoft AB-900 objectives, so if you decide to certify, this page has the exam
+links in one place. Back to the [course home](../README.md).
 
-> **Currency:** This page was last reviewed **July 26, 2026** against the AB-900 study guide
-> dated **July 22, 2026**. The current study guide is dated **October 14, 2026**. Check its
-> [change log](https://learn.microsoft.com/credentials/certifications/resources/study-guides/ab-900)
-> before you rely on a dated detail here.
+> **Currency:** I last reviewed this page on **July 26, 2026** against the AB-900 study
+> guide dated **July 22, 2026**. The current study guide is dated **October 14, 2026**.
+> Check its [change log](https://learn.microsoft.com/credentials/certifications/resources/study-guides/ab-900)
+> before you rely on a dated detail here. For the portal paths I checked in October, use
+> the [course home](../README.md#admin-portals-and-paths).
 
-## Quick Links
+## Quick links
 
-### AB-900 Certification
+### The certification
 
-- [AB-900 certification page](https://learn.microsoft.com/credentials/certifications/copilot-and-agent-administration-fundamentals/) -- the credential
-- [AB-900 exam page](https://learn.microsoft.com/credentials/certifications/exams/ab-900) -- schedule and exam details
-- [AB-900 study guide (current version dated October 14, 2026)](https://learn.microsoft.com/credentials/certifications/resources/study-guides/ab-900) -- **the authoritative scope document**
-- [Exam sandbox (try the question types)](https://aka.ms/examdemo)
+- [AB-900 certification page](https://learn.microsoft.com/credentials/certifications/copilot-and-agent-administration-fundamentals/): the credential
+- [AB-900 exam page](https://learn.microsoft.com/credentials/certifications/exams/ab-900): schedule and exam details
+- [AB-900 study guide (current version dated October 14, 2026)](https://learn.microsoft.com/credentials/certifications/resources/study-guides/ab-900): **the official exam scope**
+- [Exam sandbox](https://aka.ms/examdemo): try the question types before exam day
 
-### Register, Pay, and Save
+### Register, pay, and save
 
-- [Pearson VUE Microsoft page](https://home.pearsonvue.com/microsoft) -- schedule at a test center or online
-- [Microsoft certification exam offers and deals](https://learn.microsoft.com/credentials/certifications/deals) -- discounts and vouchers
-- [Online (proctored) exam requirements](https://learn.microsoft.com/credentials/certifications/online-exams) -- system and room rules before you book
+- [Pearson VUE Microsoft page](https://home.pearsonvue.com/microsoft): schedule at a test center or online
+- [Microsoft certification exam offers and deals](https://learn.microsoft.com/credentials/certifications/deals): discounts and vouchers
+- [Online (proctored) exam requirements](https://learn.microsoft.com/credentials/certifications/online-exams): read the system and room rules before you book
 
 ### Policies and FAQ
 
 - [Certification exam policies and FAQ](https://learn.microsoft.com/credentials/certifications/certification-exam-policies)
 - [Exam duration and exam experience](https://learn.microsoft.com/credentials/support/exam-duration-exam-experience)
-- [Exam scoring and score reports](https://learn.microsoft.com/credentials/certifications/exam-scoring-reports) -- **700 or greater passes**
-- [Exam retake policy](https://learn.microsoft.com/credentials/certifications/exam-retake-policy) -- 24 hours before a first retake
-- [Certification renewal](https://learn.microsoft.com/credentials/certifications/renew-your-microsoft-certification) -- **Fundamentals certifications do NOT expire, so AB-900 needs no renewal**
+- [Exam scoring and score reports](https://learn.microsoft.com/credentials/certifications/exam-scoring-reports): **700 or greater passes**
+- [Exam retake policy](https://learn.microsoft.com/credentials/certifications/exam-retake-policy): 24 hours before a first retake
+- [Certification renewal](https://learn.microsoft.com/credentials/certifications/renew-your-microsoft-certification): **Fundamentals certifications don't expire, so AB-900 needs no renewal**
 
-### Practice Assessments
+### Practice assessments
 
-- [Free official Microsoft practice assessment](https://learn.microsoft.com/credentials/certifications/practice-assessments-for-microsoft-certifications) -- start here; Microsoft notes practice questions are not exam questions and do not reflect exam length
-- [MeasureUp (search results for AB-900)](https://www.measureup.com/catalogsearch/result/?q=AB-900) -- paid, third party
-- [Whizlabs AB-900](https://www.whizlabs.com/microsoft-365-copilot-agent-administration-fundamentals-ab-900/) -- paid, third party
+- [Free official Microsoft practice assessment](https://learn.microsoft.com/credentials/certifications/practice-assessments-for-microsoft-certifications): start here. Microsoft notes that practice questions aren't exam questions and don't reflect exam length.
+- [MeasureUp (search results for AB-900)](https://www.measureup.com/catalogsearch/result/?q=AB-900): paid, third party
+- [Whizlabs AB-900](https://www.whizlabs.com/microsoft-365-copilot-agent-administration-fundamentals-ab-900/): paid, third party
 
-> Third-party practice tests are **not** endorsed by Microsoft and their answers are not authoritative. When a third-party answer disagrees with the study guide or Microsoft Learn, Microsoft Learn wins.
+> Microsoft doesn't endorse third-party practice tests, and their answers aren't
+> authoritative. When a third-party answer disagrees with the study guide or Microsoft
+> Learn, Microsoft Learn wins.
 
-### Trials and Tenants
+### Trials and tenants
 
-- [Microsoft 365 E5 trial signup](https://signup.microsoft.com/get-started/signup?products=e77f0fb2-8d0f-46a0-b1ba-6c1b5ba4b1a4) -- the fastest path to a lab tenant with Purview and Defender
-- [Microsoft 365 Developer Program](https://developer.microsoft.com/microsoft-365/dev-program) -- sandbox tenant with sample data
-- [Copilot Studio trial](https://copilotstudio.microsoft.com) -- sign in and start a trial to build agents
-- See [docs/tenant-setup-guide.md](../docs/tenant-setup-guide.md) for the full lab build
+- [Microsoft 365 E5 trial signup](https://signup.microsoft.com/get-started/signup?products=e77f0fb2-8d0f-46a0-b1ba-6c1b5ba4b1a4): the fastest path to a lab tenant with Purview and Defender
+- [Microsoft 365 Developer Program](https://developer.microsoft.com/microsoft-365/dev-program): a sandbox tenant with sample data, if you qualify
+- [Copilot Studio trial](https://copilotstudio.microsoft.com): sign in and start a trial to build agents
+- The [tenant setup guide](tenant-setup-guide.md) compares these options
 
-### Product Documentation Roots
+### Product documentation roots
 
 One root per product family the exam covers.
 
@@ -68,12 +71,12 @@ One root per product family the exam covers.
 | Viva Insights (Copilot Dashboard) | [learn.microsoft.com/viva/insights](https://learn.microsoft.com/viva/insights/) | 3 |
 | Microsoft 365 Apps | [learn.microsoft.com/microsoft-365-apps](https://learn.microsoft.com/microsoft-365-apps/) | 1 |
 
-### Official Training
+### Official training
 
 - [Manage Microsoft 365 Copilot administration (learning path)](https://learn.microsoft.com/training/paths/manage-microsoft-365-copilot-administration/)
 - [Manage agents for Microsoft 365 Copilot (module)](https://learn.microsoft.com/training/modules/manage-agents-microsoft-365-copilot/)
 
-### Microsoft 365 Portals
+### Microsoft 365 apps
 
 - [Outlook](https://outlook.office.com)
 - [Teams](https://teams.microsoft.com)
@@ -81,7 +84,7 @@ One root per product family the exam covers.
 - [Excel](https://www.microsoft365.com/launch/excel)
 - [Word](https://www.microsoft365.com/launch/word)
 
-### Admin and AI Portals
+### Admin and AI portals
 
 - [Microsoft 365 admin center](https://admin.microsoft.com)
 - [Microsoft Purview portal](https://purview.microsoft.com)
@@ -94,41 +97,42 @@ One root per product family the exam covers.
 - [Copilot Studio](https://copilotstudio.microsoft.com)
 - [Microsoft 365 Apps admin center](https://config.office.com)
 
-
-## Certification at a Glance
+## The certification at a glance
 
 | Attribute | Value |
 |-----------|-------|
 | Exam code | AB-900 |
 | Full title | Microsoft 365 Certified: Copilot and Agent Administration Fundamentals |
-| Status | Generally available. The exam is **NO** longer in beta, so scores are reported immediately. |
-| Skills measured version | July 22, 2026 |
+| Status | Generally available, so you get your score right away |
+| Skills measured version | July 22, 2026 (see the currency note at the top) |
 | Level | Beginner |
 | Role | Administrator |
-| Exam duration | 45 minutes (block roughly 65 minutes of seat time for instructions and the candidate agreement) |
-| Question count | Microsoft does **NOT** publish an AB-900-specific count. Microsoft states most exams typically contain 40-60 questions. |
-| Passing score | 700 or greater on a scale where 1000 is the maximum |
+| Exam duration | 45 minutes. Block roughly 65 minutes of seat time for the instructions and the candidate agreement. |
+| Question count | Microsoft doesn't publish an AB-900-specific count. It says most exams contain 40 to 60 questions. |
+| Passing score | 700 or greater, on a scale where 1000 is the maximum |
 | Languages | English only |
 | Delivery | Proctored through Pearson VUE, or through Certiport for students and educators. Price varies by country or region. |
 | Retake | 24 hours after a first failed attempt. Wait times increase for later retakes. |
-| Renewal | **NONE** required. Microsoft states that Fundamentals certifications do not expire. |
-| Learn access during the exam | **NOT** available. The in-exam Microsoft Learn resource is offered on role-based exams only. |
+| Renewal | None. Microsoft says Fundamentals certifications don't expire. |
+| Learn access during the exam | Not available. Microsoft offers the in-exam Learn resource on role-based exams only. |
 | Exam page | https://learn.microsoft.com/credentials/certifications/copilot-and-agent-administration-fundamentals/ |
 | Study guide | https://learn.microsoft.com/credentials/certifications/resources/study-guides/ab-900 |
 
-Most questions cover features that are generally available. The exam may include questions on preview features when those features are commonly used.
+Most questions cover generally available features. The exam may include questions on
+preview features when those features are commonly used.
 
-### Exam Domains
+### Exam domains
 
 | Domain | Weight |
 |--------|--------|
-| 1 -- Identify the core features and objects of Microsoft 365 services | 30-35% |
-| 2 -- Understand data protection and governance tasks for Microsoft 365 and Copilot | **35-40%** (highest weight) |
-| 3 -- Perform basic administrative tasks for Copilot and agents | 25-30% |
+| 1. Identify the core features and objects of Microsoft 365 services | 30-35% |
+| 2. Understand data protection and governance tasks for Microsoft 365 and Copilot | **35-40%** (highest weight) |
+| 3. Perform basic administrative tasks for Copilot and agents | 25-30% |
 
-### What Changed on July 22, 2026
+### What changed on July 22, 2026
 
-The Microsoft change log records **three Minor** revisions and **ZERO** Major revisions. Domain weights did not move.
+The Microsoft change log records three Minor revisions and no Major revisions. The
+domain weights didn't move.
 
 | Subsection | Change |
 |------------|--------|
@@ -136,7 +140,8 @@ The Microsoft change log records **three Minor** revisions and **ZERO** Major re
 | Identify the core security features of Microsoft 365 services | Minor |
 | Identify and monitor oversharing in SharePoint in Microsoft 365 | Minor |
 
-Wording shifts worth memorizing, because they are the likely substance of those Minor edits:
+My read is that these wording shifts are what those Minor edits changed, so learn the
+new terms:
 
 | Older wording | July 22, 2026 wording |
 |---------------|-----------------------|
@@ -161,14 +166,19 @@ Wording shifts worth memorizing, because they are the likely substance of those 
 | Exchange admin center | https://admin.exchange.microsoft.com |
 | Power Platform admin center | https://admin.powerplatform.microsoft.com |
 | Copilot Studio | https://copilotstudio.microsoft.com |
-| Copilot Dashboard | Opened from the Viva Insights app in Microsoft Teams or the Viva Insights web app, **NOT** from a standalone admin URL |
+| Copilot Dashboard | Opened from the Viva Insights app in Microsoft Teams or the Viva Insights web app, not from a standalone admin URL |
 
-Two portals are retired and must **NEVER** be used in demos or answers. The Microsoft Purview compliance portal is superseded by the Microsoft Purview portal at `purview.microsoft.com`. The Office 365 Security and Compliance Center is split across the Microsoft Defender portal, the Microsoft Purview portal, and the Exchange admin center. The retired compliance host still initiates a sign-in redirect, so do not claim on stage that the old URL fails to load. Claim that it is retired and superseded.
+Two portals are retired, so don't use them, and don't pick them on the exam. The
+Microsoft Purview compliance portal is superseded by the Microsoft Purview portal at
+`purview.microsoft.com`. The Office 365 Security and Compliance Center is split across
+the Microsoft Defender portal, the Microsoft Purview portal, and the Exchange admin
+center. The old compliance address still starts a sign-in redirect, so a page loading
+doesn't mean the portal is current.
 
-### Navigation Paths Worth Memorizing
+### Navigation paths to know
 
-| Task | Current path |
-|------|--------------|
+| Task | Path on July 26, 2026 |
+|------|-----------------------|
 | Copilot pay-as-you-go billing | admin.microsoft.com > **Copilot** > **Billing & usage** |
 | Agent approval queue | admin.microsoft.com > **Agents** > **All agents** > **Requests** |
 | Agent inventory | admin.microsoft.com > **Agents** > **All agents** > **Registry** |
@@ -180,4 +190,3 @@ Two portals are retired and must **NEVER** be used in demos or answers. The Micr
 | Content search | purview.microsoft.com > **Solutions** > **eDiscovery** > **Content Search** |
 | Data explorer | purview.microsoft.com > **Solutions** > **Information Protection** > **Explorers** > **Data explorer** |
 | Data access governance reports | SharePoint admin center > **Reports** > **Data access governance** |
-
