@@ -645,8 +645,8 @@ Sensitivity labels classify and protect **content**, not agents. An agent is not
 
 **Next Steps:**
 
-- Review the [Complete AB-900 Exam Guide](./AB-900-EXAM-GUIDE.md)
-- Study the [AB-900 Skills Breakdown](./AB-900-SKILLS-BREAKDOWN.md)
+- Review the [Complete AB-900 Exam Guide](AB-900-EXAM-GUIDE.md)
+- Study the [AB-900 Skills Breakdown](AB-900-SKILLS-BREAKDOWN.md)
 - Set up a Microsoft 365 trial tenant for hands-on practice
 - Join the Microsoft Tech Community for additional resources
 

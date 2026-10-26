@@ -1,6 +1,6 @@
 # Contributing to the Course Repository
 
-Thank you for your interest in contributing to this O'Reilly Live Learning course repository!
+Thank you for your interest in contributing to this course repository!
 
 ## How to Contribute
 

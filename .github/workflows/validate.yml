@@ -25,7 +25,7 @@ jobs:
           #   CLAUDE.md                 -- references the rename table
           #   references/style-guide.md -- Microsoft style reference
           #
-          # Everything else IS validated, INCLUDING segment-0*/, shared-resources/, docs/, and
+          # Everything else IS validated, INCLUDING archive/july-2026/, docs/, and
           # references/ab900-objectives.md. Those trees were previously shielded because the old
           # --exclude flags matched by BASENAME, so an exclusion intended for one root-level file
           # silently exempted every same-named file anywhere in the tree.
@@ -119,12 +119,12 @@ jobs:
           # Path-scoped excludes. Only the style guide is exempt, because it must quote
           # contractions in order to prohibit them. Previously CONTRIBUTING.md and
           # fictional-companies.md were excluded by basename, which also silently exempted
-          # any same-named file anywhere in segment-0*/ or shared-resources/.
+          # any same-named file anywhere in the archived July edition.
           RESULTS=$(grep -rn --include="*.md" -iP "\b($CONTRACTIONS)\b" . \
             --exclude-dir=".git" \
             --exclude-dir="node_modules" \
             | grep -v '^\./references/style-guide\.md:' \
-            | grep -v '^\./CONTRIBUTING\.md:' \
+            | grep -v '^\./\.github/CONTRIBUTING\.md:' \
             || true)
           if [ -n "$RESULTS" ]; then
             echo "::warning::Contractions found:"

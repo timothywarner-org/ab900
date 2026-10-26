@@ -80,8 +80,8 @@ flowchart TD
 - [`evidence/`](evidence/README.md): the instructor's observed run of the starter agent tests, with the date, the agent version, and the surprises.
 - [`docs/certify.md`](docs/certify.md): exam AB-900 links and logistics, for anyone who decides to certify.
 - [`docs/study-buddy.md`](docs/study-buddy.md): a GitHub Copilot study buddy that writes practice questions, scenario walkthroughs, and study plans.
-- [`docs/july-2026-edition.md`](docs/july-2026-edition.md): the earlier four-hour edition, including the `segment-0*` folders, demo scripts, and topic notes in `docs/`.
-- `references/` and `shared-resources/`: exam objectives, practice questions, PowerShell helpers, and templates.
+- [`archive/july-2026/`](archive/july-2026/README.md): the earlier four-hour edition, with study notes, demo scripts, labs, segment folders, practice questions, and PowerShell helpers.
+- [`references/`](references/ab900-objectives.md): the exam objectives, Microsoft fictional company names, and the style guide the study buddy uses.
 - `scripts/`: the course-home checker and the banner generator. [GitHub Actions](https://github.com/timothywarner-org/ab900/actions/workflows/course-home.yml) runs the checker on every push.
 
 ## Lab prerequisites

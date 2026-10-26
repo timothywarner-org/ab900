@@ -285,4 +285,4 @@ Six distilled module documents from the AB-900T00 Microsoft Learn course are ava
 
 ---
 
-**Ready to start?** Jump to [Segment 1: Core Features and Objects of Microsoft 365 Services](./segment-01-core-m365-services/)!
+**Ready to start?** Jump to [Segment 1: Core Features and Objects of Microsoft 365 Services](segment-01-core-m365-services/)!

@@ -39,6 +39,11 @@ PEARSON_SECTION = (r"^Tim Warner \| Pearson Enterprise Live Training", r"\Z")
 # the repo link is shared, and the README shows the banner at width 800 (2x for HiDPI).
 BRAND_IMAGES = {"images/banner.png": (1600, 568), "images/social-preview.png": (1280, 640)}
 BRAND_SOURCES = ["images/brand.json", "scripts/make_banner.py"]
+# The clean runway: the only entries allowed at the repository root. Anything else goes in
+# docs/, archive/, or the private instructor kit. GitHub still shows .github/CONTRIBUTING.md.
+ROOT_ALLOWED = {".github", ".gitignore", ".vscode", "AGENTS.md", "CLAUDE.md", "LICENSE", "NOTICE.md",
+                "README.md", "TUTORIALS.md", "archive", "docs", "evidence", "handouts", "images",
+                "references", "scripts", "starter-files"}
 EVIDENCE = "evidence/2026-10-26-agent-tests.csv"
 
 STARTER_FILES = {
@@ -125,6 +130,9 @@ def check_privacy(paths: list[str]) -> None:
                 f"Credential file is tracked: {name}")
         # Office writes a ~$ owner file (it carries the editor's name) while a document is open.
         require(not re.search(r"(^|/)~\$", name), f"Office lock file is tracked: {name}")
+        # Presenter decks carry publisher templates and instructor front matter; they stay private.
+        require(not name.lower().endswith((".pptx", ".ppt", ".key")), f"Slide deck is tracked: {name}")
+        require(name.split("/")[0] in ROOT_ALLOWED, f"Unexpected entry at the repository root: {name}")
         require(not re.search(r"Start-Presenter|submitted-files\.json|cvent-polls|current-runbook", name),
                 f"Instructor operations must remain local: {name}")
         require(not re.search(r"(Copilot-and-Agent-Administration-Fundamentals-v\d+|Warner-Copilot-Agent-Administration)", name),

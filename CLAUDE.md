@@ -4,68 +4,45 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Purpose
 
-This is a **content-only repository** for an AB-900 certification study buddy powered by GitHub Copilot agents, plus instructor materials for Tim Warner's O'Reilly Live Learning session. There is no application code, no build system, and no tests. The primary artifacts are agent definitions, skill specs, prompt templates, MCP server configurations, and distilled Microsoft Learn course content.
+This is a **content-only repository** for an AB-900 certification study buddy powered by GitHub Copilot agents, the Pearson live-training course home, and the archived July 2026 O'Reilly edition. There is no application code, no build system, and no tests. The primary artifacts are agent definitions, skill specs, prompt templates, MCP server configurations, and distilled Microsoft Learn course content.
 
 ## Architecture
 
 ```text
 .github/
   agents/ab900-cert-buddy-agent.agent.md   # Main Copilot agent definition
-  skills/
-    ab900-item-creator/SKILL.md            # Exam question generation skill
-    ab900-scenario-walkthrough/SKILL.md    # Scenario-based walkthrough skill
-    ab900-study-planner/SKILL.md           # Personalized study plan skill
-  prompts/
-    ab900-practice-questions.prompt.md     # Prompt template for practice questions
-    ab900-scenario-walkthrough.prompt.md   # Prompt template for scenario walkthroughs
-    ab900-study-planner.prompt.md          # Prompt template for personalized study plans
+  skills/                                  # ab900-item-creator, ab900-scenario-walkthrough, ab900-study-planner
+  prompts/                                 # Practice questions, scenario walkthrough, study planner
   copilot-instructions.md                  # Copilot workspace instructions + rename table
+  CONTRIBUTING.md                          # Contribution guidance (GitHub shows it as a tab)
   workflows/
-    validate.yml                           # CI validation pipeline (non-blocking)
+    course-home.yml                        # Pearson course-home check (blocking)
+    validate.yml                           # Terminology and style checks (non-blocking)
     mlc-config.json                        # Markdown link checker config
-.vscode/
-  mcp.json                                 # MCP server definitions (workspace-scoped)
-  extensions.json                          # Recommended VS Code extensions
-  settings.json                            # VS Code workspace settings
+.vscode/                                   # Study buddy MCP servers, extensions, settings
+README.md, TUTORIALS.md, AGENTS.md, NOTICE.md, LICENSE   # Pearson course home
 docs/
-  module-01-security-foundations.md        # Distilled from MS Learn: Zero Trust, Defender, Entra
-  module-02-core-services-admin.md         # Distilled from MS Learn: admin center, Exchange/Teams/SP
-  module-03-data-protection-governance.md  # Distilled from MS Learn: Purview, DLP, DSPM, eDiscovery
-  module-04-copilot-and-agents.md          # Distilled from MS Learn: Copilot arch, agent types, licensing
-  module-05-copilot-admin-tasks.md         # Distilled from MS Learn: license mgmt, PAYG, prompts
-  module-06-agent-admin-tasks.md           # Distilled from MS Learn: agent creation, approval, lifecycle
-  demo-scripts.md                          # Live demo scripts for O'Reilly session
-  session-opener-governance.md             # 10-min maker-spectrum + governance opener
-  exam-traps-cheatsheet.md                # Common exam pitfalls, task-first lookup
-  portal-reference.md                      # Portals by exam DOMAIN, with verification caveats
-  PORTAL-CHEAT-SHEET.md                   # Portals by PORTAL, one block each, per-portal traps
-  new-features-deep-dive.md               # Recent feature changes
-  session-agenda.md                        # Full session agenda
+  certify.md                               # Optional AB-900 exam links and logistics
+  study-buddy.md                           # Study buddy setup and features
   tenant-setup-guide.md                    # Lab tenant setup
-  (no deck here -- the single deck lives at the repo root)
+evidence/                                  # Dated, observed instructor test runs
+handouts/                                  # Pearson Resources-widget PDFs (byte-identical) + updates
+images/                                    # banner.png, social-preview.png, brand.json
 references/
-  ab900-objectives.md                      # AB-900 skills-measured reference (current)
+  ab900-objectives.md                      # AB-900 skills-measured reference
   fictional-companies.md                   # Microsoft fictional company names for scenarios
   style-guide.md                           # Microsoft Writing Style Guide key principles
-shared-resources/
-  references/                              # Exam guide, practice questions, skills breakdown
-  scripts/                                 # PowerShell helpers + demo-tenant provisioning
-    Deploy-AB900Foundry.ps1                # Azure AI Foundry demo env (idempotent, verified live)
-    Initialize-AB900PurviewDemo.ps1        # Purview DLP/labels/retention via Security & Compliance PS
-  templates/                               # Deployment checklist, DLP policy template
-slides/workspace/                          # Deck build tooling (build-deck.js) + background assets
-images/banner.png                          # README banner
-segment-01-core-m365-services/             # Segment 1: demos, labs, slides, resources
-segment-02-data-protection-governance/     # Segment 2: demos, labs, slides, resources
-segment-03-copilot-administration/         # Segment 3: demos, labs, slides, resources
-segment-04-agents-exam-prep/              # Segment 4: demos, labs, slides, resources
-course-plan-july-2026.md                   # Live session plan (4 x 50-min segments)
-warner-ab900-July-2026.pptx                # THE deck -- exactly one, always at the root
-README.md / QUICKSTART.md / FAQ.md         # Repo front door and onboarding
-CONTRIBUTING.md / LICENSE                  # Contribution guidance and license
+scripts/                                   # Test-CourseHome.py, make_banner.py
+starter-files/                             # Synthetic Contoso files for the starter agent
+archive/july-2026/                         # The four-hour July 2026 O'Reilly edition
+  docs/                                    # module-01..06 notes, demo scripts, cheat sheets, opener
+  segment-01..04-*/                        # Per-segment demos, labs, slide notes, resources
+  shared-resources/                        # Exam guide, practice questions, scripts, templates
+  FAQ.md, QUICKSTART.md, lab-purview-dlp-15min.md
 ```
 
-The course plan file is named by delivery month. It was `course-plan-april-2026.md` and is now `course-plan-july-2026.md`. When a new delivery is scheduled, rename the file and update every reference in `README.md` and this file.
+The July 2026 edition lives in `archive/july-2026/`. Its course plan, session agenda, slide
+deck, and deck build tooling moved to the private instructor kit on October 26, 2026.
 
 ## Commands
 
@@ -80,7 +57,7 @@ grep -rnE 'compliance\.microsoft\.com|Azure AD[^C]|\bAAD\b|Azure Active Director
 # 2. Non-ASCII punctuation -- MUST return zero
 python -c "import glob; [print(f) for f in glob.glob('**/*.md',recursive=True) if '.git' not in f and any(c in open(f,encoding='utf-8',errors='replace').read() for c in '\u2013\u2014\u2018\u2019\u201c\u201d')]"
 
-# 3. Contractions (excludes CONTRIBUTING.md, style-guide.md, fictional-companies.md)
+# 3. Contractions (excludes .github/CONTRIBUTING.md, style-guide.md, fictional-companies.md)
 grep -rnEi "\b(don't|isn't|doesn't|won't|can't|it's|you're|we're|that's|didn't|aren't)\b" --include="*.md" .
 
 # 4. Broken internal links -- MUST return zero
@@ -119,38 +96,25 @@ skills={re.search(r'^name:\s*(\S+)',open(p,encoding='utf-8').read(),re.M).group(
 print('skills not referenced in agent body:', [s for s in skills if s not in agent] or 'none')"
 ```
 
-**Reading the deck safely.** The deck is often open in PowerPoint, which locks the file. Copy it before reading with `python-pptx`, and never write to it while a `~$` lock file is present:
-
-```bash
-cp warner-ab900-July-2026.pptx /tmp/deck.pptx   # use a Windows-native path on Windows
-python -c "from pptx import Presentation; p=Presentation(r'C:\path\to\deck.pptx'); print(len(p.slides))"
-```
-
 **Demo-tenant provisioning.** Both scripts are idempotent and support `-WhatIf`. Always dry-run first:
 
 ```powershell
-./shared-resources/scripts/Deploy-AB900Foundry.ps1 -WhatIf
-./shared-resources/scripts/Initialize-AB900PurviewDemo.ps1 -UserPrincipalName <admin>@<tenant> -WhatIf
+./archive/july-2026/shared-resources/scripts/Deploy-AB900Foundry.ps1 -WhatIf
+./archive/july-2026/shared-resources/scripts/Initialize-AB900PurviewDemo.ps1 -UserPrincipalName <admin>@<tenant> -WhatIf
 ```
 
 `Initialize-AB900PurviewDemo.ps1` connects to Microsoft 365 even under `-WhatIf`, deliberately: the connection is read-only and every existence check depends on it. A dry run that skips connecting reports hypothetical creates for objects that may already exist.
 
-## Deck Rule: Exactly One PPTX
+## Decks
 
-The July O'Reilly engagement has **exactly one active deck**, `warner-ab900-July-2026.pptx` at the root. Do **NOT** create competing copies of that engagement. Two decks previously drifted apart and one grew to 41 MB of uncompressed PNG backgrounds while the other stayed at 1 MB.
+No slide decks are tracked in this public repository. Presenter decks and their build
+tooling live in the private instructor kit.
 
 **Pearson live training (October 2026 onward):** the public course home follows the
 series layout described in `AGENTS.md`, and `python scripts/Test-CourseHome.py` checks
 it. Instructor operations and publisher files stay outside the public Git payload. If
 `.local/instructor/AGENTS-PRIVATE.md` exists, read it before any instructor or
 delivery work.
-
-- Update the existing deck in place. Git history is the archive.
-- Edit with `python-pptx` at the **run** level (`run.text`), never by assigning to `shape.text_frame.text` -- that assignment destroys font face, size, color, bold, and any animation timing bound to the run. Tim's layouts, colors, fonts, and slide order must survive byte-for-byte.
-- The deck is **59 slides**. Slides **1-13 are O'Reilly housekeeping front matter**; AB-900 content starts at slide **14**. The slide-to-segment remap table lives in `course-plan-july-2026.md`.
-- Speaker notes are essentially **unauthored** (1 of 59 slides has any note text). If notes are added, use the `tim-warner-voice` skill so they sound like Tim.
-- **Recompress images before embedding them.** Background PNGs caused the 41 MB bloat once and an 11 MB regression in July 2026. Run `slides/workspace/Compress-DeckImages.ps1 -WhatIf` to check, then without `-WhatIf` to fix. It rewrites only `ppt/media/*` and never parses slide XML, so layouts, fonts, colors, and animation timings survive byte-for-byte.
-- **Close PowerPoint before any scripted write.** A `~$` lock file means the app will overwrite your result on its next save. The compression script refuses to run while the lock exists; apply the same rule to any `python-pptx` write.
 
 ## Exam Currency
 
@@ -176,9 +140,9 @@ Wording changes from the July 22, 2026 refresh that must be reflected in generat
 
 Do NOT blanket-replace "SharePoint in Microsoft 365" -- it is still correct for the service and appears verbatim in current objectives. Only correct it where it modifies "admin center". Likewise, "Microsoft Entra" without "ID" is correct in the audience profile (the product family and admin center), while "Microsoft Entra ID" is correct for the identity service in skill bullets.
 
-### Knowledge Corpus (docs/module-*.md)
+### Knowledge Corpus (archive/july-2026/docs/module-*.md)
 
-The `docs/module-*.md` files are distilled CliffsNotes from the official AB-900T00 Microsoft Learn course (2 learning paths, 6 modules, ~35 content units). Use these as the local knowledge base when generating content, answering questions, or building course materials. They map to the exam as follows:
+The `archive/july-2026/docs/module-*.md` files are distilled CliffsNotes from the official AB-900T00 Microsoft Learn course (2 learning paths, 6 modules, ~35 content units). Use these as the local knowledge base when generating content, answering questions, or building course materials. They map to the exam as follows:
 
 | File | Exam Domain |
 |------|-------------|
@@ -190,7 +154,7 @@ The `docs/module-*.md` files are distilled CliffsNotes from the official AB-900T
 
 The O'Reilly session runs a 10-min governance opener plus 4 x 50-min segments with 10-min breaks.
 
-**Segment order follows EXAM DOMAIN order and matches the `segment-0{1-4}-*` folder names.** Folder numbers and live segment numbers are the SAME. This was changed on July 28, 2026; an earlier plan led with Copilot and deliberately diverged from the folders. Do not reintroduce that split.
+**Segment order follows EXAM DOMAIN order and matches the `archive/july-2026/segment-0{1-4}-*` folder names.** Folder numbers and live segment numbers are the SAME. This was changed on July 28, 2026; an earlier plan led with Copilot and deliberately diverged from the folders. Do not reintroduce that split.
 
 | Slot | Topic | Domain |
 |------|-------|--------|
@@ -200,9 +164,8 @@ The O'Reilly session runs a 10-min governance opener plus 4 x 50-min segments wi
 | 3 | Copilot Features and Administration | 3 (25-30%) |
 | 4 | Agent Administration and Exam Success | 3 (25-30%) + logistics |
 
-The opener script is `docs/session-opener-governance.md`. Its framing is Tim's: **the exam is governance, not building.**
+The opener script is `archive/july-2026/docs/session-opener-governance.md`. Its framing is Tim's: **the exam is governance, not building.**
 
-**The deck is still in the OLD order.** `warner-ab900-July-2026.pptx` was built when Copilot led, so slide numbers do NOT match segment numbers until the deck is reordered. The remap table lives in `course-plan-july-2026.md` under "Deck remap". Demo IDs already follow domain numbering (Demo 1x = Segment 1, Demo 2x = Segment 2), so those line up correctly.
 
 ### How It Works
 
@@ -289,9 +252,9 @@ These navigation paths are authoritative for AB-900 content. Always use the exac
 
 The `validate.yml` workflow runs on PRs to main. It is non-blocking: the job sets `continue-on-error: true` and each step emits `::warning::` rather than failing. Treat findings as a review checklist, not a gate. It checks:
 
-1. **Retired terminology** -- flags `compliance.microsoft.com`, `Azure AD`, `AAD`, `Azure Active Directory`, `AI hub`, `per message`, `Billing > Billing policies`, `Azure AI Studio` (excludes copilot-instructions.md, CLAUDE.md, CONTRIBUTING.md, style-guide.md, fictional-companies.md)
+1. **Retired terminology** -- flags `compliance.microsoft.com`, `Azure AD`, `AAD`, `Azure Active Directory`, `AI hub`, `per message`, `Billing > Billing policies`, `Azure AI Studio` (excludes copilot-instructions.md, CLAUDE.md, .github/CONTRIBUTING.md, style-guide.md, fictional-companies.md)
 2. **Non-ASCII characters** -- curly quotes, em dashes, en dashes
-3. **Contractions** -- common contractions like don't, isn't, etc. (excludes CONTRIBUTING.md, style-guide.md, fictional-companies.md)
+3. **Contractions** -- common contractions like don't, isn't, etc. (excludes .github/CONTRIBUTING.md, style-guide.md, fictional-companies.md)
 4. **Markdown link check** -- broken links via gaurav-nelson/github-action-markdown-link-check, configured by `.github/workflows/mlc-config.json`
 
 To check locally before pushing, grep for the retired terms pattern:
