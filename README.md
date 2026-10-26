@@ -30,8 +30,9 @@ user can already view. Most of this course follows from that one idea.
 
 **Attending live?** Tim runs every demo on screen in the Microsoft 365 admin center,
 Microsoft Purview, and Copilot Studio. Participate through polls, chat, and the Q&A
-widget. You do not need a tenant or an install. Get the slide PDF and the handouts from
-your Pearson session's **Resources** widget.
+widget. You do not need a tenant or an install. Your session's **Resources** widget has
+the four PDF handouts and the starter files, and both are in this repository too:
+[class handouts](handouts/README.md) and [starter files](starter-files/README.md).
 
 **Practicing afterward?** Follow the learning route below in a lab tenant you are
 allowed to change. The [starter files](starter-files/README.md) are synthetic, so there
@@ -42,15 +43,19 @@ lists numbered actions, what to look for, and why it matters.
 
 ### Learning route
 
-| Step | Open | What you should be able to explain |
-| --- | --- | --- |
-| 0. Prepare a lab once | [Tutorial 0](TUTORIALS.md#0-prepare-once) | Which least-privileged role does each job, and which report to start early. |
-| 1. Trace access and adoption | [Tutorial 1](TUTORIALS.md#1-trace-access-and-adoption) | Why a license, a billing policy, and a usage report are three separate observations. |
-| 2. Protect content with DLP | [Tutorial 2](TUTORIALS.md#2-create-a-dlp-policy-for-copilot-in-simulation) | What a DLP rule for Copilot needs: a location, a condition, and an action. |
-| 3. Find oversharing | [Tutorial 3](TUTORIALS.md#3-read-a-data-access-governance-report) | What a snapshot report shows that an activity report does not, and how to prove a boundary. |
-| 4. Build and test an agent | [Tutorial 4](TUTORIALS.md#4-build-and-test-the-starter-agent) | Why the knowledge source you choose changes who can read the content. |
-| 5. Approve and operate the agent | [Tutorial 5](TUTORIALS.md#5-approve-and-operate-the-agent) | What approval establishes, who can give it, and who watches the agent afterward. |
-| Exercise | [Would you expand this pilot?](TUTORIALS.md#exercise-would-you-expand-this-pilot) | How access evidence and ownership decide a rollout, not answer counts. |
+| Step | Open | Handout | What you should be able to explain |
+| --- | --- | --- | --- |
+| 0. Prepare a lab once | [Tutorial 0](TUTORIALS.md#0-prepare-once) | None | Which least-privileged role does each job, and which report to start early. |
+| 1. Trace access and adoption | [Tutorial 1](TUTORIALS.md#1-trace-access-and-adoption) | [01](handouts/01-Admin-Portal-Map.pdf), [02](handouts/02-Admin-and-Purview-Walkthrough.pdf) | Why a license, a billing policy, and a usage report are three separate observations. |
+| 2. Protect content with DLP | [Tutorial 2](TUTORIALS.md#2-create-a-dlp-policy-for-copilot-in-simulation) | [02](handouts/02-Admin-and-Purview-Walkthrough.pdf), [03](handouts/03-Sample-DLP-and-DSPM-Configurations.pdf) | What a DLP rule for Copilot needs: a location, a condition, and an action. |
+| 3. Find oversharing | [Tutorial 3](TUTORIALS.md#3-read-a-data-access-governance-report) | [02](handouts/02-Admin-and-Purview-Walkthrough.pdf), [03](handouts/03-Sample-DLP-and-DSPM-Configurations.pdf) | What a snapshot report shows that an activity report does not, and how to prove a boundary. |
+| 4. Build and test an agent | [Tutorial 4](TUTORIALS.md#4-build-and-test-the-starter-agent) | [04](handouts/04-Starter-Agent-Configuration.pdf) | Why the knowledge source you choose changes who can read the content. |
+| 5. Approve and operate the agent | [Tutorial 5](TUTORIALS.md#5-approve-and-operate-the-agent) | [04](handouts/04-Starter-Agent-Configuration.pdf), [01](handouts/01-Admin-Portal-Map.pdf) | What approval establishes, who can give it, and who watches the agent afterward. |
+| Exercise | [Would you expand this pilot?](TUTORIALS.md#exercise-would-you-expand-this-pilot) | [02](handouts/02-Admin-and-Purview-Walkthrough.pdf), page 3 | How access evidence and ownership decide a rollout, not answer counts. |
+
+The handouts were written October 19, 2026. Read the
+[updates since then](handouts/README.md#updates-since-the-handouts-were-written)
+before you rely on a detail in them.
 
 > **Currency:** The Pearson route above was checked on **October 25, 2026** against the
 > AB-900 study guide version dated **October 14, 2026**. The July O'Reilly materials

@@ -15,6 +15,7 @@ from html import unescape
 from html.parser import HTMLParser
 from pathlib import Path
 import csv
+import hashlib
 import io
 import re
 import subprocess
@@ -24,10 +25,10 @@ from urllib.parse import unquote, urlsplit
 ROOT = Path(__file__).resolve().parents[1]
 
 # The learner front door. Each must be tracked and every local link in it must work.
-COURSE_HOME_DOCS = ["README.md", "TUTORIALS.md", "AGENTS.md", "starter-files/README.md"]
+COURSE_HOME_DOCS = ["README.md", "TUTORIALS.md", "AGENTS.md", "starter-files/README.md", "handouts/README.md"]
 # Documents written for the Pearson course home, held to the repository writing rules
 # in full. README.md is checked only inside its Pearson section (see PEARSON_SECTION).
-STRICT_DOCS = ["TUTORIALS.md", "AGENTS.md", "starter-files/README.md"]
+STRICT_DOCS = ["TUTORIALS.md", "AGENTS.md", "starter-files/README.md", "handouts/README.md"]
 PEARSON_SECTION = (r"^Tim Warner \| Pearson Enterprise Live Training", r"^## About the rest of this repository")
 
 STARTER_FILES = {
@@ -35,6 +36,15 @@ STARTER_FILES = {
     "starter-files/agent-instructions.txt",
     "starter-files/agent-test-cases.csv",
     "starter-files/synthetic-sharing-report.csv",
+}
+# The handouts Pearson distributes in the session Resources widget (sent October 19,
+# 2026). Learners must get the same bytes here, so any re-export or edit fails the
+# check. Corrections belong in handouts/README.md, never in the PDFs.
+HANDOUTS = {
+    "handouts/01-Admin-Portal-Map.pdf": "265776fd1964070b47392a2b61d210e35eb2c235f4554712d9b20aa1adbc01ca",
+    "handouts/02-Admin-and-Purview-Walkthrough.pdf": "bb39e9f4e6c5766df2043c8e0d2ac71007f0a3a76258ea0ec69df58df996a269",
+    "handouts/03-Sample-DLP-and-DSPM-Configurations.pdf": "85fb67fd9d30354872bdc865bc08531316c53da4e71630fe7d119f999770e85a",
+    "handouts/04-Starter-Agent-Configuration.pdf": "c8932ebc5e61f8ffde6ab76651af1a7b87385cced5e3fae75fb0fe642d5fe9ce",
 }
 TEST_HEADER = ["ID", "Category", "Prompt", "Acceptance criterion", "Observed result", "Status"]
 MARKER = "SERVICE-ORCHID-42"
@@ -178,6 +188,16 @@ def check_starter_files(paths: list[str]) -> int:
     return len(STARTER_FILES)
 
 
+def check_handouts(paths: list[str]) -> int:
+    """Every distributed handout is tracked and byte-identical to what Pearson received."""
+    for name, expected in sorted(HANDOUTS.items()):
+        require(name in paths, f"Handout is not tracked: {name}")
+        actual = hashlib.sha256((ROOT / name).read_bytes()).hexdigest()
+        if actual != expected:
+            require(False, f"Handout differs from the distributed copy: {name} ({actual})")
+    return len(HANDOUTS)
+
+
 def main() -> int:
     """Keep public checks independent from the instructor's local environment."""
     try:
@@ -186,9 +206,11 @@ def main() -> int:
         links = check_documents(paths)
         docs = check_writing_rules()
         starters = check_starter_files(paths)
+        handouts = check_handouts(paths)
         print(f"PASS: {len(COURSE_HOME_DOCS)} course-home documents and {links} local links/anchors checked.")
         print(f"PASS: {docs} documents meet the ASCII and no-contraction rules.")
         print(f"PASS: {starters} starter files present, ASCII, and intact.")
+        print(f"PASS: {handouts} handouts match the copies Pearson distributes.")
         print(f"PASS: {len(paths)} tracked paths respect the public/private boundary.")
         return 0
     except (OSError, ValueError, subprocess.CalledProcessError, IndexError) as error:

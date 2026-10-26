@@ -13,6 +13,10 @@ rules for the July course and the study-buddy assets under `.github/`.
 - `TUTORIALS.md` repeats every Pearson demo as numbered steps: prepare a lab, trace
   access and adoption, create a DLP policy in simulation, read a data access governance
   report, build and test the starter agent, and approve and operate it.
+- `handouts/` holds the four PDF handouts exactly as Pearson distributes them in the
+  session Resources widget (October 19, 2026 bytes, checked by hash), plus a README
+  that maps each one to a tutorial and lists the updates since they were written.
+  Never edit or re-export these PDFs. Record corrections in `handouts/README.md`.
 - `starter-files/` holds the synthetic Contoso, Ltd. service guide, agent instructions,
   test matrix (T01 to T08, all `NOT RUN`), and synthetic sharing report.
 - `segment-0*/`, `shared-resources/`, `docs/`, `references/`, and `slides/` belong to

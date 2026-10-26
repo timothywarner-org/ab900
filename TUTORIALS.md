@@ -13,6 +13,9 @@ needs fast answers from the approved service desk guide. **Kim Akers** owns that
 **One question for every demo:** who can use it, what can it reach, and who answers
 for it when it changes?
 
+**Prefer a printable page?** The [class handouts](handouts/README.md) cover the same
+demos as PDFs. These tutorials are newer, so when the two differ, follow the tutorial.
+
 > **Naming note.** Microsoft Learn now calls the product Microsoft Copilot and
 > Microsoft Copilot Chat. The AB-900 study guide still says Microsoft 365 Copilot, so
 > these tutorials use the exam's name. Both names mean the same product.
