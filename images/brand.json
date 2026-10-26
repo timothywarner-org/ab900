@@ -1,0 +1,35 @@
+{
+  "_comment": "Course brand spec for scripts/make_banner.py. Palette and layout are shared across the series; only these words change.",
+  "eyebrow": "LIVE TRAINING  ·  TIM WARNER",
+  "tagline": "Administer · Secure · Govern",
+  "chips": ["Microsoft 365 admin center", "Microsoft Purview", "Copilot Studio"],
+  "hub": "Copilot",
+  "nodes": [
+    ["ACCESS", "#22D3EE", "key"],
+    ["DATA", "#60A5FA", "db"],
+    ["AGENTS", "#A78BFA", "bot"],
+    ["APPROVAL", "#F472B6", "shield"],
+    ["MONITORING", "#FBBF24", "pulse"]
+  ],
+  "footer": "TechTrainerTim.com",
+  "seed": 900,
+  "banner": {
+    "title_lines": ["Copilot and Agent", "Administration"],
+    "title_accent": "Fundamentals",
+    "title_top": 214,
+    "title_size": 70,
+    "title_leading": 78,
+    "hub_x": 1300,
+    "hub_radius": 212
+  },
+  "social": {
+    "title_lines": ["Copilot and Agent", "Administration"],
+    "title_accent": "Fundamentals",
+    "title_top": 218,
+    "title_size": 62,
+    "title_leading": 72,
+    "hub_x": 1010,
+    "hub_radius": 188,
+    "hub_scale": 0.88
+  }
+}

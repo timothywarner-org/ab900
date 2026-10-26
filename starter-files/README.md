@@ -28,6 +28,7 @@ Use these values when you build the agent in Copilot Studio.
 | Knowledge | contoso-service-guide.txt, named Contoso Service Desk Guide |
 | Instructions | The complete contents of agent-instructions.txt |
 | Language | English |
+| Web Search | Disabled, so answers come only from the guide |
 | Actions | None |
 | Audience | A named pilot group, with no public channel |
 | Authentication | Keep authenticated access, and inspect it before publishing |
@@ -37,7 +38,7 @@ Use these values when you build the agent in Copilot Studio.
 1. **Record what you observe, not what you expect.** The test matrix lists an
    acceptance criterion for each prompt. Fill in the `Observed result` column with
    the agent's actual answer, the agent version, and the date. An expected answer is
-   not a result.
+   not a result. The instructor's own run is in [evidence](../evidence/README.md).
 2. **Treat the sharing report as an exercise.** Its first column says
    `SYNTHETIC EXERCISE - NOT TENANT EVIDENCE`. It shows how to read a finding. It does
    not describe any real tenant.

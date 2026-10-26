@@ -139,9 +139,11 @@ python -c "from pptx import Presentation; p=Presentation(r'C:\path\to\deck.pptx'
 
 The July O'Reilly engagement has **exactly one active deck**, `warner-ab900-July-2026.pptx` at the root. Do **NOT** create competing copies of that engagement. Two decks previously drifted apart and one grew to 41 MB of uncompressed PNG backgrounds while the other stayed at 1 MB.
 
-**Tim's October 19, 2026 direction:** prepare the separate Pearson October 27 two-hour course. This authorizes one separate Pearson engagement under `deliveries/2026-10-pearson/`, governed by its `CURRENT-DELIVERY.json` and README. Its local `handoff-v1/` holds one active Pearson PPTX, the audience PDF, handouts, and instructor guides. Keep publisher binaries and private build evidence out of the public Git payload. They're tracked instead in the private repo `timothywarner-org/ab900-pearson` through a second Git directory, `.git-pearson`, over this same folder; run `C:\Scripts\Sync-PearsonPrivateRepo.ps1` to commit and push them. Never add `.git-pearson/` or those private paths to this public repo. Do not overwrite the longer July course or alter the other agent's Context Engineering package. The actual July source contains 60 slides; the older 59-slide assumptions/remap are historical, not a current locator.
-
-**October 25, 2026 update (Pearson course home):** the Pearson class now follows the context-engineering-with-mcp course-home pattern. The public front door is the top of `README.md`, `TUTORIALS.md`, `AGENTS.md`, and `starter-files/`; `python scripts/Test-CourseHome.py` checks them. The whole `deliveries/2026-10-pearson/` folder is now ignored in this public repo (it stays on disk and in the private repo). Instructor operations live under ignored `.local/instructor/`: the presenter deck is the highest-numbered `Copilot-and-Agent-Administration-Fundamentals-vNN.pptx` at the repo root (v06 as of October 25; earlier versions stay beside it unchanged; all are excluded from the public Git directory through `.git/info/exclude`), and the runbook, Cvent polls, and submitted-file hashes are under `.local/instructor/2026-10-pearson/`. The v04 deck and handouts Pearson received on October 19 are preserved unchanged in `handoff-v1/`.
+**Pearson live training (October 2026 onward):** the public course home follows the
+series layout described in `AGENTS.md`, and `python scripts/Test-CourseHome.py` checks
+it. Instructor operations and publisher files stay outside the public Git payload. If
+`.local/instructor/AGENTS-PRIVATE.md` exists, read it before any instructor or
+delivery work.
 
 - Update the existing deck in place. Git history is the archive.
 - Edit with `python-pptx` at the **run** level (`run.text`), never by assigning to `shape.text_frame.text` -- that assignment destroys font face, size, color, bold, and any animation timing bound to the run. Tim's layouts, colors, fonts, and slide order must survive byte-for-byte.

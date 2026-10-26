@@ -25,11 +25,21 @@ from urllib.parse import unquote, urlsplit
 ROOT = Path(__file__).resolve().parents[1]
 
 # The learner front door. Each must be tracked and every local link in it must work.
-COURSE_HOME_DOCS = ["README.md", "TUTORIALS.md", "AGENTS.md", "starter-files/README.md", "handouts/README.md"]
+COURSE_HOME_DOCS = ["README.md", "TUTORIALS.md", "AGENTS.md", "NOTICE.md", "starter-files/README.md",
+                    "handouts/README.md", "evidence/README.md"]
 # Documents written for the Pearson course home, held to the repository writing rules
-# in full. README.md is checked only inside its Pearson section (see PEARSON_SECTION).
-STRICT_DOCS = ["TUTORIALS.md", "AGENTS.md", "starter-files/README.md", "handouts/README.md"]
-PEARSON_SECTION = (r"^Tim Warner \| Pearson Enterprise Live Training", r"^## About the rest of this repository")
+# in full. README.md is checked from its byline to the end (see PEARSON_SECTION), so the
+# banner HTML and badge URLs above the byline are exempt.
+STRICT_DOCS = ["TUTORIALS.md", "AGENTS.md", "NOTICE.md", "starter-files/README.md", "handouts/README.md",
+               "evidence/README.md"]
+PEARSON_SECTION = (r"^Tim Warner \| Pearson Enterprise Live Training", r"\Z")
+
+# The series identity: every Pearson course repo ships the same two generated images, at
+# the same sizes, from a tracked generator and spec. GitHub shows the social preview when
+# the repo link is shared, and the README shows the banner at width 800 (2x for HiDPI).
+BRAND_IMAGES = {"images/banner.png": (1600, 568), "images/social-preview.png": (1280, 640)}
+BRAND_SOURCES = ["images/brand.json", "scripts/make_banner.py"]
+EVIDENCE = "evidence/2026-10-26-agent-tests.csv"
 
 STARTER_FILES = {
     "starter-files/contoso-service-guide.txt",
@@ -113,6 +123,8 @@ def check_privacy(paths: list[str]) -> None:
                 f"Private Pearson delivery file is tracked: {name}")
         require(not re.search(r"(^|/)\.env(?:\.|$)|\.(pem|key|pfx|p12)$", name, re.IGNORECASE),
                 f"Credential file is tracked: {name}")
+        # Office writes a ~$ owner file (it carries the editor's name) while a document is open.
+        require(not re.search(r"(^|/)~\$", name), f"Office lock file is tracked: {name}")
         require(not re.search(r"Start-Presenter|submitted-files\.json|cvent-polls|current-runbook", name),
                 f"Instructor operations must remain local: {name}")
         require(not re.search(r"(Copilot-and-Agent-Administration-Fundamentals-v\d+|Warner-Copilot-Agent-Administration)", name),
@@ -182,6 +194,9 @@ def check_starter_files(paths: list[str]) -> int:
     rows = list(csv.reader(io.StringIO((ROOT / "starter-files/agent-test-cases.csv").read_text(encoding="ascii"))))
     require(rows[0] == TEST_HEADER, f"Unexpected test matrix header: {rows[0]}")
     require([r[0] for r in rows[1:]] == [f"T0{i}" for i in range(1, 9)], "Test matrix must hold T01 to T08 in order")
+    # Learners record their own results. The instructor's observed run lives in evidence/.
+    require(all(r[TEST_HEADER.index("Status")] == "NOT RUN" for r in rows[1:]),
+            "Every starter test row must stay NOT RUN; observed results belong in evidence/")
     report = list(csv.reader(io.StringIO((ROOT / "starter-files/synthetic-sharing-report.csv").read_text(encoding="ascii"))))
     require(all(r[0].startswith("SYNTHETIC EXERCISE") for r in report[1:]),
             "Every sharing-report row must be labeled as a synthetic exercise")
@@ -198,6 +213,30 @@ def check_handouts(paths: list[str]) -> int:
     return len(HANDOUTS)
 
 
+def png_size(path: Path) -> tuple[int, int]:
+    """Read width and height from the PNG header, so the check needs no imaging library."""
+    data = path.read_bytes()[:24]
+    require(data[:8] == b"\x89PNG\r\n\x1a\n" and data[12:16] == b"IHDR", f"Not a PNG file: {path.name}")
+    return int.from_bytes(data[16:20], "big"), int.from_bytes(data[20:24], "big")
+
+
+def check_brand(paths: list[str]) -> int:
+    """The series banner and social preview exist at their sizes, with the generator that made them."""
+    for name, expected in BRAND_IMAGES.items():
+        require(name in paths, f"Brand image is not tracked: {name}")
+        actual = png_size(ROOT / name)
+        if actual != expected:
+            require(False, f"{name} is {actual[0]}x{actual[1]}, expected {expected[0]}x{expected[1]}")
+    for name in BRAND_SOURCES:
+        require(name in paths, f"Brand source is not tracked: {name}")
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    require(readme.lstrip().startswith("<div align=\"center\">") and "images/banner.png" in readme.split("# ", 1)[0],
+            "README.md must open with the series banner above the title")
+    require(EVIDENCE in paths, f"Evidence record is not tracked: {EVIDENCE}")
+    require(all(b < 128 for b in (ROOT / EVIDENCE).read_bytes()), f"Evidence record is not plain ASCII: {EVIDENCE}")
+    return len(BRAND_IMAGES)
+
+
 def main() -> int:
     """Keep public checks independent from the instructor's local environment."""
     try:
@@ -207,7 +246,9 @@ def main() -> int:
         docs = check_writing_rules()
         starters = check_starter_files(paths)
         handouts = check_handouts(paths)
+        brand = check_brand(paths)
         print(f"PASS: {len(COURSE_HOME_DOCS)} course-home documents and {links} local links/anchors checked.")
+        print(f"PASS: {brand} series brand images at their sizes, with generator, spec, and evidence record.")
         print(f"PASS: {docs} documents meet the ASCII and no-contraction rules.")
         print(f"PASS: {starters} starter files present, ASCII, and intact.")
         print(f"PASS: {handouts} handouts match the copies Pearson distributes.")

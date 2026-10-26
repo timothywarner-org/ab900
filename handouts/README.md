@@ -20,7 +20,7 @@ copy is handy.
 ## Updates since the handouts were written
 
 The handouts were checked against Microsoft Learn on October 19, 2026. The points
-below changed or were added by October 25, 2026. When a handout and this list
+below changed or were added by October 26, 2026. When a handout and this list
 disagree, follow this list.
 
 | Handout | Topic | Current guidance |
@@ -31,6 +31,9 @@ disagree, follow this list.
 | 04, page 3 | Channel name | The Copilot Studio channel is now [Teams and Microsoft Copilot](https://learn.microsoft.com/microsoft-copilot-studio/publication-add-bot-to-microsoft-teams). Learn pages label it a few different ways, so pick the Teams and Copilot channel your tenant shows. |
 | 04, page 3 | Who can approve | In the Microsoft 365 admin center, only the [AI Administrator and Global Administrator roles](https://learn.microsoft.com/microsoft-365/admin/manage/agent-roles-perms) can approve agent requests. Agents sent to the Teams store can also be [approved in the Teams admin center](https://learn.microsoft.com/microsoftteams/submit-approve-custom-apps) under **Teams apps > Manage apps**. |
 | 01 | Monitoring agents | **Agents > All agents > Registry** in the Microsoft 365 admin center lists the agents in your tenant. See [Agent Registry](https://learn.microsoft.com/microsoft-365/admin/manage/agent-registry). |
+| 04, page 1 | Authoring experience | On October 26, 2026 the demo tenant offered **More options (...) > Open classic experience** instead of a New experience toggle. Either way, use the standard experience the [quickstart](https://learn.microsoft.com/microsoft-copilot-studio/fundamentals-get-started) documents. [Tutorial 4](../TUTORIALS.md#4-build-and-test-the-starter-agent) has the full steps. |
+| 04, page 2 | Test T05 | Copilot Studio [content moderation](https://learn.microsoft.com/troubleshoot/power-platform/copilot-studio/generative-answers/agent-response-filtered-by-responsible-ai) may block T05 with error code `ContentFiltered` before the agent answers. No password or approval is invented, so the test still passes. See the [observed results](../evidence/README.md). |
+| 04, page 3 | Channel tile | The demo tenant labeled the Teams and Copilot channel **Microsoft 365 and Microsoft Teams** on October 26, 2026. |
 
 Everything in these handouts is fictional training material. Contoso, Ltd., the
 ServiceHub application, and every name in them are invented.
