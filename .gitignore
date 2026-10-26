@@ -158,11 +158,15 @@ vite.config.ts.timestamp-*
 # and these are multi-megabyte binaries that would bloat the repo permanently.
 *.pptx.bak
 
-# Local Pearson source correspondence, template staging, and render evidence stay private.
+# Local Pearson source correspondence, template staging, render evidence, and the whole
+# October 2026 delivery folder stay private. They're tracked in the private ab900-pearson
+# repo through .git-pearson. The learner-facing copies live in starter-files/ instead.
 .pearson-build/
-deliveries/2026-10-pearson/handoff-v1/
-deliveries/2026-10-pearson/*.zip
-deliveries/2026-10-pearson/CLAUDE-HANDOFF.md
+/deliveries/2026-10-pearson/
 
-# Private Pearson repository metadata (second Git repo over this folder; see deliveries/2026-10-pearson/README.md).
+# Instructor operations (runbook, polls, deck build, launcher). Same rule as the
+# context-engineering-with-mcp course home: local only, never force-added.
+.local/
+
+# Private Pearson repository metadata (second Git repo over this folder; see AGENTS.md).
 .git-pearson/

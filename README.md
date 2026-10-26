@@ -11,15 +11,57 @@
 [![Microsoft MVP](https://img.shields.io/badge/Microsoft_MVP-5C2D91?style=for-the-badge&logo=microsoft&logoColor=white)](https://techtrainertim.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](./LICENSE)
 [![Exam: AB-900](https://img.shields.io/badge/Exam-AB--900-00A4EF?style=for-the-badge&logo=microsoft&logoColor=white)](https://learn.microsoft.com/credentials/certifications/copilot-and-agent-administration-fundamentals/)
-[![Skills measured: July 22, 2026](https://img.shields.io/badge/Skills_measured-July_22_2026-107C10?style=for-the-badge)](https://learn.microsoft.com/credentials/certifications/resources/study-guides/ab-900)
+[![Study guide: October 14, 2026](https://img.shields.io/badge/Study_guide-October_14_2026-107C10?style=for-the-badge)](https://learn.microsoft.com/credentials/certifications/resources/study-guides/ab-900)
 
 </div>
 
-This repository contains instructor materials for the O'Reilly Live Learning session on AB-900, plus an embedded GitHub Copilot study companion that generates exam-realistic practice questions, scenario walkthroughs, and personalized study plans.
+Tim Warner | Pearson Enterprise Live Training | October 27, 2026
 
-**Pearson October 27, 2026:** The separate two-hour **Copilot and Agent Administration Fundamentals** engagement is documented in [the Pearson delivery index](deliveries/2026-10-pearson/README.md). Its learner resources and authoring content preserve that proposal's scope. The July O'Reilly deck remains the authority for the earlier longer course. Publisher-branded binaries are held in the local handoff folder, outside the public Git payload.
+## Copilot and Agent Administration Fundamentals
 
-> **Currency:** Aligned to the **Skills measured as of July 22, 2026** version of the AB-900 study guide. Content last reviewed **July 26, 2026** for the July 28, 2026 live delivery.
+**Learn to administer Microsoft 365 Copilot and the agents people build on it.**
+Follow one fictional company, **Contoso, Ltd.**, as its service team rolls out Copilot
+and a small service assistant. Every demo answers the same three questions:
+**Who can use it? What can it reach? Who answers for it when it changes?**
+
+A Copilot license gives a user the Copilot experience. It does not give that user any
+new permission to your files, because Copilot only surfaces organizational data the
+user can already view. Most of this course follows from that one idea.
+
+**Attending live?** Tim runs every demo on screen in the Microsoft 365 admin center,
+Microsoft Purview, and Copilot Studio. Participate through polls, chat, and the Q&A
+widget. You do not need a tenant or an install. Get the slide PDF and the handouts from
+your Pearson session's **Resources** widget.
+
+**Practicing afterward?** Follow the learning route below in a lab tenant you are
+allowed to change. The [starter files](starter-files/README.md) are synthetic, so there
+is nothing real to leak.
+
+**Want every click?** Use the [step-by-step demo tutorials](TUTORIALS.md). Each one
+lists numbered actions, what to look for, and why it matters.
+
+### Learning route
+
+| Step | Open | What you should be able to explain |
+| --- | --- | --- |
+| 0. Prepare a lab once | [Tutorial 0](TUTORIALS.md#0-prepare-once) | Which least-privileged role does each job, and which report to start early. |
+| 1. Trace access and adoption | [Tutorial 1](TUTORIALS.md#1-trace-access-and-adoption) | Why a license, a billing policy, and a usage report are three separate observations. |
+| 2. Protect content with DLP | [Tutorial 2](TUTORIALS.md#2-create-a-dlp-policy-for-copilot-in-simulation) | What a DLP rule for Copilot needs: a location, a condition, and an action. |
+| 3. Find oversharing | [Tutorial 3](TUTORIALS.md#3-read-a-data-access-governance-report) | What a snapshot report shows that an activity report does not, and how to prove a boundary. |
+| 4. Build and test an agent | [Tutorial 4](TUTORIALS.md#4-build-and-test-the-starter-agent) | Why the knowledge source you choose changes who can read the content. |
+| 5. Approve and operate the agent | [Tutorial 5](TUTORIALS.md#5-approve-and-operate-the-agent) | What approval establishes, who can give it, and who watches the agent afterward. |
+| Exercise | [Would you expand this pilot?](TUTORIALS.md#exercise-would-you-expand-this-pilot) | How access evidence and ownership decide a rollout, not answer counts. |
+
+> **Currency:** The Pearson route above was checked on **October 25, 2026** against the
+> AB-900 study guide version dated **October 14, 2026**. The July O'Reilly materials
+> below were last reviewed **July 26, 2026** against the July 22, 2026 version. Check the
+> study guide's change log before you rely on them.
+
+---
+
+## About the rest of this repository
+
+This repository also contains instructor materials for the July 2026 O'Reilly Live Learning session on AB-900, plus an embedded GitHub Copilot study companion that generates exam-realistic practice questions, scenario walkthroughs, and personalized study plans.
 
 ---
 
@@ -29,7 +71,7 @@ This repository contains instructor materials for the O'Reilly Live Learning ses
 
 - [AB-900 certification page](https://learn.microsoft.com/credentials/certifications/copilot-and-agent-administration-fundamentals/) -- the credential
 - [AB-900 exam page](https://learn.microsoft.com/credentials/certifications/exams/ab-900) -- schedule and exam details
-- [AB-900 study guide (skills measured as of July 22, 2026)](https://learn.microsoft.com/credentials/certifications/resources/study-guides/ab-900) -- **the authoritative scope document**
+- [AB-900 study guide (current version dated October 14, 2026)](https://learn.microsoft.com/credentials/certifications/resources/study-guides/ab-900) -- **the authoritative scope document**
 - [Exam sandbox (try the question types)](https://aka.ms/examdemo)
 
 ### Register, Pay, and Save

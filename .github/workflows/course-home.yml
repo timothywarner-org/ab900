@@ -1,0 +1,30 @@
+# Course home check for the Pearson October 27, 2026 class.
+#
+# WHY a separate workflow: validate.yml only warns, only runs on pull requests, and
+# covers the whole July course. This one fails fast on the things a Pearson learner
+# hits first in a fresh clone: broken links or anchors in the course-home documents,
+# missing or altered starter files, and private instructor or publisher files that
+# slipped into the public index. It needs no secrets, tenant, or cloud access.
+name: Course home
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  course-home:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check course-home links, starter files, and the public boundary
+        run: python scripts/Test-CourseHome.py
