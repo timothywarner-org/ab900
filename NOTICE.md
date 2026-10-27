@@ -6,6 +6,8 @@ the MIT license included in this package.
 Pearson names, logos, and template elements retain their respective ownership and usage
 terms. The four PDFs in `handouts/` are the copies distributed in the Pearson session
 Resources widget, shared here unchanged.
+The class slides in `slides/` are a PDF export of the Pearson-template deck, without
+speaker notes or producer polls.
 
 Microsoft, Microsoft 365, Microsoft Copilot, Microsoft Purview, Microsoft Entra, Copilot
 Studio, SharePoint, and Teams are trademarks of the Microsoft group of companies. This is

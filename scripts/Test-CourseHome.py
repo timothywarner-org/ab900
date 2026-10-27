@@ -45,7 +45,7 @@ BRAND_SOURCES = ["images/brand.json", "scripts/make_banner.py"]
 # docs/, archive/, or the private instructor kit. GitHub still shows .github/CONTRIBUTING.md.
 ROOT_ALLOWED = {".github", ".gitignore", ".vscode", "AGENTS.md", "CLAUDE.md", "LICENSE", "NOTICE.md",
                 "README.md", "TUTORIALS.md", "archive", "docs", "evidence", "handouts", "images",
-                "references", "scripts", "starter-files"}
+                "references", "scripts", "slides", "starter-files"}
 EVIDENCE = "evidence/2026-10-26-agent-tests.csv"
 
 STARTER_FILES = {
@@ -145,6 +145,9 @@ def check_privacy(paths: list[str]) -> None:
         # Presenter decks carry publisher templates and instructor front matter; they stay private.
         require(not name.lower().endswith((".pptx", ".ppt", ".key")), f"Slide deck is tracked: {name}")
         require(name.split("/")[0] in ROOT_ALLOWED, f"Unexpected entry at the repository root: {name}")
+        # Learners get the slides as a PDF export only: no speaker notes, no hidden producer polls.
+        require(not name.startswith("slides/") or name.lower().endswith(".pdf"),
+                f"Only the learner PDF belongs in slides/: {name}")
         require(not re.search(r"Start-Presenter|submitted-files\.json|cvent-polls|current-runbook", name),
                 f"Instructor operations must remain local: {name}")
         require(not re.search(r"(Copilot-and-Agent-Administration-Fundamentals-v\d+|Warner-Copilot-Agent-Administration)", name),

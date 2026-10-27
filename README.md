@@ -26,7 +26,8 @@ user can already view. Most of this course follows from that one idea.
 Microsoft Purview, and Copilot Studio. Participate through polls, chat, and the Q&A
 widget. You don't need a tenant or an install. Your session's **Resources** widget has
 the four PDF handouts and the starter files, and both are in this repository too:
-[class handouts](handouts/README.md) and [starter files](starter-files/README.md).
+[class handouts](handouts/README.md) and [starter files](starter-files/README.md). The
+[class slides](slides/Copilot-and-Agent-Administration-Fundamentals-slides.pdf) are here as a PDF.
 
 **Practicing afterward?** Follow the learning route below in a lab tenant you're
 allowed to change. The [starter files](starter-files/README.md) are synthetic, so there's
@@ -75,6 +76,7 @@ flowchart TD
 ## What is in this repository
 
 - [`TUTORIALS.md`](TUTORIALS.md): every demo as numbered steps, with what to look for and why it matters.
+- [`slides/`](slides/Copilot-and-Agent-Administration-Fundamentals-slides.pdf): the class slides as a PDF, updated the morning of class.
 - [`handouts/`](handouts/README.md): the four PDF handouts from your session's Resources widget, byte for byte, plus the updates since October 19.
 - [`starter-files/`](starter-files/README.md): the synthetic Contoso service guide, agent instructions, test matrix T01 to T08, and a synthetic sharing report.
 - [`evidence/`](evidence/README.md): my observed run of the starter agent tests, with the date, the agent version, and the surprises.
